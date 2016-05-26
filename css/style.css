@@ -1,0 +1,44 @@
+html,
+body {
+	/* position: fixed; */
+	/* overflow-y: hidden; */
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0;
+    background-color: #222222;
+    color: #ffffff;
+}
+
+#header{
+	width: 360px;
+	height: 20px;
+	text-align: center;
+}
+
+#footer{
+	width: 360px;
+	height: 90px;
+	text-align: center;
+}
+
+.footerButton{
+	height: 80px;
+	width: 160px;
+}
+
+.page {
+    width: 360px;
+    height: 250px;
+    display: table;
+}
+.contents {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    -webkit-tap-highlight-color: transparent;
+}
+#content-text {
+    font-weight: bold;
+    font-size: 5em;
+}

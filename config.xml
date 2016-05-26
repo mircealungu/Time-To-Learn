@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://yourdomain/TimeToLearn" version="1.0.0" viewmodes="maximized">
+    <tizen:application id="sqKZ20HgRR.TimeToLearn" package="sqKZ20HgRR" required_version="2.3.1"/>
+    <access origin="*" subdomains="true"></access>
+	<tizen:allow-navigation>https://zeeguu.unibe.ch/</tizen:allow-navigation>
+    <tizen:privilege name="http://tizen.org/privilege/internet"/>
+    <!-- <tizen:category name="http://tizen.org/category/wearable_clock"/>  -->
+    <content src="index.html"/>
+    <feature name="http://tizen.org/feature/screen.size.all"/>
+    <icon src="icon.png"/>
+    <name>TimeToLearn</name>
+    <tizen:profile name="wearable"/>
+    <tizen:setting background-support="disable" encryption="disable" hwkey-event="enable"/>
+</widget>
