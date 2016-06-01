@@ -15,16 +15,14 @@
 <body>
 	<div id="header">
 		<canvas class="header" id="digitalTime" width="360" height="100"></canvas>
-		<!-- digital time is printed here -->
+		<!--  digital time is printed here -->
 	</div>
-    <div id="main" class="page">
-        <div class="contents">
-            <canvas class="main" id="digitalTime" width="360" height="100"></canvas>
-        </div>
+    <div id="main">
+        <canvas class="main" id="wordSpace" width="360" height="140"></canvas>
     </div>
     <div id="footer">
-    	<button id="correctButton" class="footerButton">correct</button>
-    	<button id="wrongButton" class="footerButton">wrong</button>
+    	<input type="submit" id="correctButton" class="footerButtonLeft" value="" onClick="revealClicked()">
+    	<input type="submit" id="wrongButton" class="footerButtonRight" value="" onClick="nextClicked()">
     </div>
 </body>
 

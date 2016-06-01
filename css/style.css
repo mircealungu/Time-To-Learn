@@ -1,37 +1,50 @@
 html,
 body {
-	/* position: fixed; */
-	/* overflow-y: hidden; */
+	position: fixed;
+	overflow-y: hidden;
+	background: url('background.png');
     width: 100%;
     height: 100%;
     margin: 0 auto;
     padding: 0;
-    background-color: #222222;
-    color: #ffffff;
 }
 
 #header{
 	width: 360px;
-	height: 20px;
-	text-align: center;
+	height: 100px;
+	/*background-color: #d98225;*/
+}
+
+#main {
+    width: 360px;
+    height: 140px;
+    display: table;
+    /*background-color: #d98225;*/
 }
 
 #footer{
 	width: 360px;
-	height: 90px;
+	height: 120px;
 	text-align: center;
+	/*background-color: #bd4c0f;*/
 }
 
-.footerButton{
-	height: 80px;
-	width: 160px;
+.footerButtonLeft{
+	width: 170px;
+	height: 120px;
+	border-radius: 20px;
+	background: url('reveal.png');
+	
 }
 
-.page {
-    width: 360px;
-    height: 250px;
-    display: table;
+.footerButtonRight{
+	width: 170px;
+	height: 120px;
+	border-radius: 20px;
+	background: url('next.png');
+	
 }
+
 .contents {
     display: table-cell;
     vertical-align: middle;
