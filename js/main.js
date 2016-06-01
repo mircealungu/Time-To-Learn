@@ -95,6 +95,7 @@ function setBackground(hours){
 	}
 }
 
+// digital time is printed on the watchface
 function printDigitalTime() {
 	'use strict';
 	
