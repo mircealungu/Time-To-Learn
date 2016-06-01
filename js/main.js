@@ -70,14 +70,18 @@ window.onload = function() {
 	canvas = document.querySelector(".main");
     ctx = canvas.getContext('2d');
     
-    document.getElementById("correctButton").addEventListener("click", function(){
+    document.getElementById("nextButton").addEventListener("click", function(){
         wordNumber++;
         if (wordNumber > numberOfWords) {
         	wordNumber = 0;
         }
     	ctx.clearRect(0,0, 380,380);
     	printOnScreen(words[wordNumber], 180, 50);
-        printOnScreen(translations[wordNumber], 180, 100);
+        
+    });
+    
+    document.getElementById("revealButton").addEventListener("click", function(){
+    	printOnScreen(translations[wordNumber], 180, 100);
     });
 
     // add eventListener for tizenhwkey
@@ -91,7 +95,7 @@ window.onload = function() {
     
     startNewSession();
 	printOnScreen(words[wordNumber], 180, 50);
-    printOnScreen(translations[wordNumber], 180, 100);
+    //printOnScreen(translations[wordNumber], 180, 100);
     console.log(words);
     console.log(translations);
 };
