@@ -63,6 +63,9 @@ function printOnScreen(string, posx, posy, size) {
 	ctxWords.fillStyle = "#FFFFFF";
 	ctxWords.textAlign = "center";
 	ctxWords.fillText(string, posx, posy);
+	// print length of word in pixels
+	//var length = ctxWords.measureText(string).width;
+	//console.log(length);
 }
 
 function getDate(){
