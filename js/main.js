@@ -153,6 +153,8 @@ window.onload = function() {
     });
     
     document.getElementById("revealButton").addEventListener("click", function(){
+    	ctxWords.clearRect(0,0, 380,380);
+    	printOnScreen(words[wordNumber], 180, 70, 40);
     	printOnScreen(translations[wordNumber], 180, 110, 20);
     });
 
