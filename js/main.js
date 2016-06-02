@@ -156,14 +156,6 @@ function printDigitalTime() {
     setTimeout(printDigitalTime,1000);
 }
 
-//function revealClicked(){ 
-//    wordNumber++;
-//    canvas = document.getElementById("wordSpace");
-//    ctx = canvas.getContext("2d");
-//    ctx.clearRect(0,0,360,140);
-//    printOnScreen(translations[wordNumber], 180, 110, 20);
-//}
-
 function buttonEventListener() {
 	var wordNumber = 0;
 	
