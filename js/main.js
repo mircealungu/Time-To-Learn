@@ -1,6 +1,43 @@
+'use strict';
+
 var canvasWords, canvasTime, ctxWords, ctxTime;
 var words = [], translations = [];
 var numberOfWords = 20;
+
+//definitions backgroundImages
+var NIGHT = "url('css/night.png')";
+var MORNING = "url('css/morning.png')";
+var AFTERNOON = "url('css/afternoon.png')";
+var EVENING = "url('css/evening.png')";
+
+//definitions about text
+var FONT = "px Arial";
+var MAX_TEXTSIZE = 40;
+var MIN_TEXTSIZE = 20;
+var CENTER = "center";
+
+//definitions of colors
+var WHITE = "white";
+var BLACK = "black";
+
+//definitions for connection server
+var SESSION_ENDPOINT = 'https://zeeguu.unibe.ch/';
+var BOOKMARK_SESSION = 'bookmarks_by_day?session=';
+var USERNAME = 'session/i@mir.lu';
+
+//definitions for coordinates
+var SCREEN_WIDTH = 360;
+var SCREEN_HEIGHT = 360;
+var SCREEN_MIDDLE = 180;
+var DIGITAL_TIME_HEIGHT = 100;
+var DIGITAL_TIME_POSY = 95;
+var WORDSPACE_HEIGHT = 140;
+var WORD_POSY = 70;
+var TRANSLATION_POSY = 110;
+
+
+
+
 
 //window.requestAnimationFrame = window.requestAnimationFrame ||
 //	window.webkitRequestAnimationFrame ||
@@ -17,13 +54,12 @@ function length(obj) {
 }
 
 function getWords(session) {
-	'use strict';
 	var n = 0, i, j;
 	var data = new FormData();
 	data.append('after_date', '2016-05-05T00:00:00');
 
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', 'https://zeeguu.unibe.ch/bookmarks_by_day?session=' + session, false);
+	xhr.open('POST', SESSION_ENDPOINT + BOOKMARK_SESSION + session, false);
 	xhr.onload = function () {
 		var obj = JSON.parse(this.responseText);
 		for (i=0; i<length(obj); i++) {
@@ -41,13 +77,12 @@ function getWords(session) {
 }
 
 function startNewSession() {
-	'use strict';
 	var session;
 	var data = new FormData();
 	data.append('password', 'pass');
 
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', 'https://zeeguu.unibe.ch/session/i@mir.lu', false);
+	xhr.open('POST', SESSION_ENDPOINT + USERNAME, false);
 	
 	xhr.onload = function () {
 		session = parseInt(this.responseText);
@@ -58,10 +93,12 @@ function startNewSession() {
 }
 
 function printOnScreen(string, posx, posy, size) {
-	'use strict';
-    ctxWords.font = size + "px Arial";
-	ctxWords.fillStyle = "#FFFFFF";
-	ctxWords.textAlign = "center";
+	canvasWords = document.getElementById("wordSpace");
+    ctxWords = canvasWords.getContext("2d");
+	
+	ctxWords.font = size + FONT;
+	ctxWords.fillStyle = WHITE;
+	ctxWords.textAlign = CENTER;
 	ctxWords.fillText(string, posx, posy);
 	// print length of word in pixels
 	//var length = ctxWords.measureText(string).width;
@@ -69,7 +106,6 @@ function printOnScreen(string, posx, posy, size) {
 }
 
 function getDate(){
-	'use strict';
 	var date;
 	try {
 		date = tizen.time.getCurrentDateTime();
@@ -80,27 +116,22 @@ function getDate(){
 }
 
 function setBackground(hours){
+	var backgroundImage;
 	if (hours < 8) {
-		document.getElementById("digitalTime").style.backgroundImage = "url('css/night.png')";
-		return;
+		backgroundImage = NIGHT;
 	} else if (hours < 13){
-		document.getElementById("digitalTime").style.backgroundImage = "url('css/morning.png')";
-		return;
+		backgroundImage = MORNING;
 	} else if (hours < 20){
-		document.getElementById("digitalTime").style.backgroundImage = "url('css/afternoon.png')";
-		return;
-	} else if (hours < 24){
-		document.getElementById("digitalTime").style.backgroundImage = "url('css/evening.png')";
-		return;
+		backgroundImage = AFTERNOON;
+	} else {
+		backgroundImage = EVENING;
 	}
+	document.getElementById("digitalTime").style.backgroundImage = backgroundImage;
 }
 
 // digital time is printed on the watchface
-function printDigitalTime() {
-	'use strict';
-	
+function printDigitalTime() {	
 	var date = getDate();
-	
 	var hours = date.getHours();
     var minutes = date.getMinutes();
 	
@@ -115,14 +146,14 @@ function printDigitalTime() {
 	
 	canvasTime = document.getElementById("digitalTime");
     ctxTime = canvasTime.getContext("2d");    
-    ctxTime.clearRect(0,0,360,100);
+    ctxTime.clearRect(0,0,SCREEN_WIDTH,DIGITAL_TIME_HEIGHT);
     
-    ctxTime.font = "40px Arial";
-	ctxTime.fillStyle = "black";
-	ctxTime.textAlign = "center";
-    ctxTime.fillText(hours + ":" + minutes, 180, 95);
+	ctxTime.font = MAX_TEXTSIZE + FONT;
+	ctxTime.fillStyle = BLACK;
+	ctxTime.textAlign = CENTER;
+    ctxTime.fillText(hours + ":" + minutes, SCREEN_MIDDLE, DIGITAL_TIME_POSY);
     
-    setTimeout("printDigitalTime()",1000);
+    setTimeout(printDigitalTime,1000);
 }
 
 //function revealClicked(){ 
@@ -133,42 +164,50 @@ function printDigitalTime() {
 //    printOnScreen(translations[wordNumber], 180, 110, 20);
 //}
 
-window.onload = function() {
-    'use strict';
-    var wordNumber = 0;
-    
-    printDigitalTime();
-    
-    canvasWords = document.getElementById("wordSpace");
-    ctxWords = canvasWords.getContext('2d');
-    
-    document.getElementById("nextButton").addEventListener("click", function(){
-        wordNumber++;
-        if (wordNumber > numberOfWords) {
-        	wordNumber = 0;
-        }
-    	ctxWords.clearRect(0,0, 380,380);
-    	printOnScreen(words[wordNumber], 180, 70, 40);
-        
-    });
-    
-    document.getElementById("revealButton").addEventListener("click", function(){
-    	ctxWords.clearRect(0,0, 380,380);
-    	printOnScreen(words[wordNumber], 180, 70, 40);
-    	printOnScreen(translations[wordNumber], 180, 110, 20);
-    });
+function buttonEventListener() {
+	var wordNumber = 0;
+	
+	document.getElementById("nextButton").addEventListener("click", function(){
+	    wordNumber++;
+	    if (wordNumber > numberOfWords) {
+	    	wordNumber = 0;
+	    }
+		ctxWords.clearRect(0,0, SCREEN_WIDTH,SCREEN_HEIGHT);
+		printOnScreen(words[wordNumber], SCREEN_MIDDLE, WORD_POSY, MAX_TEXTSIZE);
+	    
+	});
+	
+	document.getElementById("revealButton").addEventListener("click", function(){
+		ctxWords.clearRect(0,0, SCREEN_WIDTH, WORDSPACE_HEIGHT);
+		printOnScreen(words[wordNumber], SCREEN_MIDDLE, WORD_POSY, MAX_TEXTSIZE);
+		printOnScreen(translations[wordNumber], SCREEN_MIDDLE, TRANSLATION_POSY, MIN_TEXTSIZE);
+	});
+}
 
-    // add eventListener for tizenhwkey
-    document.addEventListener('tizenhwkey', function(e) {
+function tizenBackButton() {
+	document.addEventListener('tizenhwkey', function(e) {
         if (e.keyName === "back") {
             try {
                 tizen.application.getCurrentApplication().exit();
             } catch (ignore) {}
         }
     });
+}
+
+function printFirstWord(){
+	printOnScreen(words[0], SCREEN_MIDDLE, WORD_POSY, MAX_TEXTSIZE);
+}
+
+window.onload = function() {
+    printDigitalTime();
     
     startNewSession();
-    printOnScreen(words[wordNumber], 180, 70, 40);
+        
+    printFirstWord();
+
+    buttonEventListener();
+    
+    tizenBackButton();
     
     console.log(words);
     console.log(translations);
