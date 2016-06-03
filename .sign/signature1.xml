@@ -4,7 +4,7 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI=".DS_Store">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>NDRgxixjGxVUJSG9yXi3YVKmU7f8SfCde/pZ19DdnYQ=</DigestValue>
+<DigestValue>Qbg9U4cqlJ3pSBmcpdfrCJE3EKttXsPkSfU2hm9/tWM=</DigestValue>
 </Reference>
 <Reference URI="README.md">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -12,11 +12,11 @@
 </Reference>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>bdcuZu+XAtinPWNeLI0ToXIPQ8V+MBP1+QWi6g1ssyA=</DigestValue>
+<DigestValue>VJzGBYByIIU91G8LVNNzBftf9aCtOOXvknPSkP7v8UU=</DigestValue>
 </Reference>
 <Reference URI="config.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>KMCdNu4ohNxeqGNOs2n99+/9wjSabWiYa7yrp1QS6ow=</DigestValue>
+<DigestValue>CaM1pOEbJ0wiQp4pUoot89r83TYdmN3JAKUvUPx0L3g=</DigestValue>
 </Reference>
 <Reference URI="css%2F.DS_Store">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -72,7 +72,7 @@
 </Reference>
 <Reference URI="js%2Fmain.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>gpxsFxkGg+8AlelJQS+nM4bQ0GC+yrVdblHjWKSwOPg=</DigestValue>
+<DigestValue>RQuvRFWp3Uo2CLEri091brwlbPey6ejsRYBiRRNvCiw=</DigestValue>
 </Reference>
 <Reference URI="#prop">
 <Transforms>
@@ -83,11 +83,11 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-KUos2iQjBV2odafP1wkB0kMc7fmd4wu6a/ddZGnw+1aA2goU74eujK34Qfb2PV6tGMwCRL2XWpE9
-PIEFXvPEZCyuaf16v3fLCebl+MbFgyjc6J2oOThLz+X27i0GNOlnVt4fV6WPOMmhutdiC2Lh14Mf
-qNSk+oq5VuzYus+dRHWIe8hzj2fZRGAHvifEDVVZ9aAqnpjxL1onHTVeb1Om8RSHljh02vduVMDi
-NVYGDEvR8EulTKMtNO/e1t/m9rTYPVA+vAVU8vcXzwi1igK2yK8F9MVt83E2lOoCLniLHF3TYQsf
-OGgrJkpCjcS4bP56cHVCzXXatcuR4itMw0Frcg==
+BU10ak1IPTohyRmU5NFGVWt1a4r8kKvXTRVgDFtVd9OSsHWyZe/DicGr/lJr1e1v62C4RnVNbKU9
+G3t5lieqIPUshQfn4u5+21LDhqoOg0T2cuWBnHaN0GRMv5jZ9CjiilmkFE89QWHjkdp9FNQ48Q/q
+hQJe3w2UJSB9MXgAjH7IBRDfRP+SCQhfeYwDqB4kOFbw3tpc6YGkcivnEHWKzGd3IcaJwLOgBnKU
+vww9XZc68aIFgRBibJhdYMGLult1mknoFiUvBcYLep9Skn5LxP5A3ILncYdNtWS0hov+JVAv9WZq
+NuQ6caNR8tHAzb7KJbL3dcNJiHet75kf3QYecg==
 </SignatureValue>
 <KeyInfo>
 <X509Data>

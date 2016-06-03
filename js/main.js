@@ -1,5 +1,4 @@
 'use strict';
-
 var canvasWords, canvasTime, ctxWords, ctxTime;
 var words = [], translations = [];
 var numberOfWords = 20;
@@ -12,8 +11,9 @@ var EVENING = "url('css/evening.png')";
 
 //definitions about text
 var FONT = "px Arial";
-var MAX_TEXTSIZE = 40;
-var MIN_TEXTSIZE = 20;
+var TIME_FONT_SIZE = 60;
+var WORD_FONT_SIZE = 45;
+var TRANSLATION_FONT_SIZE = 35;
 var CENTER = "center";
 
 //definitions of colors
@@ -29,10 +29,10 @@ var USERNAME = 'session/i@mir.lu';
 var SCREEN_WIDTH = 360;
 var SCREEN_HEIGHT = 360;
 var DIGITAL_TIME_HEIGHT = 100;
-var DIGITAL_TIME_POSY = 95;
+var DIGITAL_TIME_POSY = 75;
 var WORDSPACE_HEIGHT = 140;
-var WORD_POSY = 70;
-var TRANSLATION_POSY = 110;
+var WORD_POSY = 55;
+var TRANSLATION_POSY = 115;
 
 //window.requestAnimationFrame = window.requestAnimationFrame ||
 //	window.webkitRequestAnimationFrame ||
@@ -62,9 +62,16 @@ function getWords(session) {
 				break;
 			}
 			for (j=0; j<length(obj[i].bookmarks); j++) {
-				words[n] = obj[i].bookmarks[j].from;
-				translations[n] = obj[i].bookmarks[j].to;
-				n++;
+				ctxWords.font = WORD_FONT_SIZE + FONT;
+				// sentences and words that do not fit on the screen, leave them out
+				if (ctxWords.measureText(String(obj[i].bookmarks[j].from)).width <= SCREEN_WIDTH - 10) {
+					ctxWords.font = TRANSLATION_FONT_SIZE + FONT;
+					if (ctxWords.measureText(String(obj[i].bookmarks[j].to)).width <= SCREEN_WIDTH - 10) {
+						words[n] = obj[i].bookmarks[j].from;
+						translations[n] = obj[i].bookmarks[j].to;
+						n++;
+					}
+				}
 			}
 		}
 	};
@@ -88,16 +95,13 @@ function startNewSession() {
 }
 
 function printOnScreen(string, posx, posy, size) {
-	canvasWords = document.getElementById("wordSpace");
-    ctxWords = canvasWords.getContext("2d");
-	
 	ctxWords.font = size + FONT;
 	ctxWords.fillStyle = WHITE;
 	ctxWords.textAlign = CENTER;
 	ctxWords.fillText(string, posx, posy);
 	// print length of word in pixels
-	//var length = ctxWords.measureText(string).width;
-	//console.log(length);
+	var length = ctxWords.measureText(string).width;
+	console.log(length);
 }
 
 function getDate(){
@@ -139,11 +143,9 @@ function printDigitalTime() {
 	
 	setBackground(hours);
 	
-	canvasTime = document.getElementById("digitalTime");
-    ctxTime = canvasTime.getContext("2d");    
     ctxTime.clearRect(0,0,SCREEN_WIDTH,DIGITAL_TIME_HEIGHT);
     
-	ctxTime.font = MAX_TEXTSIZE + FONT;
+	ctxTime.font = TIME_FONT_SIZE + FONT;
 	ctxTime.fillStyle = BLACK;
 	ctxTime.textAlign = CENTER;
     ctxTime.fillText(hours + ":" + minutes, SCREEN_WIDTH/2, DIGITAL_TIME_POSY);
@@ -159,14 +161,14 @@ function buttonEventListener() {
 	    	wordNumber = 0;
 	    }
 		ctxWords.clearRect(0,0, SCREEN_WIDTH,SCREEN_HEIGHT);
-		printOnScreen(words[wordNumber], SCREEN_WIDTH/2, WORD_POSY, MAX_TEXTSIZE);
+		printOnScreen(words[wordNumber], SCREEN_WIDTH/2, WORD_POSY, WORD_FONT_SIZE);
 	    
 	});
 	
 	document.getElementById("revealButton").addEventListener("click", function(){
 		ctxWords.clearRect(0,0, SCREEN_WIDTH, WORDSPACE_HEIGHT);
-		printOnScreen(words[wordNumber], SCREEN_WIDTH/2, WORD_POSY, MAX_TEXTSIZE);
-		printOnScreen(translations[wordNumber], SCREEN_WIDTH/2, TRANSLATION_POSY, MIN_TEXTSIZE);
+		printOnScreen(words[wordNumber], SCREEN_WIDTH/2, WORD_POSY, WORD_FONT_SIZE);
+		printOnScreen(translations[wordNumber], SCREEN_WIDTH/2, TRANSLATION_POSY, TRANSLATION_FONT_SIZE);
 	});
 }
 
@@ -181,18 +183,22 @@ function tizenBackButton() {
 }
 
 function printFirstWord(){
-	printOnScreen(words[0], SCREEN_WIDTH/2, WORD_POSY, MAX_TEXTSIZE);
+	printOnScreen(words[0], SCREEN_WIDTH/2, WORD_POSY, WORD_FONT_SIZE);
+}
+
+function init() {
+	canvasWords = document.getElementById("wordSpace");
+	canvasTime = document.getElementById("digitalTime"); 
+	ctxWords = canvasWords.getContext("2d");
+	ctxTime = canvasTime.getContext("2d");
 }
 
 window.onload = function() {
+	init();
     printDigitalTime();
-    
-    startNewSession();
-        
+    startNewSession();   
     printFirstWord();
-
     buttonEventListener();
-    
     tizenBackButton();
     
     console.log(words);
