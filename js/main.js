@@ -170,6 +170,16 @@ function buttonEventListener() {
 		printOnScreen(words[wordNumber], SCREEN_WIDTH/2, WORD_POSY, WORD_FONT_SIZE);
 		printOnScreen(translations[wordNumber], SCREEN_WIDTH/2, TRANSLATION_POSY, TRANSLATION_FONT_SIZE);
 	});
+	
+	document.getElementById("acceptButton").addEventListener("click", function(){
+		var d1,d2;
+		
+		d1 = document.getElementById("login");
+		d2 = document.getElementById("mainPage");
+		   
+		d1.style.display = "none";
+		d2.style.display = "block";
+	});
 }
 
 function tizenBackButton() {
