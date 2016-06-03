@@ -28,16 +28,11 @@ var USERNAME = 'session/i@mir.lu';
 //definitions for coordinates
 var SCREEN_WIDTH = 360;
 var SCREEN_HEIGHT = 360;
-var SCREEN_MIDDLE = 180;
 var DIGITAL_TIME_HEIGHT = 100;
 var DIGITAL_TIME_POSY = 95;
 var WORDSPACE_HEIGHT = 140;
 var WORD_POSY = 70;
 var TRANSLATION_POSY = 110;
-
-
-
-
 
 //window.requestAnimationFrame = window.requestAnimationFrame ||
 //	window.webkitRequestAnimationFrame ||
@@ -151,28 +146,27 @@ function printDigitalTime() {
 	ctxTime.font = MAX_TEXTSIZE + FONT;
 	ctxTime.fillStyle = BLACK;
 	ctxTime.textAlign = CENTER;
-    ctxTime.fillText(hours + ":" + minutes, SCREEN_MIDDLE, DIGITAL_TIME_POSY);
+    ctxTime.fillText(hours + ":" + minutes, SCREEN_WIDTH/2, DIGITAL_TIME_POSY);
     
     setTimeout(printDigitalTime,1000);
 }
 
 function buttonEventListener() {
 	var wordNumber = 0;
-	
 	document.getElementById("nextButton").addEventListener("click", function(){
 	    wordNumber++;
 	    if (wordNumber > numberOfWords) {
 	    	wordNumber = 0;
 	    }
 		ctxWords.clearRect(0,0, SCREEN_WIDTH,SCREEN_HEIGHT);
-		printOnScreen(words[wordNumber], SCREEN_MIDDLE, WORD_POSY, MAX_TEXTSIZE);
+		printOnScreen(words[wordNumber], SCREEN_WIDTH/2, WORD_POSY, MAX_TEXTSIZE);
 	    
 	});
 	
 	document.getElementById("revealButton").addEventListener("click", function(){
 		ctxWords.clearRect(0,0, SCREEN_WIDTH, WORDSPACE_HEIGHT);
-		printOnScreen(words[wordNumber], SCREEN_MIDDLE, WORD_POSY, MAX_TEXTSIZE);
-		printOnScreen(translations[wordNumber], SCREEN_MIDDLE, TRANSLATION_POSY, MIN_TEXTSIZE);
+		printOnScreen(words[wordNumber], SCREEN_WIDTH/2, WORD_POSY, MAX_TEXTSIZE);
+		printOnScreen(translations[wordNumber], SCREEN_WIDTH/2, TRANSLATION_POSY, MIN_TEXTSIZE);
 	});
 }
 
@@ -187,7 +181,7 @@ function tizenBackButton() {
 }
 
 function printFirstWord(){
-	printOnScreen(words[0], SCREEN_MIDDLE, WORD_POSY, MAX_TEXTSIZE);
+	printOnScreen(words[0], SCREEN_WIDTH/2, WORD_POSY, MAX_TEXTSIZE);
 }
 
 window.onload = function() {
