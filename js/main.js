@@ -1,7 +1,7 @@
 'use strict';
 var canvasWords, canvasTime, ctxWords, ctxTime;
 var words = [], translations = [];
-var numberOfWords = 20;
+var numberOfWords = 50;
 
 //definitions backgroundImages
 var NIGHT = "url('css/night.png')";
@@ -11,7 +11,7 @@ var EVENING = "url('css/evening.png')";
 
 //definitions about text
 var FONT = "px Arial";
-var TIME_FONT_SIZE = 60;
+var TIME_FONT_SIZE = 120;
 var WORD_FONT_SIZE = 45;
 var TRANSLATION_FONT_SIZE = 35;
 var CENTER = "center";
@@ -28,8 +28,8 @@ var USERNAME = 'session/i@mir.lu';
 //definitions for coordinates
 var SCREEN_WIDTH = 360;
 var SCREEN_HEIGHT = 360;
-var DIGITAL_TIME_HEIGHT = 100;
-var DIGITAL_TIME_POSY = 75;
+var DIGITAL_TIME_HEIGHT = 160;
+var DIGITAL_TIME_POSY = 130;
 var WORDSPACE_HEIGHT = 140;
 var WORD_POSY = 55;
 var TRANSLATION_POSY = 115;
