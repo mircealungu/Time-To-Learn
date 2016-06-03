@@ -11,7 +11,7 @@ body {
 
 #header{
 	width: 360px;
-	height: 100px;
+	height: 160px;
 	/*background-color: #d98225;*/
 }
 
@@ -24,14 +24,14 @@ body {
 
 #footer{
 	width: 360px;
-	height: 120px;
+	height: 60px;
 	text-align: center;
 	/*background-color: #bd4c0f;*/
 }
 
 .footerButtonLeft{
 	width: 170px;
-	height: 120px;
+	height: 60px;
 	border-radius: 20px;
 	background: url('reveal.png');
 	
@@ -39,7 +39,7 @@ body {
 
 .footerButtonRight{
 	width: 170px;
-	height: 120px;
+	height: 60px;
 	border-radius: 20px;
 	background: url('next.png');
 	
