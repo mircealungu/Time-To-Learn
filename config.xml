@@ -4,7 +4,7 @@
     <access origin="*" subdomains="true"></access>
     <!-- <tizen:allow-navigation>https://zeeguu.unibe.ch/</tizen:allow-navigation> -->
     <tizen:privilege name="http://tizen.org/privilege/internet"/>
-    <tizen:category name="http://tizen.org/category/wearable_clock"/>
+    <!--  <tizen:category name="http://tizen.org/category/wearable_clock"/>  -->
     <content src="index.html"/>
     <feature name="http://tizen.org/feature/screen.size.all"/>
     <icon src="icon.png"/>

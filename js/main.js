@@ -1,5 +1,5 @@
 'use strict';
-var canvasWords, canvasTime, ctxWords, ctxTime;
+var canvas, canvasWords, canvasTime, ctx, ctxWords, ctxTime;
 var words = [], translations = [];
 var numberOfWords = 50;
 
@@ -170,16 +170,105 @@ function buttonEventListener() {
 		printOnScreen(words[wordNumber], SCREEN_WIDTH/2, WORD_POSY, WORD_FONT_SIZE);
 		printOnScreen(translations[wordNumber], SCREEN_WIDTH/2, TRANSLATION_POSY, TRANSLATION_FONT_SIZE);
 	});
+}
+
+function erasePasswordDigits(){
+	ctx.clearRect(0,0, 360, 110);
+	return 0;
+}
+
+function printPasswordDigit(number, digits){
+	ctx.font = "50px Arial";
+	ctx.fillStyle = "black";
+	ctx.textAlign = "center";
+	ctx.fillText(number, 270 - (digits-1)*60, 90);
+}
+
+function passwordButtonPressed(number, digits, inNumber){
+	if (digits>0){
+		inNumber = inNumber + number * Math.pow(10,digits-1);
+		printPasswordDigit(number, digits);
+		console.log("inserted number: " + inNumber);
+	}
+	return inNumber;
+}
+
+function accountCode(){
+	var code = 1234;
+	return code;
+}
+
+function listenerPassword() {
+	var digits = 4;
+	var insertedNumber = 0;
 	
-	document.getElementById("acceptButton").addEventListener("click", function(){
-		var d1,d2;
-		
-		d1 = document.getElementById("login");
-		d2 = document.getElementById("mainPage");
-		   
-		d1.style.display = "none";
-		d2.style.display = "block";
+	canvas = document.getElementById("digitSpace"); 
+	ctx = canvas.getContext("2d");
+	
+	document.getElementById("oneButton").addEventListener("click", function(){
+		insertedNumber = passwordButtonPressed("1", digits, insertedNumber);
+		digits = digits - 1;
 	});
+	document.getElementById("twoButton").addEventListener("click", function(){
+		insertedNumber = passwordButtonPressed("2", digits, insertedNumber);
+		digits = digits - 1;
+	});
+	document.getElementById("threeButton").addEventListener("click", function(){
+		insertedNumber = passwordButtonPressed("3", digits, insertedNumber);
+		digits = digits - 1;
+	});
+	document.getElementById("fourButton").addEventListener("click", function(){
+		insertedNumber = passwordButtonPressed("4", digits, insertedNumber);
+		digits = digits - 1;
+	});
+	document.getElementById("fiveButton").addEventListener("click", function(){
+		insertedNumber = passwordButtonPressed("5", digits, insertedNumber);
+		digits = digits - 1;
+	});
+	document.getElementById("sixButton").addEventListener("click", function(){
+		insertedNumber = passwordButtonPressed("6", digits, insertedNumber);
+		digits = digits - 1;
+	});
+	document.getElementById("sevenButton").addEventListener("click", function(){
+		insertedNumber = passwordButtonPressed("7", digits, insertedNumber);
+		digits = digits - 1;
+	});
+	document.getElementById("eightButton").addEventListener("click", function(){
+		insertedNumber = passwordButtonPressed("8", digits, insertedNumber);
+		digits = digits - 1;
+	});
+	document.getElementById("nineButton").addEventListener("click", function(){
+		insertedNumber = passwordButtonPressed("9", digits, insertedNumber);
+		digits = digits - 1;
+	});
+	document.getElementById("zeroButton").addEventListener("click", function(){
+		insertedNumber = passwordButtonPressed("0", digits, insertedNumber);
+		digits = digits - 1;
+	});
+	document.getElementById("deleteButton").addEventListener("click", function(){
+		insertedNumber = erasePasswordDigits();
+		digits = 4;
+	});
+	
+	document.getElementById("okayButton").addEventListener("click", function(){
+		if (digits===0){
+			console.log("d = 0 | inserted number: " + insertedNumber);
+			console.log("needed number: " + accountCode());
+			if (insertedNumber===accountCode()){
+				var d1,d2;
+				
+				d1 = document.getElementById("login");
+				d2 = document.getElementById("mainPage");
+				   
+				d1.style.display = "none";
+				d2.style.display = "block";
+			}else{
+				insertedNumber = erasePasswordDigits();
+				digits = 4;
+			}
+		}
+	});
+
 }
 
 function tizenBackButton() {
@@ -205,6 +294,9 @@ function init() {
 
 window.onload = function() {
 	init();
+    
+	listenerPassword();
+	
     printDigitalTime();
     startNewSession();   
     printFirstWord();

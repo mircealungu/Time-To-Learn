@@ -13,32 +13,49 @@
 </head>
 
 <body>
+
+	<div id="login" style="display:block;">
+    	<div id="loginHeader">
+    		<canvas id="digitSpace" width="360" height="110"></canvas>
+    	</div>
+    	<div id="loginFooter" style="text-align:center;">
+    		<div>
+		    	<input type="submit" id="oneButton" class="numberButton" value="1">
+		    	<input type="submit" id="twoButton" class="numberButton" value="2">
+		    	<input type="submit" id="threeButton" class="numberButton" value="3">
+	    	</div>
+	    	<div>
+	    		<input type="submit" id="okayButton" class="sideButtonLeft" value=" ">
+		    	<input type="submit" id="fourButton" class="numberButton" value="4">
+		    	<input type="submit" id="fiveButton" class="numberButton" value="5">
+		    	<input type="submit" id="sixButton" class="numberButton" value="6">
+		    	<input type="submit" id="deleteButton" class="sideButtonRight" value=" ">
+	    	</div>
+	    	<div>
+		    	<input type="submit" id="sevenButton" class="numberButton" value="7">
+		    	<input type="submit" id="eightButton" class="numberButton" value="8">
+		    	<input type="submit" id="nineButton" class="numberButton" value="9">
+	    	</div>
+	    	<div>
+		    	<input type="submit" id="zeroButton" class="numberButton" value="0">
+	    	</div>
+	    </div>
+    </div>
+    
 	<div id="mainPage" style="display:none;">	
 		<div id="header">
-			<canvas class="header" id="digitalTime" width="360" height="160"></canvas>
+			<canvas id="digitalTime" width="360" height="160"></canvas>
 			<!--  digital time is printed here -->
 		</div>
 	    <div id="main">
-	        <canvas class="main" id="wordSpace" width="360" height="140"></canvas>
+	        <canvas id="wordSpace" width="360" height="140"></canvas>
 	    </div>
 	    <div id="footer">
-	    	<input type="submit" id="revealButton" class="footerButtonLeft" value="">
-	    	<input type="submit" id="nextButton" class="footerButtonRight" value="">
+	    	<input type="submit" id="revealButton" value="">
+	    	<input type="submit" id="nextButton" value="">
 	    </div>
 	</div>
     
-    <div id="login" style="display:block;">
-    	<div id="loginHeader">
-    		<canvas class="header" id="digitalTime" width="360" height="100"></canvas>
-    	</div>
-    	<div id="loginMain" style="text-align:center;">
-    		<input type="tel" id="password" maxLength="4" class="inputPassword" size="4">'
-    		<canvas width="360" height="70"></canvas>
-    	</div>
-    	<div id="loginFooter" style="text-align:center;">
-	    	<input type="submit" id="acceptButton" class="footerButton" value="">
-	    </div>
-    </div>
 </body>
 
 </html>
