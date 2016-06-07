@@ -4,7 +4,10 @@
     <access origin="*" subdomains="true"></access>
     <!-- <tizen:allow-navigation>https://zeeguu.unibe.ch/</tizen:allow-navigation> -->
     <tizen:privilege name="http://tizen.org/privilege/internet"/>
-    <!--  <tizen:category name="http://tizen.org/category/wearable_clock"/>  -->
+
+<!-- Cf. https://developer.tizen.org/development/tutorials/web-application/w3chtml5supplementary-features/watch-application#project 
+	the tizen:category has to be set to this for the thing to be a watch face. -->
+    <tizen:category name="com.samsung.wmanager.WATCH_CLOCK"/>
     <content src="index.html"/>
     <feature name="http://tizen.org/feature/screen.size.all"/>
     <icon src="icon.png"/>
