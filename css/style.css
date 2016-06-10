@@ -9,38 +9,30 @@ body {
     padding: 0;
 }
 
-#header{
+#time{
 	width: 360px;
-	height: 160px;
+	height: 180px;
 	/*background-color: #d98225;*/
 }
 
-#main {
+#words {
     width: 360px;
-    height: 140px;
+    height: 120px;
     /*background-color: #d98225;*/
 }
 
-#footer{
+#button{
 	width: 360px;
 	height: 60px;
 	text-align: center;
 	/*background-color: #bd4c0f;*/
 }
 
-#revealButton{
-	width: 170px;
-	height: 60px;
+.nextButton{
+	width: 360px;
+	height: 120px;
 	border-radius: 20px;
-	background: url('reveal.png');
-	
-}
-
-#nextButton{
-	width: 170px;
-	height: 60px;
-	border-radius: 20px;
-	background: url('next.png');
+	background: url('nextButton2.png');
 	
 }
 

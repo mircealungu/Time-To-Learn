@@ -30,9 +30,9 @@ var SCREEN_WIDTH = 360;
 var SCREEN_HEIGHT = 360;
 var DIGITAL_TIME_HEIGHT = 160;
 var DIGITAL_TIME_POSY = 130;
-var WORDSPACE_HEIGHT = 140;
-var WORD_POSY = 55;
-var TRANSLATION_POSY = 115;
+var WORDSPACE_HEIGHT = 120;
+var WORD_POSY = 45;
+var TRANSLATION_POSY = 95;
 
 //window.requestAnimationFrame = window.requestAnimationFrame ||
 //	window.webkitRequestAnimationFrame ||
@@ -155,6 +155,8 @@ function printDigitalTime() {
 
 function buttonEventListener() {
 	var wordNumber = 0;
+	var clicked = false;
+	
 	document.getElementById("nextButton").addEventListener("click", function(){
 	    wordNumber++;
 	    if (wordNumber > numberOfWords) {
@@ -162,15 +164,24 @@ function buttonEventListener() {
 	    }
 		ctxWords.clearRect(0,0, SCREEN_WIDTH,SCREEN_HEIGHT);
 		printOnScreen(words[wordNumber], SCREEN_WIDTH/2, WORD_POSY, WORD_FONT_SIZE);
+		clicked = false;
 	    
 	});
 	
 	document.getElementById("revealButton").addEventListener("click", function(){
+		if (!clicked) {
 		ctxWords.clearRect(0,0, SCREEN_WIDTH, WORDSPACE_HEIGHT);
 		printOnScreen(words[wordNumber], SCREEN_WIDTH/2, WORD_POSY, WORD_FONT_SIZE);
 		printOnScreen(translations[wordNumber], SCREEN_WIDTH/2, TRANSLATION_POSY, TRANSLATION_FONT_SIZE);
+		clicked = true;
+		} else {
+			ctxWords.clearRect(0,0, SCREEN_WIDTH, WORDSPACE_HEIGHT);
+			printOnScreen(words[wordNumber], SCREEN_WIDTH/2, WORD_POSY, WORD_FONT_SIZE);
+			clicked = false;
+		}
 	});
 }
+
 
 function erasePasswordDigits(){
 	ctx.clearRect(0,0, 360, 110);
@@ -292,10 +303,47 @@ function init() {
 	ctxTime = canvasTime.getContext("2d");
 }
 
+function checkBattery() {
+	var battery = navigator.battery || navigator.webkitBattery || navigator.mozBattery;
+	//var charging, level, ;
+	   battery.onchargingchange = function () {
+		    //  charging = battery.charging ? 'charging' : 'not charging';
+		  	if (battery.charging) {
+				console.log("battery is charging");
+			} else {
+				console.log("battery is not charging");
+			}
+		    };
+
+		    battery.onlevelchange = function () {
+		     // level = battery.level;
+		      console.log(Math.floor(battery.level * 100));
+		    };
+		    
+		    setTimeout(checkBattery,1000);
+
+}
+
+function screenWakeUp() {
+	try {
+		  tizen.power.setScreenStateChangeListener(function(prevState, currState) {
+		    if (currState === 'SCREEN_NORMAL' && prevState === 'SCREEN_OFF') {
+		      console.log("We just woke up");
+		    } else {
+		    	console.log("The display has been switched off");
+		    }
+		  });
+		} catch (e) {}
+	setTimeout(screenWakeUp, 1000);
+}
+
 window.onload = function() {
 	init();
     
 	listenerPassword();
+	
+	checkBattery();
+	screenWakeUp();
 	
     printDigitalTime();
     startNewSession();   
