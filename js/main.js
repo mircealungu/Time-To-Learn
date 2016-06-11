@@ -28,8 +28,8 @@ var USERNAME = 'session/i@mir.lu';
 //definitions for coordinates
 var SCREEN_WIDTH = 360;
 var SCREEN_HEIGHT = 360;
-var DIGITAL_TIME_HEIGHT = 160;
-var DIGITAL_TIME_POSY = 130;
+var DIGITAL_TIME_HEIGHT = 180;
+var DIGITAL_TIME_POSY = 160;
 var WORDSPACE_HEIGHT = 120;
 var WORD_POSY = 45;
 var TRANSLATION_POSY = 95;
@@ -128,11 +128,20 @@ function setBackground(hours){
 	document.getElementById("digitalTime").style.backgroundImage = backgroundImage;
 }
 
+function setBackground(minutes){
+	//var degrees = minutes / 4;
+	var degrees = minutes * 6;
+	var rotation = "rotate(" + degrees + "deg)";
+	document.getElementById("timeBackground").style.transform = rotation;
+}
+
 // digital time is printed on the watchface
 function printDigitalTime() {	
 	var date = getDate();
 	var hours = date.getHours();
     var minutes = date.getMinutes();
+    var seconds = date.getSeconds();
+    var totalMinutes = hours*60 + minutes;
 	
 	if(hours<10){
 		hours = "0" + hours;
@@ -141,12 +150,12 @@ function printDigitalTime() {
 		minutes = "0" + minutes;
 	}
 	
-	setBackground(hours);
+	setBackground(totalMinutes);
 	
     ctxTime.clearRect(0,0,SCREEN_WIDTH,DIGITAL_TIME_HEIGHT);
     
 	ctxTime.font = TIME_FONT_SIZE + FONT;
-	ctxTime.fillStyle = BLACK;
+	ctxTime.fillStyle = WHITE;
 	ctxTime.textAlign = CENTER;
     ctxTime.fillText(hours + ":" + minutes, SCREEN_WIDTH/2, DIGITAL_TIME_POSY);
     
@@ -318,6 +327,12 @@ function checkBattery() {
 		    battery.onlevelchange = function () {
 		     // level = battery.level;
 		      console.log(Math.floor(battery.level * 100));
+		      document.getElementById("battery").setAttribute("d", describeArc(180, 180, 180, 270, 270+battery.level*180));
+		      if (battery.level > 0.15) {
+		    	  document.getElementById("battery").setAttribute("stroke", "green");
+		      } else {
+		    	  document.getElementById("battery").setAttribute("stroke", "red");
+		      }
 		    };
 		    
 		    setTimeout(checkBattery,1000);
@@ -336,6 +351,30 @@ function screenWakeUp() {
 		} catch (e) {}
 	setTimeout(screenWakeUp, 1000);
 }
+
+function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
+	  var angleInRadians = (angleInDegrees-90) * Math.PI / 180.0;
+
+	  return {
+	    x: centerX + (radius * Math.cos(angleInRadians)),
+	    y: centerY + (radius * Math.sin(angleInRadians))
+	  };
+	}
+
+	function describeArc(x, y, radius, startAngle, endAngle){
+
+	    var start = polarToCartesian(x, y, radius, endAngle);
+	    var end = polarToCartesian(x, y, radius, startAngle);
+
+	    var arcSweep = endAngle - startAngle <= 180 ? "0" : "1";
+
+	    var d = [
+	        "M", start.x, start.y, 
+	        "A", radius, radius, 0, arcSweep, 0, end.x, end.y
+	    ].join(" ");
+
+	    return d;       
+	}
 
 window.onload = function() {
 	init();

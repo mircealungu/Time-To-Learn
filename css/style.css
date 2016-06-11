@@ -9,10 +9,23 @@ body {
     padding: 0;
 }
 
+#timeBackground {
+	width: 360px;
+	height: 360px;
+	background: url('day_cycle.png');
+}
+
+
 #time{
 	width: 360px;
 	height: 180px;
 	/*background-color: #d98225;*/
+}
+
+#wordSpace {
+	width: 360px;
+	height: 120px;
+	background: url('background.png');
 }
 
 #words {
@@ -28,9 +41,14 @@ body {
 	/*background-color: #bd4c0f;*/
 }
 
+svg {
+  	width: 360px;
+  	height: 180px;
+}
+
 .nextButton{
 	width: 360px;
-	height: 120px;
+	height: 60px;
 	border-radius: 20px;
 	background: url('nextButton2.png');
 	

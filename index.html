@@ -44,15 +44,35 @@
     
 	<div id="mainPage" style="display:none;">	
 		<div id="time">
-			<canvas id="digitalTime" width="360" height="180"></canvas>
-			<!--  digital time is printed here -->
+			<canvas id="timeBackground" style="z-index: 0; position:absolute; left:0px; top:0;" width="360" height="360"></canvas>
+	        <canvas id="digitalTime" style="z-index: 1; position:absolute; left:0px; top:0;" width="360" height="180"></canvas>
+			<!--  digital time is printed here 
+			
+			
+			<img src="http://s.cdpn.io/3/kiwi.svg" 
+           style="position: absolute; 
+                  left: 0px; 
+                  top:0px;
+                  z-index: 2;
+                  width: 360px;
+                  height: 180px;
+           " />-->
+        <svg style="position: absolute; 
+                  left: 0px; 
+                  top:0px;
+                  z-index: 2;
+                  width: 360px;
+                  height: 180px;
+           ">
+			<path id="battery" fill="none" stroke="green" stroke-width="20"/>
+ 		 </svg>
 		</div>
 	    <div id="words">
 	        <canvas id="wordSpace" style="z-index: 0; position:absolute; left:0px; top:180px;" width="360" height="120"></canvas>
 	        <canvas id="revealButton" style="z-index: 1; position:absolute; left:0px; top:180;" width="360" height="120"></canvas>
 	    </div>
 	    <div id="button">
-	    	<input type="submit" id="nextButton" class="nextButton" value="">
+	    	<input type="submit" id="nextButton" style="z-index: 4; position:absolute; left:0px; top:300;" class="nextButton" value="">
 	    </div>
 	</div>
     
