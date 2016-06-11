@@ -129,18 +129,31 @@ function setBackground(hours){
 }
 
 function setBackground(minutes){
-	//var degrees = minutes / 4;
-	var degrees = minutes * 6;
+	var degrees = minutes / 4;
 	var rotation = "rotate(" + degrees + "deg)";
 	document.getElementById("timeBackground").style.transform = rotation;
+}
+
+function printDay(day){
+	var canvasDate = document.getElementById("dateSpace");
+	var ctxDate = canvasDate.getContext("2d");
+	
+	ctxDate.clearRect(0,0,100,90);
+    
+	ctxDate.font = "50px Arial";
+	ctxDate.fillStyle = WHITE;
+	ctxDate.textAlign = CENTER;
+    ctxDate.fillText(day, 50, 60);
+	
 }
 
 // digital time is printed on the watchface
 function printDigitalTime() {	
 	var date = getDate();
+	var day = date.getDate();
+	var month = date.getMonth()+1;
 	var hours = date.getHours();
     var minutes = date.getMinutes();
-    var seconds = date.getSeconds();
     var totalMinutes = hours*60 + minutes;
 	
 	if(hours<10){
@@ -149,6 +162,9 @@ function printDigitalTime() {
 	if(minutes<10){
 		minutes = "0" + minutes;
 	}
+	
+	//can be optimized
+	printDay(day);
 	
 	setBackground(totalMinutes);
 	
