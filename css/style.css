@@ -2,23 +2,47 @@ html,
 body {
 	position: fixed;
 	overflow-y: hidden;
-	background: url('background.png');
+	overflow-x: hidden;
+	background-image: url('background.png');
     width: 100%;
     height: 100%;
     margin: 0 auto;
     padding: 0;
 }
 
+#menu {
+  margin: 0px;
+  width: 360px;
+  height: 360px;
+  visibility: hidden;
+  background-color: #000000;
+  opacity: 0.9;
+}
+
+#settings {
+  margin: 0px;
+  width: 360px;
+  height: 360px;
+  visibility: hidden;
+  background-color: #000000;
+  opacity: 0.9;
+}
+
 #timeBackground {
 	width: 360px;
 	height: 360px;
-	background: url('day_cycle.png');
+	background-image: url('day_cycle.png');
+}
+
+svg {
+  	width: 360px;
+  	height: 180px;
 }
 
 #dateSpace {
 	width: 100px;
 	height: 90px;
-	background: url('date_space.png');
+	background-image: url('date_space.png');
 	transform: scale(0.4, 0.4);
 }
 
@@ -32,7 +56,13 @@ body {
 #wordSpace {
 	width: 360px;
 	height: 120px;
-	background: url('background.png');
+	background-image: url('background.png');
+}
+
+#imageFade {
+	width: 360px;
+	height: 120px;
+	visibility: hidden;
 }
 
 #words {
@@ -41,24 +71,41 @@ body {
     /*background-color: #d98225;*/
 }
 
-#button{
+#buttons{
 	width: 360px;
 	height: 60px;
 	text-align: center;
 	/*background-color: #bd4c0f;*/
 }
 
-svg {
-  	width: 360px;
-  	height: 180px;
+#menuButton{
+	width: 180px;
+	height: 60px;
+	border-radius: 0px;
+	background-image: url('menu_button.png');
 }
 
-.nextButton{
-	width: 360px;
+.mButton{
+	text-align: center;
+	font-family: Verdana, Helvetica, sans-serif;
+	color: white;
+	font-size: 20px;
+	width: 200px;
 	height: 60px;
+	position: relative;
 	border-radius: 20px;
-	background: url('nextButton2.png');
-	
+	background-color: Transparent;
+}
+
+#nextButton{
+	width: 180px;
+	height: 60px;
+	border-radius: 0px;
+	background-image: url('next_button.png');
+}
+
+#nextButton:active {
+    background-color: Transparent;
 }
 
 .numberButton{
@@ -69,7 +116,7 @@ svg {
 	width: 80px;
 	height: 65px;
 	border-radius: 10px;
-	background: url('number_button_color.png');
+	background-image: url('number_button_color.png');
 }
 
 .sideButtonLeft {
@@ -77,7 +124,7 @@ svg {
 	width: 50px;
 	height: 65px;
 	border-radius: 10px;
-	background: url('side_button_left.png');
+	background-image: url('side_button_left.png');
 }
 
 .sideButtonRight {
@@ -85,7 +132,7 @@ svg {
 	width: 50px;
 	height: 65px;
 	border-radius: 10px;
-	background: url('side_button_right.png');
+	background-image: url('side_button_right.png');
 }
 
 #loginHeader {
@@ -100,7 +147,7 @@ svg {
 	text-align: center;
 }
 
-.contents {
+/*.contents {
     display: table-cell;
     vertical-align: middle;
     text-align: center;
@@ -109,4 +156,4 @@ svg {
 #content-text {
     font-weight: bold;
     font-size: 5em;
-}
+}*/

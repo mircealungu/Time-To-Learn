@@ -9,13 +9,7 @@
     <title>Tizen Wearable Web Basic Application</title>
 
     <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <script src="js/main.js"></script>
-    <script src="js/userData.js"></script>
-    <script src="js/battery.js"></script>
-    <script src="js/password.js"></script>
-    <script src="js/screen.js"></script>
-    <script src="js/session.js"></script>
-    <script src="js/time.js"></script>
+    <script data-main="js/main.js" src="js/lib/require.js"></script>
     
 </head>
 
@@ -49,7 +43,22 @@
 	    </div>
     </div>
     
-	<div id="mainPage" style="display:none;">	
+	<div id="mainPage" style="display:none;">
+	
+		<div id="menu" style="z-index: 5; position:absolute; left:0px; top:0; text-align:center;">
+				<input type="submit" id="trashButton" class="mButton" style="position:absolute; top:50px; left:80px;" value="trash">
+				<input type="submit" id="learnedButton" class="mButton" style="position:absolute; top:150px; left:80px;" value="I learned it!">
+				<input type="submit" id="settingsButton" class="mButton" style="position:absolute; top:250px; left:80px;" value="settings">
+		
+		</div>
+		
+		<div id="settings" style="z-index: 6; position:absolute; left:0px; top:0; text-align:center;">
+				<input type="submit" id="reverseButton" class="mButton" style="position:absolute; top:50px; left:80px;" value="reverse">
+				<input type="submit" id="numberOfWordsButton" class="mButton" style="position:absolute; top:150px; left:80px;" value="number of saved words">
+				<input type="submit" id="profileButton" class="mButton" style="position:absolute; top:250px; left:80px;" value="profile">
+		
+		</div>
+		
 		<div id="time">
 			<canvas id="timeBackground" style="z-index: 0; position:absolute; left:0px; top:0;" width="360" height="360"></canvas>
 	        <canvas id="digitalTime" style="z-index: 1; position:absolute; left:0px; top:0;" width="360" height="180"></canvas>
@@ -77,11 +86,13 @@
 		</div>
 	    <div id="words">
 	        <canvas id="wordSpace" style="z-index: 0; position:absolute; left:0px; top:180px;" width="360" height="120"></canvas>
-	        <!--   <canvas id="revealButton" style="z-index: 1; position:absolute; left:0px; top:180;" width="360" height="120"></canvas> -->
+	        <canvas id="imageFade" style="z-index: 1; position:absolute; left:0px; top:180px;" width="360" height="120"></canvas> -->
 	    </div>
-	    <div id="button">
-	    	<input type="submit" id="nextButton" style="z-index: 4; position:absolute; left:0px; top:300;" class="nextButton" value="">
+	    <div id="buttons">
+	    	<button type="button" id="menuButton" style="z-index: 4; position:absolute; left:0px; top:300;" value=""></button>
+	    	<button type="button" id="nextButton" style="z-index: 4; position:absolute; left:180px; top:300;" value=""></button>
 	    </div>
+	
 	</div>
     
 </body>
