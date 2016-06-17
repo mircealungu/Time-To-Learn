@@ -1,10 +1,10 @@
 /**
  * login.js
  *
- * made by Rick Nienhuis and Niels Haan
+ * made by Rick Nienhuis & Niels Haan
  */
 
-define(function() {
+define(['userData'], function(userData) {
 	var canvas, ctx;
 	
 	function erasePasswordDigits(){
@@ -33,61 +33,53 @@ define(function() {
 		return code;
 	}
 
-	function addToStorage(code){
-		
-		var key = "0";
+	// function addToStorage(code){
+	// 	userData.setCode(code);
+	// 	var key = "0";
 
-		/* Set the local storage item */
-		if ("localStorage" in window) 
-		{
-			localStorage.setItem(key, code);
-			location.reload();
-			console.log("saved locally: " + code);
-		} 
-		else 
-		{
-			alert("no localStorage in window");
-		}
-	}
+	// 	/* Set the local storage item */
+	// 	if ("localStorage" in window) 
+	// 	{
+	// 		localStorage.setItem(key, code);
+	// 		//location.reload();
+	// 		console.log("saved locally: " + code);
+	// 	} 
+	// 	else 
+	// 	{
+	// 		alert("no localStorage in window");
+	// 	}
+	// }
 
-	function retrieveCode(){
-		var local = "";
+	// function retrieveCode(){
+	// 	userData.getCode
+	// 	var local;
 
-		if(localStorage.length>0){
-			/* Get the local storage item */
-			for (var i = 0; i < localStorage.length; i++) 
-			{
-		       //local += localStorage.key(i) + " : " + localStorage.getItem(localStorage.key(i));
-		       local += localStorage.getItem(localStorage.key(i));
-		       console.log("retrieved from local: " + local);
-		   }
-		} else {
-			return 0;
-		}
-		return local;
-	}
+	// 	if(localStorage.length>0){
+	// 		/* Get the local storage item */
+	// 		for (var i = 0; i < localStorage.length; i++) 
+	// 		{
+	// 	       //local += localStorage.key(i) + " : " + localStorage.getItem(localStorage.key(i));
+	// 	       local += localStorage.getItem(localStorage.key(i));
+	// 	       console.log("retrieved from local: " + local);
+	// 	   }
+	// 	} else {
+	// 		return 0;
+	// 	}
+	// 	return local;
+	// }
 
 	return function login() {
 		var digits = 4;
 		var insertedNumber = 0;
 		var loginCode = 0;
 
+		userData.load();
+
 		canvas = document.getElementById("digitSpace"); 
 		ctx = canvas.getContext("2d");
 
-		loginCode = retrieveCode();
+		loginCode = userData.getCode();
 		console.log("local logincode: " + loginCode);
-
-		if(loginCode!==0){
-			console.log("saved logincode: " + loginCode);
-			var d1,d2;
-
-			d1 = document.getElementById("login");
-			d2 = document.getElementById("mainPage");
-
-			d1.style.display = "none";
-			d2.style.display = "block";
-		}
 
 		document.getElementById("oneButton").addEventListener("click", function(){
 			insertedNumber = passwordButtonPressed("1", digits, insertedNumber);
@@ -137,7 +129,7 @@ define(function() {
 		document.getElementById("okayButton").addEventListener("click", function(){
 			if (digits===0){
 				if (insertedNumber===accountCode()){
-					addToStorage(insertedNumber);
+					userData.setCode(insertedNumber);
 					var d1,d2;
 
 					d1 = document.getElementById("login");

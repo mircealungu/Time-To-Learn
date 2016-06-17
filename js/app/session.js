@@ -64,6 +64,7 @@ define(['userData'], function(userData) {
 			xhr.onload = function () {
 				session = parseInt(this.responseText);
 				console.log("session number: " + session);
+				// account code will equal session number in the future -> getWords(userData.getCode())
 				getWords(session);
 			};
 			xhr.send(data);

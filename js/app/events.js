@@ -1,7 +1,7 @@
 /**
  * events.js
  *
- * made by Rick Nienhuis and Niels Haan
+ * made by Rick Nienhuis & Niels Haan
  */
 
 define(['time'], function(time) {
@@ -9,7 +9,7 @@ define(['time'], function(time) {
 	var events = [];
 	var numberOfEvents = 0;
 
-	function remove() {
+	function clear() {
 		// to be implemented
 	}
 

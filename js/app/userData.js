@@ -1,7 +1,7 @@
 /**
  * userData.js
  *
- * made by Rick Nienhuis and Niels Haan
+ * made by Rick Nienhuis & Niels Haan
  */
 
 define(['events'], function(events) {
@@ -9,9 +9,7 @@ define(['events'], function(events) {
 	var wordNumber = 0;
 	var wordPair = [];
 	var numberOfWords = 50;
-	var numberOfEvents = 0;
-	
-	var accountCode;
+	var accountCode = 0;
 
 	return {
 		
@@ -33,7 +31,34 @@ define(['events'], function(events) {
 			} else {
 				for (var i = 0; i < localStorage.length; i++) {
 					console.log("key: "+ localStorage.key(i) + " item: " + localStorage.getItem(localStorage.key(i)));
+					if (localStorage.key(i) === "accountCode") {
+						accountCode = localStorage.getItem(localStorage.key(i));
+						console.log("accountCode loaded: " + accountCode);
+
+						// no login screen needed, because user already entered accountCode 
+						var d1 = document.getElementById("login");
+						var d2 = document.getElementById("mainPage");
+
+						d1.style.display = "none";
+						d2.style.display = "block";
+					}
+					if (localStorage.key(i) === "wordNumber") {
+						wordNumber = localStorage.getItem(localStorage.key(i));
+						console.log("wordNumber loaded: " + wordNumber);
+					}
 				}
+			}
+		},
+		
+		save: function() {
+			if ("localStorage" in window) {
+				localStorage.setItem("accountCode", accountCode);
+				console.log("accountCode saved: " + accountCode);
+				localStorage.setItem("wordNumber", wordNumber);
+				console.log("wordNumber saved: " + wordNumber);
+				// more stuff to be saved here.
+			} else {
+				console.log("no localStorage in window");
 			}
 		},
 
@@ -41,8 +66,12 @@ define(['events'], function(events) {
 			events.add(event, wordPair[wordNumber].id);
 		},
 
-		getAccountCode: function() {
+		getCode: function() {
 			return accountCode;
+		},
+
+		setCode: function(code) {
+			accountCode = code;
 		},
 
 		getNumberOfWords: function() {

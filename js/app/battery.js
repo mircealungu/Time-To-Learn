@@ -1,7 +1,7 @@
 /**
  * battery.js
  *
- * made by Rick Nienhuis and Niels Haan
+ * made by Rick Nienhuis & Niels Haan
  */
 
 define(function() {

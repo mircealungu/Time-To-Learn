@@ -1,7 +1,7 @@
 /**
  * gui.js
  *
- * made by Rick Nienhuis and Niels Haan
+ * made by Rick Nienhuis & Niels Haan
  */
 
 define(['battery', 'userData', 'time'], function(battery, userData, time) {
@@ -104,8 +104,8 @@ define(['battery', 'userData', 'time'], function(battery, userData, time) {
 		draw: function() {
 			time.create();
 			var totalMinutes = time.getHours()*60 + time.getMinutes();
-			printDigitalTime(time);
-			printDay(time);
+			printDigitalTime();
+			printDay();
 			setBackground(totalMinutes);
 			battery.draw();
 		},
@@ -123,8 +123,6 @@ define(['battery', 'userData', 'time'], function(battery, userData, time) {
 			printOnScreen(userData.getWordPair(userData.getWordNumber()).word, SCREEN_WIDTH/2, WORD_POSY, WORD_FONT_SIZE);
 
 			document.getElementById("nextButton").addEventListener("click", function(){
-				userData.addEvent("next");
-				userData.printEvents();
 				userData.nextWord();
 				if (userData.getWordNumber() > userData.getNumberOfWords()) {
 					userData.setWordNumber(0);

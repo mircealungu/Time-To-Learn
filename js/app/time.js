@@ -1,12 +1,12 @@
 /**
  * time.js
  *
- * made by Rick Nienhuis and Niels Haan
+ * made by Rick Nienhuis & Niels Haan
  */
 
 define(function() {
 
-	var date, year, month, hours, minutes, seconds;
+	var date, year, day, month, hours, minutes, seconds;
 
 	function getTizenDateTime() {
 		var date;

@@ -1,7 +1,7 @@
 /**
  * device.js 
  *
- * made by Rick Nienhuis and Niels Haan
+ * made by Rick Nienhuis & Niels Haan
  */
 
 define(['userData'],function(userData) {
@@ -13,9 +13,11 @@ define(['userData'],function(userData) {
 					console.log("We just woke up");
 					userData.addEvent("screenOn");
 				} else {
+					console.log("The display has been switched off");
+					userData.save();
+					userData.printEvents();
 					userData.addEvent("screenOff");
 					userData.printEvents();
-					console.log("The display has been switched off");
 				}
 			});
 		} catch (e) {}
