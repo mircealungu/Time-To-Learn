@@ -3,7 +3,7 @@ body {
 	position: fixed;
 	overflow-y: hidden;
 	overflow-x: hidden;
-	background-image: url('background.png');
+	background-image: url('../assets/background.png');
     width: 100%;
     height: 100%;
     margin: 0 auto;
@@ -33,7 +33,7 @@ body {
 #timeBackground {
 	width: 360px;
 	height: 360px;
-	background-image: url('day_cycle.png');
+	background-image: url('../assets/day_cycle.png');
 }
 
 svg {
@@ -44,7 +44,7 @@ svg {
 #dateSpace {
 	width: 100px;
 	height: 90px;
-	background-image: url('date_space.png');
+	background-image: url('../assets/date_space.png');
 	transform: scale(0.4, 0.4);
 }
 
@@ -58,7 +58,7 @@ svg {
 #wordSpace {
 	width: 360px;
 	height: 120px;
-	background-image: url('background.png'); 
+	background-image: url('../assets/background.png'); 
 }
 
 #imageFade {
@@ -84,7 +84,7 @@ svg {
 	width: 180px;
 	height: 60px;
 	border-radius: 0px;
-	background-image: url('menu_button.png');
+	background-image: url('../assets/menu_button.png');
 }
 
 .mButton{
@@ -103,7 +103,7 @@ svg {
 	width: 180px;
 	height: 60px;
 	border-radius: 0px;
-	background-image: url('next_button.png');
+	background-image: url('../assets/next_button.png');
 }
 
 #nextButton:active {
@@ -118,7 +118,7 @@ svg {
 	width: 80px;
 	height: 65px;
 	border-radius: 10px;
-	background-image: url('number_button_color.png');
+	background-image: url('../assets/number_button_color.png');
 }
 
 .sideButtonLeft {
@@ -126,7 +126,7 @@ svg {
 	width: 50px;
 	height: 65px;
 	border-radius: 10px;
-	background-image: url('side_button_left.png');
+	background-image: url('../assets/side_button_left.png');
 }
 
 .sideButtonRight {
@@ -134,13 +134,13 @@ svg {
 	width: 50px;
 	height: 65px;
 	border-radius: 10px;
-	background-image: url('side_button_right.png');
+	background-image: url('../assets/side_button_right.png');
 }
 
 #loginHeader {
 	width: 360px;
 	height: 110px;
-	background-image: url('header_password.png');
+	background-image: url('../assets/header_password.png');
 }
 
 #loginFooter{

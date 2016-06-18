@@ -33,41 +33,6 @@ define(['userData'], function(userData) {
 		return code;
 	}
 
-	// function addToStorage(code){
-	// 	userData.setCode(code);
-	// 	var key = "0";
-
-	// 	/* Set the local storage item */
-	// 	if ("localStorage" in window) 
-	// 	{
-	// 		localStorage.setItem(key, code);
-	// 		//location.reload();
-	// 		console.log("saved locally: " + code);
-	// 	} 
-	// 	else 
-	// 	{
-	// 		alert("no localStorage in window");
-	// 	}
-	// }
-
-	// function retrieveCode(){
-	// 	userData.getCode
-	// 	var local;
-
-	// 	if(localStorage.length>0){
-	// 		/* Get the local storage item */
-	// 		for (var i = 0; i < localStorage.length; i++) 
-	// 		{
-	// 	       //local += localStorage.key(i) + " : " + localStorage.getItem(localStorage.key(i));
-	// 	       local += localStorage.getItem(localStorage.key(i));
-	// 	       console.log("retrieved from local: " + local);
-	// 	   }
-	// 	} else {
-	// 		return 0;
-	// 	}
-	// 	return local;
-	// }
-
 	return function login() {
 		var digits = 4;
 		var insertedNumber = 0;

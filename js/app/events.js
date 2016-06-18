@@ -6,6 +6,8 @@
 
 define(['time'], function(time) {
 
+	var SESSION_ENDPOINT = "https://zeeguu.unibe.ch//upload_smartwatch_events";
+
 	var events = [];
 	var numberOfEvents = 0;
 
@@ -18,22 +20,29 @@ define(['time'], function(time) {
 		add: function(event, id) {
 			time.create();
 			events[numberOfEvents++] = {
-				"eventType": event,
+				"bookmark_id": id,
 				"time": time.getTimestamp(),
-				"id": id
+				"event": event
 			};
 		},
 
 		save: function() {
-			// to be implemented
+			localStorage.setItem("events", JSON.stringify(events));
+			console.log("events saved: " + JSON.stringify(events));
 		},
 
 		load: function() {
-			// to be implemented
+			events = JSON.parse(localStorage.getItem(localStorage.key("events")));
+			console.log("events loaded: " + JSON.stringify(events));
 		},
 
-		send: function() {
-			// to be implemented
+		send: function(sessionNumber) {
+			var data = new FormData();
+			data.append('events', JSON.stringify(events));
+
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST', SESSION_ENDPOINT + "?session=" + sessionNumber + "&events=" + events, false);
+			xhr.send(data);
 		},
 
 		print: function() {

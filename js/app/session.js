@@ -20,21 +20,21 @@ define(['userData'], function(userData) {
 	}
 
 	function getWords(session) {
-		console.log(ctxWords);
 		var n = 0, i, j;
 		var data = new FormData();
 		data.append('after_date', AFTER_DATE);
 
-		var xhr = new XMLHttpRequest();
-		xhr.open('POST', SESSION_ENDPOINT + BOOKMARK_SESSION + session, false);
-		xhr.onload = function () {
-			var obj = JSON.parse(this.responseText);
-			for (i=0; i<length(obj); i++) {
-				if (n > userData.getNumberOfWords()) {
-					break;
-				}
-				for (j=0; j<length(obj[i].bookmarks); j++) {
-					ctxWords.font = screen.WORD_FONT_SIZE + screen.FONT;
+		if (true) { // if there is a internet connection, fetch new words -> have to do research for this
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST', SESSION_ENDPOINT + BOOKMARK_SESSION + session, false);
+			xhr.onload = function () {
+				var obj = JSON.parse(this.responseText);
+				for (i=0; i<length(obj); i++) {
+					if (n > userData.getNumberOfWords()) {
+						break;
+					}
+					for (j=0; j<length(obj[i].bookmarks); j++) {
+						ctxWords.font = screen.WORD_FONT_SIZE + screen.FONT;
 					// sentences and words that do not fit on the screen, leave them out
 					if (ctxWords.measureText(String(obj[i].bookmarks[j].from)).width <= SCREEN_WIDTH - 10) {
 						ctxWords.font = screen.TRANSLATION_FONT_SIZE + screen.FONT;
@@ -46,7 +46,12 @@ define(['userData'], function(userData) {
 				}
 			}
 		};
-		xhr.send(data);
+			xhr.send(data);
+		} else if (userData.areThereWords()) {  
+			// no connection, but words are saved locally
+		} else {
+			// no connection and no words, draw some sort of message on the screen
+		}
 	}
 
 	return  {

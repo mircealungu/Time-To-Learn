@@ -14,9 +14,8 @@ define(['userData'],function(userData) {
 					userData.addEvent("screenOn");
 				} else {
 					console.log("The display has been switched off");
-					userData.save();
-					userData.printEvents();
 					userData.addEvent("screenOff");
+					userData.save();
 					userData.printEvents();
 				}
 			});

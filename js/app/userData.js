@@ -25,6 +25,13 @@ define(['events'], function(events) {
 			return wordPair[n];
 		},
 
+		areThereWords: function() {
+			if (wordPair.isEmpty()) {
+				return true;
+			}
+			return false;
+		},
+
 		load: function() {
 			if (localStorage.length===0) {
 				console.log("No user data available.");
@@ -41,10 +48,13 @@ define(['events'], function(events) {
 
 						d1.style.display = "none";
 						d2.style.display = "block";
-					}
-					if (localStorage.key(i) === "wordNumber") {
+					} else if (localStorage.key(i) === "wordNumber") {
 						wordNumber = localStorage.getItem(localStorage.key(i));
 						console.log("wordNumber loaded: " + wordNumber);
+					} else if (localStorage.key(i) === "events") {
+						events.load();
+					} else {
+						// more stuff to follow.
 					}
 				}
 			}
@@ -56,6 +66,12 @@ define(['events'], function(events) {
 				console.log("accountCode saved: " + accountCode);
 				localStorage.setItem("wordNumber", wordNumber);
 				console.log("wordNumber saved: " + wordNumber);
+				if (false) { // send if there is a connection, have to do research for this
+					events.send();
+				} else {
+					//no internet connection, save them to send later
+					events.save();
+				}
 				// more stuff to be saved here.
 			} else {
 				console.log("no localStorage in window");
