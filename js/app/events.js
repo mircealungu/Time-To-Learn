@@ -41,7 +41,12 @@ define(['time'], function(time) {
 			data.append('events', JSON.stringify(events));
 
 			var xhr = new XMLHttpRequest();
-			xhr.open('POST', SESSION_ENDPOINT + "?session=" + sessionNumber + "&events=" + events, false);
+			xhr.open('POST', SESSION_ENDPOINT + "?session=" + sessionNumber, false);
+			xhr.onload = function () {
+				if (this.responseText == "OK") {
+					console.log("events are succesfully send!");
+				}
+			};
 			xhr.send(data);
 		},
 
