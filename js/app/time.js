@@ -7,6 +7,7 @@
 define(function() {
 
 	var date, year, day, month, hours, minutes, seconds;
+	var timer = 0;
 
 	function getTizenDateTime() {
 		var date;
@@ -35,6 +36,8 @@ define(function() {
 			hours = checkNumberOfDigits(date.getHours());
 			minutes = checkNumberOfDigits(date.getMinutes());
 			seconds = checkNumberOfDigits(date.getSeconds());
+			// create is called every second in gui.js, so timer is in seconds
+			timer++;
 		},
 
 		getTimestamp: function() {
@@ -51,6 +54,14 @@ define(function() {
 
 		getMinutes: function() {
 			return minutes;
+		},
+
+		getTimer: function() {
+			return timer;
+		},
+
+		resetTimer: function() {
+			timer = 0;
 		}
 	};
 });

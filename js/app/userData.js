@@ -10,6 +10,7 @@ define(['events'], function(events) {
 	var wordPair = [];
 	var numberOfWords = 50;
 	var accountCode = 0;
+	var reverse = false;
 
 	return {
 		
@@ -32,6 +33,31 @@ define(['events'], function(events) {
 			return false;
 		},
 
+		deleteWordPair: function() {
+			wordPair.splice(wordNumber, 1);
+			numberOfWords--;
+			if (numberOfWords === 0) {
+				// We have to draw some sort of message on the gui for this.
+				console.log("No words left!");
+			}
+		},
+		
+		getWord: function(n) {
+			if(reverse){
+				return wordPair[n].translation;
+			}else{
+				return wordPair[n].word;
+			}
+		},
+		
+		getTranslation: function(n) {
+			if(reverse){
+				return wordPair[n].word;
+			}else{
+				return wordPair[n].translation;
+			}
+		},
+
 		load: function() {
 			if (localStorage.length===0) {
 				console.log("No user data available.");
@@ -42,19 +68,18 @@ define(['events'], function(events) {
 						accountCode = localStorage.getItem(localStorage.key(i));
 						console.log("accountCode loaded: " + accountCode);
 
-						// no login screen needed, because user already entered accountCode 
-						var d1 = document.getElementById("login");
-						var d2 = document.getElementById("mainPage");
-
-						d1.style.display = "none";
-						d2.style.display = "block";
+						
 					} else if (localStorage.key(i) === "wordNumber") {
 						wordNumber = localStorage.getItem(localStorage.key(i));
 						console.log("wordNumber loaded: " + wordNumber);
-					} else if (localStorage.key(i) === "events") {
-						events.load();
+					// } else if (localStorage.key(i) === "events") {
+					// 	events.load(localStorage.getItem(localStorage.key(i)));
+					// } else if (localStorage.key(i) == "wordPair") {
+					// 	wordPair = JSON.parse(localStorage.getItem(localStorage.key("wordPair")));
+					// 	console.log("words loaded: " + JSON.stringify(wordPair));
+					// 	// more stuff to follow.
 					} else {
-						// more stuff to follow.
+
 					}
 				}
 			}
@@ -66,12 +91,22 @@ define(['events'], function(events) {
 				console.log("accountCode saved: " + accountCode);
 				localStorage.setItem("wordNumber", wordNumber);
 				console.log("wordNumber saved: " + wordNumber);
-				if (false) { // send if there is a connection, have to do research for this
-					events.send();
+				if (events.readyToSend()) { 
+					console.log("ready to send...");
+					try {
+						events.send(accountCode); 
+						events.clear();
+					} catch(err) {
+						console.log("No internet connection to send event data.");
+					}
 				} else {
-					//no internet connection, save them to send later
+					// send them later
+					//localStorage.setItem("events", JSON.stringify(events.getAll()));
+					//console.log("events saved: " + JSON.stringify(events));
 					events.save();
 				}
+				// localStorage.setItem("wordPair", JSON.stringify(wordPair));
+				// console.log("words saved: " + JSON.stringify(wordPair));
 				// more stuff to be saved here.
 			} else {
 				console.log("no localStorage in window");
@@ -108,6 +143,14 @@ define(['events'], function(events) {
 
 		nextWord: function() {
 			wordNumber++;
+		},
+
+		getReverseStatus: function() {
+			return reverse;
+		},
+		
+		setReverseStatus: function(rev) {
+			reverse = rev;
 		},
 
 		printEvents: function() {

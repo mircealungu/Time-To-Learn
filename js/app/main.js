@@ -11,13 +11,16 @@ require(['login', 'session', 'gui', 'device'], function (login, session, gui, de
 		setTimeout(update, 1000);
 	}
 
+	function loginSucces() {
+		session.create(ctxWords);
+		session.printWords();
+		gui.create(ctxWords);
+		device.create();
+		update();
+	}
+
 	var canvasWords = document.getElementById("wordSpace"); 
 	var ctxWords = canvasWords.getContext("2d");
 	
-	new login();
-	session.create(ctxWords);
-	session.printWords();
-	gui.create(ctxWords);
-	device.create();
-	update();
+	new login(loginSucces);
 });

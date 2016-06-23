@@ -12,7 +12,7 @@ body {
     -webkit-tap-highlight-color: transparent;
 }
 
-#menu {
+#menuPage {
   margin: 0px;
   width: 360px;
   height: 360px;
@@ -21,13 +21,61 @@ body {
   opacity: 0.9;
 }
 
-#settings {
+#menuSpace {
+  margin: 0px;
+  width: 360px;
+  height: 300px;
+}
+
+#menuButtons {
+  margin: 0px;
+  width: 360px;
+  height: 60px;
+}
+
+.backButtonLayout{
+	width: 180px;
+	height: 60px;
+	border-radius: 0px;
+	background-image: url('../assets/back_button.png');
+	background-size: 180px 60px;
+}
+
+#settingsButton{
+	width: 180px;
+	height: 60px;
+	border-radius: 0px;
+	background-image: url('../assets/settings_button.png');
+	background-size: 180px 60px;
+}
+
+#settingsPage {
   margin: 0px;
   width: 360px;
   height: 360px;
   visibility: hidden;
   background-color: #000000;
   opacity: 0.9;
+}
+
+#settingsSpace {
+  margin: 0px;
+  width: 360px;
+  height: 300px;
+}
+
+#settingsButtons {
+  margin: 0px;
+  width: 360px;
+  height: 60px;
+}
+
+#backButtonInSettings {
+  width: 180px;
+  height: 60px;
+  border-radius: 0px;
+  background-image: url('../assets/back_button_mirror.png');
+  background-size: 180px 60px;
 }
 
 #timeBackground {
@@ -43,7 +91,7 @@ svg {
 
 #dateSpace {
 	width: 100px;
-	height: 90px;
+	height: 75px;
 	background-image: url('../assets/date_space.png');
 	transform: scale(0.4, 0.4);
 }
@@ -80,7 +128,7 @@ svg {
 	/*background-color: #bd4c0f;*/
 }
 
-#menuButton{
+.menuButtonLayout{
 	width: 180px;
 	height: 60px;
 	border-radius: 0px;
@@ -92,6 +140,20 @@ svg {
 	font-family: Verdana, Helvetica, sans-serif;
 	color: white;
 	font-size: 20px;
+	font-weight: bold;
+	width: 200px;
+	height: 100px;
+	position: relative;
+	border-radius: 20px;
+	background-color: Transparent;
+}
+
+.sButton{
+	text-align: center;
+	font-family: Verdana, Helvetica, sans-serif;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
 	width: 200px;
 	height: 60px;
 	position: relative;
@@ -106,47 +168,65 @@ svg {
 	background-image: url('../assets/next_button.png');
 }
 
-#nextButton:active {
-    background-color: Transparent;
-}
-
-.numberButton{
-	text-align: center;
-	font-family: Verdana, Helvetica, sans-serif;
-	color: white;
-	font-size: 20px;
-	width: 80px;
-	height: 65px;
-	border-radius: 10px;
-	background-image: url('../assets/number_button_color.png');
-}
-
-.sideButtonLeft {
-	text-align: center;
-	width: 50px;
-	height: 65px;
-	border-radius: 10px;
-	background-image: url('../assets/side_button_left.png');
-}
-
-.sideButtonRight {
-	text-align: center;
-	width: 50px;
-	height: 65px;
-	border-radius: 10px;
-	background-image: url('../assets/side_button_right.png');
-}
-
-#loginHeader {
+#loginPage {
 	width: 360px;
-	height: 110px;
-	background-image: url('../assets/header_password.png');
+	height: 360px;
+	background-image: url('../assets/login_background.png');
+	background-size: 360px 360px;
 }
 
-#loginFooter{
+#log_header {
 	width: 360px;
-	height: 150px;
-	text-align: center;
+	height: 70px;
+}
+
+#plusSpace {
+	width: 360px;
+	height: 55px;
+}
+
+.loginPlus{
+	width: 55px;
+	height: 55px;
+	border-radius: 25px;
+	background-image: url('../assets/plus_login.png');
+	background-size: 50px 50px;
+}
+
+#digits {
+	width: 360px;
+	height: 105px;
+}
+
+#minSpace {
+	width: 360px;
+	height: 55px;
+}
+
+.loginMin{
+	width: 55px;
+	height: 55px;
+	border-radius: 25px;
+	background-image: url('../assets/min_login.png');
+	background-size: 50px 50px;
+}
+
+#pageIcon {
+	width: 360px;
+	height: 15px;
+}
+
+#buttonSpace {
+	width: 360px;
+	height: 60px;
+}
+
+#setNextButton{
+	width: 360px;
+	height: 60px;
+	border-radius: 0px;
+	background-image: url('../assets/set_next_button.png');
+	background-size: 360px 60px;
 }
 
 /*.contents {

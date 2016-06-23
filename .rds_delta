@@ -1,7 +1,8 @@
 #delete
+res/wgt/.sdk_delta.info.temp
 #add
 #modify
 res/wgt/author-signature.xml
 res/wgt/signature1.xml
-res/wgt/js/app/events.js
-res/wgt/js/app/gui.js
+res/wgt/index.html
+res/wgt/js\app\gui.js

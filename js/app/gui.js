@@ -25,6 +25,7 @@ define(['battery', 'userData', 'time'], function(battery, userData, time) {
 
 	var ctxWords, ctxDate, ctxTime;
 	var clicked = false;
+	var reverse = false;
 
 	function setBackground(minutes){
 		var degrees = minutes / 4;
@@ -99,6 +100,20 @@ define(['battery', 'userData', 'time'], function(battery, userData, time) {
 		setTimeout(function(){fade(canvas,50);}, 500);
 	}
 
+	function printWordOnScreen(clicked){
+		if (userData.getWordNumber() === userData.getNumberOfWords()) {
+			userData.setWordNumber(0);
+		}
+		
+		ctxWords.clearRect(0, 0, SCREEN_WIDTH, WORDSPACE_HEIGHT);
+		if (clicked) {
+			printOnScreen(userData.getWord(userData.getWordNumber()), SCREEN_WIDTH/2, WORD_POSY, WORD_FONT_SIZE);
+			printOnScreen(userData.getTranslation(userData.getWordNumber()), SCREEN_WIDTH/2, TRANSLATION_POSY, TRANSLATION_FONT_SIZE);
+		} else {
+			printOnScreen(userData.getWord(userData.getWordNumber()), SCREEN_WIDTH/2, WORD_POSY, WORD_FONT_SIZE);
+		}
+	}
+
 	return {
 
 		draw: function() {
@@ -120,70 +135,118 @@ define(['battery', 'userData', 'time'], function(battery, userData, time) {
 			ctxDate = canvasDate.getContext("2d");
 
 			//print first word
-			printOnScreen(userData.getWordPair(userData.getWordNumber()).word, SCREEN_WIDTH/2, WORD_POSY, WORD_FONT_SIZE);
+			printWordOnScreen(clicked);
 
 			document.getElementById("nextButton").addEventListener("click", function(){
+				console.log("next button clicked");
 				userData.nextWord();
-				if (userData.getWordNumber() > userData.getNumberOfWords()) {
-					userData.setWordNumber(0);
-				}
-				ctxWords.clearRect(0,0, SCREEN_WIDTH,SCREEN_HEIGHT);
-				printOnScreen(userData.getWordPair(userData.getWordNumber()).word, SCREEN_WIDTH/2, WORD_POSY, WORD_FONT_SIZE);
 				clicked = false;
-
+				printWordOnScreen(clicked);
 			});
 
 			document.getElementById("wordSpace").addEventListener("click", function(){
-				if (!clicked) {
+				console.log("word space clicked");
+				clicked = !clicked;
+				if (clicked) {
 					userData.addEvent("reveal");
-					ctxWords.clearRect(0,0, SCREEN_WIDTH, WORDSPACE_HEIGHT);
-					printOnScreen(userData.getWordPair(userData.getWordNumber()).word, SCREEN_WIDTH/2, WORD_POSY, WORD_FONT_SIZE);
-					printOnScreen(userData.getWordPair(userData.getWordNumber()).translation, SCREEN_WIDTH/2, TRANSLATION_POSY, TRANSLATION_FONT_SIZE);
-					clicked = true;
 				} else {
 					userData.addEvent("hide");
-					ctxWords.clearRect(0,0, SCREEN_WIDTH, WORDSPACE_HEIGHT);
-					printOnScreen(userData.getWordPair(userData.getWordNumber()).word, SCREEN_WIDTH/2, WORD_POSY, WORD_FONT_SIZE);
-					clicked = false;
 				}
+				printWordOnScreen(clicked);
 			});
 
 			document.getElementById("menuButton").addEventListener("click", function(){
-				var canvasMenu = document.getElementById("menu");
+				var canvasMenu = document.getElementById("menuPage");
 				canvasMenu.style.visibility = "visible";
+				var mainButtons = document.getElementById("buttons");
+				mainButtons.style.visibility = "hidden";
+				console.log("menu clicked");
 				unfade(canvasMenu,5);
 			});
 
 			//EventListeners for the menu: back, trash, I learned it and settings
-			document.getElementById("menu").addEventListener("click", function(){
-				var menu = document.getElementById("menu");
+			document.getElementById("menuSpace").addEventListener("click", function(){
+				var menu = document.getElementById("menuPage");
+				var mainButtons = document.getElementById("buttons");
+				mainButtons.style.visibility = "visible";
 				fade(menu,5);
 			});
 			
 			document.getElementById("trashButton").addEventListener("click", function(){
 				userData.addEvent("trash");
-				var imgSource = "css/trash_icon.png";
+				userData.deleteWordPair();
+				var imgSource = "assets/trash_icon.png";
+				console.log("trashbutton clicked");
+				
 				feedbackByImage(imgSource);
+				clicked = false;
+				printWordOnScreen(clicked);
 			});
 			
 			document.getElementById("learnedButton").addEventListener("click", function(){
 				userData.addEvent("learned");
-				var imgSource = "css/I_learned_it_icon.png";
+				var imgSource = "assets/I_learned_it_icon.png";
+				
 				feedbackByImage(imgSource);
+				userData.nextWord();
+				clicked = false;
+				printWordOnScreen(clicked);	
+			});
+			
+			document.getElementById("backButton").addEventListener("click", function(){
+				var menu = document.getElementById("menuPage");
+				var mainButtons = document.getElementById("buttons");
+				mainButtons.style.visibility = "visible";
+				fade(menu,5);
 			});
 			
 			document.getElementById("settingsButton").addEventListener("click", function(){
-				var canvasSettings = document.getElementById("settings");
+				var canvasMenu = document.getElementById("menuPage");
+				fade(canvasMenu,5);
+				
+				var canvasSettings = document.getElementById("settingsPage");
 				canvasSettings.style.visibility = "visible";
 				unfade(canvasSettings,5);
 
 			});
 			
 			//EventListeners for the buttons in the settings: reverse, number of words and profile
-			document.getElementById("settings").addEventListener("click", function(){
-				var settings = document.getElementById("settings");
+			document.getElementById("settingsSpace").addEventListener("click", function(){
+				var settings = document.getElementById("settingsPage");
+				var mainButtons = document.getElementById("buttons");
+				mainButtons.style.visibility = "visible";
 				fade(settings,5);
 
+			});
+			
+			document.getElementById("reverseButton").addEventListener("click", function(){
+				userData.addEvent("reverse");
+				clicked = false;
+				reverse = !reverse;
+				userData.setReverseStatus(!userData.getReverseStatus());
+				printWordOnScreen(clicked);	
+			});
+			
+			document.getElementById("logOutButton").addEventListener("click", function(){
+				userData.setCode(0);
+				document.location.reload(true);
+			});
+			
+			document.getElementById("menuButtonInSettings").addEventListener("click", function(){
+				var canvasSettings = document.getElementById("settingsPage");
+				fade(canvasSettings,5);
+				
+				var canvasMenu = document.getElementById("menuPage");
+				canvasMenu.style.visibility = "visible";
+				console.log("menu clicked");
+				unfade(canvasMenu,5);
+			});
+			
+			document.getElementById("backButtonInSettings").addEventListener("click", function(){
+				var settings = document.getElementById("settingsPage");
+				var mainButtons = document.getElementById("buttons");
+				mainButtons.style.visibility = "visible";
+				fade(settings,5);
 			});
 		},
 	};
