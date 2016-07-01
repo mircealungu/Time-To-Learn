@@ -15,6 +15,9 @@ define(['userData'], function(userData) {
 	function checkSavedCode(){
 		userData.load();
 		console.log("local logincode: " + userData.getCode());
+		
+		userData.setCode(61015763);
+		
 		return userData.getCode();
 	}
 	
@@ -162,10 +165,17 @@ define(['userData'], function(userData) {
 					loginCode = firstNumber.toString() + secondNumber.toString() + thirdNumber.toString() + fourthNumber.toString();
 					resetCode(2);
 				}else{
-					loginCode = loginCode + firstNumber.toString() + secondNumber.toString() + thirdNumber.toString() + fourthNumber.toString();
-					userData.setCode(parseInt(loginCode, 10));
-					goToMainPage();
-					loginSucces();
+					
+
+					if (checkLogin(loginCode)) {
+						loginCode = loginCode + firstNumber.toString() + secondNumber.toString() + thirdNumber.toString() + fourthNumber.toString();
+						userData.setCode(loginCode);
+						goToMainPage();
+					//loginSucces();
+
+					} else {
+						showPopup();
+					}
 					//we dont check whether the login was correct, any code can go to the main, but only 
 					//correct codes will give you the words
 				}

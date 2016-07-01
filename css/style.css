@@ -1,81 +1,142 @@
-html,
-body {
+html,body {
 	position: fixed;
 	overflow-y: hidden;
 	overflow-x: hidden;
-	background-image: url('../assets/background.png');
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    padding: 0;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    -webkit-tap-highlight-color: transparent;
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+	padding: 0;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-tap-highlight-color: transparent;
 }
 
-#menuPage {
-  margin: 0px;
-  width: 360px;
-  height: 360px;
-  visibility: hidden;
-  background-color: #000000;
-  opacity: 0.9;
+#revealedPage {
+	width: 360px;
+	height: 180px;
+	visibility: hidden;
+}
+
+#revealedSpace {
+	width: 360px;
+	height: 120px;
+}
+
+#wrongSpace {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 130px;
+	height: 120px;
 }
 
 #menuSpace {
-  margin: 0px;
-  width: 360px;
-  height: 300px;
+	position: absolute;
+	left: 130px;
+	top: 0px;
+	width: 100px;
+	height: 120px;
+}
+
+#rightSpace {
+	position: absolute;
+	left: 230px;
+	top: 0px;
+	width: 130px;
+	height: 120px;
+}
+
+#revealedButtons {
+	width: 360px;
+	height: 60px;
+}
+
+#wrongButton {
+	position: absolute;
+	left: 0px;
+	top: 120px;
+	width: 150px;
+	height: 60px;
+	background-image: url('../assets/wrong_button.png');
+	background-size: 150px 60px;
+}
+
+#menuButton {
+	position: absolute;
+	left: 150px;
+	top: 120px;
+	width: 60px;
+	height: 60px;
+	background-image: url('../assets/menu_button.png');
+	background-size: 60px 60px;
+}
+
+#rightButton {
+	position: absolute;
+	left: 210px;
+	top: 120px;
+	width: 150px;
+	height: 60px;
+	background-image: url('../assets/right_button.png');
+	background-size: 150px 60px;
+}
+
+#menuPage {
+	margin: 0px;
+	width: 360px;
+	height: 360px;
+	visibility: hidden;
+	background-color: #000000;
+	opacity: 0.9;
+}
+
+#menuLargeSpace {
+	margin: 0px;
+	width: 360px;
+	height: 300px;
 }
 
 #menuButtons {
-  margin: 0px;
-  width: 360px;
-  height: 60px;
+	margin: 0px;
+	width: 360px;
+	height: 60px;
 }
 
-.backButtonLayout{
-	width: 180px;
+#backButtonInMenu {
+	width: 360px;
 	height: 60px;
 	border-radius: 0px;
 	background-image: url('../assets/back_button.png');
-	background-size: 180px 60px;
+	background-size: 360px 60px;
 }
 
-#settingsButton{
-	width: 180px;
-	height: 60px;
-	border-radius: 0px;
-	background-image: url('../assets/settings_button.png');
-	background-size: 180px 60px;
-}
 
 #settingsPage {
-  margin: 0px;
-  width: 360px;
-  height: 360px;
-  visibility: hidden;
-  background-color: #000000;
-  opacity: 0.9;
+	margin: 0px;
+	width: 360px;
+	height: 360px;
+	visibility: hidden;
+	background-color: #000000;
+	opacity: 0.9;
 }
 
 #settingsSpace {
-  margin: 0px;
-  width: 360px;
-  height: 300px;
+	margin: 0px;
+	width: 360px;
+	height: 300px;
 }
 
 #settingsButtons {
-  margin: 0px;
-  width: 360px;
-  height: 60px;
+	margin: 0px;
+	width: 360px;
+	height: 60px;
 }
 
 #backButtonInSettings {
-  width: 180px;
-  height: 60px;
-  border-radius: 0px;
-  background-image: url('../assets/back_button_mirror.png');
-  background-size: 180px 60px;
+	width: 360px;
+	height: 60px;
+	border-radius: 0px;
+	background-image: url('../assets/back_button.png');
+	background-size: 360px 60px;
 }
 
 #timeBackground {
@@ -84,9 +145,29 @@ body {
 	background-image: url('../assets/day_cycle.png');
 }
 
+#landscapeBackground {
+	z-index: 1; 
+	position:absolute; 
+	left:0px; 
+	top:0px;
+	width: 360px;
+	height: 180px;
+	background-image: url('../assets/day_cycle_background.png');
+	background-size: 360px 180px;
+}
+
 svg {
-  	width: 360px;
-  	height: 180px;
+	width: 360px;
+	height: 180px;
+}
+
+#wifiSpace {
+	z-index: 3; 
+	position:absolute; 
+	left:120px; 
+	top:40px;
+	width: 30px;
+	height: 30px;
 }
 
 #dateSpace {
@@ -96,17 +177,24 @@ svg {
 	transform: scale(0.4, 0.4);
 }
 
+#weatherSpace {
+	z-index: 3; 
+	position:absolute; 
+	left:210px; 
+	top:40px;
+	width: 50px;
+	height: 50px;
+}
 
-#time{
+#time {
 	width: 360px;
 	height: 180px;
-	/*background-color: #d98225;*/
 }
 
 #wordSpace {
 	width: 360px;
 	height: 120px;
-	background-image: url('../assets/background.png'); 
+	background-image: url('../assets/background.png');
 }
 
 #imageFade {
@@ -116,26 +204,24 @@ svg {
 }
 
 #words {
-    width: 360px;
-    height: 120px;
-    /*background-color: #d98225;*/
+	width: 360px;
+	height: 120px;
 }
 
-#buttons{
+#buttons {
 	width: 360px;
 	height: 60px;
 	text-align: center;
-	/*background-color: #bd4c0f;*/
 }
 
-.menuButtonLayout{
-	width: 180px;
+#revealButton {
+	width: 360px;
 	height: 60px;
-	border-radius: 0px;
-	background-image: url('../assets/menu_button.png');
+	background-image: url('../assets/reveal_button.png');
+	background-size: 360px 60px;
 }
 
-.mButton{
+.mButton {
 	text-align: center;
 	font-family: Verdana, Helvetica, sans-serif;
 	color: white;
@@ -148,7 +234,7 @@ svg {
 	background-color: Transparent;
 }
 
-.sButton{
+.sButton {
 	text-align: center;
 	font-family: Verdana, Helvetica, sans-serif;
 	color: white;
@@ -159,13 +245,6 @@ svg {
 	position: relative;
 	border-radius: 20px;
 	background-color: Transparent;
-}
-
-#nextButton{
-	width: 180px;
-	height: 60px;
-	border-radius: 0px;
-	background-image: url('../assets/next_button.png');
 }
 
 #loginPage {
@@ -185,7 +264,7 @@ svg {
 	height: 55px;
 }
 
-.loginPlus{
+.loginPlus {
 	width: 55px;
 	height: 55px;
 	border-radius: 25px;
@@ -203,7 +282,7 @@ svg {
 	height: 55px;
 }
 
-.loginMin{
+.loginMin {
 	width: 55px;
 	height: 55px;
 	border-radius: 25px;
@@ -221,7 +300,7 @@ svg {
 	height: 60px;
 }
 
-#setNextButton{
+#setNextButton {
 	width: 360px;
 	height: 60px;
 	border-radius: 0px;
