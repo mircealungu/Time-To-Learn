@@ -6,12 +6,20 @@
 
 define(['events'], function(events) {
 
-	var wordNumber = 0;
+	var wordNumber = 5;
 	var wordPair = [];
-	var numberOfWords = 50;
+	
+	var flashcardsToShow = [0,1,2,3,4];
+	var NUMBER_OF_FLASH_CARDS = 5;
+	var index = 0;
+	
+	var numberOfWords;
 	var accountCode = 0;
 	var reverse = false;
 
+	var sunset = 1320; // default 22:00
+	var sunrise = 360; // default 6:00
+	
 	return {
 		
 		setWordPair: function(n, word, translation, id) {
@@ -32,29 +40,44 @@ define(['events'], function(events) {
 			}
 			return false;
 		},
+		
+		flashCardMethod: function(wordIsRight) {
+			if(wordIsRight) {
+				flashcardsToShow[index] = wordNumber;
+				index++;
+				this.nextWord();
+			} else {
+				index++;
+			}
+			
+			if(index === NUMBER_OF_FLASH_CARDS){
+				index = 0;
+			}
+		},
+		
+		getWord: function() {
+			if(reverse){
+				return wordPair[flashcardsToShow[index]].translation;
+			}else{
+				return wordPair[flashcardsToShow[index]].word;
+			}
+		},
 
-		deleteWordPair: function() {
-			wordPair.splice(wordNumber, 1);
-			numberOfWords--;
-			if (numberOfWords === 0) {
-				// We have to draw some sort of message on the gui for this.
-				console.log("No words left!");
+		removeWord: function() {
+			if (numberOfWords > 5) {
+				wordPair.splice(flashcardsToShow[index], 1);
+				numberOfWords--;
+			} else {
+				//add something in the gui for this.
+				console.log("Need at least 5 words for the algorithm");
 			}
 		},
 		
-		getWord: function(n) {
+		getTranslation: function() {
 			if(reverse){
-				return wordPair[n].translation;
+				return wordPair[flashcardsToShow[index]].word;
 			}else{
-				return wordPair[n].word;
-			}
-		},
-		
-		getTranslation: function(n) {
-			if(reverse){
-				return wordPair[n].word;
-			}else{
-				return wordPair[n].translation;
+				return wordPair[flashcardsToShow[index]].translation;
 			}
 		},
 
@@ -62,26 +85,60 @@ define(['events'], function(events) {
 			if (localStorage.length===0) {
 				console.log("No user data available.");
 			} else {
-				for (var i = 0; i < localStorage.length; i++) {
-					console.log("key: "+ localStorage.key(i) + " item: " + localStorage.getItem(localStorage.key(i)));
-					if (localStorage.key(i) === "accountCode") {
-						accountCode = localStorage.getItem(localStorage.key(i));
-						console.log("accountCode loaded: " + accountCode);
-
-						
-					} else if (localStorage.key(i) === "wordNumber") {
-						wordNumber = localStorage.getItem(localStorage.key(i));
-						console.log("wordNumber loaded: " + wordNumber);
-					// } else if (localStorage.key(i) === "events") {
-					// 	events.load(localStorage.getItem(localStorage.key(i)));
-					// } else if (localStorage.key(i) == "wordPair") {
-					// 	wordPair = JSON.parse(localStorage.getItem(localStorage.key("wordPair")));
-					// 	console.log("words loaded: " + JSON.stringify(wordPair));
-					// 	// more stuff to follow.
-					} else {
-
-					}
+				accountCode = localStorage.getItem("accountCode");
+				console.log("loaded accountCode: " + accountCode);
+				events = JSON.parse(localStorage.getItem("events"));
+				if (events === null) {
+					events = [];
 				}
+				console.log("loaded events: " + JSON.stringify(events));
+				if (localStorage.getItem("wordNumber") !== null) {
+					wordNumber = localStorage.getItem("wordNumber");
+					console.log("loaded wordNumber: " + wordNumber);
+				}
+				if (localStorage.getItem("index") !== null) {
+					index = localStorage.getItem("index");
+					console.log("loaded index: " + index);
+				}
+				if (localStorage.getItem("flashcardsToShow") !== null) {
+					flashcardsToShow = localStorage.getItem("flashcardsToShow");
+					console.log("loaded flashcards: " + flashcardsToShow);
+				}
+				// if (localStorage.getItem("wordPair") !== null) {
+				// 	wordPair = JSON.parse(localStorage.getItem("wordPair"));
+				// 	console.log("loaded wordpairs: " + JSON.stringify(wordPair));
+				// }
+			}
+		},
+
+		saveCode: function(code) {
+			accountCode = code;
+			localStorage.setItem("accountCode", accountCode);
+			console.log("accountCode saved: " + localStorage.getItem("accountCode"));
+		},
+
+		saveWordPair: function() {
+			localStorage.setItem("wordPair", JSON.stringify(wordPair));
+			console.log(localStorage.getItem("wordPair"));
+		},
+
+		saveEvents: function() {
+			events.print();
+			events.save();
+			events.clear();
+		},
+
+		saveCurrentState: function() {
+			localStorage.setItem("wordNumber", wordNumber);
+			localStorage.setItem("index", index);
+			localStorage.setItem("flashcardsToShow", flashcardsToShow);
+		},
+		
+		sendEvents: function() {
+			try {
+				events.send(accountCode);
+			} catch(err) {
+				console.log("Error during sending: " + err);
 			}
 		},
 		
@@ -91,19 +148,16 @@ define(['events'], function(events) {
 				console.log("accountCode saved: " + accountCode);
 				localStorage.setItem("wordNumber", wordNumber);
 				console.log("wordNumber saved: " + wordNumber);
+				events.print();
+				events.save();
+				events.clear();
 				if (events.readyToSend()) { 
 					console.log("ready to send...");
 					try {
 						events.send(accountCode); 
-						events.clear();
 					} catch(err) {
-						console.log("No internet connection to send event data.");
+						console.log("Error during sending: " + err);
 					}
-				} else {
-					// send them later
-					//localStorage.setItem("events", JSON.stringify(events.getAll()));
-					//console.log("events saved: " + JSON.stringify(events));
-					events.save();
 				}
 				// localStorage.setItem("wordPair", JSON.stringify(wordPair));
 				// console.log("words saved: " + JSON.stringify(wordPair));
@@ -114,7 +168,8 @@ define(['events'], function(events) {
 		},
 
 		addEvent: function(event) {
-			events.add(event, wordPair[wordNumber].id);
+			console.log("wordNumber is " + flashcardsToShow[index]);
+			events.add(event, wordPair[flashcardsToShow[index]].id);
 		},
 
 		getCode: function() {
@@ -127,6 +182,11 @@ define(['events'], function(events) {
 
 		getNumberOfWords: function() {
 			return numberOfWords;
+		},
+
+		setNumberOfWords: function(nrOfWords) {
+			console.log("numberOfWords :" + nrOfWords);
+			numberOfWords = nrOfWords;
 		},
 
 		printWords: function() {
@@ -143,6 +203,9 @@ define(['events'], function(events) {
 
 		nextWord: function() {
 			wordNumber++;
+			if(wordNumber === numberOfWords) {
+				wordNumber = 0;
+			}
 		},
 
 		getReverseStatus: function() {
@@ -155,6 +218,10 @@ define(['events'], function(events) {
 
 		printEvents: function() {
 			events.print();
+		}, 
+		
+		clear: function() {
+			localStorage.clear();
 		}
 	};
 });

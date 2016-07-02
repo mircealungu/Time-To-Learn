@@ -4,7 +4,7 @@
  * made by Rick Nienhuis & Niels Haan
  */
 
-define(['battery', 'userData', 'time'], function(battery, userData, time) {
+define(['battery', 'userData', 'time', 'weather'], function(battery, userData, time, weather) {
 
 	//definitions about text
 	var FONT = "px Arial";
@@ -17,28 +17,48 @@ define(['battery', 'userData', 'time'], function(battery, userData, time) {
 	//definitions for coordinates
 	var SCREEN_WIDTH = 360;
 	var SCREEN_HEIGHT = 360;
+	var SCREEN_HEIGHT_WORDSPACE = 120;
 	var DIGITAL_TIME_HEIGHT = 180;
 	var DIGITAL_TIME_POSY = 160;
 	var WORDSPACE_HEIGHT = 120;
 	var WORD_POSY = 45;
 	var TRANSLATION_POSY = 95;
+	
+	//definitions for fading time in milliseconds
+	var FADING_TIME = 20;
+	var TIME_BEFORE_FADING_STARTS = 100;
 
 	var ctxWords, ctxDate, ctxTime;
-	var clicked = false;
-	var reverse = false;
+	var doubleTapTimer = null;
+	var sunrise,sunset, degrees, rotation;
 
 	function setBackground(minutes){
-		var degrees = minutes / 4;
-		var rotation = "rotate(" + degrees + "deg)";
-		document.getElementById("timeBackground").style.transform = rotation;
+		sunrise = weather.getSunrise();
+		sunset = weather.getSunset();
+		
+		if(minutes >= sunrise && minutes <= sunset) {
+			degrees = (180 / (sunset - sunrise)).toFixed(2);
+			degrees = 90 * 1 + (minutes - sunrise) * degrees;
+			rotation = "rotate(" + degrees + "deg)";
+			document.getElementById("timeBackground").style.transform = rotation;
+		} else {
+			degrees = (180 / (sunrise + (1440 - sunset))).toFixed(2);
+			if(minutes > sunset) {
+				degrees = 270 * 1 + (minutes - sunset) * degrees;
+			} else {
+				degrees = 270 * 1 + (minutes + (1440 - sunset)) * degrees;
+			}
+			rotation = "rotate(" + degrees + "deg)";
+			document.getElementById("timeBackground").style.transform = rotation;
+		}
 	}
 
 	function printDay(){
 		ctxDate.clearRect(0,0,100,90);
-		ctxDate.font = "50px Arial";
+		ctxDate.font = "30px Arial";
 		ctxDate.fillStyle = FONT_COLOR;
 		ctxDate.textAlign = CENTER;
-		ctxDate.fillText(time.getDay(), 50, 60);
+		ctxDate.fillText(time.getDay(), 72, 63);
 	}
 
 	function printOnScreen(string, posx, posy, size) {
@@ -46,9 +66,6 @@ define(['battery', 'userData', 'time'], function(battery, userData, time) {
 			ctxWords.fillStyle = FONT_COLOR;
 			ctxWords.textAlign = CENTER;
 			ctxWords.fillText(string, posx, posy);
-			// print length of word in pixels
-			//var length = ctxWords.measureText(string).width;
-			//console.log(length);
 	}
 
 	function printDigitalTime() {	
@@ -93,36 +110,131 @@ define(['battery', 'userData', 'time'], function(battery, userData, time) {
 
 		var img = new Image();
 		img.onload = function() {
-			ctx.drawImage(img, 0, 0);
+			ctx.drawImage(img, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT_WORDSPACE);
 		};
 		img.src = imgSource;
 
-		setTimeout(function(){fade(canvas,50);}, 500);
+		setTimeout(function(){fade(canvas,FADING_TIME);}, TIME_BEFORE_FADING_STARTS);
 	}
 
-	function printWordOnScreen(clicked){
-		if (userData.getWordNumber() === userData.getNumberOfWords()) {
-			userData.setWordNumber(0);
-		}
+	function printWord(){
 		
+		document.getElementById("wordSpace").style.backgroundImage = "url('assets/background.png')";
+
 		ctxWords.clearRect(0, 0, SCREEN_WIDTH, WORDSPACE_HEIGHT);
-		if (clicked) {
-			printOnScreen(userData.getWord(userData.getWordNumber()), SCREEN_WIDTH/2, WORD_POSY, WORD_FONT_SIZE);
-			printOnScreen(userData.getTranslation(userData.getWordNumber()), SCREEN_WIDTH/2, TRANSLATION_POSY, TRANSLATION_FONT_SIZE);
+		printOnScreen(userData.getWord(), SCREEN_WIDTH/2, WORD_POSY, WORD_FONT_SIZE);
+		
+		var canvasRevealPage = document.getElementById("revealedPage");
+		canvasRevealPage.style.visibility = "hidden";
+	}
+	
+	function revealTranslation(){
+		ctxWords.clearRect(0, 0, SCREEN_WIDTH, WORDSPACE_HEIGHT);
+		printOnScreen(userData.getWord(), SCREEN_WIDTH/2, WORD_POSY, WORD_FONT_SIZE);
+		printOnScreen(userData.getTranslation(), SCREEN_WIDTH/2, TRANSLATION_POSY, TRANSLATION_FONT_SIZE);
+		
+		document.getElementById("wordSpace").style.backgroundImage = "url('assets/revealed_clicked_background.png')";
+		var canvasRevealPage = document.getElementById("revealedPage");
+		canvasRevealPage.style.visibility = "visible";
+	}
+	
+	function showSettings(){
+		var settings = document.getElementById("settingsPage");
+		settings.style.visibility = "visible";
+		unfade(settings,5);
+	}
+	
+	function showMenu(){
+		var menu = document.getElementById("menuPage");
+		menu.style.visibility = "visible";
+		unfade(menu,5);
+	}
+	
+	function doubleTapHandler(func) {
+		if (doubleTapTimer === null) {
+			// handle single tap
+			doubleTapTimer = setTimeout(function () {
+				doubleTapTimer = null;
+				func();
+			}, 300);
 		} else {
-			printOnScreen(userData.getWord(userData.getWordNumber()), SCREEN_WIDTH/2, WORD_POSY, WORD_FONT_SIZE);
+			// handle double tap
+			clearTimeout(doubleTapTimer);
+			doubleTapTimer = null;
+			showSettings();
 		}
+	}
+	
+	function drawWeather() {
+		weather.setIsRefreshed(false);
+		var canvas = document.getElementById("weatherSpace");
+		var ctx = canvas.getContext("2d");
+		
+		var img = new Image();
+		img.onload = function() {
+			ctx.drawImage(img, 0, 0);
+		};
+		img.src = weather.getImageSource();
+	}
+	
+	function drawTemperature() {
+		var canvas = document.getElementById("temperatureSpace");
+		var ctx = canvas.getContext("2d");
+		
+		ctx.clearRect(0,0,50,50);
+		ctx.font = "15px Arial";
+		ctx.fillStyle = FONT_COLOR;
+		ctx.textAlign = CENTER;
+		ctx.fillText(weather.getTemperature() + "°C", 25, 25);
+	}
+
+	function right() {
+		userData.addEvent("right");
+		userData.saveCurrentState();
+		userData.saveEvents();
+		userData.sendEvents();
+		var imgSource = "assets/right_icon.png";
+
+		userData.flashCardMethod(true);
+		feedbackByImage(imgSource);
+		printWord();	
+	}
+
+	function wrong() {
+		userData.addEvent("wrong");
+		userData.saveCurrentState();
+		userData.saveEvents();
+		userData.sendEvents();
+		var imgSource = "assets/wrong_icon.png";
+
+		userData.flashCardMethod(false);
+		feedbackByImage(imgSource);
+		printWord();
+	}
+
+	function menuButton(imgSource) {
+		feedbackByImage(imgSource);
+		userData.removeWord();
+		userData.saveCurrentState();
+		userData.saveEvents();
+		userData.saveWordPair();
+		userData.sendEvents();
+		printWord();
 	}
 
 	return {
 
 		draw: function() {
 			time.create();
-			var totalMinutes = time.getHours()*60 + time.getMinutes();
+			var totalMinutes = time.getHours()*60 + time.getMinutes()*1;
 			printDigitalTime();
 			printDay();
 			setBackground(totalMinutes);
 			battery.draw();
+			if (weather.getIsRefreshed()) {
+				drawWeather();
+			}
+			drawTemperature();
 		},
 
 		create: function(ctx) {
@@ -131,121 +243,91 @@ define(['battery', 'userData', 'time'], function(battery, userData, time) {
 			var canvasTime = document.getElementById("digitalTime"); 
 			ctxTime = canvasTime.getContext("2d");
 
-			var canvasDate = document.getElementById("dateSpace");
+			var canvasDate = document.getElementById("iconSpace");
 			ctxDate = canvasDate.getContext("2d");
+			
+			weather.refresh(true);
 
 			//print first word
-			printWordOnScreen(clicked);
-
-			document.getElementById("nextButton").addEventListener("click", function(){
-				console.log("next button clicked");
-				userData.nextWord();
-				clicked = false;
-				printWordOnScreen(clicked);
-			});
-
+			printWord();
+			
+			//EventListeners for revealing the translation (the user can click the word space or the button)
+			//By double tapping on the word space, the settings appears
 			document.getElementById("wordSpace").addEventListener("click", function(){
-				console.log("word space clicked");
-				clicked = !clicked;
-				if (clicked) {
-					userData.addEvent("reveal");
-				} else {
-					userData.addEvent("hide");
-				}
-				printWordOnScreen(clicked);
+				userData.addEvent("reveal");
+				doubleTapHandler(revealTranslation);
+				userData.saveEvents();
 			});
-
-			document.getElementById("menuButton").addEventListener("click", function(){
-				var canvasMenu = document.getElementById("menuPage");
-				canvasMenu.style.visibility = "visible";
-				var mainButtons = document.getElementById("buttons");
-				mainButtons.style.visibility = "hidden";
-				console.log("menu clicked");
-				unfade(canvasMenu,5);
+			
+			document.getElementById("revealButton").addEventListener("click", function(){
+				userData.addEvent("reveal");
+				revealTranslation();
+				userData.saveEvents();
 			});
-
-			//EventListeners for the menu: back, trash, I learned it and settings
+			
+			//EventListeners for the revealedPage: wrong, menu, right
+			// By double tapping on the menu space, the settings appears
+			document.getElementById("wrongSpace").addEventListener("click", function(){
+				wrong();
+			});
+			document.getElementById("wrongButton").addEventListener("click", function(){
+				wrong();
+			});
+			
 			document.getElementById("menuSpace").addEventListener("click", function(){
+				doubleTapHandler(showMenu);
+			});
+			document.getElementById("menuButton").addEventListener("click", function(){
+				showMenu();
+			});
+			
+			document.getElementById("rightSpace").addEventListener("click", function(){
+				right();
+			});
+			document.getElementById("rightButton").addEventListener("click", function(){
+				right();
+			});
+			
+			//EventListeners for the buttons in the menu: wrong translation, I learned it!
+			document.getElementById("menuLargeSpace").addEventListener("click", function(){
 				var menu = document.getElementById("menuPage");
-				var mainButtons = document.getElementById("buttons");
-				mainButtons.style.visibility = "visible";
 				fade(menu,5);
 			});
 			
-			document.getElementById("trashButton").addEventListener("click", function(){
-				userData.addEvent("trash");
-				userData.deleteWordPair();
-				var imgSource = "assets/trash_icon.png";
-				console.log("trashbutton clicked");
-				
-				feedbackByImage(imgSource);
-				clicked = false;
-				printWordOnScreen(clicked);
+			document.getElementById("wrongTranslationButton").addEventListener("click", function(){
+				userData.addEvent("wrongTranslation");
+				menuButton("assets/trash_icon.png");
 			});
 			
 			document.getElementById("learnedButton").addEventListener("click", function(){
-				userData.addEvent("learned");
-				var imgSource = "assets/I_learned_it_icon.png";
-				
-				feedbackByImage(imgSource);
-				userData.nextWord();
-				clicked = false;
-				printWordOnScreen(clicked);	
+				userData.addEvent("learnedIt");
+				menuButton("assets/right_icon.png");
 			});
 			
-			document.getElementById("backButton").addEventListener("click", function(){
+			document.getElementById("backButtonInMenu").addEventListener("click", function(){
 				var menu = document.getElementById("menuPage");
-				var mainButtons = document.getElementById("buttons");
-				mainButtons.style.visibility = "visible";
 				fade(menu,5);
-			});
-			
-			document.getElementById("settingsButton").addEventListener("click", function(){
-				var canvasMenu = document.getElementById("menuPage");
-				fade(canvasMenu,5);
-				
-				var canvasSettings = document.getElementById("settingsPage");
-				canvasSettings.style.visibility = "visible";
-				unfade(canvasSettings,5);
-
 			});
 			
 			//EventListeners for the buttons in the settings: reverse, number of words and profile
 			document.getElementById("settingsSpace").addEventListener("click", function(){
 				var settings = document.getElementById("settingsPage");
-				var mainButtons = document.getElementById("buttons");
-				mainButtons.style.visibility = "visible";
 				fade(settings,5);
-
 			});
 			
 			document.getElementById("reverseButton").addEventListener("click", function(){
 				userData.addEvent("reverse");
-				clicked = false;
-				reverse = !reverse;
 				userData.setReverseStatus(!userData.getReverseStatus());
-				printWordOnScreen(clicked);	
+				printWord();	
 			});
 			
 			document.getElementById("logOutButton").addEventListener("click", function(){
-				userData.setCode(0);
+				userData.clear();
 				document.location.reload(true);
-			});
-			
-			document.getElementById("menuButtonInSettings").addEventListener("click", function(){
-				var canvasSettings = document.getElementById("settingsPage");
-				fade(canvasSettings,5);
-				
-				var canvasMenu = document.getElementById("menuPage");
-				canvasMenu.style.visibility = "visible";
-				console.log("menu clicked");
-				unfade(canvasMenu,5);
 			});
 			
 			document.getElementById("backButtonInSettings").addEventListener("click", function(){
 				var settings = document.getElementById("settingsPage");
-				var mainButtons = document.getElementById("buttons");
-				mainButtons.style.visibility = "visible";
 				fade(settings,5);
 			});
 		},

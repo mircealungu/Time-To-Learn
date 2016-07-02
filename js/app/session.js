@@ -4,11 +4,14 @@
  * made by Rick Nienhuis & Niels Haan
  */
 
-define(['userData'], function(userData) {
+define(['userData', 'login'], function(userData, login) {
 
-	var ctxWords;
+	var ctxWords, status;
 
+	var NUMBER_OF_WORDS = 50;
 	var SCREEN_WIDTH = 360;
+	var WORD_FONT = "45px Arial";
+	var TRANSLATION_FONT = "35px Arial";
 
 	var SESSION_ENDPOINT = 'https://zeeguu.unibe.ch/';
 	var BOOKMARK_SESSION = 'bookmarks_to_study/';
@@ -24,35 +27,52 @@ define(['userData'], function(userData) {
 
 		console.log("Trying to get words with session: " + session);
 		
-		if (true) { // if there is a internet connection, fetch new words -> have to do research for this
+		try { // if there is a internet connection, fetch new words -> have to do research for this
 			var xhr = new XMLHttpRequest();
-			var numberOfWords = userData.getNumberOfWords();
-			xhr.open('GET', SESSION_ENDPOINT + BOOKMARK_SESSION + numberOfWords + "?session=" + session, false);
+			xhr.open('GET', SESSION_ENDPOINT + BOOKMARK_SESSION + NUMBER_OF_WORDS + "?session=" + session, false);
 			xhr.onload = function () {
-				var obj = JSON.parse(this.responseText);
-				for (i=0; i<numberOfWords; i++) {
-					if (ctxWords.measureText(String(obj[i].from)).width <= SCREEN_WIDTH - 20) {
-						ctxWords.font = screen.TRANSLATION_FONT_SIZE + screen.FONT;
-						if (ctxWords.measureText(String(obj[i].to)).width <= SCREEN_WIDTH - 20) {
-							userData.setWordPair(i, obj[i].from, obj[i].to, obj[i].id);
+				try {
+					var obj = JSON.parse(this.responseText);
+					var wordNumber = 0;
+					if (Object.keys(obj).length < 5) {
+						status = "TOO_FEW_WORDS";
+					} else {
+						for (i=0; i<Object.keys(obj).length; i++) {
+							ctxWords.font = WORD_FONT;
+							if (ctxWords.measureText(String(obj[i].from)).width <= SCREEN_WIDTH - 20) {
+								ctxWords.font = TRANSLATION_FONT;
+								if (ctxWords.measureText(String(obj[i].to)).width <= SCREEN_WIDTH - 80) {
+									userData.setWordPair(wordNumber, obj[i].from, obj[i].to, obj[i].id);
+									wordNumber++;
+								}
+							}
 						}
+						userData.setNumberOfWords(wordNumber);
+						userData.saveWordPair();
+						//console.log(wordNumber + " words added");
+						status = "SUCCESS";
 					}
+				} catch(err) {
+					// the session number is unknown to the server
+					console.log("wrong session number: " + err);
+					status = "WRONG_SESSION_NUMBER";
 				}
 			};
 			xhr.send();
-		} else if (userData.areThereWords()) {  
-			// no connection, but words are saved locally
-		} else {
-			// no connection and no words, draw some sort of message on the screen
+		} catch(err) {
+			// there is no internet connection
+			console.log("no internet connection: " + err);
+			status = "NO_CONNECTION";
 		}
+		
 	}
 
 	return  {
 
-		create: function(ctx) {
+		create: function(ctx, code) {
 			ctxWords = ctx;
 
-			getWords(userData.getCode());
+			getWords(code);
 
 			// var session;
 			// var data = new FormData();
@@ -72,6 +92,10 @@ define(['userData'], function(userData) {
 
 		printWords: function() {
 			userData.printWords();
+		},
+		
+		getStatus: function() {
+			return status;
 		}
 	};
 });
