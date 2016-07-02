@@ -49,10 +49,10 @@ define(['userData'], function(userData) {
 
 	return  {
 
-		create: function(ctx, code) {
+		create: function(ctx) {
 			ctxWords = ctx;
 
-			getWords(code);
+			getWords(userData.getCode());
 
 			// var session;
 			// var data = new FormData();

@@ -7,10 +7,15 @@
 define(['time'], function(time) {
 
 	var SESSION_ENDPOINT = "https://zeeguu.unibe.ch/upload_smartwatch_events";
-	var SEND_INTERVAL = 60; // 10 minutes
+	var SEND_INTERVAL = 600; // 10 minutes
 
 	var events = [];
 	var numberOfEvents = 0;
+
+	function clearEvents() {
+		events = [];
+		numberOfEvents = 0;
+	}
 
 	return {
 
@@ -39,6 +44,7 @@ define(['time'], function(time) {
 				localStorage.setItem("events", JSON.stringify(events));
 				console.log("events saved: " + JSON.stringify(events));
 			}
+			clearEvents();
 		},
 
 		load: function(events) {
@@ -48,24 +54,20 @@ define(['time'], function(time) {
 		},
 
 		send: function(sessionNumber) {
+			console.log("In send function, sessionNumber == " + sessionNumber);
 			var data = new FormData();
-			var test = JSON.parse(localStorage.getItem("events"));
-			console.log("events that will be send:" + JSON.stringify(test));
-			data.append('events', JSON.stringify(test));
+			data.append('events', JSON.stringify(events));
 
 			var xhr = new XMLHttpRequest();
-
 			xhr.open('POST', SESSION_ENDPOINT + "?session=" + sessionNumber, false);
-			xhr.onload = function() {
-				console.log("events uploaded to db: " + this.responseText);
+			xhr.onload = function () {
+				console.log(this.responseText);
 				if (this.responseText === "OK") {
-					console.log("removing events localStorage..");
-					localStorage.removeItem("events");
-					console.log("events in storage: " + localStorage.getItem("events"));
+					console.log("events are succesfully send!");
+				} else {
+					console.log("events are not send.");
 				}
 			};
-		
-			
 			xhr.send(data);
 		},
 
@@ -82,12 +84,9 @@ define(['time'], function(time) {
 			return false;
 		},
 
-		clear: function() {
-			events = [];
-			numberOfEvents = 0;
+		getAll: function() {
+			return events;
 		},
-
-
 	};
 
 });

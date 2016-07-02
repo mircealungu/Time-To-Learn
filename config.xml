@@ -4,9 +4,6 @@
     <access origin="*" subdomains="true"></access>
     <!-- <tizen:allow-navigation>https://zeeguu.unibe.ch/</tizen:allow-navigation> -->
     <tizen:privilege name="http://tizen.org/privilege/internet"/>
-    
-    <tizen:privilege name="http://tizen.org/privilege/location"/>
-    <feature name="http://tizen.org/feature/location.gps"/>
 
 <!-- Cf. https://developer.tizen.org/development/tutorials/web-application/w3chtml5supplementary-features/watch-application#project 
 	the tizen:category has to be set to this for the thing to be a watch face. 

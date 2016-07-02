@@ -4,7 +4,7 @@
  * made by Rick Nienhuis & Niels Haan
  */
 
-require(['login', 'session', 'gui', 'device', 'weather'], function (login, session, gui, device, weather) {  
+require(['login', 'session', 'gui', 'device'], function (login, session, gui, device) {  
 	function update() {
 		gui.draw();
 		device.listen();
@@ -15,24 +15,8 @@ require(['login', 'session', 'gui', 'device', 'weather'], function (login, sessi
 		session.create(ctxWords);
 		session.printWords();
 		gui.create(ctxWords);
-		device.create(weather);
-		update();
-	}
-
-	function checkLogin(code) {
-		session.create(ctxWords, code);
-		session.printWords();
-		status = session.getStatus();
-		if (status !== "SUCCES") {
-			return status;
-		}
-		gui.create(ctxWords);
 		device.create();
-		return status;
-	}
-
-	function loginFail() {
-		login.showPopup();
+		update();
 	}
 
 	var canvasWords = document.getElementById("wordSpace"); 

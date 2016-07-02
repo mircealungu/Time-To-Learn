@@ -6,20 +6,12 @@
 
 define(['events'], function(events) {
 
-	var wordNumber = 5;
+	var wordNumber = 0;
 	var wordPair = [];
-	
-	var wordsToShow = [0,1,2,3,4];
-	var NUMBER_OF_FLASH_CARDS = 5;
-	var counter = 0;
-	
 	var numberOfWords = 50;
 	var accountCode = 0;
 	var reverse = false;
 
-	var sunset = 1320; // default 22:00
-	var sunrise = 360; // default 6:00
-	
 	return {
 		
 		setWordPair: function(n, word, translation, id) {
@@ -50,29 +42,7 @@ define(['events'], function(events) {
 			}
 		},
 		
-		flashCardMethod: function(wordIsRight) {
-			if(wordIsRight) {
-				wordsToShow[counter] = wordNumber;
-				counter++;
-				this.nextWord();
-			} else {
-				counter++;
-			}
-			
-			if(counter === NUMBER_OF_FLASH_CARDS){
-				counter = 0;
-			}
-		},
-		
-		getWord: function() {
-			if(reverse){
-				return wordPair[wordsToShow[counter]].translation;
-			}else{
-				return wordPair[wordsToShow[counter]].word;
-			}
-		},
-		
-		getWord2: function(n) {
+		getWord: function(n) {
 			if(reverse){
 				return wordPair[n].translation;
 			}else{
@@ -80,11 +50,11 @@ define(['events'], function(events) {
 			}
 		},
 		
-		getTranslation: function() {
+		getTranslation: function(n) {
 			if(reverse){
-				return wordPair[wordsToShow[counter]].word;
+				return wordPair[n].word;
 			}else{
-				return wordPair[wordsToShow[counter]].translation;
+				return wordPair[n].translation;
 			}
 		},
 
@@ -121,16 +91,19 @@ define(['events'], function(events) {
 				console.log("accountCode saved: " + accountCode);
 				localStorage.setItem("wordNumber", wordNumber);
 				console.log("wordNumber saved: " + wordNumber);
-				events.print();
-				events.save();
-				events.clear();
 				if (events.readyToSend()) { 
 					console.log("ready to send...");
 					try {
 						events.send(accountCode); 
+						events.clear();
 					} catch(err) {
-						console.log("Error during sending: " + err);
+						console.log("No internet connection to send event data.");
 					}
+				} else {
+					// send them later
+					//localStorage.setItem("events", JSON.stringify(events.getAll()));
+					//console.log("events saved: " + JSON.stringify(events));
+					events.save();
 				}
 				// localStorage.setItem("wordPair", JSON.stringify(wordPair));
 				// console.log("words saved: " + JSON.stringify(wordPair));
@@ -170,9 +143,6 @@ define(['events'], function(events) {
 
 		nextWord: function() {
 			wordNumber++;
-			if(wordNumber === numberOfWords) {
-				wordNumber = 0;
-			}
 		},
 
 		getReverseStatus: function() {
