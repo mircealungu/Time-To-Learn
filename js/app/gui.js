@@ -13,6 +13,7 @@ define(['battery', 'userData', 'time', 'weather'], function(battery, userData, t
 	var TRANSLATION_FONT_SIZE = 35;
 	var CENTER = "center";
 	var FONT_COLOR = "white";
+	var TEMPERATURE_FONT = "17px Arial";
 
 	//definitions for coordinates
 	var SCREEN_WIDTH = 360;
@@ -23,13 +24,28 @@ define(['battery', 'userData', 'time', 'weather'], function(battery, userData, t
 	var WORDSPACE_HEIGHT = 120;
 	var WORD_POSY = 45;
 	var TRANSLATION_POSY = 95;
+	var DATE_WIDTH = 100;
+	var DATE_HEIGHT = 90;
+	var DATE_POSX = 72;
+	var DATE_POSY = 63;
+	var TEMPERATURE_SPACE = 50;
+	var TEMPERATURE_POS = 25;
+	
 	
 	//definitions for fading time in milliseconds
 	var FADING_TIME = 20;
 	var TIME_BEFORE_FADING_STARTS = 100;
 
+	var MINUTES_IN_ONE_DAY = 1440;
+	var BACKGROUND_SIZE = "360px 180px";
+
 	var ctxWords, ctxDate, ctxTime;
 	var doubleTapTimer = null;
+
+	var backgroundNumber = 0;
+	var backgroundSource = ["url('assets/countryside_background.png')", 
+	                        "url('assets/city_background.png')", 
+	                        "url('assets/simple_background.png')"];
 	var sunrise,sunset, degrees, rotation;
 
 	function setBackground(minutes){
@@ -38,27 +54,27 @@ define(['battery', 'userData', 'time', 'weather'], function(battery, userData, t
 		
 		if(minutes >= sunrise && minutes <= sunset) {
 			degrees = (180 / (sunset - sunrise)).toFixed(2);
-			degrees = 90 * 1 + (minutes - sunrise) * degrees;
+			degrees = 90 + (minutes - sunrise) * degrees;
 			rotation = "rotate(" + degrees + "deg)";
 			document.getElementById("timeBackground").style.transform = rotation;
 		} else {
-			degrees = (180 / (sunrise + (1440 - sunset))).toFixed(2);
+			degrees = (180 / (sunrise + (MINUTES_IN_ONE_DAY - sunset))).toFixed(2);
 			if(minutes > sunset) {
-				degrees = 270 * 1 + (minutes - sunset) * degrees;
+				degrees = 270 + (minutes - sunset) * degrees;
 			} else {
-				degrees = 270 * 1 + (minutes + (1440 - sunset)) * degrees;
+				degrees = 270 + (minutes + (MINUTES_IN_ONE_DAY - sunset)) * degrees;
 			}
 			rotation = "rotate(" + degrees + "deg)";
 			document.getElementById("timeBackground").style.transform = rotation;
 		}
 	}
 
-	function printDay(){
-		ctxDate.clearRect(0,0,100,90);
+	function printDate(){
+		ctxDate.clearRect(0,0,DATE_WIDTH,DATE_HEIGHT);
 		ctxDate.font = "30px Arial";
 		ctxDate.fillStyle = FONT_COLOR;
 		ctxDate.textAlign = CENTER;
-		ctxDate.fillText(time.getDay(), 72, 63);
+		ctxDate.fillText(time.getDay(), DATE_POSX, DATE_POSY);
 	}
 
 	function printOnScreen(string, posx, posy, size) {
@@ -181,11 +197,11 @@ define(['battery', 'userData', 'time', 'weather'], function(battery, userData, t
 		var canvas = document.getElementById("temperatureSpace");
 		var ctx = canvas.getContext("2d");
 		
-		ctx.clearRect(0,0,50,50);
-		ctx.font = "15px Arial";
+		ctx.clearRect(0,0,TEMPERATURE_SPACE,TEMPERATURE_SPACE);
+		ctx.font = TEMPERATURE_FONT;
 		ctx.fillStyle = FONT_COLOR;
 		ctx.textAlign = CENTER;
-		ctx.fillText(weather.getTemperature() + "°C", 25, 25);
+		ctx.fillText(weather.getTemperature() + "°C", TEMPERATURE_POS, TEMPERATURE_POS);
 	}
 
 	function right() {
@@ -195,7 +211,7 @@ define(['battery', 'userData', 'time', 'weather'], function(battery, userData, t
 		userData.sendEvents();
 		var imgSource = "assets/right_icon.png";
 
-		userData.flashCardMethod(true);
+		userData.improvedFlashCardMethod(true);
 		feedbackByImage(imgSource);
 		printWord();	
 	}
@@ -207,19 +223,38 @@ define(['battery', 'userData', 'time', 'weather'], function(battery, userData, t
 		userData.sendEvents();
 		var imgSource = "assets/wrong_icon.png";
 
-		userData.flashCardMethod(false);
+		userData.improvedFlashCardMethod(false);
 		feedbackByImage(imgSource);
 		printWord();
 	}
 
 	function menuButton(imgSource) {
-		feedbackByImage(imgSource);
-		userData.removeWord();
-		userData.saveCurrentState();
-		userData.saveEvents();
-		userData.saveWordPair();
-		userData.sendEvents();
-		printWord();
+		if (userData.removeWord()) {
+			feedbackByImage(imgSource);
+			userData.saveCurrentState();
+			userData.saveEvents();
+			userData.saveWordPair();
+			userData.sendEvents();
+			printWord();
+		} else {
+			console.log("show popup");
+			var canvas = document.getElementById("imageFade");
+			canvas.style.visibility = "visible";
+			canvas.style.opacity = 0.8;
+			var ctx = canvas.getContext("2d");
+			ctx.clearRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT / 2);
+			
+			ctx.font = "20px Arial";
+			ctx.fillStyle = "white";
+			ctx.textAlign = "center";
+			
+			ctx.fillText("TOO FEW WORDS", SCREEN_WIDTH / 2, POPUP_TEXT_LINE1);
+			ctx.fillText("there are too", SCREEN_WIDTH / 2, POPUP_TEXT_LINE2);
+			ctx.fillText("few words left to", SCREEN_WIDTH / 2, POPUP_TEXT_LINE3);
+			ctx.fillText("use this option", SCREEN_WIDTH / 2, POPUP_TEXT_LINE4);
+			
+			setTimeout(function(){fade(canvas,FADING_TIME);}, WAITING_TIME_FOR_POPUP_TO_DISAPPEAR);
+		}
 	}
 
 	return {
@@ -228,7 +263,7 @@ define(['battery', 'userData', 'time', 'weather'], function(battery, userData, t
 			time.create();
 			var totalMinutes = time.getHours()*60 + time.getMinutes()*1;
 			printDigitalTime();
-			printDay();
+			printDate();
 			setBackground(totalMinutes);
 			battery.draw();
 			if (weather.getIsRefreshed()) {
@@ -247,6 +282,7 @@ define(['battery', 'userData', 'time', 'weather'], function(battery, userData, t
 			ctxDate = canvasDate.getContext("2d");
 			
 			weather.refresh(true);
+			userData.initializeIntervals();
 
 			//print first word
 			printWord();
@@ -319,6 +355,17 @@ define(['battery', 'userData', 'time', 'weather'], function(battery, userData, t
 				userData.addEvent("reverse");
 				userData.setReverseStatus(!userData.getReverseStatus());
 				printWord();	
+			});
+
+			document.getElementById("time").addEventListener("click", function(){
+				var canvas = document.getElementById("landscapeBackground");
+				canvas.style.background = backgroundSource[backgroundNumber];
+				canvas.style.backgroundSize = BACKGROUND_SIZE;
+				if (backgroundNumber === backgroundSource.length-1){
+					backgroundNumber = 0;
+				} else {
+					backgroundNumber++;
+				}
 			});
 			
 			document.getElementById("logOutButton").addEventListener("click", function(){

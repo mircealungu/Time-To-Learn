@@ -84,7 +84,7 @@ define(['userData'], function(userData) {
 		if (version === "NO_CONNECTION") {
 			ctx.fillText("NO CONNECTION", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_1);
 			ctx.fillText("There isn't a connection", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_2);
-			ctx.fillText("with the internet at the moment", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_3);
+			ctx.fillText("with the internet", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_3);
 			ctx.fillText("please check", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_4);
 			ctx.fillText("your internet connection", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_5);
 		} else if (version === "WRONG_SESSION_NUMBER") {
@@ -97,7 +97,7 @@ define(['userData'], function(userData) {
 			ctx.fillText("TOO FEW WORDS", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_1);
 			ctx.fillText("more words needed", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_2);
 			ctx.fillText("please make sure you have", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_3);
-			ctx.fillText("at least 5 words", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_4);
+			ctx.fillText("at least 10 words", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_4);
 		}
 		
 		ctx.font = "15px Arial";
@@ -171,6 +171,22 @@ define(['userData'], function(userData) {
 		printStartScreen(pageNr);
 	}
 
+	function updateFirstNumber(addition) {
+		firstNumber = printNumber(1,addition, firstNumber);
+	}
+
+	function updateSecondNumber(addition) {
+		secondNumber = printNumber(2,addition, secondNumber);
+	}
+
+	function updateThirdNumber(addition) {
+		thirdNumber = printNumber(3,addition, thirdNumber);
+	}
+
+	function updateFourthNumber(addition) {
+		fourthNumber = printNumber(4, addition, fourthNumber);
+	}
+
 	return function login(checkLogin) {
 
 		// only valid codes will be saved
@@ -186,31 +202,31 @@ define(['userData'], function(userData) {
 			printStartScreen(1);
 			
 			document.getElementById("first_plus").addEventListener("click", function(){
-				firstNumber = printNumber(1,true, firstNumber);
+				updateFirstNumber(true);
 			});
 			document.getElementById("first_min").addEventListener("click", function(){
-				firstNumber = printNumber(1,false, firstNumber);
+				updateFirstNumber(false);
 			});
 			
 			document.getElementById("second_plus").addEventListener("click", function(){
-				secondNumber = printNumber(2,true, secondNumber);
+				updateSecondNumber(true);
 			});
 			document.getElementById("second_min").addEventListener("click", function(){
-				secondNumber = printNumber(2,false, secondNumber);
+				updateSecondNumber(false);
 			});
 			
 			document.getElementById("third_plus").addEventListener("click", function(){
-				thirdNumber = printNumber(3,true, thirdNumber);
+				updateThirdNumber(true);
 			});
 			document.getElementById("third_min").addEventListener("click", function(){
-				thirdNumber = printNumber(3,false, thirdNumber);
+				updateThirdNumber(false);
 			});
 			
 			document.getElementById("fourth_plus").addEventListener("click", function(){
-				fourthNumber = printNumber(4,true, fourthNumber);
+				updateFourthNumber(true);
 			});
 			document.getElementById("fourth_min").addEventListener("click", function(){
-				fourthNumber = printNumber(4,false, fourthNumber);
+				updateFourthNumber(false);
 			});
 			
 			document.getElementById("setNextButton").addEventListener("click", function(){

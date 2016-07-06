@@ -8,10 +8,12 @@ define(['events'], function(events) {
 
 	var wordNumber = 5;
 	var wordPair = [];
+	var interval = [];
 	
 	var flashcardsToShow = [0,1,2,3,4];
-	var NUMBER_OF_FLASH_CARDS = 5;
+	var numberOfFlashcards = 5;
 	var index = 0;
+	var indexInterval = 0;
 	
 	var numberOfWords;
 	var accountCode = 0;
@@ -35,7 +37,7 @@ define(['events'], function(events) {
 		},
 
 		areThereWords: function() {
-			if (wordPair.isEmpty()) {
+			if (wordPair.length > 0) {
 				return true;
 			}
 			return false;
@@ -54,23 +56,72 @@ define(['events'], function(events) {
 				index = 0;
 			}
 		},
+
+		initializeIntervals: function() {
+			var counter = 0;
+			var i;
+			for (i=0; counter<numberOfWords; i++) {
+				interval[i] = counter;
+				counter = counter+5;
+			}
+			interval[i] = numberOfWords;
+			console.log("intervals: " + interval);
+		},
+		
+		improvedFlashCardMethod: function(wordIsRight) {
+			console.log("length: " + wordPair.length);		
+			if(wordIsRight) {
+				if (wordNumber === interval[indexInterval+2]) {
+					flashcardsToShow.splice(index, 1);
+					numberOfFlashcards--;
+					if (numberOfFlashcards === 0) {
+						if (wordNumber === numberOfWords) {
+							indexInterval = 0;
+							wordNumber = 5;
+							flashcardsToShow = [0,1,2,3,4];
+							numberOfFlashcards = 5;
+							index = 0;
+						} else {
+							indexInterval++;
+							flashcardsToShow = [interval[indexInterval], interval[indexInterval]+1, interval[indexInterval]+2, interval[indexInterval]+3, interval[indexInterval]+4];
+							numberOfFlashcards = 5;
+							wordNumber = interval[indexInterval+1];
+							index = 0;
+						}
+					}
+					console.log("wN: " + wordNumber);
+				} else {
+					flashcardsToShow[index] = wordNumber;
+					console.log("practice words from " + interval[indexInterval] + " to " + interval[indexInterval+2] + " | wN = " + wordNumber);
+					wordNumber++;
+					index++;
+				}
+			} else {
+				index++;
+			}
+			
+			if(index >= numberOfFlashcards){
+				index = 0;
+			}
+			console.log(numberOfFlashcards + " flashcards: " + flashcardsToShow + " | shown word: " + flashcardsToShow[index] + " index: " + index);
+		},
 		
 		getWord: function() {
 			if(reverse){
 				return wordPair[flashcardsToShow[index]].translation;
 			}else{
+				console.log("index in wordPair: " + flashcardsToShow[index]);
 				return wordPair[flashcardsToShow[index]].word;
 			}
 		},
 
 		removeWord: function() {
-			if (numberOfWords > 5) {
+			if (numberOfWords > 10) {
 				wordPair.splice(flashcardsToShow[index], 1);
 				numberOfWords--;
-			} else {
-				//add something in the gui for this.
-				console.log("Need at least 5 words for the algorithm");
-			}
+				return true;
+			} 
+			return false;
 		},
 		
 		getTranslation: function() {
@@ -82,16 +133,13 @@ define(['events'], function(events) {
 		},
 
 		load: function() {
+			console.log("loading userdata..");
 			if (localStorage.length===0) {
 				console.log("No user data available.");
 			} else {
 				accountCode = localStorage.getItem("accountCode");
 				console.log("loaded accountCode: " + accountCode);
-				events = JSON.parse(localStorage.getItem("events"));
-				if (events === null) {
-					events = [];
-				}
-				console.log("loaded events: " + JSON.stringify(events));
+				events.load();
 				if (localStorage.getItem("wordNumber") !== null) {
 					wordNumber = localStorage.getItem("wordNumber");
 					console.log("loaded wordNumber: " + wordNumber);
@@ -100,14 +148,22 @@ define(['events'], function(events) {
 					index = localStorage.getItem("index");
 					console.log("loaded index: " + index);
 				}
+				if (localStorage.getItem("indexInterval") !== null) {
+					indexInterval = localStorage.getItem("indexInterval");
+					console.log("loaded indexInterval: " + indexInterval);
+				}
+				if (localStorage.getItem("numberOfFlashcards") !== null) {
+					numberOfFlashcards = localStorage.getItem("numberOfFlashcards");
+					console.log("loaded numberOfFlashcards: " + numberOfFlashcards);
+				}
 				if (localStorage.getItem("flashcardsToShow") !== null) {
-					flashcardsToShow = localStorage.getItem("flashcardsToShow");
+					flashcardsToShow = JSON.parse(localStorage.getItem("flashcardsToShow"));
 					console.log("loaded flashcards: " + flashcardsToShow);
 				}
-				// if (localStorage.getItem("wordPair") !== null) {
-				// 	wordPair = JSON.parse(localStorage.getItem("wordPair"));
-				// 	console.log("loaded wordpairs: " + JSON.stringify(wordPair));
-				// }
+				if (localStorage.getItem("wordPair") !== null) {
+				 	wordPair = JSON.parse(localStorage.getItem("wordPair"));
+				 	console.log("loaded wordpairs: " + JSON.stringify(wordPair));
+				}
 			}
 		},
 
@@ -130,8 +186,16 @@ define(['events'], function(events) {
 
 		saveCurrentState: function() {
 			localStorage.setItem("wordNumber", wordNumber);
-			localStorage.setItem("index", index);
-			localStorage.setItem("flashcardsToShow", flashcardsToShow);
+			// index indicates current flashcard, if the last flashcard was answered, then the first 
+			// should be shown, otherwise go to next flashcard, if user starts up the app again.
+			if (index === 4) {
+				localStorage.setItem("index", 0);
+			} else {
+			 	localStorage.setItem("index", index + 1);
+			}
+			localStorage.setItem("flashcardsToShow", JSON.stringify(flashcardsToShow));
+			localStorage.setItem("indexInterval", indexInterval);
+			localStorage.setItem("numberOfFlashcards", numberOfFlashcards);
 		},
 		
 		sendEvents: function() {
@@ -184,9 +248,9 @@ define(['events'], function(events) {
 			return numberOfWords;
 		},
 
-		setNumberOfWords: function(nrOfWords) {
-			console.log("numberOfWords :" + nrOfWords);
-			numberOfWords = nrOfWords;
+		initNumberOfWords: function() {
+			//console.log("numberOfWords :" + nrOfWords);
+			numberOfWords = wordPair.length;
 		},
 
 		printWords: function() {

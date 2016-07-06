@@ -14,7 +14,6 @@ define(function() {
 		console.log(lat);
 		console.log(lon);
 		var xhr = new XMLHttpRequest();
-		//xhr.open('GET', 'http://api.openweathermap.org/data/2.5/weather?lat=53.2167&lon=6.55&APPID=ab2771b4d49ab0798786dd6f2bee71a0', false);
 		xhr.open('GET', 'http://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&APPID=' + APP_ID, false);
 		xhr.onload = function() {
 			console.log("getting weather data..");
@@ -60,7 +59,6 @@ define(function() {
 		},
 
 		getImageSource: function() {
-			// example: http://openweathermap.org/img/w/10d.png
 			return "http://openweathermap.org/img/w/" + weather.weather[0].icon + ".png"; 
 		},
 

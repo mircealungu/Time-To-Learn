@@ -9,7 +9,8 @@ define(['userData', 'login'], function(userData, login) {
 	var ctxWords, status;
 
 	var NUMBER_OF_WORDS = 50;
-	var SCREEN_WIDTH = 360;
+	var MAX_WORD_LENGTH = 340;
+	var MAX_TRANSLATION_LENGTH = 280;
 	var WORD_FONT = "45px Arial";
 	var TRANSLATION_FONT = "35px Arial";
 
@@ -27,29 +28,28 @@ define(['userData', 'login'], function(userData, login) {
 
 		console.log("Trying to get words with session: " + session);
 		
-		try { // if there is a internet connection, fetch new words -> have to do research for this
+		try { 
 			var xhr = new XMLHttpRequest();
 			xhr.open('GET', SESSION_ENDPOINT + BOOKMARK_SESSION + NUMBER_OF_WORDS + "?session=" + session, false);
 			xhr.onload = function () {
 				try {
 					var obj = JSON.parse(this.responseText);
 					var wordNumber = 0;
-					if (Object.keys(obj).length < 5) {
+					if (Object.keys(obj).length < 10) {
 						status = "TOO_FEW_WORDS";
 					} else {
 						for (i=0; i<Object.keys(obj).length; i++) {
 							ctxWords.font = WORD_FONT;
-							if (ctxWords.measureText(String(obj[i].from)).width <= SCREEN_WIDTH - 20) {
+							if (ctxWords.measureText(String(obj[i].from)).width <= MAX_WORD_LENGTH && ctxWords.measureText(String(obj[i].to)).width <= MAX_WORD_LENGTH) {
 								ctxWords.font = TRANSLATION_FONT;
-								if (ctxWords.measureText(String(obj[i].to)).width <= SCREEN_WIDTH - 80) {
+								if (ctxWords.measureText(String(obj[i].from)).width <= MAX_TRANSLATION_LENGTH && ctxWords.measureText(String(obj[i].to)).width <= MAX_TRANSLATION_LENGTH) {
 									userData.setWordPair(wordNumber, obj[i].from, obj[i].to, obj[i].id);
 									wordNumber++;
 								}
 							}
 						}
-						userData.setNumberOfWords(wordNumber);
+						userData.initNumberOfWords();
 						userData.saveWordPair();
-						//console.log(wordNumber + " words added");
 						status = "SUCCESS";
 					}
 				} catch(err) {
@@ -72,22 +72,13 @@ define(['userData', 'login'], function(userData, login) {
 		create: function(ctx, code) {
 			ctxWords = ctx;
 
-			getWords(code);
-
-			// var session;
-			// var data = new FormData();
-			// data.append('password', 'pass');
-
-			// var xhr = new XMLHttpRequest();
-			// xhr.open('POST', SESSION_ENDPOINT + USERNAME, false);
-
-			// xhr.onload = function () {
-			// 	session = parseInt(this.responseText);
-			// 	console.log("session number: " + session);
-			// 	// account code will equal session number in the future -> getWords(userData.getCode())
-			// 	getWords(session);
-			// };
-			// xhr.send(data);
+			if (!userData.areThereWords()) {
+				getWords(code);
+			} else {
+				status = "SUCCESS";
+				userData.initNumberOfWords();
+				console.log("Using words which were already saved.");
+			}
 		},
 
 		printWords: function() {

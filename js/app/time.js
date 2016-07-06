@@ -7,8 +7,6 @@
 define(function() {
 
 	var date, year, day, month, hours, minutes, seconds;
-	var sunrise = 5 * 60 + 7 * 1;
-	var sunset = 22 * 60 + 3 * 1;
 	var timer = 0;
 	var test = 5;
 
@@ -39,9 +37,6 @@ define(function() {
 			hours = checkNumberOfDigits(date.getHours());
 			minutes = checkNumberOfDigits(date.getMinutes());
 			seconds = checkNumberOfDigits(date.getSeconds());
-			
-			// create is called every second in gui.js, so timer is in seconds
-			timer++;
 		},
 
 		getTimestamp: function() {
@@ -59,25 +54,5 @@ define(function() {
 		getMinutes: function() {
 			return minutes;
 		},
-
-		getTimer: function() {
-			return timer;
-		},
-		
-		getSunrise: function() {
-			return sunrise;
-		},
-		
-		getSunset: function() {
-			return sunset;
-		},
-
-		resetTimer: function() {
-			timer = 0;
-		},
-
-		setTest: function() {
-			test = 0;
-		}
 	};
 });
