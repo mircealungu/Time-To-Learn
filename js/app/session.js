@@ -48,7 +48,7 @@ define(['userData', 'login'], function(userData, login) {
 								}
 							}
 						}
-						userData.initNumberOfWords();
+						console.log("number of words loaded: " + wordNumber);
 						userData.saveWordPair();
 						status = "SUCCESS";
 					}
@@ -76,7 +76,6 @@ define(['userData', 'login'], function(userData, login) {
 				getWords(code);
 			} else {
 				status = "SUCCESS";
-				userData.initNumberOfWords();
 				console.log("Using words which were already saved.");
 			}
 		},

@@ -206,24 +206,22 @@ define(['battery', 'userData', 'time', 'weather'], function(battery, userData, t
 
 	function right() {
 		userData.addEvent("right");
-		userData.saveCurrentState();
 		userData.saveEvents();
 		userData.sendEvents();
 		var imgSource = "assets/right_icon.png";
 
-		userData.improvedFlashCardMethod(true);
+		userData.flashCardMethod(true);
 		feedbackByImage(imgSource);
 		printWord();	
 	}
 
 	function wrong() {
 		userData.addEvent("wrong");
-		userData.saveCurrentState();
 		userData.saveEvents();
 		userData.sendEvents();
 		var imgSource = "assets/wrong_icon.png";
 
-		userData.improvedFlashCardMethod(false);
+		userData.flashCardMethod(false);
 		feedbackByImage(imgSource);
 		printWord();
 	}
@@ -282,7 +280,8 @@ define(['battery', 'userData', 'time', 'weather'], function(battery, userData, t
 			ctxDate = canvasDate.getContext("2d");
 			
 			weather.refresh(true);
-			userData.initializeIntervals();
+			weather.save();
+			//userData.initializeIntervals();
 
 			//print first word
 			printWord();

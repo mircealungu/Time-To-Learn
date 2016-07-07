@@ -100,7 +100,7 @@
 </Reference>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>ibadIcMwFax87CMYkFVecLl4TwOFvLU52QoTFk+ocPE=</DigestValue>
+<DigestValue>uSafqLsZzkB4Zrx0eIE1Q7szpFHOLaMpZ8Ue/7FYWmI=</DigestValue>
 </Reference>
 <Reference URI="config.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -144,11 +144,11 @@
 </Reference>
 <Reference URI="js%2Fapp%2Fgui.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>FQ5LqV64qFut8IfOPw0gji7Hh/zpk4k52Uv9vKZSqxs=</DigestValue>
+<DigestValue>21BS0aA3FDt4blb52leh/DO87+3gBcMQnMjRWA5A1yY=</DigestValue>
 </Reference>
 <Reference URI="js%2Fapp%2Flogin.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>byL9UbpKpbdAk/yeTU2MbPeoTDBXKKGivEmmFe8OJz4=</DigestValue>
+<DigestValue>OLOd6ZumtvBI8lN1Enh59q5SkTh2nMO6M/vF/7fqYjA=</DigestValue>
 </Reference>
 <Reference URI="js%2Fapp%2Fmain.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -156,7 +156,7 @@
 </Reference>
 <Reference URI="js%2Fapp%2Fsession.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>6DyURiYYjGxdlyrUYuiUnipeC/u43AwyaIynTeTr+Ys=</DigestValue>
+<DigestValue>zjcWehytzrW4/kBLJd1byeutS40dZRZqdlns0lmVgMo=</DigestValue>
 </Reference>
 <Reference URI="js%2Fapp%2Ftime.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -164,11 +164,11 @@
 </Reference>
 <Reference URI="js%2Fapp%2FuserData.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>EjCpN0B4X1d+n1gAicy5DNONFmS6S0bZFNSLdpQAz/g=</DigestValue>
+<DigestValue>LSCbVTQO7JrnCUXyhFzY0KJvxFe4sUszVrvtQNSXfFs=</DigestValue>
 </Reference>
 <Reference URI="js%2Fapp%2Fweather.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>TVpcemkP1avL6iS7xI+1nSO7hc7GIAwgTgUeoqs2R4M=</DigestValue>
+<DigestValue>nHICz33pEX3lmaaAKF+CeirG1a1GxSGqgdtcvwQA9ho=</DigestValue>
 </Reference>
 <Reference URI="js%2Fbuild%2Fbuild.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -176,7 +176,7 @@
 </Reference>
 <Reference URI="js%2Fbuild%2Fmain-built.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>PzP/ZQHQGiO/UIQ9gdHSQkbT5wjgdbSYXdXcEy56KgE=</DigestValue>
+<DigestValue>8wAPmKXOZMb3pYfa25ye8RRqYGcG2c/5U/pzOu4eLF0=</DigestValue>
 </Reference>
 <Reference URI="js%2Flib%2Frequire.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -195,11 +195,11 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-DxtGp1cX9h3r5DWCyw5SdBUjQkw5pWJf8clYuquPYT3ttT7I9/zdkewSq0GU2cVbpWqI2QxXfLSa
-gfqWayxf3dRlwQrzuQevwCDtOx/QqZa9JcWlRkwhy4hV4VOwksmLzf1SSmUeshvu1WducnbIAV2O
-5Znw88U2RnBpodmD8uK3rxk0+cAF3Kie+yEJp91bNHWsrFKDlkMwxHF1o1Ch5sNW4JtwKCKa5b7i
-Vsm+DLHdbYOB/AyoTwSZzr8uW2TFDDUI3SGjH1lUzkQwYt846iRf9QukdvjbqyTP44MlKq+rr4vj
-gmvZgVQCTO2ncyLlDFafENPCKVIXsIxJ5JJ55Q==
+g2ViqZV/CH61r97cmKLDnzxP5GqpENFJJtqWDNxcYjn92DFwpCEGkjG7neq8CCkrh0nAQkaPDmhk
+6B3rflODbohpaxeVSIQG/npdFnJnqKU2NpAM9GuO6Tp9GSxsjvgpbmL6TySqvus48aeIABsXXGOa
+vyGrp7l1f3tvOrsr82jq5J8Oadkdj/vllT6hENVSQfb6ZJDCsy72eSumvcZBmLI1vyHDblNxDwvU
+Nhe6X+V8a4ZHCXc8e1qE9mLTe1K2sTwrBK2YMI9AM52LU4eEXuc14ieSyrAfJlFyBIRGqlQpr9EG
+d8RvYRFV8o2yv5G1AwQkQBFhbG7iySxOSpD3VA==
 </SignatureValue>
 <KeyInfo>
 <X509Data>

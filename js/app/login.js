@@ -189,6 +189,7 @@ define(['userData'], function(userData) {
 
 	return function login(checkLogin) {
 
+		//localStorage.setItem("accountCode", 61015763);
 		// only valid codes will be saved
 		if (localStorage.getItem("accountCode")!== null) {
 			userData.load();

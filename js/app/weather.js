@@ -13,29 +13,40 @@ define(function() {
 	function getWeather(lat, lon) {
 		console.log(lat);
 		console.log(lon);
-		var xhr = new XMLHttpRequest();
-		xhr.open('GET', 'http://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&APPID=' + APP_ID, false);
-		xhr.onload = function() {
-			console.log("getting weather data..");
-			console.log(this.responseText);
-			weather = JSON.parse(this.responseText);
-			console.log("sunset: " + weather.sys.sunset);
-			console.log(JSON.stringify(weather));
-		};
-		xhr.send();
+		try {
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', 'http://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&APPID=' + APP_ID, false);
+			xhr.onload = function() {
+				console.log("getting weather data..");
+				console.log(this.responseText);
+				weather = JSON.parse(this.responseText);
+				console.log("sunset: " + weather.sys.sunset);
+				console.log(JSON.stringify(weather));
+			};
+			xhr.send();
+		} catch (err) {
+			isRefreshed = false;
+			console.log("Error getWeather: " + err);
+		}
 	}
 
 	function getLocation() {
 		var xhr = new XMLHttpRequest();
-		xhr.open('GET', 'http://ip-api.com/json', false);
-		xhr.onload = function() {
-			console.log("getting location..");
-			console.log(this.responseText);
-			var data = JSON.parse(this.responseText);
-			getWeather(data.lat, data.lon);
-			console.log(JSON.stringify(data));
-		};
-		xhr.send();
+		try {
+			xhr.open('GET', 'http://ip-api.com/json', false);
+			xhr.onload = function() {
+				console.log("getting location..");
+				console.log(this.responseText);
+				var data = JSON.parse(this.responseText);
+				getWeather(data.lat, data.lon);
+				console.log(JSON.stringify(data));
+			};
+			xhr.send();
+		} catch (err) {
+			isRefreshed = false;
+			console.log("Error getLocation: " + err);
+		}
+
 	}
 	
 	function convertEpochTime(seconds) {
@@ -48,6 +59,13 @@ define(function() {
 		refresh: function() {
 			isRefreshed = true;
 			getLocation();
+			if (weather===null) {
+				weather = localStorage.getItem("weather");
+			}
+		},
+
+		save: function() {
+			localStorage.setItem("weather", weather);
 		},
 
 		getSunset: function() { 
