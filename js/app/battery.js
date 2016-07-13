@@ -1,6 +1,8 @@
 /**
  * battery.js
  *
+ * implementation based on: http://stackoverflow.com/questions/5736398/how-to-calculate-the-svg-path-for-an-arc-of-a-circle
+ *
  * made by Rick Nienhuis & Niels Haan
  */
 

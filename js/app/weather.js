@@ -7,8 +7,15 @@
 define(function() {
 
 	var APP_ID = "ab2771b4d49ab0798786dd6f2bee71a0";
-	var weather;
+	var weather = null;
 	var isRefreshed = false;
+	var ctxWeather, ctxTemp;
+
+	// definitions
+	var TEMPERATURE_SPACE = 50;
+	var TEMPERATURE_POS = 25;
+	var TEMPERATURE_FONT = "17px Arial";
+	var TEMPERATURE_COLOR = "white";
 
 	function getWeather(lat, lon) {
 		console.log(lat);
@@ -20,7 +27,6 @@ define(function() {
 				console.log("getting weather data..");
 				console.log(this.responseText);
 				weather = JSON.parse(this.responseText);
-				console.log("sunset: " + weather.sys.sunset);
 				console.log(JSON.stringify(weather));
 			};
 			xhr.send();
@@ -54,42 +60,55 @@ define(function() {
 		return date.getUTCHours() * 60 + date.getUTCMinutes() - date.getTimezoneOffset();
 	}
 
+	function getTemperature() {
+		return (weather.main.temp - 273.15).toFixed(0);
+	}
+
 	return {
+
+		create: function() {
+			ctxWeather = document.getElementById("weatherCanvas").getContext("2d");
+			ctxTemp = document.getElementById("temperatureCanvas").getContext("2d");
+		},
 
 		refresh: function() {
 			isRefreshed = true;
 			getLocation();
 			if (weather===null) {
-				weather = localStorage.getItem("weather");
+				weather = JSON.parse(localStorage.getItem("weather"));
 			}
 		},
 
 		save: function() {
-			localStorage.setItem("weather", weather);
+			localStorage.setItem("weather", JSON.stringify(weather));
 		},
 
 		getSunset: function() { 
+			//return 1175;
 			return convertEpochTime(weather.sys.sunset);
 		},
 
 		getSunrise: function() {
+			//return 288;
 			return convertEpochTime(weather.sys.sunrise);
 		},
 
-		getImageSource: function() {
-			return "http://openweathermap.org/img/w/" + weather.weather[0].icon + ".png"; 
-		},
+		draw: function() {
+			if (isRefreshed) {
+				isRefreshed = false;
+				
+				var img = new Image();
+				img.onload = function() {
+					ctxWeather.drawImage(img, 0, 0);
+				};
+				img.src = "http://openweathermap.org/img/w/" + weather.weather[0].icon + ".png";
+			}
 
-		getTemperature: function() {
-			return (weather.main.temp - 273.15).toFixed(0);
-		},
-		
-		setIsRefreshed: function(bool) {
-			isRefreshed = bool;
-		},
-		
-		getIsRefreshed: function() {
-			return isRefreshed;
+			ctxTemp.clearRect(0,0,TEMPERATURE_SPACE,TEMPERATURE_SPACE);
+			ctxTemp.font = TEMPERATURE_FONT;
+			ctxTemp.fillStyle = TEMPERATURE_COLOR;
+			ctxTemp.textAlign = "center";
+			ctxTemp.fillText(getTemperature() + "°C", TEMPERATURE_POS, TEMPERATURE_POS);
 		}
 	};
 

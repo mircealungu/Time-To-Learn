@@ -24,7 +24,7 @@ require(['login', 'session', 'gui', 'device'], function (login, session, gui, de
 		return status;
 	}
 
-	var canvasWords = document.getElementById("wordSpace"); 
+	var canvasWords = document.getElementById("wordCanvas"); 
 	var ctxWords = canvasWords.getContext("2d");
 	
 	new login(checkLogin);

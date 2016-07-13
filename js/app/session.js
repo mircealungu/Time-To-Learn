@@ -24,7 +24,7 @@ define(['userData', 'login'], function(userData, login) {
 	}
 
 	function getWords(session) {
-		var n = 0, i, j;
+		var i, j;
 
 		console.log("Trying to get words with session: " + session);
 		
@@ -63,8 +63,7 @@ define(['userData', 'login'], function(userData, login) {
 			// there is no internet connection
 			console.log("no internet connection: " + err);
 			status = "NO_CONNECTION";
-		}
-		
+		}	
 	}
 
 	return  {

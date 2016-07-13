@@ -6,16 +6,13 @@
 
 define(['events'], function(events) {
 
-	var wordNumber = 5;
 	var wordPair = [];
-	
 	var accountCode = 0;
 	var reverse = false;
 
-	var sunset = 1320; // default 22:00
-	var sunrise = 360; // default 6:00
-
 	var numberOfFlashcards = 5;
+
+	var DELETE_WORDS_ENDPOINT = "https://zeeguu.unibe.ch/delete_bookmark/";
 
 	function printWords2() {
 		var string = "words: ";
@@ -47,7 +44,8 @@ define(['events'], function(events) {
 			return false;
 		},
 
-		flashCardMethod: function(wordIsRight) {
+		// flashcard method is implemented here
+		updateWordPair: function(wordIsRight) {
 			if (wordIsRight) {
 				console.log("word is correct");
 				wordPair[0].timesCorrect++;
@@ -83,11 +81,26 @@ define(['events'], function(events) {
 			} 
 			return false;
 		},
+
+		deleteFromServer: function() {
+			//https://zeeguu.unibe.ch/delete_bookmark/5474?session=56510527
+			var xhr = new XMLHttpRequest();
+			console.log("trying to delete word: " + wordPair[0].word);
+			xhr.open('POST', DELETE_WORDS_ENDPOINT + wordPair[0].id + "?session=" + accountCode, true);
+			xhr.onload = function() {
+				if (this.responseText === "OK") {
+					console.log("SUCCES: word is deleted");
+				} else {
+					console.log("FAIL: word could not be deleted");
+				}
+			};
+			xhr.send(data);
+		},
 		
 		getTranslation: function() {
-			if(reverse){
+			if (reverse) {
 				return wordPair[0].word;
-			}else{
+			} else {
 				return wordPair[0].translation;
 			}
 		},
@@ -115,7 +128,7 @@ define(['events'], function(events) {
 
 		saveWordPair: function() {
 			localStorage.setItem("wordPair", JSON.stringify(wordPair));
-			console.log(localStorage.getItem("wordPair"));
+			console.log("wordPair saved: " + localStorage.getItem("wordPair"));
 		},
 
 		saveEvents: function() {
@@ -133,7 +146,6 @@ define(['events'], function(events) {
 		},
 
 		addEvent: function(event) {
-			//console.log("wordNumber is " + flashcardsToShow[index]);
 			events.add(event, wordPair[0].id);
 		},
 
@@ -141,19 +153,8 @@ define(['events'], function(events) {
 			return accountCode;
 		},
 
-		setCode: function(code) {
-			accountCode = code;
-		},
-
 		printWords: function() {
 			console.log(JSON.stringify(wordPair));
-		},
-
-		nextWord: function() {
-			wordNumber++;
-			if(wordNumber === numberOfWords) {
-				wordNumber = 0;
-			}
 		},
 
 		getReverseStatus: function() {

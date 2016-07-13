@@ -17,46 +17,43 @@
 <body>
 
 	<div id="loginPage" style="display: block;">
-	
 		<div id="loginPopup">
-			<canvas id="loginPopupSpace" width="360" height="360">
+			<canvas id="loginPopupCanvas" width="360" height="360">
 			</canvas>
 		</div>
-		
-		<div id="log_header">
-			<canvas id="log_headerSpace" width="360" height="70"></canvas>
+		<div id="loginHeader">
+			<canvas id="loginHeaderCanvas" width="360" height="70"></canvas>
 		</div>
-		<div id="plusSpace">
+		<div id="plus">
 			<input type="submit" id="first_plus" class="loginPlus" value=" "  style="position:absolute; top:70px; left:40px;">
 			<input type="submit" id="second_plus" class="loginPlus" value=" " style="position:absolute; top:70px; left:115px;">
 			<input type="submit" id="third_plus" class="loginPlus" value=" "  style="position:absolute; top:70px; left:190px;">
 			<input type="submit" id="fourth_plus" class="loginPlus" value=" " style="position:absolute; top:70px; left:265px;">
 		</div>
 		<div id="digits">
-			<canvas id="digitSpace" width="360" height="105"></canvas>
+			<canvas id="digitsCanvas" width="360" height="105"></canvas>
 		</div>
-		<div id="minSpace" >
+		<div id="minus" >
 			<input type="submit" id="first_min" class="loginMin" value=" "  style="position:absolute; top:230px; left:40px;">
 			<input type="submit" id="second_min" class="loginMin" value=" " style="position:absolute; top:230px; left:115px;">
 			<input type="submit" id="third_min" class="loginMin" value=" "  style="position:absolute; top:230px; left:190px;">
 			<input type="submit" id="fourth_min" class="loginMin" value=" " style="position:absolute; top:230px; left:265px;">
 		</div>
-		<div id="pageIcon">
-			<canvas id="pageIconSpace" width="360" height="15"></canvas>
+		<div id="iconPageNr">
+			<canvas id="iconPageNrCanvas" width="360" height="15"></canvas>
 		</div>
-		<div id="buttonSpace">
+		<div id="nextButton">
 			<input type="submit" id="setNextButton" style="position:absolute; top:360; left:0px;" value=" ">
 		</div>
 		
 	</div>
 
 	<div id="mainPage" style="display:none;">
-	
 		<div id="revealedPage" style="z-index: 5; position:absolute; left:0px; top:180px; text-align:center;">
 			<div id="revealedSpace">
-				<canvas id="wrongSpace"></canvas>
-				<canvas id="menuSpace"></canvas>
-				<canvas id="rightSpace"></canvas>
+				<canvas id="wrongCanvas"></canvas>
+				<canvas id="menuCanvas"></canvas>
+				<canvas id="rightCanvas"></canvas>
 			</div>
 			<div id="revealedButtons">
 				<input type="submit" id="wrongButton" value=" ">
@@ -66,9 +63,9 @@
 		</div>
 		
 		<div id="menuPage" style="z-index: 5; position:absolute; left:0px; top:0; text-align:center;">
-			<div id="menuLargeSpace">
+			<div id="menuSpace">
 				<input type="submit" id="wrongTranslationButton" class="mButton" style="position:absolute; top:60px; left:80px;" value="wrong translation">
-				<input type="submit" id="learnedButton" class="mButton" style="position:absolute; top:180px; left:80px;" value="I learned it! &#x00A; Don't show it again">
+				<input type="submit" id="learnedButton" class="mButton" style="position:absolute; top:180px; left:80px;" value="I learned it! &#x00A; don't show it again">
 			</div>
 			<div id="menuButtons">
 				<input type="submit" id="backButtonInMenu" style="position:absolute; top:300; left:0px;" value=" ">
@@ -97,38 +94,25 @@
 			</div>
 		</div>
 		 -->
+
+		<div id="popup" style="z-index: 6; position:absolute; width: 360px;	height: 360px; visibility: hidden;">
+			<canvas id="popupCanvas" width="360" height="360"></canvas>
+		</div>
 		
 		<div id="time">
-			<canvas id="timeBackground" style="z-index: 0; position:absolute; left:0px; top:0px;" width="360" height="360"></canvas>
-			<canvas id="landscapeBackground"></canvas>
-	        <canvas id="digitalTime" style="z-index: 2; position:absolute; left:0px; top:0px;" width="360" height="180"></canvas>
-	        <canvas id="iconSpace" width="144" height="71"></canvas>
-	        <canvas id="temperatureSpace" width="50" height="50"></canvas>
-	        <canvas id="weatherSpace" width="50" height="50"></canvas>
-			<!--  digital time is printed here 
-			
-			
-			<img src="http://s.cdpn.io/3/kiwi.svg" 
-           style="position: absolute; 
-                  left: 0px; 
-                  top:0px;
-                  z-index: 2;
-                  width: 360px;
-                  height: 180px;
-           " />-->
-        <svg style="position: absolute; 
-                  left: 0px; 
-                  top:0px;
-                  z-index: 3;
-                  width: 360px;
-                  height: 180px;
-           ">
-			<path id="battery" fill="none" stroke="green" stroke-width="20"/>
- 		 </svg>
+			<canvas id="rotationCanvas" style="z-index: 0; position:absolute; left:0px; top:0px;" width="360" height="360"></canvas>
+			<canvas id="landscapeCanvas"></canvas>
+	        <canvas id="timeCanvas" style="z-index: 2; position:absolute; left:0px; top:0px;" width="360" height="180"></canvas>
+	        <canvas id="iconCanvas" width="144" height="71"></canvas>
+	        <canvas id="temperatureCanvas" width="50" height="50"></canvas>
+	        <canvas id="weatherCanvas" width="50" height="50"></canvas>
+        	<svg style="position: absolute; left: 0px; top:0px; z-index: 3; width: 360px; height: 180px;">
+				<path id="battery" fill="none" stroke="green" stroke-width="20"/>
+ 			</svg>
 		</div>
 	    <div id="words">
-	        <canvas id="wordSpace" style="z-index: 0; position:absolute; left:0px; top:180px;" width="360" height="120"></canvas>
-	        <canvas id="imageFade" style="z-index: 1; position:absolute; left:0px; top:180px;" width="360" height="120"></canvas> -->
+	        <canvas id="wordCanvas" style="z-index: 0; position:absolute; left:0px; top:180px;" width="360" height="120"></canvas>
+	        <canvas id="imageFadeCanvas" style="z-index: 1; position:absolute; left:0px; top:180px;" width="360" height="120"></canvas> -->
 	    </div>
 	    <div id="buttons">
 	    	<button type="button" id="revealButton" style="z-index: 4; position:absolute; left:0px; top:300;" value=""></button>

@@ -4,7 +4,7 @@
  * made by Rick Nienhuis & Niels Haan
  */
 
-define(['userData','weather'],function(userData, weather) {
+define(['userData','weather', 'time'],function(userData, weather, time) {
 
 	function powerButtonListener() {
 		try {
@@ -12,10 +12,12 @@ define(['userData','weather'],function(userData, weather) {
 				if (currState === 'SCREEN_NORMAL' && prevState === 'SCREEN_OFF') {
 					console.log("We just woke up");
 					userData.addEvent("screenOn");
-					weather.refresh(true);
+					time.start();
+					weather.refresh();
 				} else {
 					console.log("The display has been switched off");
 					userData.addEvent("screenOff");
+					time.pause();
 				}
 				userData.saveEvents();
 			});

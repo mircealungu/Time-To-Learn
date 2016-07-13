@@ -31,7 +31,7 @@ html,body {
 	height: 120px;
 }
 
-#wrongSpace {
+#wrongCanvas {
 	position: absolute;
 	left: 0px;
 	top: 0px;
@@ -39,7 +39,7 @@ html,body {
 	height: 120px;
 }
 
-#menuSpace {
+#menuCanvas {
 	position: absolute;
 	left: 130px;
 	top: 0px;
@@ -47,7 +47,7 @@ html,body {
 	height: 120px;
 }
 
-#rightSpace {
+#rightCanvas {
 	position: absolute;
 	left: 230px;
 	top: 0px;
@@ -99,7 +99,7 @@ html,body {
 	opacity: 0.9;
 }
 
-#menuLargeSpace {
+#menuSpace {
 	margin: 0px;
 	width: 360px;
 	height: 300px;
@@ -149,13 +149,13 @@ html,body {
 	background-size: 360px 60px;
 }
 
-#timeBackground {
+#rotationCanvas {
 	width: 360px;
 	height: 360px;
 	background-image: url('../assets/day_cycle.png');
 }
 
-#landscapeBackground {
+#landscapeCanvas {
 	z-index: 1; 
 	position:absolute; 
 	left:0px; 
@@ -171,7 +171,7 @@ svg {
 	height: 180px;
 }
 
-#iconSpace {
+#iconCanvas {
 	z-index: 3; 
 	position:absolute; 
 	left: 108px;
@@ -181,14 +181,14 @@ svg {
 	opacity: 0.8;
 }
 
-#temperatureSpace {
-	z-index: 3; 
+#temperatureCanvas {
+	z-index: 4; 
 	position:absolute; 
 	left:120px; 
 	top:10px;
 }
 
-#weatherSpace {
+#weatherCanvas {
 	z-index: 3; 
 	position:absolute; 
 	left:195px; 
@@ -201,13 +201,13 @@ svg {
 	height: 180px;
 }
 
-#wordSpace {
+#wordCanvas {
 	width: 360px;
 	height: 120px;
 	background-image: url('../assets/background.png');
 }
 
-#imageFade {
+#imageFadeCanvas {
 	width: 360px;
 	height: 120px;
 	visibility: hidden;
@@ -265,12 +265,12 @@ svg {
 	background-size: 360px 360px;
 }
 
-#log_header {
+#loginHeader {
 	width: 360px;
 	height: 70px;
 }
 
-#plusSpace {
+#plus {
 	width: 360px;
 	height: 55px;
 }
@@ -288,7 +288,7 @@ svg {
 	height: 105px;
 }
 
-#minSpace {
+#minus {
 	width: 360px;
 	height: 55px;
 }
@@ -301,12 +301,12 @@ svg {
 	background-size: 50px 50px;
 }
 
-#pageIcon {
+#iconPageNr {
 	width: 360px;
 	height: 15px;
 }
 
-#buttonSpace {
+#nextButton {
 	width: 360px;
 	height: 60px;
 }
@@ -318,14 +318,3 @@ svg {
 	background-image: url('../assets/set_next_button.png');
 	background-size: 360px 60px;
 }
-
-/*.contents {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-    -webkit-tap-highlight-color: transparent;
-}
-#content-text {
-    font-weight: bold;
-    font-size: 5em;
-}*/

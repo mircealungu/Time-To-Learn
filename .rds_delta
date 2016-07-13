@@ -1,8 +1,7 @@
 #delete
-res/wgt/.sdk_delta.info.temp
 #add
 #modify
 res/wgt/author-signature.xml
 res/wgt/signature1.xml
-res/wgt/index.html
+res/wgt/js\app\fireworks.js
 res/wgt/js\app\gui.js

@@ -26,30 +26,37 @@ define(['userData'], function(userData) {
 	var POS_FIRST_DIGIT = 40;
 	var POS_DIGIT_LEFT = 65;
 	var POS_DIGIT_TOP = 80;
-	var POPUP_TEXT_HEIGHT_1 = 120;
+	var POPUP_TEXT_HEIGHT_1 = 110;
 	var POPUP_TEXT_HEIGHT_2 = 155;
 	var POPUP_TEXT_HEIGHT_3 = 185;
 	var POPUP_TEXT_HEIGHT_4 = 215;
 	var POPUP_TEXT_HEIGHT_5 = 245;
-	var POPUP_TEXT_HEIGHT_6 = 280;
+	var POPUP_TEXT_HEIGHT_6 = 290;
+
+	// title font
+	var TITLE_FONT = "15px Arial";
+	var TITLE_FONT_COLOR = "white";
+
+	// password font
+	var PASS_FONT = "80px Arial";
+	var PASS_FONT_COLOR = "black";
+
+	// popup font
+	var POPUP_FONT = "30px Arial";
+	var POPUP_FONT_COLOR = "white";
+	var POPUP_FONT_FOOTER = "15px Arial";
 	
 	function goToMainPage(){
-		var canvasLogin,canvasMainPage;
-
-		canvasLogin = document.getElementById("loginPage");
-		canvasMainPage = document.getElementById("mainPage");
-
-		canvasLogin.style.display = "none";
-		canvasMainPage.style.display = "block";
+		document.getElementById("loginPage").style.display = "none";
+		document.getElementById("mainPage").style.display = "block";
 	}
 	
 	function printPasswordNumber(position, number){
-		canvas = document.getElementById("digitSpace");
-		ctx = canvas.getContext("2d");
+		ctx = document.getElementById("digitsCanvas").getContext("2d");
 		
 		ctx.clearRect(POS_FIRST_DIGIT + DIGIT_SPACE*(position-1), 0, DIGIT_SPACE ,DIGIT_HEIGHT);
-		ctx.font = "80px Arial";
-		ctx.fillStyle = "black";
+		ctx.font = PASS_FONT;
+		ctx.fillStyle = PASS_FONT_COLOR;
 		ctx.textAlign = "center";
 		ctx.fillText(number, POS_DIGIT_LEFT + DIGIT_SPACE*(position-1), POS_DIGIT_TOP);
 	}
@@ -71,65 +78,60 @@ define(['userData'], function(userData) {
 	}
 	
 	function showPopup(version) {
-		canvas = document.getElementById("loginPopup");
-		canvas.style.visibility = "visible";
-		canvas = document.getElementById("loginPopupSpace");
-		ctx = canvas.getContext("2d");
-		ctx.clearRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
+		document.getElementById("loginPopup").style.visibility = "visible";
+		ctx = document.getElementById("loginPopupCanvas").getContext("2d");
+		ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 		
-		ctx.font = "30px Arial";
-		ctx.fillStyle = "white";
+		ctx.font = POPUP_FONT;
+		ctx.fillStyle = POPUP_FONT_COLOR;
 		ctx.textAlign = "center";
 		
 		if (version === "NO_CONNECTION") {
 			ctx.fillText("NO CONNECTION", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_1);
 			ctx.fillText("There isn't a connection", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_2);
-			ctx.fillText("with the internet", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_3);
-			ctx.fillText("please check", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_4);
-			ctx.fillText("your internet connection", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_5);
+			ctx.fillText("with the internet.", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_3);
+			ctx.fillText("Please check your", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_4);
+			ctx.fillText("internet connection.", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_5);
 		} else if (version === "WRONG_SESSION_NUMBER") {
 			ctx.fillText("WRONG PASSWORD", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_1);
-			ctx.fillText("this password is not", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_2);
-			ctx.fillText("recognized in our database", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_3);
-			ctx.fillText("please check your account", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_4);
-			ctx.fillText("at Zeeguu", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_5);
+			ctx.fillText("This password is not", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_2);
+			ctx.fillText("recognized in our database.", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_3);
+			ctx.fillText("Please check your account", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_4);
+			ctx.fillText("at Zeeguu.", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_5);
 		} else {
 			ctx.fillText("TOO FEW WORDS", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_1);
-			ctx.fillText("more words needed", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_2);
+			ctx.fillText("More words needed,", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_2);
 			ctx.fillText("please make sure you have", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_3);
-			ctx.fillText("at least 10 words", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_4);
+			ctx.fillText("at least 10 words.", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_4);
 		}
 		
-		ctx.font = "15px Arial";
-		ctx.fillStyle = "white";
+		ctx.font = POPUP_FONT_FOOTER;
+		ctx.fillStyle = POPUP_FONT_COLOR;
 		ctx.textAlign = "center";
 		ctx.fillText("please press the screen to try again", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_6);
 		
 		resetCode(1);
 		
-		document.getElementById("loginPopup").addEventListener("click", function(){
-			var canvas = document.getElementById("loginPopup");
-			canvas.style.visibility = "hidden";
+		document.getElementById("loginPopupCanvas").addEventListener("click", function(){
+			document.getElementById("loginPopup").style.visibility = "hidden";
 		});
 	}
 	
 	function printTitle(){
-		canvas = document.getElementById("log_headerSpace");
-		ctx = canvas.getContext("2d");
-		ctx.clearRect(0,0,SCREEN_WIDTH,TITLE_HEIGHT);
+		ctx = document.getElementById("loginHeaderCanvas").getContext("2d");
+		ctx.clearRect(0, 0, SCREEN_WIDTH, TITLE_HEIGHT);
 		
-		ctx.font = "15px Arial";
-		ctx.fillStyle = "white";
+		ctx.font = TITLE_FONT;
+		ctx.fillStyle = TITLE_FONT_COLOR;
 		ctx.textAlign = "center";
 		ctx.fillText("Please fill in your 8 digit code", SCREEN_MIDDLE, TITLE_TEXT_HEIGHT);
 	}
 	
 	function placePageIcon(page){
-		canvas = document.getElementById("pageIconSpace");
-		ctx = canvas.getContext("2d");
-		ctx.clearRect(0,0,SCREEN_WIDTH,ICON_HEIGHT);
-		
-		if(page===1){
+		ctx = document.getElementById("iconPageNrCanvas").getContext("2d");
+		ctx.clearRect(0, 0, SCREEN_WIDTH, ICON_HEIGHT);
+	
+		if (page === 1) {
 			ctx.beginPath();
 			ctx.arc(170, 7, 7, 0, 2 * Math.PI);
 			ctx.fillStyle = "#FFFFFF";
@@ -138,7 +140,7 @@ define(['userData'], function(userData) {
 			ctx.arc(190, 7, 7, 0, 2 * Math.PI);
 			ctx.fillStyle = "#C3C3C3";
 			ctx.fill();
-		}else{
+		} else {
 			ctx.beginPath();
 			ctx.arc(170, 7, 7, 0, 2 * Math.PI);
 			ctx.fillStyle = "#C3C3C3";
@@ -165,7 +167,7 @@ define(['userData'], function(userData) {
 		secondNumber = 0;
 		thirdNumber = 0;
 		fourthNumber = 0;
-		if (pageNr===1){
+		if (pageNr === 1) {
 			loginCode = 0;
 		}
 		printStartScreen(pageNr);
@@ -191,15 +193,13 @@ define(['userData'], function(userData) {
 
 		//localStorage.setItem("accountCode", 61015763);
 		// only valid codes will be saved
-		if (localStorage.getItem("accountCode")!== null) {
+		if (localStorage.getItem("accountCode") !== null) {
 			userData.load();
 			// no login screen needed, because user already entered code.
 			goToMainPage();
 			checkLogin(userData.getCode());
-		}else{
-			
-			canvas = document.getElementById("digitSpace"); 
-			ctx = canvas.getContext("2d");
+		} else {
+			ctx = document.getElementById("digitsCanvas").getContext("2d");
 			printStartScreen(1);
 			
 			document.getElementById("first_plus").addEventListener("click", function(){
@@ -231,14 +231,14 @@ define(['userData'], function(userData) {
 			});
 			
 			document.getElementById("setNextButton").addEventListener("click", function(){
-				if(loginCode===0){
+				if (loginCode===0) {
 					loginCode = firstNumber.toString() + secondNumber.toString() + thirdNumber.toString() + fourthNumber.toString();
 					resetCode(2);
-				}else{
+				} else {
 					loginCode = loginCode + firstNumber.toString() + secondNumber.toString() + thirdNumber.toString() + fourthNumber.toString();
 					
 					var status = checkLogin(loginCode);
-					if(status === "SUCCESS") {
+					if (status === "SUCCESS") {
 						userData.saveCode(loginCode);
 						goToMainPage();
 					} else {
