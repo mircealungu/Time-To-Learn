@@ -1,6 +1,8 @@
 /**
  * clickTracker.js
  *
+ * This is used for tracking the places on screen where the user taps... 
+ * 
  * made by Rick Nienhuis & Niels Haan
  */
 

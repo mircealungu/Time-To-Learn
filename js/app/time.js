@@ -3,7 +3,9 @@
  *
  * made by Rick Nienhuis & Niels Haan
  */
-
+/*
+ * TODO: Think about moving the drawing aspects to a different module..
+ */
 define(function() {
 
 	var ctxTime, ctxDate;
@@ -50,7 +52,11 @@ define(function() {
 			ctxDate = document.getElementById("iconCanvas").getContext("2d");
 		},
 
+		/*
+		 * 
+		 */
 		refresh: function() {
+			
 			date = getTizenDateTime();
 			year = date.getFullYear();
 			day = checkNumberOfDigits(date.getDate());
@@ -76,7 +82,7 @@ define(function() {
 			pause = true;
 		},
 		
-		start: function () {
+		startTrackingUsage: function () {
 			pause = false;
 		},
 

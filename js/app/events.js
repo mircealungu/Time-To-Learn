@@ -1,6 +1,8 @@
 /**
  * events.js
  *
+ * TODO: Comment here too... and each one of the files headers
+ *
  * made by Rick Nienhuis & Niels Haan
  */
 

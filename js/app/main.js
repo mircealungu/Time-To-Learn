@@ -5,9 +5,9 @@
  */
 
 require(['login', 'session', 'gui', 'device'], function (login, session, gui, device) {  
-	function update() {
+	
+	function updateScreenEverySecond() {
 		gui.draw();
-		device.listen();
 		setTimeout(update, 1000);
 	}
 
@@ -19,8 +19,8 @@ require(['login', 'session', 'gui', 'device'], function (login, session, gui, de
 			return status;
 		}
 		gui.create(ctxWords);
-		device.create();
-		update();
+		device();
+		updateScreenEverySecond();
 		return status;
 	}
 

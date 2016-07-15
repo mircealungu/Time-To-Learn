@@ -16,8 +16,9 @@ define(['userData', 'login'], function(userData, login) {
 
 	var SESSION_ENDPOINT = 'https://zeeguu.unibe.ch/';
 	var BOOKMARK_SESSION = 'bookmarks_to_study/';
-	var USERNAME = 'session/i@mir.lu';
-	var AFTER_DATE = '2016-05-05T00:00:00';
+//TODO: remove 
+	//	var USERNAME = 'session/i@mir.lu';
+//	var AFTER_DATE = '2016-05-05T00:00:00';
 
 	function length(obj) {
 		return Object.keys(obj).length;
@@ -39,6 +40,7 @@ define(['userData', 'login'], function(userData, login) {
 						status = "TOO_FEW_WORDS";
 					} else {
 						for (i=0; i<Object.keys(obj).length; i++) {
+//							Extract function called something like is_word_fitting_the_screen?()
 							ctxWords.font = WORD_FONT;
 							if (ctxWords.measureText(String(obj[i].from)).width <= MAX_WORD_LENGTH && ctxWords.measureText(String(obj[i].to)).width <= MAX_WORD_LENGTH) {
 								ctxWords.font = TRANSLATION_FONT;

@@ -22,12 +22,17 @@ define(function() {
 		console.log(lon);
 		try {
 			var xhr = new XMLHttpRequest();
+//			TODO: Find out whether async call here would work.
 			xhr.open('GET', 'http://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&APPID=' + APP_ID, false);
 			xhr.onload = function() {
 				console.log("getting weather data..");
 				console.log(this.responseText);
 				weather = JSON.parse(this.responseText);
 				console.log(JSON.stringify(weather));
+				// Save the information we got locally; maybe later we don't 
+				// have a connection				
+				localStorage.setItem("weather", JSON.stringify(weather));
+				
 			};
 			xhr.send();
 		} catch (err) {
@@ -77,10 +82,6 @@ define(function() {
 			if (weather===null) {
 				weather = JSON.parse(localStorage.getItem("weather"));
 			}
-		},
-
-		save: function() {
-			localStorage.setItem("weather", JSON.stringify(weather));
 		},
 
 		getSunset: function() { 
