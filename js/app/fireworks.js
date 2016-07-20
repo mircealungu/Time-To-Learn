@@ -1,6 +1,9 @@
 /**
  * fireworks.js
  *
+ * This module is used when the user gets a message about a certain achievement.
+ * Information about the implementation can be found in the link below.
+ * 
  * implementation based on: http://thecodeplayer.com/walkthrough/canvas-fireworks-tutorial
  *
  * edited by: Rick Nienhuis & Niels Haan
@@ -25,8 +28,8 @@ define( function(){
 			particleFriction: 0.95,
 			particleGravity: 1,
 			/* Minimum and maximum amount of particle spawns per rocket */
-			particleMinCount: 25,
-			particleMaxCount: 40,
+			particleMinCount: 5,
+			particleMaxCount: 15,
 			/* Minimum and maximum radius of a particle */
 			particleMinRadius: 3,
 			particleMaxRadius: 5
@@ -51,9 +54,8 @@ define( function(){
 		return window.requestAnimationFrame ||
 		window.webkitRequestAnimationFrame ||
 		window.mozRequestAnimationFrame ||
-		function(cb) {
-			//window.cancelAnimationFrame(requestId);
-			//window.setTimeout(function(){isRunning=false;}, 5000);
+		function(callback) {
+			window.setTimeout(callback, 1000/60);
 		};
 	})();
 
@@ -74,7 +76,7 @@ define( function(){
 		particles = [];
 		
 		// Setup some basic variables
-		canvas = document.getElementById('popupCanvas');
+		canvas = document.getElementById('popupFireworksCanvas');
 		//canvas.style.visibility = "visible";
 		ctx = canvas.getContext('2d');
 		canvasWidth = window.innerWidth;
@@ -328,13 +330,12 @@ define( function(){
 		} else {
 			clickLimiterTick++;
 		}
-		}
+	}
 
 	return {
 
 		start: function() {
 			init();
-
 			if (!requestId) {
 				run();
 			}
@@ -344,11 +345,8 @@ define( function(){
 			if (requestId) {
 				window.cancelAnimationFrame(requestId);
 				ctx.clearRect(0, 0, canvas.width, canvas.height);
-				//canvas.style.visibility = 'hidden';
 				requestId = undefined;
 			}
-			
 		}
-
 	};
 });

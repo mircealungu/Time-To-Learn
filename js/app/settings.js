@@ -1,10 +1,14 @@
 /**
  * settings.js
  *
+ * This module implements the settings interface of the app. The settings menu will be shown
+ * if you double tap the time. The user can press 'reverse', 'profile' or 'logout'.
+ * The menu will fade away in 5s if the user does not do anything.
+ * 
  * made by Rick Nienhuis & Niels Haan
  */
 
-define(['effects', 'userData'], function(effects, userData) {
+define(['effects', 'userData', 'profile'], function(effects, userData, profile) {
 
 	var settings;
 
@@ -30,6 +34,9 @@ define(['effects', 'userData'], function(effects, userData) {
 				userData.setReverseStatus(!userData.getReverseStatus());
 				printWord();	
 			});
+			document.getElementById("profileButton").addEventListener("click", function(){
+				profile.show();
+			});
 			document.getElementById("logOutButton").addEventListener("click", function(){
 				userData.clear();
 				document.location.reload(true);
@@ -43,7 +50,6 @@ define(['effects', 'userData'], function(effects, userData) {
 		show: function() {
 			settings.style.visibility = "visible";
 			effects.unfade(settings, FADING_TIME);
-			setTimeout(function(){fade();}, 5000);
 		}
 
 	};

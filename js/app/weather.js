@@ -1,6 +1,10 @@
 /**
  * weather.js
  *
+ * This module takes care of drawing the weather and temperature. The sunset and sunrise
+ * are used in gui.js to draw the rotating background. The weather will be refreshed on every
+ * screenOn event.
+ *
  * made by Rick Nienhuis & Niels Haan
  */
 
@@ -18,21 +22,16 @@ define(function() {
 	var TEMPERATURE_COLOR = "white";
 
 	function getWeather(lat, lon) {
-		console.log(lat);
-		console.log(lon);
 		try {
 			var xhr = new XMLHttpRequest();
-//			TODO: Find out whether async call here would work.
 			xhr.open('GET', 'http://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&APPID=' + APP_ID, false);
 			xhr.onload = function() {
 				console.log("getting weather data..");
 				console.log(this.responseText);
 				weather = JSON.parse(this.responseText);
-				console.log(JSON.stringify(weather));
-				// Save the information we got locally; maybe later we don't 
-				// have a connection				
-				localStorage.setItem("weather", JSON.stringify(weather));
-				
+				console.log(JSON.stringify(weather));	
+				// Save weather if there is no connection later
+				localStorage.setItem("weather", JSON.stringify(weather));					
 			};
 			xhr.send();
 		} catch (err) {
@@ -85,12 +84,10 @@ define(function() {
 		},
 
 		getSunset: function() { 
-			//return 1175;
 			return convertEpochTime(weather.sys.sunset);
 		},
 
 		getSunrise: function() {
-			//return 288;
 			return convertEpochTime(weather.sys.sunrise);
 		},
 

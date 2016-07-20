@@ -1,8 +1,9 @@
 /**
  * clickTracker.js
  *
- * This is used for tracking the places on screen where the user taps... 
- * 
+ * This module contains all the functions used for tracking the tap locations
+ * of the user.
+ *
  * made by Rick Nienhuis & Niels Haan
  */
 
@@ -10,8 +11,11 @@ define(function() {
 
 	var clicks = [];
 	var numberOfClicks = 0;
-	var ctx, popup;
+	var ctx, clickTracker;
 	var onMainpage = false;
+
+	var POPUP_WIDTH = 360;
+	var POPUP_HEIGHT = 360;
 
 	// circle definitions
 	var RADIUS = 6;
@@ -19,10 +23,10 @@ define(function() {
 	var END_POINT = 2*Math.PI;
 
 	function init() {
-		popup = document.getElementById("popup");
-		popup.style.visibility = "visible";
-		ctx = document.getElementById("popupCanvas").getContext("2d");
-		ctx.clearRect(0,0,360,360);
+		clickTracker = document.getElementById("clickTracker");
+		clickTracker.style.visibility = "visible";
+		ctx = document.getElementById("clickTrackerCanvas").getContext("2d");
+		ctx.clearRect(0, 0, POPUP_WIDTH, POPUP_HEIGHT);
 
 		if (document.getElementById("revealedPage").style.visibility === "hidden") {
 			onMainpage = true;
@@ -30,8 +34,8 @@ define(function() {
 			onMainpage = false;
 		}
 
-		document.getElementById("popupCanvas").addEventListener("click", function(){
-			popup.style.visibility = "hidden";
+		document.getElementById("clickTrackerCanvas").addEventListener("click", function(){
+			clickTracker.style.visibility = "hidden";
 		});
 	}
 

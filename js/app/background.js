@@ -1,12 +1,18 @@
 /**
  * background.js
  *
+ * This module has all the functions for designing and updating the background behind the time. 
+ * The background consists of a rotating image with the sun and the moon and a 
+ * landscape on top of the rotating image, which can be changed by tapping on the time.
+ * 
  * made by Rick Nienhuis & Niels Haan
  */
 
-define(function() {
+define(['userData'], function(userData) {
 
-	var backgroundNumber = 0;
+	var canvas;
+	var degrees;
+
 	var backgroundSource = ["url('assets/simple_background.png')", 
 	                        "url('assets/city_background.png')", 
 	                        "url('assets/countryside_background.png')"];
@@ -17,14 +23,21 @@ define(function() {
 
 	return {
 
-		change: function() {
-			backgroundNumber++;
-			if (backgroundNumber === backgroundSource.length){
-				backgroundNumber = 0;
+		create: function() {
+			canvas = document.getElementById("landscapeCanvas");
+			if (localStorage.getItem("backgroundNumber") === null) {
+				userData.setBackgroundNumber(0);
 			} 
+			canvas.style.background = backgroundSource[userData.getBackgroundNumber()];
+			canvas.style.backgroundSize = BACKGROUND_SIZE;
+		},
 
-			var canvas = document.getElementById("landscapeCanvas");
-			canvas.style.background = backgroundSource[backgroundNumber];
+		change: function() {
+			userData.increaseBackgroundNumber();
+			if (userData.getBackgroundNumber() === backgroundSource.length){
+				userData.setBackgroundNumber(0);
+			} 
+			canvas.style.background = backgroundSource[userData.getBackgroundNumber()];
 			canvas.style.backgroundSize = BACKGROUND_SIZE;
 		},
 

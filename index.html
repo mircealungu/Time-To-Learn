@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <script data-main="js/build/main-built.js" src="js/lib/require.js"></script> 
-    <!--<script data-main="js/app/main.js" src="js/lib/require.js"></script>-->
+    <!--  <script data-main="js/app/main.js" src="js/lib/require.js"></script>-->
     
 </head>
 
@@ -49,7 +49,7 @@
 	</div>
 
 	<div id="mainPage" style="display:none;">
-		<div id="revealedPage" style="z-index: 5; position:absolute; left:0px; top:180px; text-align:center;">
+		<div id="revealedPage" style="z-index: 3; position:absolute; left:0px; top:180px; text-align:center;">
 			<div id="revealedSpace">
 				<canvas id="wrongCanvas"></canvas>
 				<canvas id="menuCanvas"></canvas>
@@ -64,39 +64,47 @@
 		
 		<div id="menuPage" style="z-index: 5; position:absolute; left:0px; top:0; text-align:center;">
 			<div id="menuSpace">
-				<input type="submit" id="wrongTranslationButton" class="mButton" style="position:absolute; top:60px; left:80px;" value="wrong translation">
-				<input type="submit" id="learnedButton" class="mButton" style="position:absolute; top:180px; left:80px;" value="I learned it! &#x00A; don't show it again">
+				<input type="submit" id="wrongTranslationButton" class="sButton" style="position:absolute; top:60px; left:80px;" value="wrong translation">
+				<input type="submit" id="learnedButton" class="sButton" style="position:absolute; top:140px; left:80px;" value="I learned it! &#x00A; don't show it again">
+				<input type="submit" id="contextButton" class="sButton" style="position:absolute; top:220px; left:80px;" value="show context">
 			</div>
 			<div id="menuButtons">
 				<input type="submit" id="backButtonInMenu" style="position:absolute; top:300; left:0px;" value=" ">
 			</div>
 		</div>
 		
-		<div id="settingsPage" style="z-index: 6; position:absolute; left:0px; top:0; text-align:center;">
-			<div id="settingsSpace">	
-				<input type="submit" id="reverseButton" class="mButton" style="position:absolute; top:60px; left:80px;" value="reverse">
-				<input type="submit" id="logOutButton" class="mButton" style="position:absolute; top:180px; left:80px;" value="log out">
-			</div>
-			<div id="settingsButtons">
-				<input type="submit" id="backButtonInSettings" value=" ">	
-			</div>
-		</div>
-		
-		<!-- 
-		<div id="settingsPage" style="z-index: 6; position:absolute; left:0px; top:0; text-align:center;">
+		<div id="settingsPage" style="z-index: 5; position:absolute; left:0px; top:0; text-align:center;">
 			<div id="settingsSpace">	
 				<input type="submit" id="reverseButton" class="sButton" style="position:absolute; top:60px; left:80px;" value="reverse">
-				<input type="submit" id="personalizeButton" class="sButton" style="position:absolute; top:140px; left:80px;" value="change background">
+				<input type="submit" id="profileButton" class="sButton" style="position:absolute; top:140px; left:80px;" value="profile">
 				<input type="submit" id="logOutButton" class="sButton" style="position:absolute; top:220px; left:80px;" value="log out">
 			</div>
 			<div id="settingsButtons">
 				<input type="submit" id="backButtonInSettings" value=" ">	
 			</div>
 		</div>
-		 -->
+		
+		<div id="profilePage" style="z-index: 5; position:absolute; left:0px; top:0; text-align:center;">
+			<canvas id="profileCanvas" width="360" height="300"></canvas>
+			<input type="submit" id="leftInProfile" value=" " style="position:absolute; top:-10px; left:-340px;">
+			<input type="submit" id="rightInProfile" value=" " style="position:absolute; top:-10px; left:300px;">
+			<canvas id="profilePageIconCanvas" style="position:absolute; top:280px; left:140px;" width=80 height="20"></canvas>
+			<div id="profileButtons">
+				<input type="submit" id="backButtonInProfile" value=" ">
+			</div>
+		</div>
+		
+		<div id="clickTracker" style="z-index: 6; position:absolute; width: 360px;	height: 360px; visibility: hidden;">
+			<canvas id="clickTrackerCanvas" width="360" height="360"></canvas>
+		</div>
+		 
 
 		<div id="popup" style="z-index: 6; position:absolute; width: 360px;	height: 360px; visibility: hidden;">
 			<canvas id="popupCanvas" width="360" height="360"></canvas>
+			<canvas id="popupFireworksCanvas" width="360" height="300"></canvas>
+			<div id="popupButtons">
+				<input type="submit" id="okayButtonInPopup" value=" ">
+			</div>
 		</div>
 		
 		<div id="time">
@@ -111,11 +119,11 @@
  			</svg>
 		</div>
 	    <div id="words">
-	        <canvas id="wordCanvas" style="z-index: 0; position:absolute; left:0px; top:180px;" width="360" height="120"></canvas>
-	        <canvas id="imageFadeCanvas" style="z-index: 1; position:absolute; left:0px; top:180px;" width="360" height="120"></canvas> -->
+	        <canvas id="wordCanvas" style="z-index: 1; position:absolute; left:0px; top:180px;" width="360" height="120"></canvas>
+	        <canvas id="popupWordCanvas" style="z-index: 4; position:absolute; left:0px; top:180px; visibility:hidden;" width="360" height="120"></canvas>
 	    </div>
 	    <div id="buttons">
-	    	<button type="button" id="revealButton" style="z-index: 4; position:absolute; left:0px; top:300;" value=""></button>
+	    	<button type="button" id="revealButton" style="z-index: 2; position:absolute; left:0px; top:300;" value=""></button>
 	    </div>
 	
 	</div>

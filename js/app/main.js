@@ -1,14 +1,16 @@
 /**
- * app.js
+ * main.js
+ *
+ * This is the main module. A new login is made with a callback function checkLogin().
+ * The screen will be updated every second to draw the elements in the gui.
  *
  * made by Rick Nienhuis & Niels Haan
  */
 
-require(['login', 'session', 'gui', 'device'], function (login, session, gui, device) {  
-	
+require(['login', 'session', 'gui', 'deviceListeners'], function (login, session, gui, deviceListeners) {  
 	function updateScreenEverySecond() {
 		gui.draw();
-		setTimeout(update, 1000);
+		setTimeout(updateScreenEverySecond, 1000);
 	}
 
 	function checkLogin(code) {
@@ -19,7 +21,7 @@ require(['login', 'session', 'gui', 'device'], function (login, session, gui, de
 			return status;
 		}
 		gui.create(ctxWords);
-		device();
+		deviceListeners();
 		updateScreenEverySecond();
 		return status;
 	}

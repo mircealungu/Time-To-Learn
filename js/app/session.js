@@ -1,6 +1,12 @@
 /**
  * session.js
  *
+ * This module tries to get words from the server when the user logs in for the first time.
+ * The status variable is used by login.js. The status can be: SUCCES, WRONG_SESSION_NUMBER, 
+ * TOO FEW WORDS or NO CONNECTION.
+ *
+ * If the user has already logged in once, the words saved in the storage will be used.
+ *
  * made by Rick Nienhuis & Niels Haan
  */
 
@@ -16,17 +22,19 @@ define(['userData', 'login'], function(userData, login) {
 
 	var SESSION_ENDPOINT = 'https://zeeguu.unibe.ch/';
 	var BOOKMARK_SESSION = 'bookmarks_to_study/';
-//TODO: remove 
-	//	var USERNAME = 'session/i@mir.lu';
-//	var AFTER_DATE = '2016-05-05T00:00:00';
 
 	function length(obj) {
 		return Object.keys(obj).length;
 	}
 
-	function getWords(session) {
-		var i, j;
+	function isWordFittingTheScreen(word, length) {
+		if (ctxWords.measureText(String(word)).width <= length) {
+			return true;
+		}
+		return false;
+	}
 
+	function getWords(session) {
 		console.log("Trying to get words with session: " + session);
 		
 		try { 
@@ -36,16 +44,16 @@ define(['userData', 'login'], function(userData, login) {
 				try {
 					var obj = JSON.parse(this.responseText);
 					var wordNumber = 0;
-					if (Object.keys(obj).length < 10) {
+					if (length(obj) < userData.numberOfFlashcards()) {
 						status = "TOO_FEW_WORDS";
 					} else {
-						for (i=0; i<Object.keys(obj).length; i++) {
-//							Extract function called something like is_word_fitting_the_screen?()
+						for (var i = 0; i < length(obj); i++) {
 							ctxWords.font = WORD_FONT;
-							if (ctxWords.measureText(String(obj[i].from)).width <= MAX_WORD_LENGTH && ctxWords.measureText(String(obj[i].to)).width <= MAX_WORD_LENGTH) {
+							// test both cases, because user may reverse the words
+							if (isWordFittingTheScreen(obj[i].from, MAX_WORD_LENGTH) && isWordFittingTheScreen(obj[i].to, MAX_WORD_LENGTH)) {
 								ctxWords.font = TRANSLATION_FONT;
-								if (ctxWords.measureText(String(obj[i].from)).width <= MAX_TRANSLATION_LENGTH && ctxWords.measureText(String(obj[i].to)).width <= MAX_TRANSLATION_LENGTH) {
-									userData.setWordPair(wordNumber, obj[i].from, obj[i].to, obj[i].id);
+								if (isWordFittingTheScreen(obj[i].from, MAX_TRANSLATION_LENGTH) && isWordFittingTheScreen(obj[i].to, MAX_TRANSLATION_LENGTH)) {
+									userData.setWordPair(wordNumber, obj[i].from, obj[i].to, obj[i].id, obj[i].context);
 									wordNumber++;
 								}
 							}
@@ -79,6 +87,23 @@ define(['userData', 'login'], function(userData, login) {
 				status = "SUCCESS";
 				console.log("Using words which were already saved.");
 			}
+		},
+
+		updateWords: function() {
+			console.log("trying to update words..");
+			/**
+			 * This part is waiting for a implementation on the server side.
+			 * Wrong transaltion doesn't effect the words in a account. The word
+			 * won't be deleted.
+			 *
+			 * The endpoint for booksmarks_to_study also doesn't work yet. For example
+			 * if we ask for 50 words and the account only has 25, the server returns 10 words
+			 * So even if a word gets deleted, updating the words probably won't 
+			 * be feasible, since the server will just return 9 instead of 10 and we cannot add
+			 * a new word. So the server should always return the number of words asked, unless the 
+			 * account doesn't have the asked number of words. In that case the server should return 
+			 * all the words the account has.
+			 */
 		},
 
 		printWords: function() {

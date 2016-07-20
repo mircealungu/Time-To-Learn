@@ -1,6 +1,9 @@
 /**
  * effects.js
  *
+ * This module takes care of certain effects in the gui:
+ * fade, unfade and feedBackByImage.
+ *
  * made by Rick Nienhuis & Niels Haan
  */
 
@@ -17,7 +20,7 @@ define(function() {
 	var TIME_BEFORE_FADING_STARTS = 100;
 
 	function fading(element, fadeTime) {
-		var opacity = 0.8;  // initial opacity
+		var opacity = 0.9;  // initial opacity
 		var timer = setInterval(function () {
 			if (opacity <= 0.1){
 				clearInterval(timer);
@@ -32,7 +35,7 @@ define(function() {
 	return {
 
 		feedbackByImage: function(imgSource) {
-			canvas = document.getElementById("imageFadeCanvas");
+			canvas = document.getElementById("popupWordCanvas");
 			canvas.style.visibility = "visible";
 			canvas.style.opacity = 1.0;
 			ctx = canvas.getContext("2d");
@@ -50,7 +53,7 @@ define(function() {
 	    	var opacity = 0.1;  // initial opacity
 	    	element.style.display = 'block';
 	    	var timer = setInterval(function () {
-	    		if (opacity >= 0.8){
+	    		if (opacity >= 0.9){
 	    			clearInterval(timer);
 	    		}
 	    		element.style.opacity = opacity;

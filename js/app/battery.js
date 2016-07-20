@@ -1,6 +1,9 @@
 /**
  * battery.js
  *
+ * This module fetches the current battery level which is a number between 0 and 100. 
+ * With this number an arc is drawn to inform the user about the current battery level.
+ *
  * implementation based on: http://stackoverflow.com/questions/5736398/how-to-calculate-the-svg-path-for-an-arc-of-a-circle
  *
  * made by Rick Nienhuis & Niels Haan
@@ -10,6 +13,7 @@ define(function() {
 
 	var BATTERY_COLOR = "green";
 	var BATTERY_LOW_COLOR = "red";
+	var BATTERY_IS_LOW = 0.15;
 
 	function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
 		var angleInRadians = (angleInDegrees-90) * Math.PI / 180.0;
@@ -35,18 +39,10 @@ define(function() {
 		draw: function () {
 			var battery = navigator.battery || navigator.webkitBattery || navigator.mozBattery;
 
-			battery.onchargingchange = function () {
-				if (battery.charging) {
-					console.log("battery is charging");
-				} else {
-					console.log("battery is not charging");
-				}
-			};
-
 			battery.onlevelchange = function () {
 				console.log(Math.floor(battery.level * 100));
 				document.getElementById("battery").setAttribute("d", describeArc(180, 180, 180, 270, 270+battery.level*180));
-				if (battery.level > 0.15) {
+				if (battery.level > BATTERY_IS_LOW) {
 					document.getElementById("battery").setAttribute("stroke", BATTERY_COLOR);
 				} else {
 					document.getElementById("battery").setAttribute("stroke", BATTERY_LOW_COLOR);

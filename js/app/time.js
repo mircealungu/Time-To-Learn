@@ -1,18 +1,21 @@
 /**
  * time.js
  *
+ * This module takes of drawing the digital time and the date on the screen.
+ * Also time usage tracking happens in this module, timers for totalTime and sessionTime
+ * are used in profile.js
+ * Finally this module will also provide timeStamps for the events.
+ *
  * made by Rick Nienhuis & Niels Haan
  */
-/*
- * TODO: Think about moving the drawing aspects to a different module..
- */
+
 define(function() {
 
 	var ctxTime, ctxDate;
 
 	var date, year, day, month, hours, minutes, seconds;
-	var timer = 0;
-	var test = 5;
+	var totalTime = 0;
+	var sessionTime = 0;
 	var pause = false;
 
 	//definitions
@@ -52,11 +55,7 @@ define(function() {
 			ctxDate = document.getElementById("iconCanvas").getContext("2d");
 		},
 
-		/*
-		 * 
-		 */
 		refresh: function() {
-			
 			date = getTizenDateTime();
 			year = date.getFullYear();
 			day = checkNumberOfDigits(date.getDate());
@@ -66,23 +65,32 @@ define(function() {
 			seconds = checkNumberOfDigits(date.getSeconds());
 			
 			if (!pause) {
-				timer++;
+				totalTime++;
+				sessionTime++;
 			}
 		},
 		
-		getTimer: function () {
-			return timer;
+		getTotalTime: function () {
+			return totalTime;
 		},
 
-		resetTimer: function() {
-			timer = 0;
+		setTotalTime: function(total_time) {
+			totalTime = total_time;
+		},
+
+		getSessionTime: function() {
+			return sessionTime;
+		},
+
+		resetSessionTime: function() {
+			sessionTime = 0;
 		},
 		
-		pause: function () {
+		pauseUsageTracking: function () {
 			pause = true;
 		},
 		
-		startTrackingUsage: function () {
+		startUsageTracking: function () {
 			pause = false;
 		},
 

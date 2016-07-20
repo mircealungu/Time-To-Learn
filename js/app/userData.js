@@ -1,17 +1,22 @@
 /**
  * userData.js
  *
+ * This module keeps track of all the data for the user: words, account code
+ * reverse state. The current word presented to the user will be updated here
+ * in updateWordpair, this function uses a flashcard algorithm.
+ *
  * made by Rick Nienhuis & Niels Haan
  */
 
 define(['events'], function(events) {
 
-	var wordPair = [];
+	// save data
 	var accountCode = 0;
-	var reverse = false;
+	var wordPair = [];
 
-	var numberOfFlashcards = 5;
-
+	var sessionPopupShown = false;
+	
+	var NUMBER_OF_FLASHCARDS = 5;
 	var DELETE_WORDS_ENDPOINT = "https://zeeguu.unibe.ch/delete_bookmark/";
 
 	function printWords2() {
@@ -22,14 +27,19 @@ define(['events'], function(events) {
 		console.log(string);
  	}
 
+ 	function reverse() {
+		return JSON.parse(localStorage.getItem("reverse"));
+ 	}
+
 	return {
 		
-		setWordPair: function(n, word, translation, id) {
+		setWordPair: function(n, word, translation, id, context) {
 			wordPair[n] = {
 					"word": word,
 					"translation": translation,
 					"id": id,
-					"timesCorrect": 0,
+					"context": context,
+					"timesCorrect": 0
 			};
 		},
 
@@ -49,15 +59,15 @@ define(['events'], function(events) {
 			if (wordIsRight) {
 				console.log("word is correct");
 				wordPair[0].timesCorrect++;
-				wordPair.splice(wordPair[0].timesCorrect * numberOfFlashcards, 0, wordPair[0]);
-				console.log("new position for word " + wordPair[0].word + " = " + wordPair[0].timesCorrect * numberOfFlashcards);
+				wordPair.splice(wordPair[0].timesCorrect * NUMBER_OF_FLASHCARDS, 0, wordPair[0]);
+				console.log("new position for word " + wordPair[0].word + " = " + wordPair[0].timesCorrect * NUMBER_OF_FLASHCARDS);
 				wordPair.splice(0, 1);
 				printWords2();
 				//this.printWords();
 			} else {
 				console.log("word is wrong");
 				wordPair[0].timesCorrect = 0;
-				wordPair.splice(numberOfFlashcards, 0, wordPair[0]);
+				wordPair.splice(NUMBER_OF_FLASHCARDS, 0, wordPair[0]);
 				console.log("new position for word " + wordPair[0].word + " = " + wordPair[0].timesCorrect);
 				wordPair.splice(0, 1);
 				printWords2();
@@ -66,39 +76,23 @@ define(['events'], function(events) {
 		},
 		
 		getWord: function() {
-			if(reverse){
+			if (reverse()) {
 				return wordPair[0].translation;
-			}else{
-				//console.log("index in wordPair: " + flashcardsToShow[index]);
+			} else {
 				return wordPair[0].word;
 			}
 		},
 
 		removeWord: function() {
-			if (wordPair.length > 10) {
+			if (wordPair.length > NUMBER_OF_FLASHCARDS) {
 				wordPair.splice(0, 1);
 				return true;
 			} 
 			return false;
 		},
-
-		deleteFromServer: function() {
-			//https://zeeguu.unibe.ch/delete_bookmark/5474?session=56510527
-			var xhr = new XMLHttpRequest();
-			console.log("trying to delete word: " + wordPair[0].word);
-			xhr.open('POST', DELETE_WORDS_ENDPOINT + wordPair[0].id + "?session=" + accountCode, true);
-			xhr.onload = function() {
-				if (this.responseText === "OK") {
-					console.log("SUCCES: word is deleted");
-				} else {
-					console.log("FAIL: word could not be deleted");
-				}
-			};
-			xhr.send(data);
-		},
 		
 		getTranslation: function() {
-			if (reverse) {
+			if (reverse()) {
 				return wordPair[0].word;
 			} else {
 				return wordPair[0].translation;
@@ -158,11 +152,35 @@ define(['events'], function(events) {
 		},
 
 		getReverseStatus: function() {
-			return reverse;
+			return JSON.parse(localStorage.getItem("reverse"));
 		},
 		
 		setReverseStatus: function(rev) {
-			reverse = rev;
+			localStorage.setItem("reverse", JSON.stringify(rev));
+		},
+
+		getSessionPopupShown: function() {
+			return sessionPopupShown;
+		},
+
+		setSessionPopupShown: function(bool) {
+			sessionPopupShown = bool;
+		},
+
+		increaseBackgroundNumber: function() {
+			localStorage.setItem("backgroundNumber", parseInt(localStorage.getItem("backgroundNumber"))+1);
+		},
+
+		getBackgroundNumber: function() {
+			return parseInt(localStorage.getItem("backgroundNumber"));
+		},
+
+		setBackgroundNumber: function(background_number) {
+			localStorage.setItem("backgroundNumber", background_number);
+		},
+
+		numberOfFlashcards: function() {
+			return NUMBER_OF_FLASHCARDS;
 		},
 
 		printEvents: function() {

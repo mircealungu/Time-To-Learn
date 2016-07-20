@@ -1,7 +1,11 @@
 /**
  * events.js
  *
- * TODO: Comment here too... and each one of the files headers
+ * This module takes care of adding, saving, loading and sending events.
+ * The events are saved in the localStorage and once there is a connection
+ * they will be send to the server and deleted from the localStorage.
+ * The events will be used for the knowledge estimator on the server 
+ * and for the user statistics.
  *
  * made by Rick Nienhuis & Niels Haan
  */

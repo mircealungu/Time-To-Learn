@@ -1,10 +1,18 @@
 /**
  * login.js
  *
+ * This module takes care of the gui for the login, the code & connection checking happens
+ * in session.js, which returns the status to login with the callback function 'checkLogin'
+ * implemented in main.js module.
+ *
+ * If there is already a account code saved in the storage, then there will be no login interface
+ * drawn. An account code will only be saved if it was correct code. So the user only has to login in
+ * once.
+ *
  * made by Rick Nienhuis & Niels Haan
  */
 
-define(['userData'], function(userData) {
+define(['userData', 'popup'], function(userData, popup) {
 	var canvas, ctx;
 	var firstNumber = 0, 
 	secondNumber = 0, 
@@ -15,7 +23,6 @@ define(['userData'], function(userData) {
 	//definitions of screen variables
 	var SCREEN_WIDTH = 360;
 	var SCREEN_HEIGHT = 360;
-	var SCREEN_MIDDLE = 180;
 	
 	//definitions of text variables
 	var TITLE_HEIGHT = 70;
@@ -26,39 +33,30 @@ define(['userData'], function(userData) {
 	var POS_FIRST_DIGIT = 40;
 	var POS_DIGIT_LEFT = 65;
 	var POS_DIGIT_TOP = 80;
-	var POPUP_TEXT_HEIGHT_1 = 110;
-	var POPUP_TEXT_HEIGHT_2 = 155;
-	var POPUP_TEXT_HEIGHT_3 = 185;
-	var POPUP_TEXT_HEIGHT_4 = 215;
-	var POPUP_TEXT_HEIGHT_5 = 245;
-	var POPUP_TEXT_HEIGHT_6 = 290;
 
 	// title font
 	var TITLE_FONT = "15px Arial";
 	var TITLE_FONT_COLOR = "white";
 
-	// password font
-	var PASS_FONT = "80px Arial";
-	var PASS_FONT_COLOR = "black";
+	// code font
+	var CODE_FONT = "80px Arial";
+	var CODE_FONT_COLOR = "black";
 
-	// popup font
-	var POPUP_FONT = "30px Arial";
-	var POPUP_FONT_COLOR = "white";
-	var POPUP_FONT_FOOTER = "15px Arial";
+	var NUMBER_OF_CODE_NUMBERS_ON_PAGE = 4;
 	
 	function goToMainPage(){
 		document.getElementById("loginPage").style.display = "none";
 		document.getElementById("mainPage").style.display = "block";
 	}
 	
-	function printPasswordNumber(position, number){
+	function printCodeNumber(position, number){
 		ctx = document.getElementById("digitsCanvas").getContext("2d");
-		
-		ctx.clearRect(POS_FIRST_DIGIT + DIGIT_SPACE*(position-1), 0, DIGIT_SPACE ,DIGIT_HEIGHT);
-		ctx.font = PASS_FONT;
-		ctx.fillStyle = PASS_FONT_COLOR;
+
+		ctx.clearRect(POS_FIRST_DIGIT + DIGIT_SPACE*position, 0, DIGIT_SPACE ,DIGIT_HEIGHT);
+		ctx.font = CODE_FONT;
+		ctx.fillStyle = CODE_FONT_COLOR;
 		ctx.textAlign = "center";
-		ctx.fillText(number, POS_DIGIT_LEFT + DIGIT_SPACE*(position-1), POS_DIGIT_TOP);
+		ctx.fillText(number, POS_DIGIT_LEFT + DIGIT_SPACE*position, POS_DIGIT_TOP);
 	}
 	
 	function printNumber(position, adding, number){
@@ -73,48 +71,8 @@ define(['userData'], function(userData) {
 				number=9;
 			}
 		}
-		printPasswordNumber(position, number);	
+		printCodeNumber(position, number);	
 		return number;
-	}
-	
-	function showPopup(version) {
-		document.getElementById("loginPopup").style.visibility = "visible";
-		ctx = document.getElementById("loginPopupCanvas").getContext("2d");
-		ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-		
-		ctx.font = POPUP_FONT;
-		ctx.fillStyle = POPUP_FONT_COLOR;
-		ctx.textAlign = "center";
-		
-		if (version === "NO_CONNECTION") {
-			ctx.fillText("NO CONNECTION", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_1);
-			ctx.fillText("There isn't a connection", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_2);
-			ctx.fillText("with the internet.", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_3);
-			ctx.fillText("Please check your", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_4);
-			ctx.fillText("internet connection.", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_5);
-		} else if (version === "WRONG_SESSION_NUMBER") {
-			ctx.fillText("WRONG PASSWORD", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_1);
-			ctx.fillText("This password is not", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_2);
-			ctx.fillText("recognized in our database.", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_3);
-			ctx.fillText("Please check your account", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_4);
-			ctx.fillText("at Zeeguu.", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_5);
-		} else {
-			ctx.fillText("TOO FEW WORDS", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_1);
-			ctx.fillText("More words needed,", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_2);
-			ctx.fillText("please make sure you have", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_3);
-			ctx.fillText("at least 10 words.", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_4);
-		}
-		
-		ctx.font = POPUP_FONT_FOOTER;
-		ctx.fillStyle = POPUP_FONT_COLOR;
-		ctx.textAlign = "center";
-		ctx.fillText("please press the screen to try again", SCREEN_MIDDLE, POPUP_TEXT_HEIGHT_6);
-		
-		resetCode(1);
-		
-		document.getElementById("loginPopupCanvas").addEventListener("click", function(){
-			document.getElementById("loginPopup").style.visibility = "hidden";
-		});
 	}
 	
 	function printTitle(){
@@ -124,7 +82,7 @@ define(['userData'], function(userData) {
 		ctx.font = TITLE_FONT;
 		ctx.fillStyle = TITLE_FONT_COLOR;
 		ctx.textAlign = "center";
-		ctx.fillText("Please fill in your 8 digit code", SCREEN_MIDDLE, TITLE_TEXT_HEIGHT);
+		ctx.fillText("Please fill in your 8 digit code", SCREEN_WIDTH/2, TITLE_TEXT_HEIGHT);
 	}
 	
 	function placePageIcon(page){
@@ -156,10 +114,9 @@ define(['userData'], function(userData) {
 		printTitle();
 		placePageIcon(pageNr);
 		
-		printPasswordNumber(1, 0);
-		printPasswordNumber(2, 0);
-		printPasswordNumber(3, 0);
-		printPasswordNumber(4, 0);
+		for (var i=0; i<NUMBER_OF_CODE_NUMBERS_ON_PAGE; i++) {
+			printCodeNumber(i, 0);
+		}
 	}
 	
 	function resetCode(pageNr){
@@ -174,24 +131,26 @@ define(['userData'], function(userData) {
 	}
 
 	function updateFirstNumber(addition) {
-		firstNumber = printNumber(1,addition, firstNumber);
+		firstNumber = printNumber(0,addition, firstNumber);
 	}
 
 	function updateSecondNumber(addition) {
-		secondNumber = printNumber(2,addition, secondNumber);
+		secondNumber = printNumber(1,addition, secondNumber);
 	}
 
 	function updateThirdNumber(addition) {
-		thirdNumber = printNumber(3,addition, thirdNumber);
+		thirdNumber = printNumber(2,addition, thirdNumber);
 	}
 
 	function updateFourthNumber(addition) {
-		fourthNumber = printNumber(4, addition, fourthNumber);
+		fourthNumber = printNumber(3, addition, fourthNumber);
 	}
 
 	return function login(checkLogin) {
 
-		//localStorage.setItem("accountCode", 61015763);
+		// uncomment this line to skip login
+		// localStorage.setItem("accountCode", 61015763);
+
 		// only valid codes will be saved
 		if (localStorage.getItem("accountCode") !== null) {
 			userData.load();
@@ -242,7 +201,7 @@ define(['userData'], function(userData) {
 						userData.saveCode(loginCode);
 						goToMainPage();
 					} else {
-						showPopup(status);
+						popup.forLogin(status, resetCode);
 					}
 				}
 			});

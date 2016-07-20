@@ -1,10 +1,15 @@
 /**
  * menu.js
  *
+ * This module implements the menu interface for the words. This menu will be shown
+ * if you press the more button in the middle of the screen. The user can press
+ * 'wrong translation', 'I learned it! don't show it again' or 'show context'.
+ * The menu will fade away in 5s if the user does not do anything.
+ *
  * made by Rick Nienhuis & Niels Haan
  */
 
-define(['effects', 'userData'], function(effects, userData) {
+define(['effects', 'userData', 'profile', 'session'], function(effects, userData, profile, session) {
 
 	var menu;
 	var canvas, ctx;
@@ -21,12 +26,25 @@ define(['effects', 'userData'], function(effects, userData) {
 	var SCREEN_WIDTH = 360;
 	var SCREEN_HEIGHT = 360;
 
+	var WORDSPACE_HEIGHT = 120;
+
+	var LEARNED_IMG_SOURCE = "assets/right_icon_icon.png";
+	var TRASH_IMG_SOURCE = "assets/trash_icon.png";
+
+	var TEXT_FONT = "20px Arial";
+	var TEXT_COLOR = "white";
+
+	var FIRST_SENTENCE_HEIGHT = 35;
+	var SECOND_SENTENCE_HEIGHT = 65;
+	var THIRD_SENTENCE_HEIGHT = 95;
+
 	function fade() {
 		effects.fade(menu, FADING_TIME);
 	}
 
 	function menuButton(imgSource, printWord) {
 		if (userData.removeWord()) {
+			session.updateWords();
 			effects.feedbackByImage(imgSource);
 			userData.saveEvents();
 			userData.saveWordPair();
@@ -34,14 +52,9 @@ define(['effects', 'userData'], function(effects, userData) {
 			printWord();
 		} else {
 			canvas.style.visibility = "visible";
-			canvas.style.opacity = 0.8;
+			canvas.style.opacity = 1.0;
 	
-			ctx.clearRect(0,0,SCREEN_WIDTH, SCREEN_HEIGHT / 2);
-			
-			ctx.font = "20px Arial";
-			ctx.fillStyle = "white";
-			ctx.textAlign = "center";
-			
+			ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT / 2);
 			ctx.fillText("TOO FEW WORDS", SCREEN_WIDTH / 2, POPUP_TEXT_LINE1);
 			ctx.fillText("there are too", SCREEN_WIDTH / 2, POPUP_TEXT_LINE2);
 			ctx.fillText("few words left to", SCREEN_WIDTH / 2, POPUP_TEXT_LINE3);
@@ -50,38 +63,78 @@ define(['effects', 'userData'], function(effects, userData) {
 			setTimeout(function(){effects.fade(canvas, FADING_TIME);}, WAITING_TIME_FOR_POPUP_TO_DISAPPEAR);
 		}
 	}
+	
+	function showContext() {
+			var firstSentence = [], secondSentence = [], thirdSentence = [];
+			var context = userData.getWordPair(0).context;
+			var wordsInContext = context.split(" ");
+
+			for(var i=0; i<wordsInContext.length; i++) {
+				if(ctx.measureText(firstSentence + " " + wordsInContext[i]).width < 330) {
+					firstSentence += " " + wordsInContext[i];
+					continue;
+				} else if(ctx.measureText(secondSentence + " " + wordsInContext[i]).width < 300) {
+					secondSentence += " " + wordsInContext[i];
+					continue;
+				} else {
+					thirdSentence += " " + wordsInContext[i];
+				}
+			}
+
+			canvas.style.visibility = "visible";
+			canvas.style.opacity = 1.0;
+			
+			ctx.clearRect(0, 0, SCREEN_WIDTH, WORDSPACE_HEIGHT);
+			ctx.fillText(firstSentence, SCREEN_WIDTH/2, FIRST_SENTENCE_HEIGHT);
+			ctx.fillText(secondSentence, SCREEN_WIDTH/2, SECOND_SENTENCE_HEIGHT);
+			ctx.fillText(thirdSentence, SCREEN_WIDTH/2, THIRD_SENTENCE_HEIGHT);
+	}
+
+	function initListeners(printWord) {
+			document.getElementById("menuSpace").addEventListener("click", function(){
+				fade();
+			});
+			document.getElementById("wrongTranslationButton").addEventListener("click", function(){
+				userData.addEvent("wrongTranslation");
+				//userData.deleteFromServer();
+				menuButton(TRASH_IMG_SOURCE, printWord);
+			});
+			document.getElementById("learnedButton").addEventListener("click", function(){
+				profile.increaseWordsLearned();
+				profile.userIsActive();
+				profile.save();
+				userData.addEvent("learnedIt");
+				menuButton(LEARNED_IMG_SOURCE, printWord);
+			});
+			document.getElementById("contextButton").addEventListener("click", function(){
+				console.log("context: " + userData.getWordPair(0).context);
+				showContext();
+			});
+			document.getElementById("backButtonInMenu").addEventListener("click", function(){
+				fade();
+			});
+			document.getElementById("popupWordCanvas").addEventListener("click", function(){
+				effects.fade(canvas, FADING_TIME);
+			});
+	}
 
 	return {
 
 		create: function(printWord) {
 			menu = document.getElementById("menuPage");
-			canvas = document.getElementById("imageFadeCanvas");
+			canvas = document.getElementById("popupWordCanvas");
 			ctx = canvas.getContext("2d");
 
-			document.getElementById("menuSpace").addEventListener("click", function(){
-				fade();
-			});
-			
-			document.getElementById("wrongTranslationButton").addEventListener("click", function(){
-				userData.addEvent("wrongTranslation");
-				//userData.deleteFromServer();
-				menuButton("assets/trash_icon.png", printWord);
-			});
-			
-			document.getElementById("learnedButton").addEventListener("click", function(){
-				userData.addEvent("learnedIt");
-				menuButton("assets/right_icon.png", printWord);
-			});
-			
-			document.getElementById("backButtonInMenu").addEventListener("click", function(){
-				fade();
-			});
+			ctx.font = TEXT_FONT;
+			ctx.fillStyle = TEXT_COLOR;
+			ctx.textAlign = "center";
+
+			initListeners(printWord);
 		},
 
 		show: function() {
 			menu.style.visibility = "visible";
 			effects.unfade(menu, FADING_TIME);
-			setTimeout(function(){fade();}, 5000);
 		}
 	};
 });
