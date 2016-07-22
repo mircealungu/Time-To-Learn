@@ -267,7 +267,9 @@ define(['time', 'effects', 'popup', 'userData'], function(time, effects, popup, 
 			};
 			img.src = "assets/banner.png";
 
-			drawMedal(0);
+			// always start with the first medal
+			medalPos = 0; 
+			drawMedal(medalPos);
 		}
 	};
 });

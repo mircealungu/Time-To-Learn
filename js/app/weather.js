@@ -16,6 +16,7 @@ define(function() {
 	var ctxWeather, ctxTemp;
 
 	// definitions
+	var WEATHER_SPACE = 50;
 	var TEMPERATURE_SPACE = 50;
 	var TEMPERATURE_POS = 25;
 	var TEMPERATURE_FONT = "17px Arial";
@@ -96,17 +97,18 @@ define(function() {
 				isRefreshed = false;
 				
 				var img = new Image();
+				ctxWeather.clearRect(0, 0, WEATHER_SPACE, WEATHER_SPACE);
 				img.onload = function() {
 					ctxWeather.drawImage(img, 0, 0);
 				};
 				img.src = "http://openweathermap.org/img/w/" + weather.weather[0].icon + ".png";
-			}
 
-			ctxTemp.clearRect(0,0,TEMPERATURE_SPACE,TEMPERATURE_SPACE);
-			ctxTemp.font = TEMPERATURE_FONT;
-			ctxTemp.fillStyle = TEMPERATURE_COLOR;
-			ctxTemp.textAlign = "center";
-			ctxTemp.fillText(getTemperature() + "°C", TEMPERATURE_POS, TEMPERATURE_POS);
+				ctxTemp.clearRect(0,0,TEMPERATURE_SPACE,TEMPERATURE_SPACE);
+				ctxTemp.font = TEMPERATURE_FONT;
+				ctxTemp.fillStyle = TEMPERATURE_COLOR;
+				ctxTemp.textAlign = "center";
+				ctxTemp.fillText(getTemperature() + "°C", TEMPERATURE_POS, TEMPERATURE_POS);
+			}
 		}
 	};
 

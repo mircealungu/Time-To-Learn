@@ -91,25 +91,6 @@ define( function(){
 			canvas.width = canvasWidth = window.innerWidth;
 			canvas.height = canvasHeight = window.innerHeight;
 		});
-
-		// Add event listeners to the canvas to handle mouse interactions
-		canvas.addEventListener('touchmove', function(e) {
-			e.preventDefault();
-			mouse.x = e.touches.item(0).clientX;
-			mouse.y = e.touches.item(0).clientY;
-		});
-
-		canvas.addEventListener('touchstart', function(e) {
-			e.preventDefault();
-			mouse.x = e.touches.item(0).clientX;
-			mouse.y = e.touches.item(0).clientY;
-			mouse.down = true;
-		});
-
-		canvas.addEventListener('touchend', function(e) {
-			e.preventDefault();
-			mouse.down = false;
-		});	
 	}
 	
 	// Firework class
