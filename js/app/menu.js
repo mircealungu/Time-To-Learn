@@ -34,9 +34,10 @@ define(['effects', 'userData', 'profile', 'session'], function(effects, userData
 	var TEXT_FONT = "20px Arial";
 	var TEXT_COLOR = "white";
 
-	var FIRST_SENTENCE_HEIGHT = 35;
-	var SECOND_SENTENCE_HEIGHT = 65;
-	var THIRD_SENTENCE_HEIGHT = 95;
+	var FIRST_SENTENCE_HEIGHT =25;
+	var SECOND_SENTENCE_HEIGHT = 50;
+	var THIRD_SENTENCE_HEIGHT = 75;
+	var FOURTH_SENTENCE_HEIGHT = 100;
 
 	function fade() {
 		effects.fade(menu, FADING_TIME);
@@ -65,19 +66,26 @@ define(['effects', 'userData', 'profile', 'session'], function(effects, userData
 	}
 	
 	function showContext() {
-			var firstSentence = [], secondSentence = [], thirdSentence = [];
+			var firstSentence = [], secondSentence = [], thirdSentence = [], fourthSentence = [];
 			var context = userData.getWordPair(0).context;
 			var wordsInContext = context.split(" ");
+			var currentSentence = 1;
 
 			for(var i=0; i<wordsInContext.length; i++) {
-				if(ctx.measureText(firstSentence + " " + wordsInContext[i]).width < 330) {
+				if(currentSentence === 1 && ctx.measureText(firstSentence + " " + wordsInContext[i]).width < 350) {
 					firstSentence += " " + wordsInContext[i];
 					continue;
-				} else if(ctx.measureText(secondSentence + " " + wordsInContext[i]).width < 300) {
+				} else if(currentSentence <= 2 && ctx.measureText(secondSentence + " " + wordsInContext[i]).width < 340) {
+					currentSentence = 2;
 					secondSentence += " " + wordsInContext[i];
 					continue;
-				} else {
+				} else if(currentSentence <= 3 && ctx.measureText(thirdSentence + " " + wordsInContext[i]).width < 320) {
+					currentSentence = 3;
 					thirdSentence += " " + wordsInContext[i];
+					continue;
+				} else {
+					currentSentence = 4;
+					fourthSentence += " " + wordsInContext[i];
 				}
 			}
 
@@ -88,6 +96,7 @@ define(['effects', 'userData', 'profile', 'session'], function(effects, userData
 			ctx.fillText(firstSentence, SCREEN_WIDTH/2, FIRST_SENTENCE_HEIGHT);
 			ctx.fillText(secondSentence, SCREEN_WIDTH/2, SECOND_SENTENCE_HEIGHT);
 			ctx.fillText(thirdSentence, SCREEN_WIDTH/2, THIRD_SENTENCE_HEIGHT);
+			ctx.fillText(fourthSentence, SCREEN_WIDTH/2, FOURTH_SENTENCE_HEIGHT);
 	}
 
 	function initListeners(printWord) {
@@ -96,7 +105,8 @@ define(['effects', 'userData', 'profile', 'session'], function(effects, userData
 			});
 			document.getElementById("wrongTranslationButton").addEventListener("click", function(){
 				userData.addEvent("wrongTranslation");
-				//userData.deleteFromServer();
+				userData.saveEvents();
+				//userData.addNewWordsFromServer();
 				menuButton(TRASH_IMG_SOURCE, printWord);
 			});
 			document.getElementById("learnedButton").addEventListener("click", function(){
@@ -104,9 +114,12 @@ define(['effects', 'userData', 'profile', 'session'], function(effects, userData
 				profile.userIsActive();
 				profile.save();
 				userData.addEvent("learnedIt");
+				userData.saveEvents();
 				menuButton(LEARNED_IMG_SOURCE, printWord);
 			});
 			document.getElementById("contextButton").addEventListener("click", function(){
+				userData.addEvent("showContext");
+				userData.saveEvents();
 				console.log("context: " + userData.getWordPair(0).context);
 				showContext();
 			});

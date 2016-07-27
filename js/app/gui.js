@@ -79,6 +79,7 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks', 'clickTracker',
 		userData.addEvent("right");
 		userData.saveEvents();
 		userData.sendEvents();
+		userData.saveClicks();
 		var imgSource = RIGHT_IMG_SOURCE;
 
 		userData.updateWordPair(true);
@@ -94,6 +95,7 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks', 'clickTracker',
 		userData.addEvent("wrong");
 		userData.saveEvents();
 		userData.sendEvents();
+		userData.saveClicks();
 		var imgSource = WRONG_IMG_SOURCE;
 
 		userData.updateWordPair(false);
@@ -111,6 +113,7 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks', 'clickTracker',
 				revealTranslation();
 				
 				clickTracker.addClick(e.clientX, e.clientY, "reveal");
+				clickTracker.saveClicks();
 			});
 			
 			document.getElementById("revealButton").addEventListener("click", function(e){
@@ -118,37 +121,45 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks', 'clickTracker',
 				userData.saveEvents();
 				revealTranslation();
 				clickTracker.addClick(e.clientX, e.clientY, "reveal");
+				clickTracker.saveClicks();
 			});
 			
 			// EventListeners for the revealedPage: wrong, menu, right
 			// By double tapping on the menu space, the settings appears
 			document.getElementById("wrongCanvas").addEventListener("click", function(e){
-				wrong();
 				clickTracker.addClick(e.clientX, e.clientY, "wrong");
+				clickTracker.saveClicks();
+				wrong();	
 			});
 			document.getElementById("wrongButton").addEventListener("click", function(e){
-				wrong();
 				clickTracker.addClick(e.clientX, e.clientY, "wrong");
+				clickTracker.saveClicks();
+				wrong();
 			});
 			document.getElementById("menuCanvas").addEventListener("click", function(e){
-				menu.show();
 				clickTracker.addClick(e.clientX, e.clientY, "menu");
+				clickTracker.saveClicks();
+				menu.show();
 			});
 			document.getElementById("menuButton").addEventListener("click", function(e){
-				menu.show();
 				clickTracker.addClick(e.clientX, e.clientY, "menu");
+				clickTracker.saveClicks();
+				menu.show();
 			});
 			
 			document.getElementById("rightCanvas").addEventListener("click", function(e){
-				right();
 				clickTracker.addClick(e.clientX, e.clientY, "right");
+				clickTracker.saveClicks();
+				right();
 			});
 			document.getElementById("rightButton").addEventListener("click", function(e){
-				right();
 				clickTracker.addClick(e.clientX, e.clientY, "right");
+				clickTracker.saveClicks();
+				right();
 			});
 			document.getElementById("time").addEventListener("click", function(e){
 				clickTracker.addClick(e.clientX, e.clientY, "time");
+				clickTracker.saveClicks();
 				doubleTapHandler();
 			});
 			document.getElementById("temperatureCanvas").addEventListener("click", function(){

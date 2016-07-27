@@ -31,7 +31,7 @@ define(function() {
 				console.log(this.responseText);
 				weather = JSON.parse(this.responseText);
 				console.log(JSON.stringify(weather));	
-				// Save weather if there is no connection later
+				// Save weather if there is no connection later for sunset and sunrise.
 				localStorage.setItem("weather", JSON.stringify(weather));					
 			};
 			xhr.send();

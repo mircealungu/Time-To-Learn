@@ -108,7 +108,7 @@ define(['fireworks', 'effects'], function(fireworks, effects) {
 				ctxLogin.fillText("TOO FEW WORDS", SCREEN_WIDTH/2, POPUP_TEXT_HEIGHT_1);
 				ctxLogin.fillText("More words needed,", SCREEN_WIDTH/2, POPUP_TEXT_HEIGHT_2);
 				ctxLogin.fillText("please make sure you have", SCREEN_WIDTH/2, POPUP_TEXT_HEIGHT_3);
-				ctxLogin.fillText("at least 10 words.", SCREEN_WIDTH/2, POPUP_TEXT_HEIGHT_4);
+				ctxLogin.fillText("at least 5 words.", SCREEN_WIDTH/2, POPUP_TEXT_HEIGHT_4);
 			}
 
 			ctxLogin.font = LOGIN_POPUP_FONT_FOOTER;

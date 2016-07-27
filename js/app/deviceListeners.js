@@ -12,7 +12,7 @@
  * made by Rick Nienhuis & Niels Haan
  */
 
-define(['userData','weather', 'time'],function(userData, weather, time) {
+define(['userData','weather', 'time', 'session'],function(userData, weather, time, session) {
 
 	function hideAllPages() {
 		document.getElementById("menuPage").style.visibility = "hidden";
@@ -25,9 +25,11 @@ define(['userData','weather', 'time'],function(userData, weather, time) {
 			tizen.power.setScreenStateChangeListener(function(prevState, currState) {
 				if (currState === 'SCREEN_NORMAL' && prevState === 'SCREEN_OFF') {
 					console.log("We just woke up");
+					userData.sendClicks();
 					userData.addEvent("screenOn");
 					time.startUsageTracking();
 					weather.refresh();
+					session.getWords(userData.getCode());
 				} else {
 					console.log("The display has been switched off");
 					userData.addEvent("screenOff");

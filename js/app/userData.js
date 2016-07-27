@@ -8,7 +8,7 @@
  * made by Rick Nienhuis & Niels Haan
  */
 
-define(['events'], function(events) {
+define(['events', 'clickTracker'], function(events, clickTracker) {
 
 	// save data
 	var accountCode = 0;
@@ -27,20 +27,30 @@ define(['events'], function(events) {
 		console.log(string);
  	}
 
+ 	function printWords3(words) {
+		var string = "";
+		for (var i=0; i<words.length; i++) {
+			string += words[i].word + ", ";
+		}
+		return string;
+ 	}
+
  	function reverse() {
 		return JSON.parse(localStorage.getItem("reverse"));
  	}
 
 	return {
-		
-		setWordPair: function(n, word, translation, id, context) {
-			wordPair[n] = {
-					"word": word,
-					"translation": translation,
-					"id": id,
-					"context": context,
-					"timesCorrect": 0
-			};
+
+		getAllWords: function() {
+			return wordPair;
+		},
+
+		addWords: function(numberOfWords, newWords) {
+			console.log("before push:" + printWords3(wordPair));
+			wordPair = wordPair.concat(newWords);
+			console.log("after push: " + printWords3(wordPair));
+			wordPair = wordPair.slice(0, numberOfWords);
+			console.log("function addWords: " + printWords3(wordPair));
 		},
 
 		getWordPair: function(n) {
@@ -107,6 +117,7 @@ define(['events'], function(events) {
 				accountCode = localStorage.getItem("accountCode");
 				console.log("loaded accountCode: " + accountCode);
 				events.load();
+				clickTracker.loadClicks();
 				if (localStorage.getItem("wordPair") !== null) {
 				 	wordPair = JSON.parse(localStorage.getItem("wordPair"));
 				 	console.log("loaded wordpairs: " + JSON.stringify(wordPair));
@@ -135,7 +146,19 @@ define(['events'], function(events) {
 			try {
 				events.send(accountCode);
 			} catch(err) {
-				console.log("Error during sending: " + err);
+				console.log("Error during sending events: " + err);
+			}
+		},
+
+		saveClicks: function() {
+			clickTracker.saveClicks();
+		},
+
+		sendClicks: function() {
+			try {
+				clickTracker.sendClicks(accountCode);
+			} catch(err) {
+				console.log("Error during sending clicks: " + err);
 			}
 		},
 
