@@ -45,7 +45,6 @@ define(['effects', 'userData', 'profile', 'session'], function(effects, userData
 
 	function menuButton(imgSource, printWord) {
 		if (userData.removeWord()) {
-			session.updateWords();
 			effects.feedbackByImage(imgSource);
 			userData.saveEvents();
 			userData.saveWordPair();
@@ -106,7 +105,6 @@ define(['effects', 'userData', 'profile', 'session'], function(effects, userData
 			document.getElementById("wrongTranslationButton").addEventListener("click", function(){
 				userData.addEvent("wrongTranslation");
 				userData.saveEvents();
-				//userData.addNewWordsFromServer();
 				menuButton(TRASH_IMG_SOURCE, printWord);
 			});
 			document.getElementById("learnedButton").addEventListener("click", function(){
@@ -120,7 +118,6 @@ define(['effects', 'userData', 'profile', 'session'], function(effects, userData
 			document.getElementById("contextButton").addEventListener("click", function(){
 				userData.addEvent("showContext");
 				userData.saveEvents();
-				console.log("context: " + userData.getWordPair(0).context);
 				showContext();
 			});
 			document.getElementById("backButtonInMenu").addEventListener("click", function(){

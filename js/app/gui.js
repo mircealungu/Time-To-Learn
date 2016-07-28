@@ -6,9 +6,9 @@
  * made by Rick Nienhuis & Niels Haan
  */
 
-define(['battery', 'userData', 'time', 'weather', 'fireworks', 'clickTracker', 
+define(['battery', 'userData', 'time', 'weather', 'fireworks', 
 	'background', 'effects', 'settings', 'menu', 'profile'], 
-	function(battery, userData, time, weather, fireworks, clickTracker, 
+	function(battery, userData, time, weather, fireworks, 
 		background, effects, settings, menu, profile) {
 	
 	//definitions about text
@@ -19,7 +19,6 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks', 'clickTracker',
 
 	//definitions for coordinates
 	var SCREEN_WIDTH = 360;
-	var SCREEN_HEIGHT = 360;
 	
 	var WORDSPACE_HEIGHT = 120;
 	var WORD_POSY = 45;
@@ -79,7 +78,6 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks', 'clickTracker',
 		userData.addEvent("right");
 		userData.saveEvents();
 		userData.sendEvents();
-		userData.saveClicks();
 		var imgSource = RIGHT_IMG_SOURCE;
 
 		userData.updateWordPair(true);
@@ -95,7 +93,6 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks', 'clickTracker',
 		userData.addEvent("wrong");
 		userData.saveEvents();
 		userData.sendEvents();
-		userData.saveClicks();
 		var imgSource = WRONG_IMG_SOURCE;
 
 		userData.updateWordPair(false);
@@ -111,59 +108,47 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks', 'clickTracker',
 				userData.addEvent("reveal");
 				userData.saveEvents();
 				revealTranslation();
-				
-				clickTracker.addClick(e.clientX, e.clientY, "reveal");
-				clickTracker.saveClicks();
+
+				userData.saveClick(e.clientX, e.clientY, "reveal");
 			});
 			
 			document.getElementById("revealButton").addEventListener("click", function(e){
 				userData.addEvent("reveal");
 				userData.saveEvents();
 				revealTranslation();
-				clickTracker.addClick(e.clientX, e.clientY, "reveal");
-				clickTracker.saveClicks();
+				userData.saveClick(e.clientX, e.clientY, "reveal");
 			});
 			
 			// EventListeners for the revealedPage: wrong, menu, right
 			// By double tapping on the menu space, the settings appears
 			document.getElementById("wrongCanvas").addEventListener("click", function(e){
-				clickTracker.addClick(e.clientX, e.clientY, "wrong");
-				clickTracker.saveClicks();
+				userData.saveClick(e.clientX, e.clientY, "wrong");
 				wrong();	
 			});
 			document.getElementById("wrongButton").addEventListener("click", function(e){
-				clickTracker.addClick(e.clientX, e.clientY, "wrong");
-				clickTracker.saveClicks();
+				userData.saveClick(e.clientX, e.clientY, "wrong");
 				wrong();
 			});
 			document.getElementById("menuCanvas").addEventListener("click", function(e){
-				clickTracker.addClick(e.clientX, e.clientY, "menu");
-				clickTracker.saveClicks();
+				userData.saveClick(e.clientX, e.clientY, "menu");
 				menu.show();
 			});
 			document.getElementById("menuButton").addEventListener("click", function(e){
-				clickTracker.addClick(e.clientX, e.clientY, "menu");
-				clickTracker.saveClicks();
+				userData.saveClick(e.clientX, e.clientY, "menu");
 				menu.show();
 			});
 			
 			document.getElementById("rightCanvas").addEventListener("click", function(e){
-				clickTracker.addClick(e.clientX, e.clientY, "right");
-				clickTracker.saveClicks();
+				userData.saveClick(e.clientX, e.clientY, "right");
 				right();
 			});
 			document.getElementById("rightButton").addEventListener("click", function(e){
-				clickTracker.addClick(e.clientX, e.clientY, "right");
-				clickTracker.saveClicks();
+				userData.saveClick(e.clientX, e.clientY, "right");
 				right();
 			});
 			document.getElementById("time").addEventListener("click", function(e){
-				clickTracker.addClick(e.clientX, e.clientY, "time");
-				clickTracker.saveClicks();
+				userData.saveClick(e.clientX, e.clientY, "time");
 				doubleTapHandler();
-			});
-			document.getElementById("temperatureCanvas").addEventListener("click", function(){
-				clickTracker.showPositions();
 			});
 	}
 

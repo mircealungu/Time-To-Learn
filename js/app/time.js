@@ -48,6 +48,16 @@ define(function() {
 		return value;
 	}
 
+	function refreshTime() {
+		date = getTizenDateTime();
+		year = date.getFullYear();
+		day = checkNumberOfDigits(date.getDate());
+		month = checkNumberOfDigits(date.getMonth() + 1);
+		hours = checkNumberOfDigits(date.getHours());
+		minutes = checkNumberOfDigits(date.getMinutes());
+		seconds = checkNumberOfDigits(date.getSeconds());
+	}
+
 	return {
 
 		create: function() {
@@ -56,13 +66,7 @@ define(function() {
 		},
 
 		refresh: function() {
-			date = getTizenDateTime();
-			year = date.getFullYear();
-			day = checkNumberOfDigits(date.getDate());
-			month = checkNumberOfDigits(date.getMonth() + 1);
-			hours = checkNumberOfDigits(date.getHours());
-			minutes = checkNumberOfDigits(date.getMinutes());
-			seconds = checkNumberOfDigits(date.getSeconds());
+			refreshTime();
 			
 			if (!pause) {
 				totalTime++;
@@ -95,7 +99,14 @@ define(function() {
 		},
 
 		getTimestamp: function() {
+			refreshTime();
 			return year+"-"+month+"-"+day+"T"+hours+":"+minutes+":"+seconds;
+		},
+
+		getTimeStampForScreenOn: function() {
+			var now = new Date();
+			now.setSeconds(now.getSeconds() - 2);
+			return now;
 		},
 
 		getHours: function() {

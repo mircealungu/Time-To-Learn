@@ -54,8 +54,6 @@ define(['userData', 'login'], function(userData, login) {
 	}
 
 	function getNewWordPairs(newWords, currentWords) {
-		console.log("newWords before: " + printWords(newWords));
-		console.log("currentWords: " + printWords(currentWords));
 		if (currentWords.length === 0) {
 			return newWords;
 		} else {
@@ -68,13 +66,10 @@ define(['userData', 'login'], function(userData, login) {
 				}
 			}
 		}
-		console.log("newWords after: " + printWords(newWords));
-		console.log("currentWords after: " + printWords(currentWords));
 		return newWords;
 	}
 
 	function updateWords() {
-		console.log("trying to update words..");
 		if (userData.getAllWords().length <= NUMBER_OF_WORDS) {
 			var newWords = getNewWordPairs(receivedWords, userData.getAllWords());
 			userData.addWords(NUMBER_OF_WORDS, newWords);
@@ -90,13 +85,10 @@ define(['userData', 'login'], function(userData, login) {
 				this.getWords(code);
 			} else {
 				status = "SUCCESS";
-				console.log("Using words which were already saved.");
 			}
 		},
 
 		getWords: function(session) {
-			console.log("Trying to get words with session: " + session);
-
 			try { 
 				var xhr = new XMLHttpRequest();
 				xhr.open('GET', SESSION_ENDPOINT + BOOKMARK_SESSION + NUMBER_OF_WORDS + "?session=" + session, false);
@@ -118,27 +110,20 @@ define(['userData', 'login'], function(userData, login) {
 									}
 								}
 							}
-							console.log("number of words loaded: " + wordNumber);
 							updateWords();
 							userData.saveWordPair();
 							status = "SUCCESS";
 						}
 					} catch(err) {
 					// the session number is unknown to the server
-					console.log("wrong session number: " + err);
 					status = "WRONG_SESSION_NUMBER";
 				}
 			};
 			xhr.send();
 			} catch(err) {
 				// there is no internet connection
-				console.log("no internet connection: " + err);
 				status = "NO_CONNECTION";
 			}	
-		},
-
-		printWords: function() {
-			userData.printWords();
 		},
 		
 		getStatus: function() {

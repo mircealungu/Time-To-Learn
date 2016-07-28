@@ -24,14 +24,12 @@ define(['userData','weather', 'time', 'session'],function(userData, weather, tim
 		try {
 			tizen.power.setScreenStateChangeListener(function(prevState, currState) {
 				if (currState === 'SCREEN_NORMAL' && prevState === 'SCREEN_OFF') {
-					console.log("We just woke up");
 					userData.sendClicks();
 					userData.addEvent("screenOn");
 					time.startUsageTracking();
 					weather.refresh();
 					session.getWords(userData.getCode());
 				} else {
-					console.log("The display has been switched off");
 					userData.addEvent("screenOff");
 					hideAllPages();
 					time.pauseUsageTracking();
@@ -48,7 +46,7 @@ define(['userData','weather', 'time', 'session'],function(userData, weather, tim
 			if (e.keyName === "back") {
 				try {
 					// to simulate changing the watchface uncomment this line.
-					tizen.application.getCurrentApplication().exit();
+					//tizen.application.getCurrentApplication().exit();
 					
 					// hideAllPages in backButton works only in a tizen application
 					// and not in a watchface.

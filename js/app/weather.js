@@ -27,17 +27,13 @@ define(function() {
 			var xhr = new XMLHttpRequest();
 			xhr.open('GET', 'http://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&APPID=' + APP_ID, false);
 			xhr.onload = function() {
-				console.log("getting weather data..");
-				console.log(this.responseText);
 				weather = JSON.parse(this.responseText);
-				console.log(JSON.stringify(weather));	
 				// Save weather if there is no connection later for sunset and sunrise.
 				localStorage.setItem("weather", JSON.stringify(weather));					
 			};
 			xhr.send();
 		} catch (err) {
 			isRefreshed = false;
-			console.log("Error getWeather: " + err);
 		}
 	}
 
@@ -46,16 +42,12 @@ define(function() {
 		try {
 			xhr.open('GET', 'http://ip-api.com/json', false);
 			xhr.onload = function() {
-				console.log("getting location..");
-				console.log(this.responseText);
 				var data = JSON.parse(this.responseText);
 				getWeather(data.lat, data.lon);
-				console.log(JSON.stringify(data));
 			};
 			xhr.send();
 		} catch (err) {
 			isRefreshed = false;
-			console.log("Error getLocation: " + err);
 		}
 
 	}

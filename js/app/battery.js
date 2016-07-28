@@ -40,7 +40,6 @@ define(function() {
 			var battery = navigator.battery || navigator.webkitBattery || navigator.mozBattery;
 
 			battery.onlevelchange = function () {
-				console.log(Math.floor(battery.level * 100));
 				document.getElementById("battery").setAttribute("d", describeArc(180, 180, 180, 270, 270+battery.level*180));
 				if (battery.level > BATTERY_IS_LOW) {
 					document.getElementById("battery").setAttribute("stroke", BATTERY_COLOR);

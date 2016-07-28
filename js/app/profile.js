@@ -163,7 +163,6 @@ define(['time', 'effects', 'popup', 'userData'], function(time, effects, popup, 
 		drawMedal(medalPos);
 	}
 
-	// changed
 	function isSameDay(date_a, date_b) {
 		if (date_a.getFullYear() === date_b.getFullYear() && date_a.getMonth() === date_b.getMonth() && date_a.getDate() === date_b.getDate()) {
 			return true;

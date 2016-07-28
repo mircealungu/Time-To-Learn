@@ -19,22 +19,6 @@ define(['events', 'clickTracker'], function(events, clickTracker) {
 	var NUMBER_OF_FLASHCARDS = 5;
 	var DELETE_WORDS_ENDPOINT = "https://zeeguu.unibe.ch/delete_bookmark/";
 
-	function printWords2() {
-		var string = "words: ";
-		for (var i=0; i<wordPair.length; i++) {
-			string += wordPair[i].word + ", ";
-		}
-		console.log(string);
- 	}
-
- 	function printWords3(words) {
-		var string = "";
-		for (var i=0; i<words.length; i++) {
-			string += words[i].word + ", ";
-		}
-		return string;
- 	}
-
  	function reverse() {
 		return JSON.parse(localStorage.getItem("reverse"));
  	}
@@ -46,11 +30,8 @@ define(['events', 'clickTracker'], function(events, clickTracker) {
 		},
 
 		addWords: function(numberOfWords, newWords) {
-			console.log("before push:" + printWords3(wordPair));
 			wordPair = wordPair.concat(newWords);
-			console.log("after push: " + printWords3(wordPair));
 			wordPair = wordPair.slice(0, numberOfWords);
-			console.log("function addWords: " + printWords3(wordPair));
 		},
 
 		getWordPair: function(n) {
@@ -67,21 +48,13 @@ define(['events', 'clickTracker'], function(events, clickTracker) {
 		// flashcard method is implemented here
 		updateWordPair: function(wordIsRight) {
 			if (wordIsRight) {
-				console.log("word is correct");
 				wordPair[0].timesCorrect++;
 				wordPair.splice(wordPair[0].timesCorrect * NUMBER_OF_FLASHCARDS, 0, wordPair[0]);
-				console.log("new position for word " + wordPair[0].word + " = " + wordPair[0].timesCorrect * NUMBER_OF_FLASHCARDS);
 				wordPair.splice(0, 1);
-				printWords2();
-				//this.printWords();
 			} else {
-				console.log("word is wrong");
 				wordPair[0].timesCorrect = 0;
 				wordPair.splice(NUMBER_OF_FLASHCARDS, 0, wordPair[0]);
-				console.log("new position for word " + wordPair[0].word + " = " + wordPair[0].timesCorrect);
 				wordPair.splice(0, 1);
-				printWords2();
-				//this.printWords();
 			}
 		},
 		
@@ -110,17 +83,12 @@ define(['events', 'clickTracker'], function(events, clickTracker) {
 		},
 
 		load: function() {
-			console.log("loading userdata..");
-			if (localStorage.length===0) {
-				console.log("No user data available.");
-			} else {
+			if (localStorage.length!==0) {
 				accountCode = localStorage.getItem("accountCode");
-				console.log("loaded accountCode: " + accountCode);
 				events.load();
 				clickTracker.loadClicks();
 				if (localStorage.getItem("wordPair") !== null) {
 				 	wordPair = JSON.parse(localStorage.getItem("wordPair"));
-				 	console.log("loaded wordpairs: " + JSON.stringify(wordPair));
 				}
 			}
 		},
@@ -128,16 +96,13 @@ define(['events', 'clickTracker'], function(events, clickTracker) {
 		saveCode: function(code) {
 			accountCode = code;
 			localStorage.setItem("accountCode", accountCode);
-			console.log("accountCode saved: " + localStorage.getItem("accountCode"));
 		},
 
 		saveWordPair: function() {
 			localStorage.setItem("wordPair", JSON.stringify(wordPair));
-			console.log("wordPair saved: " + localStorage.getItem("wordPair"));
 		},
 
 		saveEvents: function() {
-			events.print();
 			events.save();
 			events.clear();
 		},
@@ -150,8 +115,10 @@ define(['events', 'clickTracker'], function(events, clickTracker) {
 			}
 		},
 
-		saveClicks: function() {
+		saveClick: function(pos_x, pos_y, type) {
+			clickTracker.addClick(pos_x, pos_y, type);
 			clickTracker.saveClicks();
+			clickTracker.clearClicks();
 		},
 
 		sendClicks: function() {
@@ -168,10 +135,6 @@ define(['events', 'clickTracker'], function(events, clickTracker) {
 
 		getCode: function() {
 			return accountCode;
-		},
-
-		printWords: function() {
-			console.log(JSON.stringify(wordPair));
 		},
 
 		getReverseStatus: function() {
@@ -205,10 +168,6 @@ define(['events', 'clickTracker'], function(events, clickTracker) {
 		numberOfFlashcards: function() {
 			return NUMBER_OF_FLASHCARDS;
 		},
-
-		printEvents: function() {
-			events.print();
-		}, 
 		
 		clear: function() {
 			localStorage.clear();

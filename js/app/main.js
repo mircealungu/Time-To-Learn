@@ -15,7 +15,6 @@ require(['login', 'session', 'gui', 'deviceListeners'], function (login, session
 
 	function checkLogin(code) {
 		session.create(ctxWords, code);
-		session.printWords();
 		var status = session.getStatus();
 		if (status !== "SUCCESS") {
 			return status;
