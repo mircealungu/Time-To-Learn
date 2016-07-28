@@ -103,12 +103,6 @@ define(function() {
 			return year+"-"+month+"-"+day+"T"+hours+":"+minutes+":"+seconds;
 		},
 
-		getTimeStampForScreenOn: function() {
-			var now = new Date();
-			now.setSeconds(now.getSeconds() - 2);
-			return now;
-		},
-
 		getHours: function() {
 			return hours;
 		},
