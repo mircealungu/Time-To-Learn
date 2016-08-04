@@ -25,18 +25,17 @@ define(['userData','weather', 'time', 'session'],function(userData, weather, tim
 			tizen.power.setScreenStateChangeListener(function(prevState, currState) {
 				if (currState === 'SCREEN_NORMAL' && prevState === 'SCREEN_OFF') {
 					userData.sendClicks();
-					userData.addEvent("screenOn");
+					userData.saveEvent("screenOn");
 					time.startUsageTracking();
 					weather.refresh();
 					session.getWords(userData.getCode());
 				} else {
-					userData.addEvent("screenOff");
+					userData.saveEvent("screenOff");
 					hideAllPages();
 					time.pauseUsageTracking();
 					time.resetSessionTime();
 					userData.setSessionPopupShown(false);
 				}
-				userData.saveEvents();
 			});
 		} catch (e) {}
 	}

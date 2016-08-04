@@ -9,8 +9,7 @@
 
 define(['time'], function(time) {
 
-	var clicks = [];
-	var numberOfClicks = 0;
+	var currentClick, clicks;
 	var ctx, clickTracker;
 	var onMainpage = false;
 
@@ -53,14 +52,6 @@ define(['time'], function(time) {
 
 	return {
 
-		addClick: function(pos_x, pos_y, click_type) {
-			clicks[numberOfClicks++] = {
-				"posX": pos_x,
-				"posY": pos_y,
-				"type": click_type,
-			};
-		},
-
 		showPositions: function() {
 			init();
 			for (var i=0; i<clicks.length; i++) {
@@ -87,19 +78,20 @@ define(['time'], function(time) {
 			}
 		},
 
-		saveClicks: function() {
-			if (localStorage.getItem("clicks") !== null) {
-				var storage = JSON.parse(localStorage.getItem("clicks"));
-				localStorage.setItem("clicks", JSON.stringify(storage.concat(clicks)));
-			} else {
-				//already something in storage
-				localStorage.setItem("clicks", JSON.stringify(clicks));
-			}
-		},
-
-		loadClicks: function() {
+		saveClick: function(pos_x, pos_y, click_type) {
+			currentClick = {
+				"posX": pos_x,
+				"posY": pos_y,
+				"type": click_type,
+			};
 			if (localStorage.getItem("clicks") !== null) {
 				clicks = JSON.parse(localStorage.getItem("clicks"));
+				clicks.push(currentClick);
+				localStorage.setItem("clicks", JSON.stringify(clicks));
+			} else {
+				clicks = [];
+				clicks.push(currentClick);
+				localStorage.setItem("clicks", JSON.stringify(clicks));
 			}
 		},
 
@@ -113,17 +105,12 @@ define(['time'], function(time) {
 			var xhr = new XMLHttpRequest();
 
 			xhr.open('POST', USER_ACTIVITY_ENDPOINT + "?session=" + sessionNumber, true);
-			xhr.onload = function() {x
+			xhr.onload = function() {
 				if (this.responseText === "OK") {
 					localStorage.removeItem("clicks");
 				}
 			};
 			xhr.send(data);
 		},
-
-		clearClicks: function() {
-			clicks = [];
-			numberOfClicks = 0;
-		}
 	};
 });

@@ -147,6 +147,10 @@ define(['userData', 'popup'], function(userData, popup) {
 	}
 
 	return function login(checkLogin) {
+
+		// uncomment this line to skip login
+		//localStorage.setItem("accountCode", 56510527);
+
 		// only valid codes will be saved
 		if (localStorage.getItem("accountCode") !== null) {
 			userData.load();

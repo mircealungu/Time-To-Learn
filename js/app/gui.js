@@ -75,8 +75,7 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 	function right() {
 		profile.userIsActive();
 		profile.save();
-		userData.addEvent("right");
-		userData.saveEvents();
+		userData.saveEvent("right");
 		userData.sendEvents();
 		var imgSource = RIGHT_IMG_SOURCE;
 
@@ -90,8 +89,7 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 	function wrong() {
 		profile.userIsActive();
 		profile.save();
-		userData.addEvent("wrong");
-		userData.saveEvents();
+		userData.saveEvent("wrong");
 		userData.sendEvents();
 		var imgSource = WRONG_IMG_SOURCE;
 
@@ -105,16 +103,14 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 			// EventListeners for revealing the translation (the user can click the word space or the button)
 			// By double tapping on the time, the settings appears
 			document.getElementById("wordCanvas").addEventListener("click", function(e){
-				userData.addEvent("reveal");
-				userData.saveEvents();
+				userData.saveEvent("reveal");
 				revealTranslation();
 
 				userData.saveClick(e.clientX, e.clientY, "reveal");
 			});
 			
 			document.getElementById("revealButton").addEventListener("click", function(e){
-				userData.addEvent("reveal");
-				userData.saveEvents();
+				userData.saveEvent("reveal");
 				revealTranslation();
 				userData.saveClick(e.clientX, e.clientY, "reveal");
 			});

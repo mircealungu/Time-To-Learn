@@ -30,7 +30,7 @@ define(['effects', 'userData', 'profile'], function(effects, userData, profile) 
 			});
 			
 			document.getElementById("reverseButton").addEventListener("click", function(){
-				userData.addEvent("reverse");
+				userData.saveEvent("reverse");
 				userData.setReverseStatus(!userData.getReverseStatus());
 				printWord();	
 			});

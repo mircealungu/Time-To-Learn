@@ -70,10 +70,8 @@ define(['userData', 'login'], function(userData, login) {
 	}
 
 	function updateWords() {
-		if (userData.getAllWords().length <= NUMBER_OF_WORDS) {
-			var newWords = getNewWordPairs(receivedWords, userData.getAllWords());
-			userData.addWords(NUMBER_OF_WORDS, newWords);
-		}
+		var newWords = getNewWordPairs(receivedWords, userData.getAllWords());
+		userData.addWords(NUMBER_OF_WORDS, newWords);
 	}
 
 	return  {
@@ -89,41 +87,43 @@ define(['userData', 'login'], function(userData, login) {
 		},
 
 		getWords: function(session) {
-			try { 
-				var xhr = new XMLHttpRequest();
-				xhr.open('GET', SESSION_ENDPOINT + BOOKMARK_SESSION + NUMBER_OF_WORDS + "?session=" + session, false);
-				xhr.onload = function () {
-					try {
-						var obj = JSON.parse(this.responseText);
-						var wordNumber = 0;
-						if (length(obj) < userData.numberOfFlashcards()) {
-							status = "TOO_FEW_WORDS";
-						} else {
-							for (var i = 0; i < length(obj); i++) {
-								ctxWords.font = WORD_FONT;
-								// test both cases, because user may reverse the words
-								if (isWordFittingTheScreen(obj[i].from, MAX_WORD_LENGTH) && isWordFittingTheScreen(obj[i].to, MAX_WORD_LENGTH)) {
-									ctxWords.font = TRANSLATION_FONT;
-									if (isWordFittingTheScreen(obj[i].from, MAX_TRANSLATION_LENGTH) && isWordFittingTheScreen(obj[i].to, MAX_TRANSLATION_LENGTH)) {
-										setWordPair(wordNumber, obj[i].from, obj[i].to, obj[i].id, obj[i].context);
-										wordNumber++;
+			if (userData.getAllWords().length <= NUMBER_OF_WORDS) {
+				try { 
+					var xhr = new XMLHttpRequest();
+					xhr.open('GET', SESSION_ENDPOINT + BOOKMARK_SESSION + NUMBER_OF_WORDS + "?session=" + session, false);
+					xhr.onload = function () {
+						try {
+							var obj = JSON.parse(this.responseText);
+							var wordNumber = 0;
+							if (length(obj) < userData.numberOfFlashcards()) {
+								status = "TOO_FEW_WORDS";
+							} else {
+								for (var i = 0; i < length(obj); i++) {
+									ctxWords.font = WORD_FONT;
+									// test both cases, because user may reverse the words
+									if (isWordFittingTheScreen(obj[i].from, MAX_WORD_LENGTH) && isWordFittingTheScreen(obj[i].to, MAX_WORD_LENGTH)) {
+										ctxWords.font = TRANSLATION_FONT;
+										if (isWordFittingTheScreen(obj[i].from, MAX_TRANSLATION_LENGTH) && isWordFittingTheScreen(obj[i].to, MAX_TRANSLATION_LENGTH)) {
+											setWordPair(wordNumber, obj[i].from, obj[i].to, obj[i].id, obj[i].context);
+											wordNumber++;
+										}
 									}
 								}
+								updateWords();
+								userData.saveWordPair();
+								status = "SUCCESS";
 							}
-							updateWords();
-							userData.saveWordPair();
-							status = "SUCCESS";
+						} catch(err) {
+						// the session number is unknown to the server
+						status = "WRONG_SESSION_NUMBER";
 						}
-					} catch(err) {
-					// the session number is unknown to the server
-					status = "WRONG_SESSION_NUMBER";
-				}
-			};
-			xhr.send();
-			} catch(err) {
+					};
+					xhr.send();
+				} catch(err) {
 				// there is no internet connection
 				status = "NO_CONNECTION";
-			}	
+				}	
+			}
 		},
 		
 		getStatus: function() {

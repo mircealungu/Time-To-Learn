@@ -85,8 +85,6 @@ define(['events', 'clickTracker'], function(events, clickTracker) {
 		load: function() {
 			if (localStorage.length!==0) {
 				accountCode = localStorage.getItem("accountCode");
-				events.load();
-				clickTracker.loadClicks();
 				if (localStorage.getItem("wordPair") !== null) {
 				 	wordPair = JSON.parse(localStorage.getItem("wordPair"));
 				}
@@ -102,9 +100,8 @@ define(['events', 'clickTracker'], function(events, clickTracker) {
 			localStorage.setItem("wordPair", JSON.stringify(wordPair));
 		},
 
-		saveEvents: function() {
-			events.save();
-			events.clear();
+		saveEvent: function(event) {
+			events.save(event, wordPair[0].id);
 		},
 
 		sendEvents: function() {
@@ -116,9 +113,7 @@ define(['events', 'clickTracker'], function(events, clickTracker) {
 		},
 
 		saveClick: function(pos_x, pos_y, type) {
-			clickTracker.addClick(pos_x, pos_y, type);
-			clickTracker.saveClicks();
-			clickTracker.clearClicks();
+			clickTracker.saveClick(pos_x, pos_y, type);
 		},
 
 		sendClicks: function() {
@@ -127,10 +122,6 @@ define(['events', 'clickTracker'], function(events, clickTracker) {
 			} catch(err) {
 				console.log("Error during sending clicks: " + err);
 			}
-		},
-
-		addEvent: function(event) {
-			events.add(event, wordPair[0].id);
 		},
 
 		getCode: function() {

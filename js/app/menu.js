@@ -46,7 +46,6 @@ define(['effects', 'userData', 'profile', 'session'], function(effects, userData
 	function menuButton(imgSource, printWord) {
 		if (userData.removeWord()) {
 			effects.feedbackByImage(imgSource);
-			userData.saveEvents();
 			userData.saveWordPair();
 			userData.sendEvents();
 			printWord();
@@ -103,21 +102,18 @@ define(['effects', 'userData', 'profile', 'session'], function(effects, userData
 				fade();
 			});
 			document.getElementById("wrongTranslationButton").addEventListener("click", function(){
-				userData.addEvent("wrongTranslation");
-				userData.saveEvents();
+				userData.saveEvent("wrongTranslation");
 				menuButton(TRASH_IMG_SOURCE, printWord);
 			});
 			document.getElementById("learnedButton").addEventListener("click", function(){
 				profile.increaseWordsLearned();
 				profile.userIsActive();
 				profile.save();
-				userData.addEvent("learnedIt");
-				userData.saveEvents();
+				userData.saveEvent("learnedIt");
 				menuButton(LEARNED_IMG_SOURCE, printWord);
 			});
 			document.getElementById("contextButton").addEventListener("click", function(){
-				userData.addEvent("showContext");
-				userData.saveEvents();
+				userData.saveEvent("showContext");
 				showContext();
 			});
 			document.getElementById("backButtonInMenu").addEventListener("click", function(){
