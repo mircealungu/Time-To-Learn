@@ -9,7 +9,7 @@
  * made by Rick Nienhuis & Niels Haan
  */
 
-define(['effects', 'userData', 'profile', 'session'], function(effects, userData, profile, session) {
+define(['effects', 'userData', 'profile'], function(effects, userData, profile) {
 
 	var menu;
 	var canvas, ctx;

@@ -24,14 +24,6 @@ define(['userData', 'login'], function(userData, login) {
 	var SESSION_ENDPOINT = 'https://zeeguu.unibe.ch/';
 	var BOOKMARK_SESSION = 'bookmarks_to_study/';
 
-	function printWords(words) {
-		var string = "";
-		for (var i=0; i<words.length; i++) {
-			string += words[i].word + ", ";
-		}
-		return string;
- 	}
-
 	function length(obj) {
 		return Object.keys(obj).length;
 	}
@@ -69,28 +61,24 @@ define(['userData', 'login'], function(userData, login) {
 		return newWords;
 	}
 
-	function updateWords() {
-		var newWords = getNewWordPairs(receivedWords, userData.getAllWords());
-		userData.addWords(NUMBER_OF_WORDS, newWords);
-	}
-
 	return  {
 
 		create: function(ctx, code) {
 			ctxWords = ctx;
 
 			if (!userData.areThereWords()) {
-				this.getWords(code);
+				this.getWords(code, false);
+				this.updateWords();
 			} else {
 				status = "SUCCESS";
 			}
 		},
 
-		getWords: function(session) {
-			if (userData.getAllWords().length <= NUMBER_OF_WORDS) {
+		getWords: function(session, asynchronous) {
+			if (userData.getAllWords().length < NUMBER_OF_WORDS) {
 				try { 
 					var xhr = new XMLHttpRequest();
-					xhr.open('GET', SESSION_ENDPOINT + BOOKMARK_SESSION + NUMBER_OF_WORDS + "?session=" + session, false);
+					xhr.open('GET', SESSION_ENDPOINT + BOOKMARK_SESSION + NUMBER_OF_WORDS + "?session=" + session, asynchronous);
 					xhr.onload = function () {
 						try {
 							var obj = JSON.parse(this.responseText);
@@ -109,8 +97,8 @@ define(['userData', 'login'], function(userData, login) {
 										}
 									}
 								}
-								updateWords();
-								userData.saveWordPair();
+								// extract the new words
+								receivedWords = getNewWordPairs(receivedWords, userData.getAllWords());
 								status = "SUCCESS";
 							}
 						} catch(err) {
@@ -120,10 +108,18 @@ define(['userData', 'login'], function(userData, login) {
 					};
 					xhr.send();
 				} catch(err) {
-				// there is no internet connection
-				status = "NO_CONNECTION";
+					// there is no internet connection
+					status = "NO_CONNECTION";
 				}	
 			}
+		},
+
+		updateWords: function() {
+			if (userData.getAllWords().length < NUMBER_OF_WORDS) {
+				userData.addWords(NUMBER_OF_WORDS, receivedWords);
+				receivedWords = [];
+				userData.saveWordPair();
+			} 
 		},
 		
 		getStatus: function() {

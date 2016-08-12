@@ -28,8 +28,9 @@ define(['userData','weather', 'time', 'session'],function(userData, weather, tim
 					userData.saveEvent("screenOn");
 					time.startUsageTracking();
 					weather.refresh();
-					session.getWords(userData.getCode());
+					session.getWords(userData.getCode(), true);
 				} else {
+					session.updateWords();
 					userData.saveEvent("screenOff");
 					hideAllPages();
 					time.pauseUsageTracking();

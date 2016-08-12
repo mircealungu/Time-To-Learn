@@ -4,7 +4,7 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI=".DS_Store">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>rnU/QjFLC0ipPY9b2Zpz1Vtjode8miyN4xwfAuuaaxg=</DigestValue>
+<DigestValue>sjH9Xidc7jl/6HCrsHM8AHnHoQWmyGbZTMBXwnXi6J8=</DigestValue>
 </Reference>
 <Reference URI="README.md">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -144,7 +144,7 @@
 </Reference>
 <Reference URI="config.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>8HQa4Texc/iUZnW1cpqX70J7WjiG32NJoeekgnJ+Eo8=</DigestValue>
+<DigestValue>RbbfvwWx6AHrOWRoXxZomW0EhaUU4ULaHUGJal4u+Fs=</DigestValue>
 </Reference>
 <Reference URI="css%2F.DS_Store">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -160,7 +160,7 @@
 </Reference>
 <Reference URI="index.html">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>Y/JxzHiFHFoxs7xcoNl5FOCEI5s6tKzUgUT3RaFQNYY=</DigestValue>
+<DigestValue>czFP8tOa1GLRcJjfSaAtfCySQo2FBL32r5Rll3R5yfg=</DigestValue>
 </Reference>
 <Reference URI="js%2F.DS_Store">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -184,7 +184,7 @@
 </Reference>
 <Reference URI="js%2Fapp%2FdeviceListeners.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>h7uHP0+0FODoSklEPeIjj/hRgEpDk5RP9EH+jtDJ4cA=</DigestValue>
+<DigestValue>Dxg0UP/hCT2nrI2pt0nsxaWIGAXgBctLivrG0BA9Od0=</DigestValue>
 </Reference>
 <Reference URI="js%2Fapp%2Feffects.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -212,7 +212,7 @@
 </Reference>
 <Reference URI="js%2Fapp%2Fmenu.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>ry77lY4ELg/8umw0/Ij7w/hDZrnv/P1xqkOQJaGR804=</DigestValue>
+<DigestValue>gZWfehNwgW02RnbOO1XmtLbWBxJrYk8+YKe722aC1gI=</DigestValue>
 </Reference>
 <Reference URI="js%2Fapp%2Fpopup.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -224,7 +224,7 @@
 </Reference>
 <Reference URI="js%2Fapp%2Fsession.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>Rzk1tnHjWKmjiz8OxeF6X5ykhm3WOfznrg1FRJ519Uc=</DigestValue>
+<DigestValue>iJv1I7fUDIMAnWUjnXzXVWVZWx9xeQ1KRc09YDiKzZ0=</DigestValue>
 </Reference>
 <Reference URI="js%2Fapp%2Fsettings.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -248,7 +248,7 @@
 </Reference>
 <Reference URI="js%2Fbuild%2Fmain-built.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>7A+KGajtcLSgaItOeHGRin+VcUNat8GFAQY4m4pEwjY=</DigestValue>
+<DigestValue>oAtzrcevyzy+L0Ivx/ypRshSpTFGi4dBtWkIPpTdIlc=</DigestValue>
 </Reference>
 <Reference URI="js%2Flib%2Frequire.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -267,11 +267,11 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-EcItLpLMQpZn+IXnYYuaH41WlDH/5E6YZ3pqZ2fpQ4QC5WHQsBjkroBpT04Hmk/DWm5POwSJ2V5D
-aI3RkHgQoYJqM83lhBirlIyiZiz5MwWRV6n6wGGONy82XsjPmbSbTgYeo+cJAvih2JYfnPUECNjQ
-SVnZrusJBG9WxAFSWXhTRk/m8xBNNjaTldx6LrLxVqQCnp6brHYlTDhYXq63vneJVCzRGb1elMtL
-55NNZEml1oAXK5FlGsTTbvvdhng5H+11iZyfub62W8SIeH5V1WDHuAm2cbzCzZJEcZyHalKY8wvA
-mgYRIqsue5Z0z6vAkPuVuNyXQpyt7oktdogYMA==
+IeGdb0C1G7TKRiV6mybwcPpuZSpGPdC89LZG7FPK5jscZw60OuxdZaJgeILy+iVPEpND95kDnRPi
+0m9t+rSUo9qurqIL73TsAcOOKx0z42HJrs0pxYghw5stObnz6+OgSvqQYbwQhDevVpyovrXl8eAa
+Cbg8dWcnKybFfxun9MCZ7bS6nqnBL5bSpLuQ8ui81CdWnIjnE4y2u9AcHmIwjNoVclahTueqJify
+gPSWSE71WfDdQvFexYvEOkGpHk+YWSFlOJRdSKKsA8RekEMr4amjw8cqajKpAyMwTNmF2luhLVZe
+iLbf9PUwA8pkhtMVkeM3r9bwPPpYZ8MiYUS1Sw==
 </SignatureValue>
 <KeyInfo>
 <X509Data>
