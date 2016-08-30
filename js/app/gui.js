@@ -148,18 +148,24 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 			});
 	}
 
+	function update() {
+		profile.refresh();
+		time.refresh();
+		background.rotate(weather.getSunrise(), weather.getSunset(), time.getHours()*60 + time.getMinutes()*1);
+	}
+
+	function draw() {
+		time.draw();
+		time.drawDate();
+		battery.draw();
+		weather.draw();
+	}
+
 	return {
 
-		draw: function() {
-			profile.refresh();
-			time.refresh();
-			time.draw();
-			time.drawDate();
-			battery.draw();
-			weather.draw();
-
-			var totalMinutes = time.getHours()*60 + time.getMinutes()*1;
-			background.rotate(weather.getSunrise(), weather.getSunset(), totalMinutes);
+		render: function() {
+			update();
+			draw();
 		},
 
 		create: function(ctx) {

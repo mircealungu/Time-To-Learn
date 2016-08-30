@@ -50,12 +50,11 @@ define(['events', 'clickTracker'], function(events, clickTracker) {
 			if (wordIsRight) {
 				wordPair[0].timesCorrect++;
 				wordPair.splice(wordPair[0].timesCorrect * NUMBER_OF_FLASHCARDS, 0, wordPair[0]);
-				wordPair.splice(0, 1);
 			} else {
 				wordPair[0].timesCorrect = 0;
 				wordPair.splice(NUMBER_OF_FLASHCARDS, 0, wordPair[0]);
-				wordPair.splice(0, 1);
 			}
+			wordPair.splice(0, 1);
 		},
 		
 		getWord: function() {
