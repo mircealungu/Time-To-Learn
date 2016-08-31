@@ -8,10 +8,12 @@
  * made by Rick Nienhuis & Niels Haan
  */
 
-define(['userData'], function(userData) {
+define(['userData', 'weather', 'time'], function(userData, weather, time) {
 
 	var canvas;
 	var degrees;
+	var minutes;
+	var sunset, sunrise;
 
 	var backgroundSource = ["url('assets/simple_background.png')", 
 	                        "url('assets/city_background.png')", 
@@ -41,7 +43,10 @@ define(['userData'], function(userData) {
 			canvas.style.backgroundSize = BACKGROUND_SIZE;
 		},
 
-		rotate: function(sunrise, sunset, minutes) {
+		rotate: function() {
+			sunrise = weather.getSunrise();
+			sunset = weather.getSunset();
+			minutes = time.getHours()*60 + time.getMinutes()*1;
 			if(minutes >= sunrise && minutes <= sunset) {
 				// day
 				degrees = (180 / (sunset - sunrise)).toFixed(2);

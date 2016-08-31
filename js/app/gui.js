@@ -151,7 +151,7 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 	function update() {
 		profile.refresh();
 		time.refresh();
-		background.rotate(weather.getSunrise(), weather.getSunset(), time.getHours()*60 + time.getMinutes()*1);
+		background.rotate();
 	}
 
 	function draw() {

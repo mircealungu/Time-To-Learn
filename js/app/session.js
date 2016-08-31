@@ -35,6 +35,17 @@ define(['userData', 'login'], function(userData, login) {
 		return false;
 	}
 
+	function theWordsFit(from, to) {
+		// test both cases, because user may reverse the words
+		if (isWordFittingTheScreen(from, MAX_WORD_LENGTH) && isWordFittingTheScreen(to, MAX_WORD_LENGTH)) {
+			ctxWords.font = TRANSLATION_FONT;
+			if (isWordFittingTheScreen(from, MAX_TRANSLATION_LENGTH) && isWordFittingTheScreen(to, MAX_TRANSLATION_LENGTH)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	function setWordPair(n, word, translation, id, context) {
 		receivedWords[n] = {
 			"word": word,
@@ -60,6 +71,8 @@ define(['userData', 'login'], function(userData, login) {
 		}
 		return newWords;
 	}
+
+
 
 	return  {
 
@@ -88,13 +101,9 @@ define(['userData', 'login'], function(userData, login) {
 							} else {
 								for (var i = 0; i < length(obj); i++) {
 									ctxWords.font = WORD_FONT;
-									// test both cases, because user may reverse the words
-									if (isWordFittingTheScreen(obj[i].from, MAX_WORD_LENGTH) && isWordFittingTheScreen(obj[i].to, MAX_WORD_LENGTH)) {
-										ctxWords.font = TRANSLATION_FONT;
-										if (isWordFittingTheScreen(obj[i].from, MAX_TRANSLATION_LENGTH) && isWordFittingTheScreen(obj[i].to, MAX_TRANSLATION_LENGTH)) {
-											setWordPair(wordNumber, obj[i].from, obj[i].to, obj[i].id, obj[i].context);
-											wordNumber++;
-										}
+									if (theWordsFit(obj[i].from, obj[i].to)) {
+										setWordPair(wordNumber, obj[i].from, obj[i].to, obj[i].id, obj[i].context);
+										wordNumber++;
 									}
 								}
 								// extract the new words

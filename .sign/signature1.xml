@@ -4,7 +4,7 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI=".DS_Store">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>sjH9Xidc7jl/6HCrsHM8AHnHoQWmyGbZTMBXwnXi6J8=</DigestValue>
+<DigestValue>zNZhTOEtxsFgKCrwz3bKNqpCa3WYrAbMlf0RCVPMS+o=</DigestValue>
 </Reference>
 <Reference URI="README.md">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -144,11 +144,11 @@
 </Reference>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>4KhtZ6SNL9gosF6GaO/noafvhoTPyPAhQOhqjCLnJ9c=</DigestValue>
+<DigestValue>y0+n+ZpegGgVuEYx7HMgbscJwuP88y4LuLePxaaYDBQ=</DigestValue>
 </Reference>
 <Reference URI="config.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>RbbfvwWx6AHrOWRoXxZomW0EhaUU4ULaHUGJal4u+Fs=</DigestValue>
+<DigestValue>8HQa4Texc/iUZnW1cpqX70J7WjiG32NJoeekgnJ+Eo8=</DigestValue>
 </Reference>
 <Reference URI="css%2F.DS_Store">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -168,15 +168,15 @@
 </Reference>
 <Reference URI="js%2F.DS_Store">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>0Qi9SA7YXnp+Z8EeUABhKFWJd8bIbX1ZKhckneUy4bw=</DigestValue>
+<DigestValue>jBVNxCMI8d1soj/8zI2hrXE8c1mMsAcnmg8El9+/bTs=</DigestValue>
 </Reference>
 <Reference URI="js%2Fapp%2F.DS_Store">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>WXmRJXOULcP0CJvJ+O6qjjbhvRl8WjkFXEPShKvkgEo=</DigestValue>
+<DigestValue>RhhIksTsP5xGkyS16cShEHUXoWOBtvP2fKXU8UG/YZo=</DigestValue>
 </Reference>
 <Reference URI="js%2Fapp%2Fbackground.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>ytI2zfHswcis+gNTb5jKWkODRozP6ZmTHy3p+lZmza0=</DigestValue>
+<DigestValue>sCrDbAt5rHLeTwXUDAldhUOtYsbTidZ2zKoMZlV7O14=</DigestValue>
 </Reference>
 <Reference URI="js%2Fapp%2Fbattery.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -184,7 +184,7 @@
 </Reference>
 <Reference URI="js%2Fapp%2FclickTracker.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>+ABoMT4ImM9qpYjOEAsg9XiQvxSpDEj8J4WSRznx3+g=</DigestValue>
+<DigestValue>+VpkCu2BU2O4i0jg6dCX8tZ0sW/1a770nQcXXUPb5tk=</DigestValue>
 </Reference>
 <Reference URI="js%2Fapp%2FdeviceListeners.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -204,7 +204,7 @@
 </Reference>
 <Reference URI="js%2Fapp%2Fgui.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>xhEhW82EyBh27TZVDj3up6VolN/c5skf7+zzBt/Ji5o=</DigestValue>
+<DigestValue>nv43pq3CJH1TrXmxb2d9sm8dFS03oAGMnUiw3B4Bgqo=</DigestValue>
 </Reference>
 <Reference URI="js%2Fapp%2Flogin.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -212,7 +212,7 @@
 </Reference>
 <Reference URI="js%2Fapp%2Fmain.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>gYgBT8cwDvvd9D1BdnP1xnkORLC9so2zCL2SA3TzerU=</DigestValue>
+<DigestValue>r7IRRgtCH3asTf8j7VmHfuH+B1T7kBW33nR4NQ378D4=</DigestValue>
 </Reference>
 <Reference URI="js%2Fapp%2Fmenu.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -228,7 +228,7 @@
 </Reference>
 <Reference URI="js%2Fapp%2Fsession.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>iJv1I7fUDIMAnWUjnXzXVWVZWx9xeQ1KRc09YDiKzZ0=</DigestValue>
+<DigestValue>cvtql9vujAm96sgez1iwsNQukjBih/U4SQUuozaXuAY=</DigestValue>
 </Reference>
 <Reference URI="js%2Fapp%2Fsettings.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -240,7 +240,7 @@
 </Reference>
 <Reference URI="js%2Fapp%2FuserData.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>Tr7xM7LIL30h9mOH/ITuGAt5ogl2PPrHD8ML7L1fr3A=</DigestValue>
+<DigestValue>4wkKjlRe3wBZMa4OoF3G6Z0ujD8owM/pZFXpwEfXfdc=</DigestValue>
 </Reference>
 <Reference URI="js%2Fapp%2Fweather.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -271,11 +271,11 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-Bb7eNFwAllk8Rh6/ZWuCl4h7BnxEZ+hWigZDlbGF1/gOdJCuUoMM2EDMeyoVKlocKIriL+vxFeF2
-wpMmptQ630PQmJk4PXbnF247Hf3BwuaheHU1t39qelcGevBoUXXL3S2nIdXQydkRtWhJtJi/zlBP
-BLfABPKnCYsU9DC1CHQn/khN2fpMQTZYqivn7MPfKPPT9AK9d0HMfkek7QrFH9uglYIeK6z6CTSI
-b918CLZXT/r1B89/EHUrSV2GpHwIhbTNZ+11RbQpB5/08sl/k3eLB5icfEif9DcVb17s+ZLBCPWw
-1dD1zFPsjHTS5N1ZjpjIelse2NzoWQ1RA+GlVg==
+vJYL7MdqsphdDLzL14wD8B4td/8XpTvN3t2168XAZZ51TP+8WPR7ANT7ByiJ1JNA6d31LmYRJXlR
+aXxvdtdxVhVx7TajyJmmmGxu08CGhXEX1BHRu5at6deo5/wQ32FfVo958h9UgS0wR7fiEDYFSc3B
+GPgV+bWhk5xK8Rp48iChihc2Zuht+eoaba9nfoA09RPMpXgbsp/gEDKkFJgJKc07RNIAl/xr8B2s
+fVxN0pu/kgfAXG5j02Ffan4d30sSMW1I56M17+P3/ecgA5UI2XkmNUgjM0Y1OE08fS2hP7MU514e
+3zLhdHaYWp3CiYswfBBRxgY85WuGvvqG6ymnaA==
 </SignatureValue>
 <KeyInfo>
 <X509Data>
