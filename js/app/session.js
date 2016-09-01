@@ -37,6 +37,7 @@ define(['userData', 'login'], function(userData, login) {
 
 	function theWordsFit(from, to) {
 		// test both cases, because user may reverse the words
+		ctxWords.font = WORD_FONT;
 		if (isWordFittingTheScreen(from, MAX_WORD_LENGTH) && isWordFittingTheScreen(to, MAX_WORD_LENGTH)) {
 			ctxWords.font = TRANSLATION_FONT;
 			if (isWordFittingTheScreen(from, MAX_TRANSLATION_LENGTH) && isWordFittingTheScreen(to, MAX_TRANSLATION_LENGTH)) {
@@ -100,7 +101,6 @@ define(['userData', 'login'], function(userData, login) {
 								status = "TOO_FEW_WORDS";
 							} else {
 								for (var i = 0; i < length(obj); i++) {
-									ctxWords.font = WORD_FONT;
 									if (theWordsFit(obj[i].from, obj[i].to)) {
 										setWordPair(wordNumber, obj[i].from, obj[i].to, obj[i].id, obj[i].context);
 										wordNumber++;
