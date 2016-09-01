@@ -6,6 +6,10 @@
  * made by Rick Nienhuis & Niels Haan
  */
 
+// TODO: I want a more precise comment for this file.
+// "All the drawing takes place" =- there are many other files
+// where drawing takes place...
+
 define(['battery', 'userData', 'time', 'weather', 'fireworks', 
 	'background', 'effects', 'settings', 'menu', 'profile'], 
 	function(battery, userData, time, weather, fireworks, 
