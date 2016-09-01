@@ -72,6 +72,9 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 		}
 	}
 
+//	TODO: Does this function really belong here? 
+//	You're saying that this is the module where drawing happens.
+//	I see no drawing in this functin. 
 	function right() {
 		profile.userIsActive();
 		profile.save();
@@ -86,6 +89,7 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 		printWord();	
 	}
 
+//	TODO: Same observation as the previous function
 	function wrong() {
 		profile.userIsActive();
 		profile.save();
