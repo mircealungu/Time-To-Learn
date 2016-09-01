@@ -367,11 +367,18 @@ svg {
 	text-align: center;
 }
 
+#contextButton {
+	width: 180px;
+	height: 60px;
+	background-image: url('../assets/context_button.png');
+	background-size: 180px 60px;
+}
+
 #revealButton {
-	width: 360px;
+	width: 180px;
 	height: 60px;
 	background-image: url('../assets/reveal_button.png');
-	background-size: 360px 60px;
+	background-size: 180px 60px;
 }
 
 .mButton {

@@ -11,9 +11,9 @@
 // where drawing takes place...
 
 define(['battery', 'userData', 'time', 'weather', 'fireworks', 
-	'background', 'effects', 'settings', 'menu', 'profile'], 
+	'background', 'effects', 'settings', 'menu', 'profile', 'context'], 
 	function(battery, userData, time, weather, fireworks, 
-		background, effects, settings, menu, profile) {
+		background, effects, settings, menu, profile, context) {
 	
 	//definitions about text
 	var FONT = "px Arial";
@@ -87,7 +87,6 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 		var imgSource = RIGHT_IMG_SOURCE;
 
 		userData.updateWordPair(true);
-		// wordPair is saved in saveGeneralData
 		userData.saveWordPair();
 		effects.feedbackByImage(imgSource);
 		printWord();	
@@ -120,7 +119,14 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 			document.getElementById("revealButton").addEventListener("click", function(e){
 				userData.saveEvent("reveal");
 				revealTranslation();
+				context.hide();
 				userData.saveClick(e.clientX, e.clientY, "reveal");
+			});
+
+			document.getElementById("contextButton").addEventListener("click", function(e){
+				userData.saveEvent("showContext");
+				context.show();
+				userData.saveClick(e.clientX, e.clientY, "showContext");
 			});
 			
 			// EventListeners for the revealedPage: wrong, menu, right
@@ -184,6 +190,7 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 			settings.create(printWord);
 			menu.create(printWord, revealTranslation);
 			background.create();
+			context.create();
 			
 			weather.create();
 			weather.refresh();
