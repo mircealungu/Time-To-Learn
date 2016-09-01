@@ -20,6 +20,9 @@ define(['userData','weather', 'time', 'session'],function(userData, weather, tim
 		document.getElementById("profilePage").style.visibility = "hidden";
 	}
 
+//	TODO: I would like to see this function divided in two different functions
+//	screenOnListener and screenOffListener
+//	Thanks!
 	function screenOnOffListener() {
 		try {
 			tizen.power.setScreenStateChangeListener(function(prevState, currState) {
