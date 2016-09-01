@@ -9,7 +9,7 @@
  */
 
 define(function() {
-
+	
 	var APP_ID = "ab2771b4d49ab0798786dd6f2bee71a0";
 	var weather = null;
 	var isRefreshed = false;
@@ -22,6 +22,10 @@ define(function() {
 	var TEMPERATURE_FONT = "17px Arial";
 	var TEMPERATURE_COLOR = "white";
 
+//	TODO: I'd like to see a comment here that illustrates how the weather 
+//	that is returned looks like! One trick that you can do is to just give
+//	me a link like this:
+// 	http://api.openweathermap.org/data/2.5/weather?lat=45&lon=23&APPID=ab2771b4d49ab0798786dd6f2bee71a0
 	function getWeather(lat, lon) {
 		try {
 			var xhr = new XMLHttpRequest();
@@ -62,7 +66,7 @@ define(function() {
 	}
 
 	return {
-
+		//TODO: create is too vague as a function name. why is it not called createVisualElements		
 		create: function() {
 			ctxWeather = document.getElementById("weatherCanvas").getContext("2d");
 			ctxTemp = document.getElementById("temperatureCanvas").getContext("2d");
@@ -74,12 +78,18 @@ define(function() {
 			if (weather===null) {
 				weather = JSON.parse(localStorage.getItem("weather"));
 			}
+			// TODO: add a comment on why is there no else branch ehre? 
+			// Ah! I see. It's because the weather is retrieved inside getLocation!
+			// but this is not nice. Either move the getWeather here, or rename the getLocation to 
+			// getLocationAndWeather			
 		},
 
 		getSunset: function() { 
 			return convertEpochTime(weather.sys.sunset);
 		},
 
+//		TODO: I want a comment here a and for the previous function. 
+//		What does it return? Minutes? Seconds? A Boolean? I have no 
 		getSunrise: function() {
 			return convertEpochTime(weather.sys.sunrise);
 		},
