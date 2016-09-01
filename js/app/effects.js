@@ -49,6 +49,10 @@ define(function() {
 			setTimeout(function(){fading(canvas,FADING_TIME);}, TIME_BEFORE_FADING_STARTS);
 		},
 
+//		TODO: Make sure that similar things are done in similar ways! 
+//		E.g. fade function delegates to fading while unfade is implemented in place.
+//		Choose one of the two solutions, and stick to it. 
+		
 		unfade: function(element, fadeTime) {
 	    	var opacity = 0.1;  // initial opacity
 	    	element.style.display = 'block';
