@@ -15,6 +15,7 @@ define(['userData', 'weather', 'time'], function(userData, weather, time) {
 	var minutes;
 	var sunset, sunrise;
 
+//	TODO: This should be named landscape source. Background is the entire module.
 	var backgroundSource = ["url('assets/simple_background.png')", 
 	                        "url('assets/city_background.png')", 
 	                        "url('assets/countryside_background.png')"];
