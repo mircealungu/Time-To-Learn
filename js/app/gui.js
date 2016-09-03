@@ -114,12 +114,19 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 				userData.saveEvent("reveal");
 				revealTranslation();
 				context.hide();
+				if (context.isShown()) {
+					context.hide();
+				}
 				userData.saveClick(e.clientX, e.clientY, "reveal");
 			});
 
 			document.getElementById("contextButton").addEventListener("click", function(e){
 				userData.saveEvent("showContext");
-				context.show();
+				if (context.isShown()) {
+					context.hide();
+				} else {
+					context.show();
+				}
 				userData.saveClick(e.clientX, e.clientY, "showContext");
 			});
 			

@@ -80,10 +80,12 @@ define(['userData', 'effects'], function(userData, effects) {
 		},
 
 		hide: function() {
-			if (isShown) {
-				effects.fade(canvas, FADING_TIME);
-			}
+			effects.fade(canvas, FADING_TIME);
 			isShown = false;
 		},
+
+		isShown: function() {
+			return isShown;
+		}
 	};
 });
