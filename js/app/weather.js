@@ -22,18 +22,15 @@ define(function() {
 	var TEMPERATURE_FONT = "17px Arial";
 	var TEMPERATURE_COLOR = "white";
 
-//	TODO: I'd like to see a comment here that illustrates how the weather 
-//	that is returned looks like! One trick that you can do is to just give
-//	me a link like this:
-// 	http://api.openweathermap.org/data/2.5/weather?lat=45&lon=23&APPID=ab2771b4d49ab0798786dd6f2bee71a0
+	// This is how the weather could look like when returned.
+    // http://api.openweathermap.org/data/2.5/weather?lat=45&lon=23&APPID=ab2771b4d49ab0798786dd6f2bee71a0
+    
 	function getWeather(lat, lon) {
 		try {
 			var xhr = new XMLHttpRequest();
 			xhr.open('GET', 'http://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&APPID=' + APP_ID, false);
 			xhr.onload = function() {
-				weather = JSON.parse(this.responseText);
-				// Save weather if there is no connection later for sunset and sunrise.
-				localStorage.setItem("weather", JSON.stringify(weather));					
+				weather = JSON.parse(this.responseText);				
 			};
 			xhr.send();
 		} catch (err) {
@@ -65,8 +62,7 @@ define(function() {
 		return (weather.main.temp - 273.15).toFixed(0);
 	}
 
-	return {
-		//TODO: create is too vague as a function name. why is it not called createVisualElements		
+	return {	
 		create: function() {
 			ctxWeather = document.getElementById("weatherCanvas").getContext("2d");
 			ctxTemp = document.getElementById("temperatureCanvas").getContext("2d");
@@ -74,22 +70,16 @@ define(function() {
 
 		refresh: function() {
 			isRefreshed = true;
-			getLocation();
-			if (weather===null) {
-				weather = JSON.parse(localStorage.getItem("weather"));
-			}
-			// TODO: add a comment on why is there no else branch ehre? 
-			// Ah! I see. It's because the weather is retrieved inside getLocation!
-			// but this is not nice. Either move the getWeather here, or rename the getLocation to 
-			// getLocationAndWeather			
+			getLocation();	
 		},
+
+		// getSunset and getSunrise both return the number of minutes
+		// since 00:00.
 
 		getSunset: function() { 
 			return convertEpochTime(weather.sys.sunset);
 		},
 
-//		TODO: I want a comment here a and for the previous function. 
-//		What does it return? Minutes? Seconds? A Boolean? I have no 
 		getSunrise: function() {
 			return convertEpochTime(weather.sys.sunrise);
 		},

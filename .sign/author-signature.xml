@@ -176,7 +176,7 @@
 </Reference>
 <Reference URI="js%2Fapp%2Fbackground.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>fXhnAUZ7i3Uj7o4U88GzaxhzYrcSRPlNWrt2dUdjEmg=</DigestValue>
+<DigestValue>bpo835MiudG4eHCQs3xB8UkZ0IW7e6LNZ4GMnMtRmcU=</DigestValue>
 </Reference>
 <Reference URI="js%2Fapp%2Fbattery.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -196,7 +196,7 @@
 </Reference>
 <Reference URI="js%2Fapp%2Feffects.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>9dE4pUJdn0aTx9iZPdTx1ZJKyztHjcRzWtmuEyrMrxM=</DigestValue>
+<DigestValue>Pb/JRS30GMhTrwGjasGtOtzm6nceA2OL4JNTETKegW4=</DigestValue>
 </Reference>
 <Reference URI="js%2Fapp%2Fevents.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -244,11 +244,11 @@
 </Reference>
 <Reference URI="js%2Fapp%2FuserData.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>4wkKjlRe3wBZMa4OoF3G6Z0ujD8owM/pZFXpwEfXfdc=</DigestValue>
+<DigestValue>unLwmDQZd6qncZD9hxOdNYrYiQ4lF6yfUG2wEfjl1Ns=</DigestValue>
 </Reference>
 <Reference URI="js%2Fapp%2Fweather.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>+J2TLbDpJY0N09QMytCtJazt9bRgB8ohKTayEIK9nf4=</DigestValue>
+<DigestValue>y4s+vsCeflqYfPn3aCkngyABhGuAkdp8cgtRHvQWdic=</DigestValue>
 </Reference>
 <Reference URI="js%2Fbuild%2Fbuild.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -275,11 +275,11 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-hJiL+qvgvB6HFE7zuMPvi8oUCaQlkfrQKZMP5uUZXSIicKHb7dSC2WXuZUPCutecEwOBqGzt+dRJ
-peCZVNJ8iXw/H3KYlHA7m9peOX6h2Z7yt1zMv6kMxuugZkFT0L4GSlybR+qEE8j+KDSyqMxJyQv7
-327Zh0s3b3jsaM9cwSw+OruQ8dWbZGdeYjM25n0f/UbGue4Dnp+GxAk9BrA8mHNSs5xkO4shECaS
-tXMvahoSquBYKmU8bMiJ6l8AaeBiAj7vN8BJ85KO2Fh1boOqafKUvuh2pygWYUzuindb8ODdGHhX
-kn2rHos4eMQA3AyrRYPXNg0nBbCX77cSsO3jYw==
+a8rUV/c7WMYQa5AXYcDVOBSc5eh+E8nrwYHpwoHxI8n+RffQDVEf6w0cjDzt64cUHXq5sq7Sl5iy
+uOE31ikQRWQmJ7Iw0glFB/vQPp56tl2B4R7Xu19AuJ4lw+8+s6dISj90Y+iV5hBDuwKIMhk5Zt8k
+BZE7kop3VwjvvWlLquNn+nXZg537yrkX7RJO5Mf8F36C7OFLz5rw59vU4Ul+OTNEIMoLDixTfvan
+G8LKKMrpMuK7WF/u4v/xzGaQnYxmk62ASVwe377cfcIMBTRV3F55cwxDOIVwy/UK7YkawdqhmLVQ
+Z7kINoNhaKj77BIMp3w+oS9sOyDSrvTqUfwk/A==
 </SignatureValue>
 <KeyInfo>
 <X509Data>

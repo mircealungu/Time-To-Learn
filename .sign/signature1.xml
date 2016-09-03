@@ -148,7 +148,7 @@
 </Reference>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>SzOcj/RrMAZ1PVlMuMby4mVagp3RJgZvj0Fm+n22iVo=</DigestValue>
+<DigestValue>DvuRS23Du8/5BBUxfFwco4zFhIyRHZzSRm0Dy2jhiQA=</DigestValue>
 </Reference>
 <Reference URI="config.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -180,7 +180,7 @@
 </Reference>
 <Reference URI="js%2Fapp%2Fbackground.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>fXhnAUZ7i3Uj7o4U88GzaxhzYrcSRPlNWrt2dUdjEmg=</DigestValue>
+<DigestValue>bpo835MiudG4eHCQs3xB8UkZ0IW7e6LNZ4GMnMtRmcU=</DigestValue>
 </Reference>
 <Reference URI="js%2Fapp%2Fbattery.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -200,7 +200,7 @@
 </Reference>
 <Reference URI="js%2Fapp%2Feffects.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>9dE4pUJdn0aTx9iZPdTx1ZJKyztHjcRzWtmuEyrMrxM=</DigestValue>
+<DigestValue>Pb/JRS30GMhTrwGjasGtOtzm6nceA2OL4JNTETKegW4=</DigestValue>
 </Reference>
 <Reference URI="js%2Fapp%2Fevents.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -248,11 +248,11 @@
 </Reference>
 <Reference URI="js%2Fapp%2FuserData.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>4wkKjlRe3wBZMa4OoF3G6Z0ujD8owM/pZFXpwEfXfdc=</DigestValue>
+<DigestValue>unLwmDQZd6qncZD9hxOdNYrYiQ4lF6yfUG2wEfjl1Ns=</DigestValue>
 </Reference>
 <Reference URI="js%2Fapp%2Fweather.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>+J2TLbDpJY0N09QMytCtJazt9bRgB8ohKTayEIK9nf4=</DigestValue>
+<DigestValue>y4s+vsCeflqYfPn3aCkngyABhGuAkdp8cgtRHvQWdic=</DigestValue>
 </Reference>
 <Reference URI="js%2Fbuild%2Fbuild.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -279,11 +279,11 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-d2708jQ/zYtmyAdkLSQBeKXfneMUzzARTG3BEVv/9dBp7r8eriJifXO6DB9G00RJ7g3YS3nMgbio
-/Tw6ZVkC8yi8NGBZspJ3vg/WA+l/oPEEO2ywSXXtsLIUKYCbh92lfkl4xkypuebcFf01fZjB2pRM
-+jqDUHusKeb8Ou4qRuODMQUTRWpYlC9HDes7tYZES+35BxsfJ8rgFK6ct8q6GwBUCQuMgBL0FwLr
-M0kZ+GrIzwDLAA002qtj3DfIMzb0VB98q2R+q8tM8pCo50gaAnDBemKH4kF/sMOioOBkSpA6ABDU
-qErqoK8IQ+WOiDDPo5wqFNYj8z3mj0VKSzlswA==
+r3OvJJX1s4+BHRoQZBBk4yxX8HRazwaeDVRwAmvrouJwo+QtHg0nZ7LcnE4S41kgY5SslKxBX1Vq
+n6PRVhA2A7+Q5HXPq9hT4o4E9o/kGzZpjHe9BPvhoCotCHRmIBxmSdIpIhOaTez8zWdZxylRrQWI
+7JA8sMzXszbISwhvmfC2z8nq0v6GlFYdHF1P8xA9dY9SO+T78gZhs0gtsuc+0ZbwrNiBohKxZ25M
+ShdshJfvYFr8KhHqqHAWfgcKEAfUIfAyfvkbAON2XEvI79FO3wPbhiOU4OT6EeTyUg7kP2zq1N1e
+WjfSzgWoh6Ub6qQ6iUabJrnypemz6z6AnPgvGw==
 </SignatureValue>
 <KeyInfo>
 <X509Data>

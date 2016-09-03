@@ -1,14 +1,12 @@
 /**
  * gui.js
  *
- * This is the main module where all the drawing takes place.
+ * This is the module where the drawing takes place for the 
+ * mainPage and the revealedPage and where the eventsListeners of these
+ * pages are initialized.
  *
  * made by Rick Nienhuis & Niels Haan
  */
-
-// TODO: I want a more precise comment for this file.
-// "All the drawing takes place" =- there are many other files
-// where drawing takes place...
 
 define(['battery', 'userData', 'time', 'weather', 'fireworks', 
 	'background', 'effects', 'settings', 'menu', 'profile', 'context'], 
@@ -76,9 +74,6 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 		}
 	}
 
-//	TODO: Does this function really belong here? 
-//	You're saying that this is the module where drawing happens.
-//	I see no drawing in this functin. 
 	function right() {
 		profile.userIsActive();
 		profile.save();
@@ -92,7 +87,6 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 		printWord();	
 	}
 
-//	TODO: Same observation as the previous function
 	function wrong() {
 		profile.userIsActive();
 		profile.save();
