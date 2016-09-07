@@ -30,7 +30,9 @@ define(function() {
 			var xhr = new XMLHttpRequest();
 			xhr.open('GET', 'http://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&APPID=' + APP_ID, false);
 			xhr.onload = function() {
-				weather = JSON.parse(this.responseText);				
+				weather = JSON.parse(this.responseText);
+				// Save weather if there is no connection later for sunset and sunrise.
+				localStorage.setItem("weather", JSON.stringify(weather));						
 			};
 			xhr.send();
 		} catch (err) {
@@ -71,6 +73,10 @@ define(function() {
 		refresh: function() {
 			isRefreshed = true;
 			getLocation();	
+			// get old values for sunset and sunrise if no refreshed weather object could be fetched.
+			if (weather===null) {
+				weather = JSON.parse(localStorage.getItem("weather"));
+			}
 		},
 
 		// getSunset and getSunrise both return the number of minutes
