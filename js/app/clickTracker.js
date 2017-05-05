@@ -100,7 +100,7 @@ define(['time'], function(time) {
 			data.append('time', time.getTimestamp());
 			data.append('event', "clicks");
 			data.append('value', "see extra data");
-			data.append('extra_data', clicks);
+			data.append('extra_data', JSON.stringify(localStorage.getItem("clicks")));
 
 			var xhr = new XMLHttpRequest();
 

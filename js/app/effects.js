@@ -17,20 +17,6 @@ define(function() {
 
 	//definitions for fading time in milliseconds
 	var FADING_TIME = 20;
-	var TIME_BEFORE_FADING_STARTS = 100;
-
-	function fading(element, fadeTime) {
-		var opacity = 0.9;  // initial opacity
-		var timer = setInterval(function () {
-			if (opacity <= 0.1){
-				clearInterval(timer);
-				element.style.visibility = "hidden";
-			}
-			element.style.opacity = opacity;
-			element.style.filter = 'alpha(opacity=' + opacity * 100 + ")";
-			opacity -= opacity * 0.1;
-		}, fadeTime);
-	}
 
 	return {
 
@@ -45,10 +31,23 @@ define(function() {
 				ctx.drawImage(img, 0, 0, IMG_WIDTH, IMG_HEIGHT);
 			};
 			img.src = imgSource;
-
-			setTimeout(function(){fading(canvas,FADING_TIME);}, TIME_BEFORE_FADING_STARTS);
+			
+			this.fade(canvas,FADING_TIME);
 		},
 
+		fade: function(element, fadeTime) {
+			var opacity = 0.9;  // initial opacity
+			var timer = setInterval(function () {
+			if (opacity <= 0.1){
+				clearInterval(timer);
+				element.style.visibility = "hidden";
+			}
+			element.style.opacity = opacity;
+			element.style.filter = 'alpha(opacity=' + opacity * 100 + ")";
+			opacity -= opacity * 0.1;
+			}, fadeTime);
+		},
+		
 		unfade: function(element, fadeTime) {
 	    	var opacity = 0.1;  // initial opacity
 	    	element.style.display = 'block';
@@ -61,9 +60,5 @@ define(function() {
 	    		opacity += opacity * 0.1;
 	    	}, fadeTime);
 	    },
-
-	    fade: function(elem, fade_time) {
-	    	fading(elem, fade_time);
-	    }
 	};
 });

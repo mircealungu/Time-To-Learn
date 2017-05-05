@@ -9,7 +9,7 @@
  */
 
 define(function() {
-
+	
 	var APP_ID = "ab2771b4d49ab0798786dd6f2bee71a0";
 	var weather = null;
 	var isRefreshed = false;
@@ -22,6 +22,9 @@ define(function() {
 	var TEMPERATURE_FONT = "17px Arial";
 	var TEMPERATURE_COLOR = "white";
 
+	// This is how the weather could look like when returned.
+    // http://api.openweathermap.org/data/2.5/weather?lat=45&lon=23&APPID=ab2771b4d49ab0798786dd6f2bee71a0
+    
 	function getWeather(lat, lon) {
 		try {
 			var xhr = new XMLHttpRequest();
@@ -29,7 +32,7 @@ define(function() {
 			xhr.onload = function() {
 				weather = JSON.parse(this.responseText);
 				// Save weather if there is no connection later for sunset and sunrise.
-				localStorage.setItem("weather", JSON.stringify(weather));					
+				localStorage.setItem("weather", JSON.stringify(weather));						
 			};
 			xhr.send();
 		} catch (err) {
@@ -61,8 +64,7 @@ define(function() {
 		return (weather.main.temp - 273.15).toFixed(0);
 	}
 
-	return {
-
+	return {	
 		create: function() {
 			ctxWeather = document.getElementById("weatherCanvas").getContext("2d");
 			ctxTemp = document.getElementById("temperatureCanvas").getContext("2d");
@@ -70,11 +72,15 @@ define(function() {
 
 		refresh: function() {
 			isRefreshed = true;
-			getLocation();
+			getLocation();	
+			// get old values for sunset and sunrise if no refreshed weather object could be fetched.
 			if (weather===null) {
 				weather = JSON.parse(localStorage.getItem("weather"));
 			}
 		},
+
+		// getSunset and getSunrise both return the number of minutes
+		// since 00:00.
 
 		getSunset: function() { 
 			return convertEpochTime(weather.sys.sunset);

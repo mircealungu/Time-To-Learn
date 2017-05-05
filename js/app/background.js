@@ -8,40 +8,47 @@
  * made by Rick Nienhuis & Niels Haan
  */
 
-define(['userData'], function(userData) {
+define(['userData', 'weather', 'time'], function(userData, weather, time) {
 
 	var canvas;
 	var degrees;
+	var minutes;
+	var sunset, sunrise;
 
-	var backgroundSource = ["url('assets/simple_background.png')", 
+//	TODO: This should be named landscapeSource. 
+//	Background is the entire module.
+	var landscapeSource = ["url('assets/simple_background.png')", 
 	                        "url('assets/city_background.png')", 
 	                        "url('assets/countryside_background.png')"];
 
 	//definitions
 	var MINUTES_IN_ONE_DAY = 1440;
-	var BACKGROUND_SIZE = "360px 180px";
+	var LANDSCAPE_SIZE = "360px 180px";
 
 	return {
 
 		create: function() {
 			canvas = document.getElementById("landscapeCanvas");
-			if (localStorage.getItem("backgroundNumber") === null) {
-				userData.setBackgroundNumber(0);
+			if (localStorage.getItem("landscapeNumber") === null) {
+				userData.setLandscapeNumber(0);
 			} 
-			canvas.style.background = backgroundSource[userData.getBackgroundNumber()];
-			canvas.style.backgroundSize = BACKGROUND_SIZE;
+			canvas.style.background = landscapeSource[userData.getLandscapeNumber()];
+			canvas.style.backgroundSize = LANDSCAPE_SIZE;
 		},
 
 		change: function() {
-			userData.increaseBackgroundNumber();
-			if (userData.getBackgroundNumber() === backgroundSource.length){
-				userData.setBackgroundNumber(0);
+			userData.increaseLandscapeNumber();
+			if (userData.getLandscapeNumber() === landscapeSource.length){
+				userData.setLandscapeNumber(0);
 			} 
-			canvas.style.background = backgroundSource[userData.getBackgroundNumber()];
-			canvas.style.backgroundSize = BACKGROUND_SIZE;
+			canvas.style.background = landscapeSource[userData.getLandscapeNumber()];
+			canvas.style.backgroundSize = LANDSCAPE_SIZE;
 		},
 
-		rotate: function(sunrise, sunset, minutes) {
+		rotate: function() {
+			sunrise = weather.getSunrise();
+			sunset = weather.getSunset();
+			minutes = time.getHours()*60 + time.getMinutes()*1;
 			if(minutes >= sunrise && minutes <= sunset) {
 				// day
 				degrees = (180 / (sunset - sunrise)).toFixed(2);

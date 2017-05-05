@@ -50,12 +50,11 @@ define(['events', 'clickTracker'], function(events, clickTracker) {
 			if (wordIsRight) {
 				wordPair[0].timesCorrect++;
 				wordPair.splice(wordPair[0].timesCorrect * NUMBER_OF_FLASHCARDS, 0, wordPair[0]);
-				wordPair.splice(0, 1);
 			} else {
 				wordPair[0].timesCorrect = 0;
 				wordPair.splice(NUMBER_OF_FLASHCARDS, 0, wordPair[0]);
-				wordPair.splice(0, 1);
 			}
+			wordPair.splice(0, 1);
 		},
 		
 		getWord: function() {
@@ -144,16 +143,16 @@ define(['events', 'clickTracker'], function(events, clickTracker) {
 			sessionPopupShown = bool;
 		},
 
-		increaseBackgroundNumber: function() {
-			localStorage.setItem("backgroundNumber", parseInt(localStorage.getItem("backgroundNumber"))+1);
+		increaseLandscapeNumber: function() {
+			localStorage.setItem("landscapeNumber", parseInt(localStorage.getItem("landscapeNumber"))+1);
 		},
 
-		getBackgroundNumber: function() {
-			return parseInt(localStorage.getItem("backgroundNumber"));
+		getLandscapeNumber: function() {
+			return parseInt(localStorage.getItem("landscapeNumber"));
 		},
 
-		setBackgroundNumber: function(background_number) {
-			localStorage.setItem("backgroundNumber", background_number);
+		setLandscapeNumber: function(landscape_number) {
+			localStorage.setItem("landscapeNumber", landscape_number);
 		},
 
 		numberOfFlashcards: function() {
