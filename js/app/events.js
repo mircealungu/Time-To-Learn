@@ -12,7 +12,7 @@
 
 define(['time'], function(time) {
 
-	var SESSION_ENDPOINT = "https://zeeguu.unibe.ch/upload_smartwatch_events";
+	var SESSION_ENDPOINT = "https://zeeguu.unibe.ch/api/upload_smartwatch_events";
 	
 	var currentEvent;
 	var events;

@@ -21,7 +21,7 @@ define(['userData', 'login'], function(userData, login) {
 	var WORD_FONT = "45px Arial";
 	var TRANSLATION_FONT = "35px Arial";
 
-	var SESSION_ENDPOINT = 'https://zeeguu.unibe.ch/';
+	var SESSION_ENDPOINT = 'https://zeeguu.unibe.ch/api/';
 	var BOOKMARK_SESSION = 'bookmarks_to_study/';
 
 	function length(obj) {

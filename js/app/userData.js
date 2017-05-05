@@ -17,7 +17,7 @@ define(['events', 'clickTracker'], function(events, clickTracker) {
 	var sessionPopupShown = false;
 	
 	var NUMBER_OF_FLASHCARDS = 5;
-	var DELETE_WORDS_ENDPOINT = "https://zeeguu.unibe.ch/delete_bookmark/";
+	var DELETE_WORDS_ENDPOINT = "https://zeeguu.unibe.ch/api/delete_bookmark/";
 
  	function reverse() {
 		return JSON.parse(localStorage.getItem("reverse"));

@@ -21,7 +21,7 @@ define(['time'], function(time) {
 	var STARTING_POINT = 0;
 	var END_POINT = 2*Math.PI;
 
-	var USER_ACTIVITY_ENDPOINT = "https://zeeguu.unibe.ch/upload_user_activity_data";
+	var USER_ACTIVITY_ENDPOINT = "https://zeeguu.unibe.ch/api/upload_user_activity_data";
 
 	function init() {
 		clickTracker = document.getElementById("clickTracker");
