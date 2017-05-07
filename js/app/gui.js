@@ -1,17 +1,15 @@
 /**
  * gui.js
  *
- * This is the module where the drawing takes place for the 
- * mainPage and the revealedPage and where the eventsListeners of these
- * pages are initialized.
+ * This is the main module where all the drawing takes place.
  *
  * made by Rick Nienhuis & Niels Haan
  */
 
 define(['battery', 'userData', 'time', 'weather', 'fireworks', 
-	'background', 'effects', 'settings', 'menu', 'profile', 'context'], 
+	'background', 'effects', 'settings', 'menu', 'profile'], 
 	function(battery, userData, time, weather, fireworks, 
-		background, effects, settings, menu, profile, context) {
+		background, effects, settings, menu, profile) {
 	
 	//definitions about text
 	var FONT = "px Arial";
@@ -82,6 +80,7 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 		var imgSource = RIGHT_IMG_SOURCE;
 
 		userData.updateWordPair(true);
+		// wordPair is saved in saveGeneralData
 		userData.saveWordPair();
 		effects.feedbackByImage(imgSource);
 		printWord();	
@@ -113,21 +112,7 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 			document.getElementById("revealButton").addEventListener("click", function(e){
 				userData.saveEvent("reveal");
 				revealTranslation();
-				context.hide();
-				if (context.isShown()) {
-					context.hide();
-				}
 				userData.saveClick(e.clientX, e.clientY, "reveal");
-			});
-
-			document.getElementById("contextButton").addEventListener("click", function(e){
-				userData.saveEvent("showContext");
-				if (context.isShown()) {
-					context.hide();
-				} else {
-					context.show();
-				}
-				userData.saveClick(e.clientX, e.clientY, "showContext");
 			});
 			
 			// EventListeners for the revealedPage: wrong, menu, right
@@ -163,24 +148,18 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 			});
 	}
 
-	function update() {
-		profile.refresh();
-		time.refresh();
-		background.rotate();
-	}
-
-	function draw() {
-		time.draw();
-		time.drawDate();
-		battery.draw();
-		weather.draw();
-	}
-
 	return {
 
-		render: function() {
-			update();
-			draw();
+		draw: function() {
+			profile.refresh();
+			time.refresh();
+			time.draw();
+			time.drawDate();
+			battery.draw();
+			weather.draw();
+
+			var totalMinutes = time.getHours()*60 + time.getMinutes()*1;
+			background.rotate(weather.getSunrise(), weather.getSunset(), totalMinutes);
 		},
 
 		create: function(ctx) {
@@ -191,7 +170,6 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 			settings.create(printWord);
 			menu.create(printWord, revealTranslation);
 			background.create();
-			context.create();
 			
 			weather.create();
 			weather.refresh();

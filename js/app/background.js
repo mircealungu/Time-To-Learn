@@ -8,47 +8,40 @@
  * made by Rick Nienhuis & Niels Haan
  */
 
-define(['userData', 'weather', 'time'], function(userData, weather, time) {
+define(['userData'], function(userData) {
 
 	var canvas;
 	var degrees;
-	var minutes;
-	var sunset, sunrise;
 
-//	TODO: This should be named landscapeSource. 
-//	Background is the entire module.
-	var landscapeSource = ["url('assets/simple_background.png')", 
+	var backgroundSource = ["url('assets/simple_background.png')", 
 	                        "url('assets/city_background.png')", 
 	                        "url('assets/countryside_background.png')"];
 
 	//definitions
 	var MINUTES_IN_ONE_DAY = 1440;
-	var LANDSCAPE_SIZE = "360px 180px";
+	var BACKGROUND_SIZE = "360px 180px";
 
 	return {
 
 		create: function() {
 			canvas = document.getElementById("landscapeCanvas");
-			if (localStorage.getItem("landscapeNumber") === null) {
-				userData.setLandscapeNumber(0);
+			if (localStorage.getItem("backgroundNumber") === null) {
+				userData.setBackgroundNumber(0);
 			} 
-			canvas.style.background = landscapeSource[userData.getLandscapeNumber()];
-			canvas.style.backgroundSize = LANDSCAPE_SIZE;
+			canvas.style.background = backgroundSource[userData.getBackgroundNumber()];
+			canvas.style.backgroundSize = BACKGROUND_SIZE;
 		},
 
 		change: function() {
-			userData.increaseLandscapeNumber();
-			if (userData.getLandscapeNumber() === landscapeSource.length){
-				userData.setLandscapeNumber(0);
+			userData.increaseBackgroundNumber();
+			if (userData.getBackgroundNumber() === backgroundSource.length){
+				userData.setBackgroundNumber(0);
 			} 
-			canvas.style.background = landscapeSource[userData.getLandscapeNumber()];
-			canvas.style.backgroundSize = LANDSCAPE_SIZE;
+			canvas.style.background = backgroundSource[userData.getBackgroundNumber()];
+			canvas.style.backgroundSize = BACKGROUND_SIZE;
 		},
 
-		rotate: function() {
-			sunrise = weather.getSunrise();
-			sunset = weather.getSunset();
-			minutes = time.getHours()*60 + time.getMinutes()*1;
+		rotate: function(sunrise, sunset, minutes) {
 			if(minutes >= sunrise && minutes <= sunset) {
 				// day
 				degrees = (180 / (sunset - sunrise)).toFixed(2);

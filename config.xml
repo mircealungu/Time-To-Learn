@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://yourdomain/TimeToLearn" version="1.0.0" viewmodes="maximized">
-    <tizen:application id="CQo7iWdkip.TimeToLearn" package="CQo7iWdkip" required_version="2.3.1"/>
+<widget xmlns:tizen="http://tizen.org/ns/widgets" xmlns="http://www.w3.org/ns/widgets" id="http://yourdomain/TimeToLearn" version="1.0.0" viewmodes="maximized">
     <access origin="*" subdomains="true"></access>
-    <!-- <tizen:allow-navigation>https://zeeguu.unibe.ch/</tizen:allow-navigation> -->
-    <tizen:privilege name="http://tizen.org/privilege/internet"/>
-    
-    <tizen:privilege name="http://tizen.org/privilege/location"/>
-    <feature name="http://tizen.org/feature/location.gps"/>
-
-<!-- Cf. https://developer.tizen.org/development/tutorials/web-application/w3chtml5supplementary-features/watch-application#project 
-	the tizen:category has to be set to this for the thing to be a watch face. -->
-    <tizen:category name="com.samsung.wmanager.WATCH_CLOCK"/> 
+    <tizen:application id="CQo7iWdkip.TimeToLearn" package="CQo7iWdkip" required_version="2.3.1"/>
+    <!--  <tizen:category name="com.samsung.wmanager.WATCH_CLOCK"/>-->
     <content src="index.html"/>
+    <feature name="http://tizen.org/feature/location.gps"/>
     <feature name="http://tizen.org/feature/screen.size.all"/>
     <icon src="icon.png"/>
     <name>TimeToLearn</name>
+    <tizen:privilege name="http://tizen.org/privilege/internet"/>
+    <tizen:privilege name="http://tizen.org/privilege/location"/>
     <tizen:profile name="wearable"/>
 </widget>

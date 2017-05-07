@@ -1,0 +1,15 @@
+<?xml version='1.0'?>
+<LetterValues>
+   <LetterValue>
+	  <Letter>a</Letter>
+      <ValueDutch>12,3700787401575</ValueDutch>
+	  <ValueGerman>13,752808988764</ValueGerman>
+      <ValueSpanish>3,77372262773723</ValueSpanish>
+   </LetterValue>
+    <LetterValue>
+	  <Letter>b</Letter>
+      <ValueDutch>18,6535433070866</ValueDutch>
+	  <ValueGerman>17,8202247191011</ValueGerman>
+      <ValueSpanish>17,9613138686131</ValueSpanish>
+   </LetterValue>
+</LetterValues>
