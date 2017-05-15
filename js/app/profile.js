@@ -9,9 +9,6 @@
  * made by Rick Nienhuis & Niels Haan
  */
 
-// TODO: This file is simply too long. 
-// Can you see any way of reorganizing it in several files? 
-
 define(['time', 'effects', 'popup', 'userData'], function(time, effects, popup, userData) {
 
 	var profile, ctx, ctxPageIcon;

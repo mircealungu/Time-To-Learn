@@ -20,30 +20,22 @@ define(['userData','weather', 'time', 'session'],function(userData, weather, tim
 		document.getElementById("profilePage").style.visibility = "hidden";
 	}
 
-	function screenOn() {
-		userData.sendClicks();
-		userData.saveEvent("screenOn");
-		time.startUsageTracking();
-		weather.refresh();
-		session.getWords(userData.getCode(), true);
-	}
-
-	function screenOff() {
-		session.updateWords();
-		userData.saveEvent("screenOff");
-		hideAllPages();
-		time.pauseUsageTracking();
-		time.resetSessionTime();
-		userData.setSessionPopupShown(false);
-	}
-
-	function screenListener() {
+	function screenOnOffListener() {
 		try {
 			tizen.power.setScreenStateChangeListener(function(prevState, currState) {
 				if (currState === 'SCREEN_NORMAL' && prevState === 'SCREEN_OFF') {
-					screenOn();
+					userData.sendClicks();
+					userData.saveEvent("screenOn");
+					time.startUsageTracking();
+					weather.refresh();
+					session.getWords(userData.getCode(), true);
 				} else {
-					screenOff();
+					session.updateWords();
+					userData.saveEvent("screenOff");
+					hideAllPages();
+					time.pauseUsageTracking();
+					time.resetSessionTime();
+					userData.setSessionPopupShown(false);
 				}
 			});
 		} catch (e) {}
@@ -66,6 +58,6 @@ define(['userData','weather', 'time', 'session'],function(userData, weather, tim
 
 	return function() {
 			tizenBackButton();
-			screenListener();
+			screenOnOffListener();
 	};
 });
