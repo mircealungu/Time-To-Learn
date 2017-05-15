@@ -1,0 +1,1250 @@
+﻿<?xml version="1.0" encoding="utf-8"?><?mso-application progid="Excel.Sheet"?><Workbook xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:x2="urn:schemas-microsoft-com:office:excel2" xmlns:html="http://www.w3.org/TR/REC-html40" xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+ <x:ExcelWorkbook>
+  <x:ActiveSheet>0</x:ActiveSheet>
+ </x:ExcelWorkbook>
+ <o:DocumentProperties />
+ <o:OfficeDocumentSettings>
+  <o:Colors>
+   <o:Color>
+    <o:Index>0</o:Index>
+    <o:RGB>#800000</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>1</o:Index>
+    <o:RGB>#006600</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>2</o:Index>
+    <o:RGB>#000080</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>3</o:Index>
+    <o:RGB>#996600</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>4</o:Index>
+    <o:RGB>#800080</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>5</o:Index>
+    <o:RGB>#008080</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>6</o:Index>
+    <o:RGB>#C0C0C0</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>7</o:Index>
+    <o:RGB>#808080</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>8</o:Index>
+    <o:RGB>#9999FF</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>9</o:Index>
+    <o:RGB>#993366</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>10</o:Index>
+    <o:RGB>#FFFFCC</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>11</o:Index>
+    <o:RGB>#CCFFFF</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>12</o:Index>
+    <o:RGB>#660066</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>13</o:Index>
+    <o:RGB>#FF8080</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>14</o:Index>
+    <o:RGB>#0066CC</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>15</o:Index>
+    <o:RGB>#DDDDDD</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>16</o:Index>
+    <o:RGB>#000080</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>17</o:Index>
+    <o:RGB>#FF00FF</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>18</o:Index>
+    <o:RGB>#FFFF00</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>19</o:Index>
+    <o:RGB>#00FFFF</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>20</o:Index>
+    <o:RGB>#800080</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>21</o:Index>
+    <o:RGB>#800000</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>22</o:Index>
+    <o:RGB>#008080</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>23</o:Index>
+    <o:RGB>#0000FF</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>24</o:Index>
+    <o:RGB>#00CCFF</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>25</o:Index>
+    <o:RGB>#CCFFFF</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>26</o:Index>
+    <o:RGB>#CCFFCC</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>27</o:Index>
+    <o:RGB>#FFFF99</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>28</o:Index>
+    <o:RGB>#99CCFF</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>29</o:Index>
+    <o:RGB>#FF99CC</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>30</o:Index>
+    <o:RGB>#CC99FF</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>31</o:Index>
+    <o:RGB>#FFCCCC</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>32</o:Index>
+    <o:RGB>#3366FF</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>33</o:Index>
+    <o:RGB>#33CCCC</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>34</o:Index>
+    <o:RGB>#99CC00</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>35</o:Index>
+    <o:RGB>#FFCC00</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>36</o:Index>
+    <o:RGB>#FF9900</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>37</o:Index>
+    <o:RGB>#FF6600</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>38</o:Index>
+    <o:RGB>#666699</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>39</o:Index>
+    <o:RGB>#969696</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>40</o:Index>
+    <o:RGB>#003366</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>41</o:Index>
+    <o:RGB>#339966</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>42</o:Index>
+    <o:RGB>#003300</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>43</o:Index>
+    <o:RGB>#333300</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>44</o:Index>
+    <o:RGB>#993300</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>45</o:Index>
+    <o:RGB>#993366</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>46</o:Index>
+    <o:RGB>#333399</o:RGB>
+   </o:Color>
+   <o:Color>
+    <o:Index>47</o:Index>
+    <o:RGB>#333333</o:RGB>
+   </o:Color>
+  </o:Colors>
+ </o:OfficeDocumentSettings>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <ss:Alignment ss:Vertical="Bottom" />
+   <ss:Font ss:FontName="Arial" ss:Size="10" />
+   <ss:Protection ss:Protected="1" x:HideFormula="0" />
+  </Style>
+  <Style ss:ID="S37">
+   <ss:Alignment ss:Horizontal="Left" ss:Vertical="Bottom" />
+   <ss:Font ss:FontName="Arial" ss:Size="10" />
+   <ss:Protection ss:Protected="1" x:HideFormula="0" />
+  </Style>
+  <Style ss:ID="S38">
+   <ss:Alignment ss:Horizontal="Center" ss:Vertical="Bottom" />
+   <ss:Font ss:FontName="Arial" ss:Size="10" />
+   <ss:Protection ss:Protected="1" x:HideFormula="0" />
+  </Style>
+  <Style ss:ID="S39">
+   <ss:Alignment ss:Horizontal="Center" ss:Vertical="Bottom" />
+   <ss:Font ss:FontName="Arial" ss:Size="10" />
+   <ss:Protection ss:Protected="1" x:HideFormula="0" />
+  </Style>
+  <Style ss:ID="S40">
+   <ss:Alignment ss:Horizontal="Center" ss:Vertical="Bottom" ss:WrapText="1" />
+   <ss:Font ss:FontName="Arial" ss:Size="10" />
+   <ss:Protection ss:Protected="1" x:HideFormula="0" />
+  </Style>
+  <Style ss:ID="S41">
+   <ss:Alignment ss:Horizontal="Right" ss:Vertical="Bottom" />
+   <ss:Font ss:FontName="Arial" ss:Size="10" />
+   <ss:Protection ss:Protected="1" x:HideFormula="0" />
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="Sheet1">
+  <ss:Names />
+  <ss:Table ss:DefaultRowHeight="13.5" ss:DefaultColumnWidth="48" ss:ExpandedRowCount="105" ss:ExpandedColumnCount="256">
+   <Column ss:Index="1" ss:StyleID="S37" ss:AutoFitWidth="0" ss:Width="60.75" />
+   <Column ss:Index="2" ss:StyleID="S38" ss:AutoFitWidth="0" ss:Width="60.75" />
+   <Column ss:Index="3" ss:StyleID="S38" ss:AutoFitWidth="0" ss:Width="83.25" />
+   <Column ss:Index="4" ss:Span="2" ss:AutoFitWidth="0" ss:Width="60.75" />
+   <Column ss:Index="7" ss:AutoFitWidth="0" ss:Width="69.75" />
+   <Column ss:Index="8" ss:Span="248" ss:AutoFitWidth="0" ss:Width="60.75" />
+   <Row ss:Index="1" ss:Height="12.8">
+    <Cell><Data ss:Type="String">Language</Data>
+     <ss:Comment><ss:Data>Dutch = 1&#10;Spanish  = 2</ss:Data>
+     </ss:Comment>
+    </Cell>
+    <Cell ss:StyleID="S39"><Data ss:Type="String">Word</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">Translation</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">Category</Data>
+     <ss:Comment><ss:Data>empty = not defined&#10;1 = school/university&#10;2 = office&#10;3 = outside&#10;4 = animals&#10;5 = people&#10;6 = food/drinks&#10;7 = jobs</ss:Data>
+     </ss:Comment>
+    </Cell>
+    <Cell><Data ss:Type="String">Word value</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">Progress</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">Word Difficulty</Data>
+     <ss:Comment><ss:Data>Add manually if needed&#10;&#10;1: A0 = basic user - beginner&#10;2: A1 = basic user – elementary&#10;3: B1 = independent user – intermediate&#10;4: B2 = independent user – upper intermediate&#10;5: C1 = proficient user – advanced&#10;6: C2 = proficients user - master</ss:Data>
+     </ss:Comment>
+    </Cell>
+    <Cell><Data ss:Type="String">Extensions</Data>
+     <ss:Comment><ss:Data>Empty = undefined or no extensions&#10;</ss:Data>
+     </ss:Comment>
+    </Cell>
+   </Row>
+   <Row ss:Index="2" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">ja</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">yes</Data>
+    </Cell>
+    <Cell ss:Index="8" ss:StyleID="S41" />
+   </Row>
+   <Row ss:Index="3" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">nee</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">no</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="4" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">de</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">the</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="5" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">het</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">the</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="6" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">een</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">a/an</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="7" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">ik</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">I</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="8" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">jij</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">you</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="9" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">hij</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">he</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="10" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">zij</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">she</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="11" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">wij</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">we</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="12" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">jullie</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">you</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="13" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">hun</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">they</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="14" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">kat</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">cat</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">4</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="15" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">hond</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">dog</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">4</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="16" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">vis</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">fish</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">4</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="17" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell ss:StyleID="S39"><Data ss:Type="String">paard</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">horse</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">4</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="18" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">aap</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">ape</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">4</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="19" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">familie</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">family</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="20" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">vriend</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">friend</Data>
+    </Cell>
+    <Cell ss:Index="8"><Data ss:Type="String">vrienden</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="21" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">vrienden</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">friends</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="22" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">man</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">man</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">5</Data>
+    </Cell>
+    <Cell ss:Index="8"><Data ss:Type="String">mannen</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="23" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">vrouw</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">woman</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">5</Data>
+    </Cell>
+    <Cell ss:Index="8"><Data ss:Type="String">vrouwen</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="24" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">mannen</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">men</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">5</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="25" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">vrouwen</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">women</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">5</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="26" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">opa</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">grandfather</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">5</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="27" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">oma</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">grandmother</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">5</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="28" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">zoon</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">son</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">5</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="29" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">dochter</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">daughter</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">5</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="30" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">vader</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">father</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">5</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="31" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">moeder</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">mother</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">5</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="32" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">honger</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">hungry</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">6</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="33" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">dorst</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">thirsty</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">6</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="34" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">ontbijt</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">breakfast</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">6</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="35" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">lunch</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">lunch</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">6</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="36" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">avondeten</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">dinner</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">6</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="37" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">student</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">student</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">7</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="38" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">leraar</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">teacher</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">7</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="39" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">werknemer</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">employee</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">7</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="40" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">bier</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">beer</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">6</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="41" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">wijn</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">wine</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">6</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="42" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">koffie</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">coffee</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">6</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="43" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">thee</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">tea</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">6</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="44" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">ochtend</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">morning</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="45" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">avond</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">evening</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="46" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">middag</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">afternoon</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="47" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">nacht</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">night</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="48" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">morgen</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">tomorrow</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="49" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">vandaag</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">today</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="50" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">tas</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">bag</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="51" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">jas</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">coat</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="52" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">schoen</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">shoe</Data>
+    </Cell>
+    <Cell ss:Index="8"><Data ss:Type="String">schoenen</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="53" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">1</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">schoenen</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">shoes</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="54" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">so</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">yes</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="55" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">no</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">no</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="56" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">la</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">the</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="57" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">le</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">the</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="58" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">un/una</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">a/an</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="59" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">yo</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">I</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="60" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">tu</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">you</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="61" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">el</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">he</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="62" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">ella</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">she</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="63" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">nosotros</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">we</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="64" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">vosotros</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">you</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="65" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">ellos</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">they</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="66" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">gato</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">cat</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">4</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="67" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">perro</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">dog</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">4</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="68" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">pescado</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">fish</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">4</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="69" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell ss:StyleID="S39"><Data ss:Type="String">caballo</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">horse</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">4</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="70" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">mono</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">ape</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">4</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="71" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">familia</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">family</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="72" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">amigo</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">friend</Data>
+    </Cell>
+    <Cell ss:Index="8"><Data ss:Type="String">amigos</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="73" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">amigos</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">friends</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="74" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">hombre</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">man</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">5</Data>
+    </Cell>
+    <Cell ss:Index="8"><Data ss:Type="String">hombres</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="75" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">mujer</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">woman</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">5</Data>
+    </Cell>
+    <Cell ss:Index="8"><Data ss:Type="String">mujures</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="76" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">hombres</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">men</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">5</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="77" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">mujeres</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">women</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">5</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="78" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">abuelo</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">grandfather</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">5</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="79" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">abuela</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">grandmother</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">5</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="80" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">hijo</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">son</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">5</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="81" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">hija</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">daughter</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">5</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="82" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">padre</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">father</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">5</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="83" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">madre</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">mother</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">5</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="84" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">hambre</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">hungry</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">6</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="85" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">sed</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">thirsty</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">6</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="86" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">desayuno</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">breakfast</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">6</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="87" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">almuerzo</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">lunch</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">6</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="88" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">cena</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">dinner</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">6</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="89" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell ss:StyleID="S40"><Data ss:Type="String">estudiante</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">student</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">7</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="90" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">maestro</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">teacher</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">7</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="91" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">empleado</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">employee</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">7</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="92" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">cerveza</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">beer</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">6</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="93" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">vino</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">wine</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">6</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="94" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">cafe</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">coffee</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">6</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="95" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">te</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">tea</Data>
+    </Cell>
+    <Cell><Data ss:Type="Number">6</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="96" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">manana</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">morning</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="97" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">manana</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">tomorrow</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="98" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">noche</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">evening</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="99" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">noche</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">night</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="100" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">tarde</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">afternoon</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="101" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">hoy</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">today</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="102" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">bolsa</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">bag</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="103" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">chaqueta</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">coat</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="104" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">zapato</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">shoe</Data>
+    </Cell>
+    <Cell ss:Index="8"><Data ss:Type="String">zapatos</Data>
+    </Cell>
+   </Row>
+   <Row ss:Index="105" ss:Height="12.8">
+    <Cell><Data ss:Type="Number">2</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">zapatos</Data>
+    </Cell>
+    <Cell><Data ss:Type="String">shoes</Data>
+    </Cell>
+   </Row>
+  </ss:Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Layout x:StartPageNumber="1" />
+    <Header x:Margin="0.7875" x:Data="&amp;C&amp;&quot;Times New Roman,Regular&quot;&amp;12&amp;A" />
+    <Footer x:Margin="0.7875" x:Data="&amp;C&amp;&quot;Times New Roman,Regular&quot;&amp;12Page &amp;P" />
+    <PageMargins x:Top="1.05277777777778" x:Bottom="1.05277777777778" x:Left="0.7875" x:Right="0.7875" />
+   </PageSetup>
+   <FitToPage />
+   <Print>
+    <ValidPrinterInfo />
+    <PaperSizeIndex>9</PaperSizeIndex>
+   </Print>
+   <TopRowVisible>69</TopRowVisible>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>107</ActiveRow>
+     <ActiveCol>3</ActiveCol>
+     <RangeSelection>R108C4</RangeSelection>
+    </Pane>
+   </Panes>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>
