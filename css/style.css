@@ -159,6 +159,77 @@ background-size: 80px 50px;
 	opacity: 0.9;
 }
 
+#codeShowPage {
+	z-index: 9;
+	width: 360px;
+	height: 360px;
+	background-image: url('../assets/background.png');
+	background-size: 360px 360px;
+}
+
+.codeShowHeader {
+	position: relative;
+	top: -10px;
+	width: 360px;
+	height: 70px;
+}
+
+#codeShowDigits {
+	width: 360px;
+	height: 210px;
+}
+
+.pageIndication {
+	width: 360px;
+	height: 20px;
+	position: absolute;
+	bottom: 60px;
+}
+
+#backButtonInCodeShow {
+	width: 360px;
+	position: absolute;
+	bottom: 0px;
+	height: 60px;
+	border-radius: 0px;
+	background-image: url('../assets/back_button.png');
+	background-size: 360px 60px;
+}
+
+#qrcodePage {
+	z-index: 10;
+	width: 360px;
+	height: 360px;
+	background-image: url('../assets/background.png');
+	background-size: 360px 360px;
+}
+
+#qrcode {
+	background-color: white;
+	top: 60px;
+	width: 210px;
+	height: 210px;
+	left: 75px;
+	position: absolute;}
+
+#backButtonInQRCode {
+	width: 360px;
+	position: absolute;
+	bottom: 0px;
+	height: 60px;
+	border-radius: 0px;
+	background-image: url('../assets/back_button.png');
+	background-size: 360px 60px;
+}
+
+#imageQR{
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	width: 200px;
+	height: 200px;
+}
+
 #revealedPage {
 	width: 360px;
 	height: 180px;

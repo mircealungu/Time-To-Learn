@@ -7,10 +7,10 @@
  */
 
 define(['battery', 'userData', 'time', 'weather', 'fireworks', 
-	'background', 'effects', 'settings', 'menu', 'profile'], 
-	function(battery, userData, time, weather, fireworks, 
-		background, effects, settings, menu, profile) {
-	
+    'background', 'effects', 'settings', 'menu', 'profile', 'codeShow'], 
+    function(battery, userData, time, weather, fireworks, 
+    	background, effects, settings, menu, profile, codeShow) {
+
 	//definitions about text
 	var FONT = "px Arial";
 	var WORD_FONT_SIZE = 45;
@@ -57,7 +57,7 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 		canvasRevealPage.style.visibility = "visible";
 	}
 
-	function doubleTapHandler() {
+	function doubleTapHandler(page) {
 		if (doubleTapTimer === null) {
 			// handle single tap
 			doubleTapTimer = setTimeout(function () {
@@ -68,9 +68,14 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 			// handle double tap
 			clearTimeout(doubleTapTimer);
 			doubleTapTimer = null;
-			settings.show();
+			if (page === "main") {
+				settings.show();				
+			} else {
+				codeShow.changePage();
+			}
 		}
 	}
+
 
 	function right() {
 		profile.userIsActive();
@@ -144,7 +149,15 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 			});
 			document.getElementById("time").addEventListener("click", function(e){
 				userData.saveClick(e.clientX, e.clientY, "time");
-				doubleTapHandler();
+				doubleTapHandler("main");
+			});
+			document.getElementById("codeShowPage").addEventListener("click", function(e){
+				userData.saveClick(e.clientX, e.clientY, "time");
+				doubleTapHandler("codeShowPage");
+			});
+			document.getElementById("qrcodePage").addEventListener("click", function(e){
+				userData.saveClick(e.clientX, e.clientY, "time");
+				doubleTapHandler("codeShowPage");
 			});
 	}
 
