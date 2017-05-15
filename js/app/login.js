@@ -291,6 +291,9 @@ define(['userData', 'popup'], function(userData, popup) {
 	    var form = new FormData();
 		form.append('uuid', uuid);
 		form.append('password', password);
+		console.log(learning_language);
+		form.append('learned_language_code', learning_language);
+		form.append('native_language_code', "en");
 	    try { 
 			var xhr = new XMLHttpRequest();
 			xhr.open('POST', GET_ANONYMOUS_ACCOUNT_ENDPOINT, true);
@@ -319,6 +322,7 @@ define(['userData', 'popup'], function(userData, popup) {
 	 * created for the user.
 	 */
 	function relogin(uuid, password) {
+		console.log("relogin");
 		var form = new FormData();
 		form.append('password', password);
 	    try { 
@@ -345,19 +349,36 @@ define(['userData', 'popup'], function(userData, popup) {
      * and when this is not the case.
      */
     return function login(checkLogin) {
-    	localStorage.removeItem("password");
-    	localStorage.removeItem("uuid");
+		/* Old part which works */
+
+    	localStorage.setItem("accountCode", "59961147");
+    	userData.load();
+		goToMainPage();
+		checkLogin(userData.getCode());
+		return;
+
+		/* Old part which works */
+
+		
+    	/* New part */
+		
+//		localStorage.removeItem("password");
+//    	localStorage.removeItem("uuid");
     	//Uncomment the following two lines to skip the language selection: 
-//        	localStorage.setItem("uuid", "d615d7ff-9895-aab8-cb45-a14da23f7ca3");
-//        	localStorage.setItem("password", "17196");
+//        localStorage.setItem("uuid", "d615d7ff-9895-aab8-cb45-a14da23f7ca3");
+//       	localStorage.setItem("password", "17196");
+    	
     	if( (localStorage.getItem("uuid") !== null) && (localStorage.getItem("password") !== null) ){
-    		relogin(localStorage.getItem("uuid"), localStorage.getItem("password"))
-    		if( localStorage.getItem("accountCode") !== null ){
+			console.log("uuid != null && password != null");
+			relogin(localStorage.getItem("uuid"), localStorage.getItem("password"));
+    		if( localStorage.getItem("accountCode") !== null ) {
+    			console.log(localStorage.getItem("accountCode"));
+    			console.log("going to main page");
     			goToMainPage();
-    		}else{
+    		} else {
     			selectLanguages();
     		}
-    	}else{
+    	} else {
     		selectLanguages();
     	}
     }
