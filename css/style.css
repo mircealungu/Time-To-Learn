@@ -23,6 +23,15 @@ html,body {
 	height: 70px;
 }
 
+#showContextPage{
+ 	 margin: 0px;
+     width: 360px;
+     height: 360px;
+     visibility: hidden;
+     background-color: #000000;
+     opacity: 0.95;
+  }
+
 #plus {
 	width: 360px;
 	height: 55px;
