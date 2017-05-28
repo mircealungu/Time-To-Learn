@@ -6,48 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <meta name="description" content="Tizen Wearable Web Basic Template" />
 
-    <title>Time to Learn</title>
+    <title>Tizen Wearable Web Basic Application</title>
 
     <link rel="stylesheet" type="text/css" href="css/style.css" />
-   <!--  <script data-main="js/build/main-built.js" src="js/lib/require.js"></script>  -->
- 	     <script data-main="js/app/main.js" src="js/lib/require.js"></script> 
-
+   <!-- <script data-main="js/build/main-built.js" src="js/lib/require.js"></script> -->
+    <script data-main="js/app/main.js" src="js/lib/require.js"></script> 
+    <!--<script type="text/javascript" src="js/app/selectLanguages.js""></script>-->
 </head>
 
 <body>
 
-	<div id="loginPage" style="display: block;">
-		<div id="loginPopup">
-			<canvas id="loginPopupCanvas" width="360" height="360">
-			</canvas>
-		</div>
-		<div id="loginHeader">
-			<canvas id="loginHeaderCanvas" width="360" height="70"></canvas>
-		</div>
-		<div id="plus">
-			<input type="submit" id="first_plus" class="loginPlus" value=" "  style="position:absolute; top:70px; left:40px;">
-			<input type="submit" id="second_plus" class="loginPlus" value=" " style="position:absolute; top:70px; left:115px;">
-			<input type="submit" id="third_plus" class="loginPlus" value=" "  style="position:absolute; top:70px; left:190px;">
-			<input type="submit" id="fourth_plus" class="loginPlus" value=" " style="position:absolute; top:70px; left:265px;">
-		</div>
-		<div id="digits">
-			<canvas id="digitsCanvas" width="360" height="105"></canvas>
-		</div>
-		<div id="minus" >
-			<input type="submit" id="first_min" class="loginMin" value=" "  style="position:absolute; top:230px; left:40px;">
-			<input type="submit" id="second_min" class="loginMin" value=" " style="position:absolute; top:230px; left:115px;">
-			<input type="submit" id="third_min" class="loginMin" value=" "  style="position:absolute; top:230px; left:190px;">
-			<input type="submit" id="fourth_min" class="loginMin" value=" " style="position:absolute; top:230px; left:265px;">
-		</div>
-		<div id="iconPageNr">
-			<canvas id="iconPageNrCanvas" width="360" height="15"></canvas>
-		</div>
-		<div id="nextButton">
-			<input type="submit" id="setNextButton" style="position:absolute; top:360; left:0px;" value=" ">
+	<div id="languageFlags" style="display: block;">
+	
+		<div id="1BlockOfFlags">
+		
 		</div>
 		
+		
+		
+		<div id="backLangButton" class="langScreensButtons" style="display: none;"></div>
+		<div id="nextLangButton" class="langScreensButtons" style="display: none;"></div>
+		
+		
 	</div>
-
+	
 	<div id="mainPage" style="display:none;">
 		<div id="revealedPage" style="z-index: 3; position:absolute; left:0px; top:180px; text-align:center;">
 			<div id="revealedSpace">
@@ -132,7 +114,6 @@
 	    </div>
 	
 	</div>
-    
 </body>
 
 </html>
