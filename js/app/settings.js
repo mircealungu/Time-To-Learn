@@ -8,7 +8,7 @@
  * made by Rick Nienhuis & Niels Haan
  */
 
-define(['effects', 'userData', 'profile'], function(effects, userData, profile) {
+define(['effects', 'userData', 'profile', 'codeShow'], function(effects, userData, profile, codeShow) {
 
 	var settings;
 
@@ -40,6 +40,9 @@ define(['effects', 'userData', 'profile'], function(effects, userData, profile) 
 			document.getElementById("logOutButton").addEventListener("click", function(){
 				userData.clear();
 				document.location.reload(true);
+			});
+			document.getElementById("codeShowButton").addEventListener("click", function(){
+				codeShow.show();
 			});
 			
 			document.getElementById("backButtonInSettings").addEventListener("click", function(){
