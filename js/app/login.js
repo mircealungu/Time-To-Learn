@@ -63,7 +63,7 @@ define(['userData', 'popup'], function(userData, popup) {
     
     
     
-    var available_languages=["fr","gr","sp","nl","sp","nl"];
+    var available_languages=["fr","de","es","nl","es","nl"];
     
    /*
      * goToMainPage() sets the right html "<div>" to display. 
