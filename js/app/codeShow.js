@@ -34,7 +34,7 @@ define(['userData', 'qrcode'], function(userData, qrcode) {
 
 	// code font
 	var CODE_FONT = "80px Arial";
-	var CODE_FONT_COLOR = "black";
+	var CODE_FONT_COLOR = "white";
 
 	var NUMBER_OF_CODE_NUMBERS_ON_PAGE = 8;
 
