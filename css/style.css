@@ -43,56 +43,46 @@ html,body {
 	
 }
 
+#frFlag{ background-image: url('../assets/flags/fr.png'); }
 
-#frFlag{
+#deFlag{ background-image: url('../assets/flags/de.png'); }
 
-background-image: url('../assets/flags/fr.png');
+#esFlag{ background-image: url('../assets/flags/es.png'); }
 
-}
-
-
-#deFlag{
-
-background-image: url('../assets/flags/de.png');
-
-}
-#esFlag{
-
-background-image: url('../assets/flags/es.png');
-
-}
-
-#nlFlag{
-
-background-image: url('../assets/flags/nl.png');
-
-}
+#nlFlag{ background-image: url('../assets/flags/nl.png'); }
 
 .langScreensButtons{
-width: 80px;
-height: 64px;
-text-align: center;
-border-radius: 6px;
-z-index: 2;
-position: absolute;
-bottom: 0px;
-background-size: 80px 50px;
-    
+	width: 80px;
+	height: 64px;
+	text-align: center;
+	border-radius: 6px;
+	z-index: 2;
+	position: absolute;
+	bottom: 0px;
+	background-size: 80px 50px;
     background-repeat:no-repeat;
 }
-
 
 #backLangButton{
 	 background-image: url('../assets/back_languageButton.png');
 	 left:90px;
 }
+
 #nextLangButton{
-	 background-image: url('../assets/next_languageButton.png');
+	background-image: url('../assets/next_languageButton.png');
 	right: 90px;
 }
 
 .langScreensButtons:ACTIVE{
-	 transform: translateY(4px);
+	transform: translateY(4px);
+}
+
+.backButton{
+	width: 360px;
+	height: 60px;
+	border-radius: 0px;
+	background-image: url('../assets/back_button.png');
+	background-size: 360px 60px;
 }
 
 #codeShowPage {
@@ -109,27 +99,20 @@ background-size: 80px 50px;
 	width: 360px;
 	height: 70px;
 }
+#codeShowMessage {
+	width:360px;
+	height:20px;	
+}
 
 #codeShowDigits {
 	width: 360px;
 	height: 210px;
 }
 
-.pageIndication {
-	width: 360px;
-	height: 20px;
-	position: absolute;
-	bottom: 60px;
-}
-
 #backButtonInCodeShow {
-	width: 360px;
 	position: absolute;
 	bottom: 0px;
-	height: 60px;
-	border-radius: 0px;
-	background-image: url('../assets/back_button.png');
-	background-size: 360px 60px;
+	left:0px;
 }
 
 #qrcodePage {
@@ -149,13 +132,9 @@ background-size: 80px 50px;
 	position: absolute;}
 
 #backButtonInQRCode {
-	width: 360px;
 	position: absolute;
 	bottom: 0px;
-	height: 60px;
-	border-radius: 0px;
-	background-image: url('../assets/back_button.png');
-	background-size: 360px 60px;
+	left:0px;
 }
 
 #imageQR{
@@ -166,62 +145,9 @@ background-size: 80px 50px;
 	height: 200px;
 }
 
-#loginHeader {
-	width: 360px;
-	height: 70px;
-}
-
-#plus {
-	width: 360px;
-	height: 55px;
-}
-
-.loginPlus {
-	width: 55px;
-	height: 55px;
-	border-radius: 25px;
-	background-image: url('../assets/plus_login.png');
-	background-size: 50px 50px;
-}
-
 #digits {
 	width: 360px;
 	height: 105px;
-}
-
-#minus {
-	width: 360px;
-	height: 55px;
-}
-
-.loginMin {
-	width: 55px;
-	height: 55px;
-	border-radius: 25px;
-	background-image: url('../assets/min_login.png');
-	background-size: 50px 50px;
-}
-
-#iconPageNr {
-	width: 360px;
-	height: 15px;
-}
-
-#nextButton {
-	width: 360px;
-	height: 60px;
-}
-
-#setNextButton {
-	width: 360px;
-	height: 60px;
-	border-radius: 0px;
-	background-image: url('../assets/set_next_button.png');
-	background-size: 360px 60px;
-}
-#loginHeader {
-	width: 360px;
-	height: 70px;
 }
 
 #showContextPage{
@@ -232,65 +158,6 @@ background-size: 80px 50px;
      background-color: #000000;
      opacity: 0.95;
   }
-
-#plus {
-	width: 360px;
-	height: 55px;
-}
-
-.loginPlus {
-	width: 55px;
-	height: 55px;
-	border-radius: 25px;
-	background-image: url('../assets/plus_login.png');
-	background-size: 50px 50px;
-}
-
-#digits {
-	width: 360px;
-	height: 105px;
-}
-
-#minus {
-	width: 360px;
-	height: 55px;
-}
-
-.loginMin {
-	width: 55px;
-	height: 55px;
-	border-radius: 25px;
-	background-image: url('../assets/min_login.png');
-	background-size: 50px 50px;
-}
-
-#iconPageNr {
-	width: 360px;
-	height: 15px;
-}
-
-#nextButton {
-	width: 360px;
-	height: 60px;
-}
-
-#setNextButton {
-	width: 360px;
-	height: 60px;
-	border-radius: 0px;
-	background-image: url('../assets/set_next_button.png');
-	background-size: 360px 60px;
-}
-
-#loginPopup {
-	z-index: 1;
-	position: absolute;
-	width: 360px;
-	height: 360px;
-	visibility: hidden;
-	background-color: #000000;
-	opacity: 0.9;
-}
 
 #revealedPage {
 	width: 360px;
@@ -382,15 +249,6 @@ background-size: 80px 50px;
 	height: 60px;
 }
 
-#backButtonInMenu {
-	width: 360px;
-	height: 60px;
-	border-radius: 0px;
-	background-image: url('../assets/back_button.png');
-	background-size: 360px 60px;
-}
-
-
 #settingsPage {
 	margin: 0px;
 	width: 360px;
@@ -409,14 +267,6 @@ background-size: 80px 50px;
 	margin: 0px;
 	width: 360px;
 	height: 60px;
-}
-
-#backButtonInSettings {
-	width: 360px;
-	height: 60px;
-	border-radius: 0px;
-	background-image: url('../assets/back_button.png');
-	background-size: 360px 60px;
 }
 
 #profilePage {
@@ -450,15 +300,11 @@ background-size: 80px 50px;
 	width: 360px;
 	height: 60px;
 }
-#backButtonInProfile {
-	width: 360px;
-	height: 60px;
-	border-radius: 0px;
-	background-image: url('../assets/back_button.png');
-	background-size: 360px 60px;
-}
 
 #popup {
+	z-index: 6;
+	position:absolute;
+	visibility: hidden;
 	width: 360px;
 	height: 300px;
 	visibility: hidden;
@@ -467,6 +313,8 @@ background-size: 80px 50px;
 }
 
 #popupCanvas {
+	width:360px;
+	height:360px;
 	z-index: 6;
 	position:absolute;
 	top: 0; 
@@ -474,6 +322,8 @@ background-size: 80px 50px;
 }
 
 #popupFireworksCanvas {
+	width:360px;
+	height:300px;
 	z-index: 7;
 	position:absolute;
 	width: 360px;
@@ -497,7 +347,20 @@ background-size: 80px 50px;
 	background-size: 360px 60px;
 }
 
+#timeCanvas {
+	z-index: 2;
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:360px;
+	height:180px;
+}
+
 #rotationCanvas {
+	z-index: 0;
+	position:absolute;
+	left:0px;
+	top:0px;"
 	width: 360px;
 	height: 360px;
 	background-image: url('../assets/day_cycle.png');
@@ -519,6 +382,8 @@ svg {
 }
 
 #iconCanvas {
+	width:144px;
+	height:71px;
 	z-index: 2; 
 	position:absolute; 
 	left: 108px;
@@ -529,6 +394,8 @@ svg {
 }
 
 #temperatureCanvas {
+	width:50px;
+	height:50px;
 	z-index: 4; 
 	position:absolute; 
 	left:120px; 
@@ -536,6 +403,8 @@ svg {
 }
 
 #weatherCanvas {
+	width:50px;
+	height:50px;
 	z-index: 4; 
 	position:absolute; 
 	left:195px; 
@@ -549,12 +418,21 @@ svg {
 }
 
 #wordCanvas {
-	width: 360px;
-	height: 120px;
+/*	z-index: 1;
+	position:absolute;
+	left:0px;
+	top:180px;
+	width:360px;
+	height:120px;*/
 	background-image: url('../assets/background.png');
 }
 
 #popupWordCanvas {
+	z-index: 4;
+	position:absolute;
+	left:0px;
+	top:180px;
+	visibility:hidden;
 	width: 360px;
 	height: 120px;
 	background-image: url('../assets/background.png');
@@ -582,6 +460,10 @@ svg {
 	height: 60px;
 	background-image: url('../assets/context_button.png');
 	background-size: 180px 60px;
+	z-index: 2;
+	position:absolute;
+	left:0px;
+	top:300px;
 }
 
 #revealButton {
@@ -589,6 +471,10 @@ svg {
 	height: 60px;
 	background-image: url('../assets/reveal_button.png');
 	background-size: 180px 60px;
+	z-index: 2;
+	position:absolute;
+	left:180px;
+	top:300px;
 }
 
 .mButton {

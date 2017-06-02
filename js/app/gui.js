@@ -171,10 +171,6 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 				userData.saveClick(e.clientX, e.clientY, "time");
 				doubleTapHandler("codeShowPage");
 			});
-			document.getElementById("qrcodePage").addEventListener("click", function(e){
-				userData.saveClick(e.clientX, e.clientY, "time");
-				doubleTapHandler("codeShowPage");
-			});
 	}
 
 	function update() {
