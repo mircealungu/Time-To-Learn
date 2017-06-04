@@ -136,7 +136,6 @@ define(['userData', 'qrcode'], function(userData, qrcode) {
 			document.getElementById("backButtonInCodeShow").addEventListener("click", function(){
 				document.getElementById("codeShowPage").style.display = "none";
 				document.getElementById("mainPage").style.display = "block";
-				QRcode.clear();
 			});
 		},
 	

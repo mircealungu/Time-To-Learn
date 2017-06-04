@@ -19,8 +19,8 @@
 
 	<div id="languageFlags" style="display: block;">
 		<div id="1BlockOfFlags"></div>
-		<div id="backLangButton" class="langScreensButtons" style="display: none;"></div>
-		<div id="nextLangButton" class="langScreensButtons" style="display: none;"></div>
+		<div id="backLangButton" class="langScreensButtons"></div>
+		<div id="nextLangButton" class="langScreensButtons"></div>
 	</div>
 	
 	<div id="codeShowPage" style="display: none;">
@@ -55,19 +55,21 @@
 			</div>
 		</div>
 		
-		<div id="menuPage" style="z-index: 5; position:absolute; left:0px; top:0; text-align:center;">
+		<div id="menuPage">
+			<!-- I wasn't sure wheter to refactor this, since only three things and to create 3 differente css objects for it seems overdoing it -->
 			<div id="menuSpace">
 				<input type="submit" id="wrongTranslationButton" class="sButton" style="position:absolute; top:60px; left:80px;" value="wrong translation">
 				<input type="submit" id="learnedButton" class="sButton" style="position:absolute; top:140px; left:80px;" value="I learned it! &#x00A; don't show it again">
 				<input type="submit" id="contextInMenuButton" class="sButton" style="position:absolute; top:220px; left:80px;" value="show context">
 			</div>
 			<div id="menuButtons">
-				<input type="submit" class="backButton" id="backButtonInMenu" style="position:absolute; top:300; left:0px;" value=" ">
+				<input type="submit" class="backButton" id="backButtonInMenu" value=" ">
 			</div>
 		</div>
 		
-		<div id="settingsPage" style="z-index: 5; position:absolute; left:0px; top:0; text-align:center;">
+		<div id="settingsPage">
 			<div id="settingsSpace">	
+				<!-- Since we are going to reform the buttons I think we should refactor maybe afterwards -->
 				<input type="submit" id="reverseButton" class="sButton" style="position:absolute; top:25px; left:80px;" value="reverse">
 				<input type="submit" id="profileButton" class="sButton" style="position:absolute; top:95px; left:80px;" value="profile">
 				<input type="submit" id="logOutButton" class="sButton" style="position:absolute; top:165px; left:80px;" value="log out">
@@ -78,21 +80,21 @@
 			</div>
 		</div>
 		
-		<div id="profilePage" style="z-index: 5; position:absolute; left:0px; top:0; text-align:center;">
+		<div id="profilePage">
 			<canvas id="profileCanvas" width="360" height="300"></canvas>
-			<input type="submit" id="leftInProfile" value=" " style="position:absolute; top:-10px; left:-340px;">
-			<input type="submit" id="rightInProfile" value=" " style="position:absolute; top:-10px; left:300px;">
-			<canvas id="profilePageIconCanvas" style="position:absolute; top:280px; left:140px;" width=80 height="20"></canvas>
+			<input type="submit" id="leftInProfile" value=" ">
+			<input type="submit" id="rightInProfile" value=" ">
+			<canvas id="profilePageIconCanvas"></canvas>
 			<div id="profileButtons">
 				<input type="submit" class="backButton" id="backButtonInProfile" value=" ">
 			</div>
 		</div>
 		
-		<div id="showContextPage" style="z-index: 5; position:absolute; left:0px; top:0; text-align:center;">
+		<div id="showContextPage">
  			 <canvas id="contextCanvas" width="360" height="300"></canvas>
  		</div>
 		
-		<div id="clickTracker" style="z-index: 6; position:absolute; width: 360px;	height: 360px; visibility: hidden;">
+		<div id="clickTracker">
 			<canvas id="clickTrackerCanvas" width="360" height="360"></canvas>
 		</div>
 
