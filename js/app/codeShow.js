@@ -11,7 +11,7 @@ define(['userData', 'qrcode'], function(userData, qrcode) {
 	var page = 1;
 	var TEXTUAL_PAGE = 1;
 	var QRCODE_PAGE = 2;
-	var ctx;
+	var ctx,canvasCodeShow;
 	var QRcode;
 	var numbersPrinted = false;
 	var qrCodePrinted = false;
@@ -21,8 +21,8 @@ define(['userData', 'qrcode'], function(userData, qrcode) {
 	var SCREEN_HEIGHT = 360;
 	
 	//definitions of text variables
-	var TITLE_HEIGHT = 70;
-	var TITLE_TEXT_HEIGHT = 62;
+	var TITLE_HEIGHT = 70,TITLE_TEXT_HEIGHT = 62;
+	var MESSAGE_HEIGHT = 20, MESSAGE_TEXT_HEIGHT=10;
 	var ICON_HEIGHT = 15;
 	var DIGIT_SPACE = 76;
 	var DIGIT_HEIGHT = 105;
@@ -40,20 +40,6 @@ define(['userData', 'qrcode'], function(userData, qrcode) {
 
 	var NUMBER_OF_CODE_NUMBERS_ON_PAGE = 8;
 
-	function printMessage(page) {
-		var canvasCodeShow = document.getElementById("codeShowMessageCanvas").getContext("2d");
-//		if (page === TEXTUAL_PAGE) {
-		canvasCodeShow.clearRect(0, 0, SCREEN_WIDTH, 20);
-			
-		canvasCodeShow.font = TITLE_FONT;
-		canvasCodeShow.fillStyle = TITLE_FONT_COLOR;
-		canvasCodeShow.textAlign = "center";
-		canvasCodeShow.fillText("double tap", SCREEN_WIDTH/2, 290);
-//		} else {
-//			
-//		}
-	}
-	
 	function printCodeNumber(position, number){
 		ctx = document.getElementById("codeShowDigitsCanvas").getContext("2d");
 
@@ -82,9 +68,19 @@ define(['userData', 'qrcode'], function(userData, qrcode) {
 		ctx.textAlign = "center";
 		ctx.fillText(title, SCREEN_WIDTH/2, TITLE_TEXT_HEIGHT);
 	}
+	
+	function printMessage(page) {
+		ctx = document.getElementById("codeShowMessageCanvas").getContext("2d");
+		ctx.clearRect(0, 280, SCREEN_WIDTH, MESSAGE_HEIGHT);
+		
+		ctx.font = TITLE_FONT;
+		ctx.fillStyle = TITLE_FONT_COLOR;
+		ctx.textAlign = "center";
+		ctx.fillText("double tap", SCREEN_WIDTH/2, MESSAGE_TEXT_HEIGHT);
+		console.log("printMessage");
+	}
 
 	function initDigits() {
-
 		var accountCode = userData.getCode();
 		numbersPrinted = true;
 		//		print code in numbers here
@@ -98,7 +94,6 @@ define(['userData', 'qrcode'], function(userData, qrcode) {
 	
 	function initQRCode() {
 		var accountCode = userData.getCode();
-
 		//		create QR Code here
 		qrCodePrinted = true;
 		QRcode = new QRCode("imageQR", {

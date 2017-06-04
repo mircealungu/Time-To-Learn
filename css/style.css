@@ -95,7 +95,7 @@ html,body {
 	background-size: 360px 360px;
 }
 
-.codeShowHeader {
+#codeShowHeader {
 	position: relative;
 	top: -10px;
 	width: 360px;
@@ -138,6 +138,7 @@ html,body {
 	bottom: 0px;
 	left:0px;
 }
+
 
 #imageQR{
 	position: absolute;
