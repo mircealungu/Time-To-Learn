@@ -12,6 +12,9 @@ define(['events', 'clickTracker'], function(events, clickTracker) {
 
 	// save data
 	var accountCode = 0;
+	var uuid = null;
+	var password = null;
+	
 	var wordPair = [];
 
 	var sessionPopupShown = false;
@@ -95,6 +98,16 @@ define(['events', 'clickTracker'], function(events, clickTracker) {
 			localStorage.setItem("accountCode", accountCode);
 		},
 
+		savePassword: function(pass) {
+			password = pass;
+			localStorage.setItem("password", password);
+		},
+
+		saveUuid: function(comb) {
+			uuid = comb;
+			localStorage.setItem("uuid", uuid);
+		},
+
 		saveWordPair: function() {
 			localStorage.setItem("wordPair", JSON.stringify(wordPair));
 		},
@@ -127,6 +140,14 @@ define(['events', 'clickTracker'], function(events, clickTracker) {
 			return accountCode;
 		},
 
+		getPassword: function() {
+			return password;
+		},
+		
+		getUuid: function() {
+			return uuid;
+		},
+		
 		getReverseStatus: function() {
 			return JSON.parse(localStorage.getItem("reverse"));
 		},
