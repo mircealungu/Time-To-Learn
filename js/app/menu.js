@@ -89,11 +89,9 @@ define(['effects', 'userData', 'profile', 'context'], function(effects, userData
 				fade();
 			});
 			document.getElementById("popupWordCanvas").addEventListener("click", function(){
-				console.log("popupWordsCanvas");
 				effects.fade(canvas, FADING_TIME);
 			});
 			document.getElementById("showContextPage").addEventListener("click", function(){
-				console.log("context fade");
 				effects.fade(contextPage, FADING_TIME);
 				effects.fade(canvas, FADING_TIME);
 			});
