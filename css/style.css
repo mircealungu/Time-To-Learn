@@ -101,9 +101,12 @@ html,body {
 	width: 360px;
 	height: 70px;
 }
+
 #codeShowMessage {
 	width:360px;
-	height:20px;	
+	height:20px;
+	position: absolute;
+	bottom: 60px;
 }
 
 #codeShowDigits {
