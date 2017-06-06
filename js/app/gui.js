@@ -9,9 +9,9 @@
  */
 
 define(['battery', 'userData', 'time', 'weather', 'fireworks', 
-	'background', 'effects', 'settings', 'menu', 'profile', 'context'], 
+	'background', 'effects', 'settings', 'menu', 'profile', 'codeShow', 'context'], 
 	function(battery, userData, time, weather, fireworks, 
-		background, effects, settings, menu, profile, context) {
+		background, effects, settings, menu, profile, codeShow, context) {
 	
 	//definitions about text
 	var FONT = "px Arial";
@@ -59,7 +59,9 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 		canvasRevealPage.style.visibility = "visible";
 	}
 
-	function doubleTapHandler() {
+	/* The function doubleTapHandler handles a double tap on the scrren of the watch. A page is given as
+	parameter, because the double tap has a different function on different pages.*/
+	function doubleTapHandler(page) {
 		if (doubleTapTimer === null) {
 			// handle single tap
 			doubleTapTimer = setTimeout(function () {
@@ -70,7 +72,11 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 			// handle double tap
 			clearTimeout(doubleTapTimer);
 			doubleTapTimer = null;
-			settings.show();
+			if (page === "time") {
+				settings.show();				
+			} else {
+				codeShow.changePage();
+			}
 		}
 	}
 
@@ -159,7 +165,11 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 			});
 			document.getElementById("time").addEventListener("click", function(e){
 				userData.saveClick(e.clientX, e.clientY, "time");
-				doubleTapHandler();
+				doubleTapHandler("time");
+			});
+			document.getElementById("codeShowPage").addEventListener("click", function(e){
+				userData.saveClick(e.clientX, e.clientY, "time");
+				doubleTapHandler("codeShowPage");
 			});
 	}
 
