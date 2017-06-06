@@ -42,7 +42,7 @@
 	</div>
 	
 	<div id="mainPage" style="display:none;">
-		<div id="revealedPage" style="z-index: 3; position:absolute; left:0px; top:180px; text-align:center;">
+		<div id="revealedPage">
 			<div id="revealedSpace">
 				<canvas id="wrongCanvas"></canvas>
 				<canvas id="menuCanvas"></canvas>
@@ -58,9 +58,9 @@
 		<div id="menuPage">
 			<!-- I wasn't sure wheter to refactor this, since only three things and to create 3 differente css objects for it seems overdoing it -->
 			<div id="menuSpace">
-				<input type="submit" id="wrongTranslationButton" class="sButton" style="position:absolute; top:60px; left:80px;" value="wrong translation">
-				<input type="submit" id="learnedButton" class="sButton" style="position:absolute; top:140px; left:80px;" value="I learned it! &#x00A; don't show it again">
-				<input type="submit" id="contextInMenuButton" class="sButton" style="position:absolute; top:220px; left:80px;" value="show context">
+				<input type="submit" id="wrongTranslationButton" class="sButton sButtonMenu" style="top:60px; left:80px;" value="wrong translation">
+				<input type="submit" id="learnedButton" class="sButton sButtonMenu" style="top:140px; left:80px;" value="I learned it! &#x00A; don't show it again">
+				<input type="submit" id="contextInMenuButton" class="sButton sButtonMenu" style="top:220px; left:80px;" value="show context">
 			</div>
 			<div id="menuButtons">
 				<input type="submit" class="backButton" id="backButtonInMenu" value=" ">
@@ -70,10 +70,10 @@
 		<div id="settingsPage">
 			<div id="settingsSpace">	
 				<!-- Since we are going to reform the buttons I think we should refactor maybe afterwards -->
-				<input type="submit" id="reverseButton" class="sButton" style="position:absolute; top:25px; left:80px;" value="reverse">
-				<input type="submit" id="profileButton" class="sButton" style="position:absolute; top:95px; left:80px;" value="profile">
-				<input type="submit" id="logOutButton" class="sButton" style="position:absolute; top:165px; left:80px;" value="log out">
-				<input type="submit" id="codeShowButton" class="sButton" style="position:absolute; top:235px; left:80px;" value="show code">
+				<input type="submit" id="reverseButton" class="sButton sButtonSettings" value="reverse">
+				<input type="submit" id="profileButton" class="sButton sButtonSettings" value="profile">
+				<input type="submit" id="logOutButton" class="sButton sButtonSettings" value="log out">
+				<input type="submit" id="codeShowButton" class="sButton sButtonSettings" value="show code">
 			</div>
 			<div id="settingsButtons">
 				<input type="submit" class="backButton" id="backButtonInSettings" value=" ">	

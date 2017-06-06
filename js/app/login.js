@@ -41,19 +41,8 @@ define(['userData', 'popup'], function(userData, popup) {
     var SCREEN_WIDTH = 360;
     var SCREEN_HEIGHT = 360;
 
-
-    // title font
-    var TITLE_FONT = "15px Arial";
-    var TITLE_FONT_COLOR = "white";
-
-    // code font
-    var CODE_FONT = "80px Arial";
-    var CODE_FONT_COLOR = "black";
-    
     var NUMBER_OF_CODE_NUMBERS_ON_PAGE = 4;
-    
-    
-    
+     
     var available_languages=["fr","de","es","nl","es","nl"];
     
    /*

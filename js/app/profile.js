@@ -57,6 +57,7 @@ define(['time', 'effects', 'popup', 'userData'], function(time, effects, popup, 
 
 	function initListeners() {
 			document.getElementById("leftInProfile").addEventListener("click", function(){
+				console.log("leftInProfile");
 				drawPreviousMedal();
 			});
 			document.getElementById("rightInProfile").addEventListener("click", function(){
@@ -64,6 +65,7 @@ define(['time', 'effects', 'popup', 'userData'], function(time, effects, popup, 
 			});
 			document.getElementById("backButtonInProfile").addEventListener("click", function(){
 				effects.fade(profile, FADING_TIME);
+				console.log("backButtonInProfile");
 			});
 	}
 

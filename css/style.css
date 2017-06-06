@@ -171,6 +171,11 @@ html,body {
 	width: 360px;
 	height: 180px;
 	visibility: hidden;
+	z-index: 3; 
+	position:absolute; 
+	left:0px;
+	top:180px; 
+	text-align:center;
 }
 
 #revealedSpace {
@@ -541,13 +546,43 @@ svg {
 	text-align: center;
 	font-family: Verdana, Helvetica, sans-serif;
 	color: white;
-	font-size: 20px;
 	font-weight: bold;
+	position: absolute;
+	background-color: #8E8E8E;
+}
+
+.sButtonMenu{
+	font-size: 20px;
 	width: 200px;
 	height: 60px;
-	position: relative;
 	border-radius: 20px;
-	background-color: #8E8E8E;
+}
+
+.sButtonSettings{
+	font-size: 25px;
+	width: 120px;
+	height: 90px;
+	border-radius: 15px;
+}
+
+#reverseButton{
+	top: 65px;
+	left: 55px;
+}
+
+#profileButton{
+	top: 65px;
+	left: 193px;
+}
+
+#logOutButton{
+	top: 185px;
+	left: 55px;
+}
+
+#codeShowButton{
+	top: 185px;
+	left: 193px;
 }
 
 .sButton:active {
