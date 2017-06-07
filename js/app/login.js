@@ -41,28 +41,8 @@ define(['userData', 'popup'], function(userData, popup) {
     var SCREEN_WIDTH = 360;
     var SCREEN_HEIGHT = 360;
 
-    //definitions of text variables
-    var TITLE_HEIGHT = 70;
-    var TITLE_TEXT_HEIGHT = 62;
-    var ICON_HEIGHT = 15;
-    var DIGIT_SPACE = 76;
-    var DIGIT_HEIGHT = 105;
-    var POS_FIRST_DIGIT = 40;
-    var POS_DIGIT_LEFT = 65;
-    var POS_DIGIT_TOP = 80;
-
-    // title font
-    var TITLE_FONT = "15px Arial";
-    var TITLE_FONT_COLOR = "white";
-
-    // code font
-    var CODE_FONT = "80px Arial";
-    var CODE_FONT_COLOR = "black";
-    
     var NUMBER_OF_CODE_NUMBERS_ON_PAGE = 4;
-    
-    
-    
+     
     var available_languages=["fr","de","es","nl","es","nl"];
     
    /*
@@ -87,6 +67,7 @@ define(['userData', 'popup'], function(userData, popup) {
     	
     	var flags = document.getElementsByClassName("flagButton");
     	var getLanguageName = function() {
+
     		var langName = this.getAttribute("id").substring(0,2);   // will return 2 first letters of language ("fr","gr"..)
 
     		requestAnonAccount(langName);
@@ -106,8 +87,7 @@ define(['userData', 'popup'], function(userData, popup) {
     // dynamically add available languages to the screen
     function initLanguages(){
     	
-    	var indexOfBlocks=1,positionIndex=1;;
-    	var top=true, left=true;
+    	var indexOfBlocks=1,positionIndex=1;
     	
     	// create blocks of Flags each contains from 1 to 4 flags
     	for (var i=1; i<available_languages.length+1; i++) {

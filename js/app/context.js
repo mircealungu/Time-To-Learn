@@ -20,7 +20,7 @@ define(['userData', 'effects'], function(userData, effects) {
 	var WORDSPACE_HEIGHT = 300;
 	var SCREEN_WIDTH = 360;
 
-	var TEXT_FONT = "25px Arial";
+	var TEXT_FONT = "30px Arial";
 	var TEXT_COLOR = "white";
 
 	var FADING_TIME = 5;
@@ -64,6 +64,8 @@ define(['userData', 'effects'], function(userData, effects) {
 			for(var i=0; i<wordsInContext.length; i++) {
 					
 				if(currentSentence === 1 && ctx.measureText(firstSentence + " " + wordsInContext[i]).width < 350) {
+					/*if(wordsInContext[i]===currentWord)
+						firstSentence+= " " + currentWord.toUpperCase()*/
 					firstSentence += " " + wordsInContext[i];
 					continue;
 				} else if(currentSentence <= 2 && ctx.measureText(secondSentence + " " + wordsInContext[i]).width < 340) {

@@ -8,7 +8,9 @@
  */
 
 define(['userData', 'qrcode'], function(userData, qrcode) {
-	var page = 1;
+	var TEXTUAL_PAGE = 1;
+	var QRCODE_PAGE = 2;
+	var page = TEXTUAL_PAGE;
 	var ctx;
 	var QRcode;
 	var numbersPrinted = false;
@@ -19,8 +21,8 @@ define(['userData', 'qrcode'], function(userData, qrcode) {
 	var SCREEN_HEIGHT = 360;
 	
 	//definitions of text variables
-	var TITLE_HEIGHT = 70;
-	var TITLE_TEXT_HEIGHT = 62;
+	var TITLE_HEIGHT = 70,TITLE_TEXT_HEIGHT = 62;
+	var MESSAGE_HEIGHT = 20, MESSAGE_TEXT_HEIGHT=15;
 	var ICON_HEIGHT = 15;
 	var DIGIT_SPACE = 76;
 	var DIGIT_HEIGHT = 105;
@@ -34,36 +36,30 @@ define(['userData', 'qrcode'], function(userData, qrcode) {
 
 	// code font
 	var CODE_FONT = "80px Arial";
-	var CODE_FONT_COLOR = "black";
+	var CODE_FONT_COLOR = "white";
 
 	var NUMBER_OF_CODE_NUMBERS_ON_PAGE = 8;
 
-	function placePageIcon(page) {
-		if (page === 1) {
-			ctx = document.getElementById("pageIndicationDigitsCanvas").getContext("2d");
-			ctx.clearRect(0, 0, SCREEN_WIDTH, ICON_HEIGHT);		
-			ctx.beginPath();
-			ctx.arc(170, 7, 7, 0, 2 * Math.PI);
-			ctx.fillStyle = "#FFFFFF";
-			ctx.fill();
-			ctx.beginPath();
-			ctx.arc(190, 7, 7, 0, 2 * Math.PI);
-			ctx.fillStyle = "#C3C3C3";
-			ctx.fill();
+/*	The function showPage operates what is show on the canvas. The page which should be shown is handed as a parameter. The
+ *	page can be textual (the code in digits), as well as a qr code.
+ */
+	function showPage(page) {
+		if (page === TEXTUAL_PAGE) {
+			document.getElementById("qrcode").style.display = "none";
+			document.getElementById("codeShowDigits").style.display = "block";
+			// TEXTUAL_PAGE, so message = double tap for QR Code
+			printMessage("Double tap for QR Code");
 		} else {
-			ctx = document.getElementById("pageIndicationQRCodeCanvas").getContext("2d");
-			ctx.clearRect(0, 0, SCREEN_WIDTH, ICON_HEIGHT);		
-			ctx.beginPath();
-			ctx.arc(170, 7, 7, 0, 2 * Math.PI);
-			ctx.fillStyle = "#C3C3C3";
-			ctx.fill();
-			ctx.beginPath();
-			ctx.arc(190, 7, 7, 0, 2 * Math.PI);
-			ctx.fillStyle = "#FFFFFF";
-			ctx.fill();
+			document.getElementById("codeShowDigits").style.display = "none";
+			document.getElementById("qrcode").style.display = "block";
+			// TEXTUAL_PAGE, so message = double tap for code in digits
+			printMessage("Double tap for code in digits");
 		}
 	}
 	
+/*	The function printCodeNumber prints the 8 digit session number to the canvas. The 8 digit number is printed in two
+ *	sequenes of 4 digits, one beneath another.
+ */
 	function printCodeNumber(position, number){
 		ctx = document.getElementById("codeShowDigitsCanvas").getContext("2d");
 
@@ -83,21 +79,35 @@ define(['userData', 'qrcode'], function(userData, qrcode) {
 		}
 	}
 	
-	function printTitle(title, canvas){
-		ctx = document.getElementById(canvas).getContext("2d");
+/*	The function printTitle prints "Your 8 digit code:" at the top of the screen. */
+	function printTitle(){
+		ctx = document.getElementById("codeShowHeaderCanvas").getContext("2d");
 		ctx.clearRect(0, 0, SCREEN_WIDTH, TITLE_HEIGHT);
 		
 		ctx.font = TITLE_FONT;
 		ctx.fillStyle = TITLE_FONT_COLOR;
 		ctx.textAlign = "center";
-		ctx.fillText(title, SCREEN_WIDTH/2, TITLE_TEXT_HEIGHT);
+		ctx.fillText("Your 8 digit code:", SCREEN_WIDTH/2, TITLE_TEXT_HEIGHT);
 	}
-
-	function initDigitPage() {
-		printTitle("Your 8 digit code:", "codeShowHeaderCanvas");
-		placePageIcon(1);
-
+	
+/*	The function printMessage prints a given message on the screen just above the backButton. This message
+ *	is to inform the user about the switching between the two pages.
+ */
+	function printMessage(message) {
+		ctx = document.getElementById("codeShowMessageCanvas").getContext("2d");
+		ctx.clearRect(0, 0, SCREEN_WIDTH, TITLE_HEIGHT);
+		ctx.clearRect(0, 280, SCREEN_WIDTH, MESSAGE_HEIGHT);
+		
+		ctx.font = TITLE_FONT;
+		ctx.fillStyle = TITLE_FONT_COLOR;
+		ctx.textAlign = "center";
+		ctx.fillText(message, SCREEN_WIDTH/2, MESSAGE_TEXT_HEIGHT);
+	}
+	
+/*	The function initDigits will print the 8 digits on the digitCanvas. */
+	function initDigits() {
 		var accountCode = userData.getCode();
+		numbersPrinted = true;
 		//		print code in numbers here
 		var digitToShow;
 		for (var i = 0; i < NUMBER_OF_CODE_NUMBERS_ON_PAGE ; i++) {
@@ -105,15 +115,13 @@ define(['userData', 'qrcode'], function(userData, qrcode) {
 			digitToShow = digitToShow - (Math.floor(digitToShow / 10) * 10);
 			printCodeNumber(i,digitToShow);
 		}
-		numbersPrinted = true;
 	}
 	
-	function initQRCodePage() {
-		printTitle("Your 8 digit code:", "qrcodeHeaderCanvas");
-		placePageIcon(2);
+/*	The function initQRCode will create a QR Code and will store this QR Code in "imageQR". The QRCode is only rendered once. */
+	function initQRCode() {
 		var accountCode = userData.getCode();
-
-		//		create QR Code here			
+		//		create QR Code here
+		qrCodePrinted = true;
 		QRcode = new QRCode("imageQR", {
 		    text: accountCode.toString(),
 		    width: 200,
@@ -121,44 +129,31 @@ define(['userData', 'qrcode'], function(userData, qrcode) {
 		    colorDark : "#000000",
 		    colorLight : "#ffffff",
 		});
-		qrCodePrinted = true;
 	}
-	
-	function activateBackButtons() {
+
+/*	The function InitPage will initialize all the sections of the page. */
+	function initPage() {
+		document.getElementById("mainPage").style.display = "none";
+		document.getElementById("codeShowPage").style.display = "block";
 		document.getElementById("backButtonInCodeShow").addEventListener("click", function(){
 			document.getElementById("codeShowPage").style.display = "none";
 			document.getElementById("mainPage").style.display = "block";
-			QRcode.clear();
 		});
-		document.getElementById("backButtonInQRCode").addEventListener("click", function(){
-			document.getElementById("qrcodePage").style.display = "none";
-			document.getElementById("mainPage").style.display = "block";
-			QRcode.clear();
-		});
+		
+		if (!numbersPrinted) { initDigits(); }
+		if (!qrCodePrinted) { initQRCode(); }
+		printTitle();
+		showPage(TEXTUAL_PAGE);
 	}
-	
-	function activateScreen(page) {
-		document.getElementById("mainPage").style.display = "none";
-		if (page === 1) {
-			document.getElementById("qrcodePage").style.display = "none";
-			document.getElementById("codeShowPage").style.display = "block";
-		} else {
-			document.getElementById("codeShowPage").style.display = "none";
-			document.getElementById("qrcodePage").style.display = "block";
-		}
-	}
-	
+
 	return {
 		show: function() {
-			activateBackButtons();
-			if (!numbersPrinted) { initDigitPage(); }
-			if (!qrCodePrinted) { initQRCodePage(); }
-			activateScreen(1);
+			initPage();
 		},
 	
 		changePage: function() {
-			page = (page === 1? 2 : 1);
-			activateScreen(page);
+			page = (page === TEXTUAL_PAGE? QRCODE_PAGE : TEXTUAL_PAGE);
+			showPage(page);
 		}
 	};
 });

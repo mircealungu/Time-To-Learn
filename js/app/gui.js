@@ -59,6 +59,8 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 		canvasRevealPage.style.visibility = "visible";
 	}
 
+	/* The function doubleTapHandler handles a double tap on the scrren of the watch. A page is given as
+	parameter, because the double tap has a different function on different pages.*/
 	function doubleTapHandler(page) {
 		if (doubleTapTimer === null) {
 			// handle single tap
@@ -166,10 +168,6 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 				doubleTapHandler("time");
 			});
 			document.getElementById("codeShowPage").addEventListener("click", function(e){
-				userData.saveClick(e.clientX, e.clientY, "time");
-				doubleTapHandler("codeShowPage");
-			});
-			document.getElementById("qrcodePage").addEventListener("click", function(e){
 				userData.saveClick(e.clientX, e.clientY, "time");
 				doubleTapHandler("codeShowPage");
 			});
