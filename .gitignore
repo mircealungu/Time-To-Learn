@@ -6,4 +6,4 @@
 .settings
 .sign
 .tproject
-.timeToLearn.wgt #application that gets run on the emulator
+*.wgt #application that gets run on the emulator
