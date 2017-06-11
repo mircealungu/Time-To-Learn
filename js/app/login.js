@@ -311,11 +311,11 @@ define(['userData', 'popup'], function(userData, popup) {
     return function login(checkLogin) {
 		/* Old part which works */
 
-//    	localStorage.setItem("accountCode", "59961147");
-//    	userData.load();
-//		goToMainPage();
-//		checkLogin(userData.getCode());
-//		return;
+    	/*localStorage.setItem("accountCode", "59961147");
+    	userData.load();
+		goToMainPage();
+		checkLogin(userData.getCode());
+		return;*/
 
 		/* Old part which works */
 

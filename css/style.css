@@ -368,12 +368,12 @@ html,body {
 }
 
 #popupCanvas {
-	width:360px;
-	height:360px;
+	width: 360px;
+	height: 360px;
 	z-index: 6;
-	position:absolute;
-	top: 0; 
-	left: 0; 
+	position: absolute;
+	top: 0;
+	left: -30px;
 }
 
 #popupFireworksCanvas {
@@ -510,25 +510,14 @@ svg {
 	text-align: center;
 }
 
-#contextButton {
-	width: 180px;
+#revealButton {
+	width: 360px;
 	height: 60px;
-	background-image: url('../assets/context_button.png');
-	background-size: 180px 60px;
+	background-image: url('../assets/reveal_button1.png');
+	background-size: 360px 60px;
 	z-index: 2;
 	position:absolute;
 	left:0px;
-	top:300px;
-}
-
-#revealButton {
-	width: 180px;
-	height: 60px;
-	background-image: url('../assets/reveal_button.png');
-	background-size: 180px 60px;
-	z-index: 2;
-	position:absolute;
-	left:180px;
 	top:300px;
 }
 
@@ -555,9 +544,9 @@ svg {
 }
 
 .sButtonMenu{
-	font-size: 20px;
+	font-size: 30px;
 	width: 200px;
-	height: 60px;
+	height: 90px;
 	border-radius: 20px;
 }
 

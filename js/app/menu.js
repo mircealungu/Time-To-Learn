@@ -81,10 +81,6 @@ define(['effects', 'userData', 'profile', 'context'], function(effects, userData
 				userData.saveEvent("learnedIt");
 				menuButton(LEARNED_IMG_SOURCE, printWord);
 			});
-			document.getElementById("contextInMenuButton").addEventListener("click", function(){
-				userData.saveEvent("showContext");
-				context.show();
-			});
 			document.getElementById("backButtonInMenu").addEventListener("click", function(){
 				fade();
 			});
@@ -92,8 +88,7 @@ define(['effects', 'userData', 'profile', 'context'], function(effects, userData
 				effects.fade(canvas, FADING_TIME);
 			});
 			document.getElementById("showContextPage").addEventListener("click", function(){
-				effects.fade(contextPage, FADING_TIME);
-				effects.fade(canvas, FADING_TIME);
+				context.hide();
 			});
 	}
 

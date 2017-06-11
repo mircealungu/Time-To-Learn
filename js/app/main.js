@@ -9,7 +9,7 @@
 
 require(['login', 'session', 'gui', 'deviceListeners'], function (login, session, gui, deviceListeners) {  
 	function updateScreenEverySecond() {
-		gui.draw();
+		gui.render();
 		setTimeout(updateScreenEverySecond, 1000);
 	}
 

@@ -9,7 +9,7 @@
     <title>Time to Learn</title>
 
     <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <script data-main="js/build/main-built.js" src="js/lib/require.js"></script>
+   <!--  <script data-main="js/build/main-built.js" src="js/lib/require.js"></script> --> 
     <script data-main="js/app/main.js" src="js/lib/require.js"></script> 
     <!--<script type="text/javascript" src="js/app/selectLanguages.js""></script>-->
     <script type="text/javascript" src="js/app/qrcode.js"></script>
@@ -58,9 +58,8 @@
 		<div id="menuPage">
 			<!-- I wasn't sure wheter to refactor this, since only three things and to create 3 differente css objects for it seems overdoing it -->
 			<div id="menuSpace">
-				<input type="submit" id="wrongTranslationButton" class="sButton sButtonMenu" style="top:60px; left:80px;" value="wrong translation">
-				<input type="submit" id="learnedButton" class="sButton sButtonMenu" style="top:140px; left:80px;" value="I learned it! &#x00A; don't show it again">
-				<input type="submit" id="contextInMenuButton" class="sButton sButtonMenu" style="top:220px; left:80px;" value="show context">
+				<input type="submit" id="wrongTranslationButton" class="sButton sButtonMenu" style="top:70px; left:80px;" value="don't show &#x00A;it again">
+				<input type="submit" id="learnedButton" class="sButton sButtonMenu" style="top:180px; left:80px;" value="I know this">
 			</div>
 			<div id="menuButtons">
 				<input type="submit" class="backButton" id="backButtonInMenu" value=" ">
@@ -121,7 +120,6 @@
 	        <canvas id="popupWordCanvas" ></canvas>
 	    </div>
 	    <div id="buttons">
-	    	<button type="button" id="contextButton" value=""></button>
 	    	<button type="button" id="revealButton" value=""></button>
 	    </div>
 	
