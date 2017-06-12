@@ -8,33 +8,21 @@
  */
 
 require(['login', 'session', 'gui', 'deviceListeners'], function (login, session, gui, deviceListeners) {  
+	
+	
 	function updateScreenEverySecond() {
 		gui.render();
 		setTimeout(updateScreenEverySecond, 1000);
 	}
-	
-	/* goToMainPage() sets the right html "<div>" to display. 
-     * The drawing of other elements is done by other functions.
-     */
-	function goToMainPage() {
-//        document.getElementById("languageFlags").style.display="none";
-        document.getElementById("loadingPage").style.display="none";
-        document.getElementById("mainPage").style.display = "block";
-    }
-	
-	function setLoadScreen(){
-		 document.getElementById("languageFlags").style.display="none";
-	     document.getElementById("loadingPage").style.display="block";
-	}
 
 	function checkLogin(code) {
+		console.log("checkLogin");
 		session.create(ctxWords, code);
 		var status = session.getStatus();
 		if (status !== "SUCCESS") {
 			return status;
 		}
 		gui.create(ctxWords);
-		goToMainPage();
 		deviceListeners();
 		updateScreenEverySecond();
 		return status;

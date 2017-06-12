@@ -19,7 +19,7 @@
  * made by Yaroslav Tykhonchuk, Nick Borchers and Robin Sommer
  */
 
-define(['userData', 'popup', 'gui'], function(userData, popup, gui) {
+define(['userData', 'popup'], function(userData, popup) {
     var ctx;
     var loginCode = 0;
 
@@ -44,14 +44,15 @@ define(['userData', 'popup', 'gui'], function(userData, popup, gui) {
     var available_languages=["fr","de","es","nl","es","nl"];
     
 	//definitions of screen variables
-    var SCREEN_WIDTH = 360;
-	var SCREEN_HEIGHT = 360;
-	var ctx;
 	var canvas;
 	var TEXT_FONT = "60px Arial";
 	var TEXT_COLOR = "white";
 	var loadingPage;
              
+
+	/* goToMainPage() sets the right html "<div>" to display. 
+     * The drawing of other elements is done by other functions.
+     */
 	function goToMainPage() {
         document.getElementById("languageFlags").style.display="none";
         document.getElementById("loadingPage").style.display="none";
@@ -59,7 +60,6 @@ define(['userData', 'popup', 'gui'], function(userData, popup, gui) {
     }
 
 	function setLoadingScreen() {
-		console.log("im in setLoading Screen");
 		document.getElementById("languageFlags").style.display="none";
 		loadingPage = document.getElementById("loadingPage");
 		loadingPage.style.display="block";
@@ -75,9 +75,6 @@ define(['userData', 'popup', 'gui'], function(userData, popup, gui) {
     		
 		ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 		ctx.fillText("Loading..", SCREEN_WIDTH/2, (SCREEN_HEIGHT/2 + 25));
-
-		// gui is not yet rendered automatically. This will be done at the very end of the loginprocedure.
-		//gui.render();
 	}
 
     
@@ -95,14 +92,12 @@ define(['userData', 'popup', 'gui'], function(userData, popup, gui) {
     	var getLanguageName = function() {
 
     		var langName = this.getAttribute("id").substring(0,2);   // will return 2 first letters of language ("fr","gr"..)
-
-			console.log("setting the loading screen");
-			setLoadingScreen();
-			console.log("requesting anonymous account");
+    		setLoadingScreen();
     		requestAnonAccount(langName);
     		if( userData.getCode() !== 0 ){
     			console.log("going to checklogin");
-    			checkLogin(userData.getCode());
+    			setTimeout(function(){goToMainPage()},10);   // a quick timeout to let the request finish execution
+    			setTimeout(function(){checkLogin(userData.getCode())},10);
     		}else{
     			console.log("selecting language failed, so now reselect language");
     			selectLanguages();
