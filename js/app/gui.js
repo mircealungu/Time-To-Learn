@@ -9,9 +9,9 @@
  */
 
 define(['battery', 'userData', 'time', 'weather', 'fireworks', 
-	'background', 'effects', 'settings', 'menu', 'profile', 'context'], 
+	'background', 'effects', 'settings', 'menu', 'profile', 'codeShow', 'context'], 
 	function(battery, userData, time, weather, fireworks, 
-		background, effects, settings, menu, profile, context) {
+		background, effects, settings, menu, profile, codeShow, context) {
 	
 	//definitions about text
 	var FONT = "px Arial";
@@ -59,7 +59,9 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 		canvasRevealPage.style.visibility = "visible";
 	}
 
-	function doubleTapHandler() {
+	/* The function doubleTapHandler handles a double tap on the scrren of the watch. A page is given as
+	parameter, because the double tap has a different function on different pages.*/
+	function doubleTapHandler(page) {
 		if (doubleTapTimer === null) {
 			// handle single tap
 			doubleTapTimer = setTimeout(function () {
@@ -70,7 +72,11 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 			// handle double tap
 			clearTimeout(doubleTapTimer);
 			doubleTapTimer = null;
-			settings.show();
+			if (page === "time") {
+				settings.show();				
+			} else {
+				codeShow.changePage();
+			}
 		}
 	}
 
@@ -104,23 +110,6 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 			// EventListeners for revealing the translation (the user can click the word space or the button)
 			// By double tapping on the time, the settings appears
 			document.getElementById("wordCanvas").addEventListener("click", function(e){
-				userData.saveEvent("reveal");
-				revealTranslation();
-
-				userData.saveClick(e.clientX, e.clientY, "reveal");
-			});
-			
-			document.getElementById("revealButton").addEventListener("click", function(e){
-				userData.saveEvent("reveal");
-				revealTranslation();
-				context.hide();
-				if (context.isShown()) {
-					context.hide();
-				}
-				userData.saveClick(e.clientX, e.clientY, "reveal");
-			});
-
-			document.getElementById("contextButton").addEventListener("click", function(e){
 				userData.saveEvent("showContext");
 				if (context.isShown()) {
 					context.hide();
@@ -130,6 +119,15 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 				userData.saveClick(e.clientX, e.clientY, "showContext");
 			});
 			
+			document.getElementById("revealButton").addEventListener("click", function(e){
+				userData.saveEvent("reveal");
+				revealTranslation();
+				if (context.isShown()) {
+					context.hide();
+				}
+				userData.saveClick(e.clientX, e.clientY, "reveal");
+			});
+
 			// EventListeners for the revealedPage: wrong, menu, right
 			// By double tapping on the menu space, the settings appears
 			document.getElementById("wrongCanvas").addEventListener("click", function(e){
@@ -142,6 +140,7 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 			});
 			document.getElementById("menuCanvas").addEventListener("click", function(e){
 				userData.saveClick(e.clientX, e.clientY, "menu");
+				console.log("menuCanvas");
 				menu.show();
 			});
 			document.getElementById("menuButton").addEventListener("click", function(e){
@@ -159,12 +158,16 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 			});
 			document.getElementById("time").addEventListener("click", function(e){
 				userData.saveClick(e.clientX, e.clientY, "time");
-				doubleTapHandler();
+				doubleTapHandler("time");
+			});
+			document.getElementById("codeShowPage").addEventListener("click", function(e){
+				userData.saveClick(e.clientX, e.clientY, "time");
+				doubleTapHandler("codeShowPage");
 			});
 	}
 
 	function update() {
-		profile.refresh();
+		//profile.refresh();  //commented for now, because appears at every time app is started
 		time.refresh();
 		background.rotate();
 	}
@@ -185,7 +188,6 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 
 		create: function(ctx) {
 			ctxWords = ctx;
-
 			profile.create();
 			time.create();
 			settings.create(printWord);

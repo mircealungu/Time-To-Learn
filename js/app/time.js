@@ -26,9 +26,9 @@ define(function() {
 	var DATE_POSY = 63;
 
 	var TIME_HEIGHT = 180;
-	var TIME_WIDTH = 360;
-	var TIME_POSY = 160;
-	var TIME_FONT = "120px Arial";
+	var TIME_WIDTH = 300;
+	var TIME_POSY = 140;
+	var TIME_FONT = "100px Arial";
 	var TIME_COLOR = "white";
 
 	function getTizenDateTime() {
