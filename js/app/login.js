@@ -26,8 +26,8 @@ define(['userData', 'popup'], function(userData, popup) {
     var SCREEN_WIDTH = 360;
     var SCREEN_HEIGHT = 360;
 
-//	var available_languages = getAvailableLanguages();
-	var available_languages=["fr","de","es","nl","es","nl"];
+	var available_languages;
+//	var available_languages=["fr","de","es","nl","es","nl"];
     
 	//definitions of screen variables
 	var canvas;
@@ -95,7 +95,8 @@ define(['userData', 'popup'], function(userData, popup) {
     
     // dynamically add available languages to the screen
     function initLanguages(){
-    	
+    	available_languages = getAvailableLanguages().split(",");
+    	console.log(available_languages);
     	var indexOfBlocks=1,positionIndex=1;
     	
     	// create blocks of Flags each contains from 1 to 4 flags
@@ -211,6 +212,7 @@ define(['userData', 'popup'], function(userData, popup) {
 				try {
 //					setAvailableLanguages(JSON.parse(this.responseText));
 					localStorage.setItem("availableLanguages", JSON.parse(this.responseText));
+					console.log("Hey+"+JSON.parse(this.responseText));
 				} catch(err) {
 //					Invalid request
 					console.log("INVALID_REQUEST");
