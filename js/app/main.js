@@ -12,6 +12,15 @@ require(['login', 'session', 'gui', 'deviceListeners'], function (login, session
 		gui.render();
 		setTimeout(updateScreenEverySecond, 1000);
 	}
+	
+	/* goToMainPage() sets the right html "<div>" to display. 
+     * The drawing of other elements is done by other functions.
+     */
+	function goToMainPage() {
+//        document.getElementById("languageFlags").style.display="none";
+        document.getElementById("loadingPage").style.display="none";
+        document.getElementById("mainPage").style.display = "block";
+    }
 
 	function checkLogin(code) {
 		session.create(ctxWords, code);
@@ -20,6 +29,7 @@ require(['login', 'session', 'gui', 'deviceListeners'], function (login, session
 			return status;
 		}
 		gui.create(ctxWords);
+		goToMainPage();
 		deviceListeners();
 		updateScreenEverySecond();
 		return status;

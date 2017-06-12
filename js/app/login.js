@@ -19,7 +19,7 @@
  * made by Yaroslav Tykhonchuk, Nick Borchers and Robin Sommer
  */
 
-define(['userData', 'popup'], function(userData, popup) {
+define(['userData', 'popup', 'gui'], function(userData, popup, gui) {
     var ctx;
     var loginCode = 0;
 
@@ -45,15 +45,41 @@ define(['userData', 'popup'], function(userData, popup) {
      
     var available_languages=["fr","de","es","nl","es","nl"];
     
-   /*
-     * goToMainPage() sets the right html "<div>" to display. 
-     * The drawing of other elements is done by other functions.
-     */
-    
-    function goToMainPage() {
+	//definitions of screen variables
+    var SCREEN_WIDTH = 360;
+	var SCREEN_HEIGHT = 360;
+	var ctx;
+	var canvas;
+	var TEXT_FONT = "60px Arial";
+	var TEXT_COLOR = "white";
+             
+	function goToMainPage() {
         document.getElementById("languageFlags").style.display="none";
+//        document.getElementById("loadingPage").style.display="none";
         document.getElementById("mainPage").style.display = "block";
     }
+
+	function setLoadingScreen() {
+		document.getElementById("languageFlags").style.display="none";
+		var loadingPage = document.getElementById("loadingPage");
+		loadingPage.style.display="block";
+		canvas = document.getElementById("loadingTextCanvas");
+		ctx = canvas.getContext("2d");
+
+		ctx.font = TEXT_FONT;
+		ctx.fillStyle = TEXT_COLOR;
+		ctx.textAlign = "center";
+    		
+		loadingPage.style.visibility="visible";
+		canvas.style.visibility = "visible";
+    		
+		ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+		ctx.fillText("Loading..", SCREEN_WIDTH/2, (SCREEN_HEIGHT/2 + 25));
+
+		// gui is not yet rendered automatically. This will be done at the very end of the loginprocedure.
+		gui.render();
+	}
+
     
     /* 
      * selectLanguages() handles flag presses from the selectLanguage menu. 
@@ -70,11 +96,15 @@ define(['userData', 'popup'], function(userData, popup) {
 
     		var langName = this.getAttribute("id").substring(0,2);   // will return 2 first letters of language ("fr","gr"..)
 
+			console.log("setting the loading screen");
+			setLoadingScreen();
+			console.log("requesting anonymous account");
     		requestAnonAccount(langName);
     		if( userData.getCode() !== 0 ){
-    			goToMainPage();
+    			console.log("going to checklogin");
     			checkLogin(userData.getCode());
     		}else{
+    			console.log("selecting language failed, so now reselect language");
     			selectLanguages();
     		}
     	};
@@ -329,12 +359,14 @@ define(['userData', 'popup'], function(userData, popup) {
 //    	userData.savePassword("17196");
 //		userData.saveCode("59961147"); // account of Niek (or the other guy)
        	
-		if ( (userData.getUuid() !== null) && (userData.getPassword() !== null) ) {
+    	if ( (userData.getUuid() !== null) && (userData.getPassword() !== null) ) {
 			relogin(userData.getUuid(), userData.getPassword());    			
 			if( userData.getCode() !== 0 ) {
-				goToMainPage();
+				console.log("setting the loading screen");
+				setLoadingScreen();
 				checkLogin(userData.getCode());
 			} else {
+				console.log("select the language");
 				selectLanguages(checkLogin);
     		}
     	} else {
