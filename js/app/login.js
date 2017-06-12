@@ -14,18 +14,9 @@
  */
 
 define(['userData', 'popup'], function(userData, popup) {
-    var ctx;
-    var loginCode = 0;
-
-    //Definition of login endpoints:
+	// Definition of login endpoints:
 	const RELOGIN_ENDPOINT = "https://zeeguu.unibe.ch/api/get_anon_session/";
 	const GET_ANONYMOUS_ACCOUNT_ENDPOINT = "https://zeeguu.unibe.ch/api/add_anon_user";
-	
-	// Definition of country code constants
-	const NETHERLANDS = "nl";
-	const GERMANY = "de";
-	const SPAIN = "es";
-	const FRANCE = "fr";
 	
 	// Definition of connection messages:
 	const WRONG_SESSION_NUMBER = "WRONG_SESSION_NUMBER";
@@ -35,25 +26,28 @@ define(['userData', 'popup'], function(userData, popup) {
     var SCREEN_WIDTH = 360;
     var SCREEN_HEIGHT = 360;
 
-var available_languages = getAvailableLanguages();
-  //var available_languages=["fr","de","es","nl","es","nl"];
+//	var available_languages = getAvailableLanguages();
+	var available_languages=["fr","de","es","nl","es","nl"];
     
 	//definitions of screen variables
 	var canvas;
+    var ctx;
 	var TEXT_FONT = "60px Arial";
 	var TEXT_COLOR = "white";
 	var loadingPage;
  
-     /*
-     * goToMainPage() sets the right html "<div>" to display. 
-     * The drawing of other elements is done by other functions.
-     */
+	/* goToMainPage() sets the right html "<div>" to display. 
+	 * The drawing of other elements is done by other functions.
+	 */
 	function goToMainPage() {
         document.getElementById("languageFlags").style.display="none";
         document.getElementById("loadingPage").style.display="none";
         document.getElementById("mainPage").style.display = "block";
     }
 
+	/* setLoadingScreene() will create and display the loading screen
+	 * This screen is shown when the words are loaded from the server 
+	 */
 	function setLoadingScreen() {
 		document.getElementById("languageFlags").style.display="none";
 		loadingPage = document.getElementById("loadingPage");
@@ -72,36 +66,31 @@ var available_languages = getAvailableLanguages();
 		ctx.fillText("Loading..", SCREEN_WIDTH/2, (SCREEN_HEIGHT/2 + 25));
 	}
 
-    
-    /* 
-     * selectLanguages() handles flag presses from the selectLanguage menu. 
+    /* selectLanguages() handles flag presses from the selectLanguage menu. 
      * The corresponding country is passed on to the requestAnonAccount() function. 
      */
     function selectLanguages(checkLogin) {
-    	//getAvailableLanguages();    init the available_languages array
     	initLanguages();
-    	console.log(available_languages.toString());
     	selectNextLanguageScreens();
     	
     	var flags = document.getElementsByClassName("flagButton");
     	var getLanguageName = function() {
 
-    		var langName = this.getAttribute("id").substring(0,2);   // will return 2 first letters of language ("fr","gr"..)
+    		var langName = this.getAttribute("id").substring(0,2); // will return 2 first letters of language ("fr","gr"..)
     		setLoadingScreen();
     		requestAnonAccount(langName);
     		if( userData.getCode() !== 0 ){
-    			console.log("going to checklogin");
-    			setTimeout(function(){goToMainPage()},10);   // a quick timeout to let the request finish execution
-    			setTimeout(function(){checkLogin(userData.getCode())},10);
-    		}else{
-    			console.log("selecting language failed, so now reselect language");
+    			setTimeout(function(){goToMainPage()}, 10);   // a quick timeout to let the request finish execution
+    			setTimeout(function(){checkLogin(userData.getCode())}, 10);
+    		} else {
+//    			Selecting language failed, so now reselect language
     			selectLanguages();
     		}
     	};
-    	for(var i=0;i<flags.length;i++){
+
+    	for(var i = 0; i < flags.length; i++){
     		flags[i].addEventListener('click', getLanguageName, false);
     	}
-
     }
     
     // dynamically add available languages to the screen
@@ -110,7 +99,7 @@ var available_languages = getAvailableLanguages();
     	var indexOfBlocks=1,positionIndex=1;
     	
     	// create blocks of Flags each contains from 1 to 4 flags
-    	for (var i=1; i<available_languages.length+1; i++) {
+    	for (var i = 1; i < available_languages.length+1; i++) {
     		if (i>4 && (i-1) % 4 == 0) {
     			indexOfBlocks++;
     			var blockDiv = document.createElement('div');
@@ -120,11 +109,11 @@ var available_languages = getAvailableLanguages();
     		}
     		
     		var flagDiv = document.createElement('div');
-    		flagDiv.className='flagButton';
-    		flagDiv.id=available_languages[i-1]+"Flag";
+    		flagDiv.className = 'flagButton';
+    		flagDiv.id = available_languages[i-1]+"Flag";
     		selectPositionForFlag(flagDiv,positionIndex);    		
     		positionIndex++;
-    		if (positionIndex>4) positionIndex=1;
+    		if (positionIndex > 4) positionIndex = 1;
     		
     		document.getElementById(indexOfBlocks+"BlockOfFlags").appendChild(flagDiv);
     	}
@@ -154,34 +143,31 @@ var available_languages = getAvailableLanguages();
         }
     }
   
-    // click function on the "back" and "next" buttons
+    // Click function on the "back" and "next" buttons
     function selectNextLanguageScreens(){
-    	
-    	var languageFlagsDiv=document.getElementById("languageFlags");
+    	var languageFlagsDiv = document.getElementById("languageFlags");
     	var numberOfBlocks = languageFlagsDiv.childElementCount-2;
     	var index=1;
     
-    	checkIfDisplayNextBackButton(index,numberOfBlocks);
+    	displayNextBackButtons(index,numberOfBlocks);
  
     	document.getElementById("nextLangButton").addEventListener("click",function(){   		
     		document.getElementById(index+"BlockOfFlags").style.display="none";
     		index++;
     		document.getElementById(index+"BlockOfFlags").style.display="block";
-    		checkIfDisplayNextBackButton(index,numberOfBlocks);
+    		displayNextBackButtons(index,numberOfBlocks);
     	});
     	
     	document.getElementById("backLangButton").addEventListener("click",function(){
-    		
     		document.getElementById(index+"BlockOfFlags").style.display="none";
     		index--;
     		document.getElementById(index+"BlockOfFlags").style.display="block";
-    		
-    		checkIfDisplayNextBackButton(index,numberOfBlocks);
+    		displayNextBackButtons(index,numberOfBlocks);
     	});
     }
     
-    // check whether display the "back" and "next" buttons 
-    function checkIfDisplayNextBackButton(index,numberOfBlocks){
+    // Check whether display the "back" and "next" buttons 
+    function displayNextBackButtons(index,numberOfBlocks){
     	
     	if(numberOfBlocks>1 && index<numberOfBlocks){
     		document.getElementById("nextLangButton").style.display="block";
@@ -205,43 +191,38 @@ var available_languages = getAvailableLanguages();
     	        try {
     	            console.log(this.responseText); //no need for parsing, response should be "OK"
     	        } catch(err) {
-    	            // Invalid request
+//    	        	Invalid request
     	            console.log("INVALID_REQUEST");
     	        }
     	    };
     	    xhr.send();
     	} catch(err) {
-    	    // there is no internet connection
+//    		there is no internet connection
     	    console.log("NO_CONNECTION");
     	}   
     }
 
-    	function setAvailableLanguages(av_lang){
-    	    available_languages = av_lang;
-    	}
-
-    	function getAvailableLanguages() {
-    	    const GET_LANGUAGES_ENDPOINT = "https://zeeguu.unibe.ch/api/available_languages";
-    	    try { 
-    	        var xhr = new XMLHttpRequest();
-    	        xhr.open('GET', GET_LANGUAGES_ENDPOINT, false);
-    	        xhr.onload = function () {
-    	            try {
-//    	                setAvailableLanguages(JSON.parse(this.responseText));
-    	                localStorage.setItem("availableLanguages", JSON.parse(this.responseText));
-    	                console.log(JSON.parse(this.responseText));
-    	            } catch(err) {
-    	                // Invalid request
-    	                console.log("INVALID_REQUEST");
-    	            }
-    	        };
-    	        xhr.send();
-    	    } catch(err) {
-    	        // there is no internet connection
-    	        console.log("NO_CONNECTION");
-    	    }
-    	   return localStorage.getItem("availableLanguages");
-    	}
+	function getAvailableLanguages() {
+		const GET_LANGUAGES_ENDPOINT = "https://zeeguu.unibe.ch/api/available_languages";
+		try { 
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', GET_LANGUAGES_ENDPOINT, false);
+			xhr.onload = function () {
+				try {
+//					setAvailableLanguages(JSON.parse(this.responseText));
+					localStorage.setItem("availableLanguages", JSON.parse(this.responseText));
+				} catch(err) {
+//					Invalid request
+					console.log("INVALID_REQUEST");
+				}
+			};
+			xhr.send();
+		} catch(err) {
+//			there is no internet connection
+			console.log("NO_CONNECTION");
+		}
+		return localStorage.getItem("availableLanguages");
+	}
 
     /*
      * guid() generates a (nearly) random UUID. It is not hardware based, we need system calls for this which turned out to be quite tricky.
@@ -258,7 +239,7 @@ var available_languages = getAvailableLanguages();
     	    s4() + '-' + s4() + s4() + s4();
     	}
 
-/* randPass() generates a number between 1 and 1 million. Which is used as a password for the random account. */
+    /* randPass() generates a number between 1 and 1 million. Which is used as a password for the random account. */
 	function randPass() {
 		return (Math.floor((1 + Math.random() * 1000000))).toString();
 	}
@@ -288,15 +269,11 @@ var available_languages = getAvailableLanguages();
 				console.log(WRONG_SESSION_NUMBER);
 				}
 			};
-			// xht.send(form) here ??
 			xhr.send(form);
 		} catch(err) {
 			// there is no internet connection
 			console.log(NO_CONNECTION);
 		}
-		console.log("new account: uuid == " + userData.getUuid("uuid"));
-		console.log("new account: password == " + userData.getPassword("password"));
-		console.log("new account: accountcode == " + userData.getCode("accountCode"));
 	}
     
 	/*
@@ -332,21 +309,7 @@ var available_languages = getAvailableLanguages();
      * and when this is not the case.
      */
     return function login(checkLogin) {
-		/* Old part which works */
-
-    	/*localStorage.setItem("accountCode", "59961147");
-    	userData.load();
-		goToMainPage();
-		checkLogin(userData.getCode());
-		return;*/
-
-		/* Old part which works */
-
-		
-    	/* New part */
-		
-    	localStorage.clear();
-    	
+    	localStorage.clear();    	
     	// Uncomment the following two lines to test all code below: (Account learning german)
 //    	userData.saveUuid("d615d7ff-9895-aab8-cb45-a14da23f7ca3");
 //    	userData.savePassword("17196");
@@ -355,11 +318,9 @@ var available_languages = getAvailableLanguages();
     	if ( (userData.getUuid() !== null) && (userData.getPassword() !== null) ) {
 			relogin(userData.getUuid(), userData.getPassword());    			
 			if( userData.getCode() !== 0 ) {
-				console.log("setting the loading screen");
 				setLoadingScreen();
 				checkLogin(userData.getCode());
 			} else {
-				console.log("select the language");
 				selectLanguages(checkLogin);
     		}
     	} else {

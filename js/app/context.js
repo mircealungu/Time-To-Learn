@@ -47,34 +47,33 @@ define(['userData', 'effects'], function(userData, effects) {
 		},
 
 		show: function() {
-			var firstSentence = [], secondSentence = [], thirdSentence = [], fourthSentence = [], fifthSentence=[];
+			var firstSentence = [], secondSentence = [], thirdSentence = [], fourthSentence = [], fifthSentence = [];
 			var context = userData.getWordPair(0).context;
 			var wordsInContext = context.split(" ");
-			/*var wordsInContext = ["m","m","m","m","m","m","m","m","m","m","m","m","m","m","m","m","m","m","m","m",
-			                      "m","m","m","m","m","m","m","m","m","m"];*/
 			var currentSentence = 1;
 			var currentWord=userData.getWord();
-			console.log(context.length);
 			
-			if(context.length<=20){
-				currentSentence=2;
+			if(context.length <= 20){
+				currentSentence = 2;
 				SECOND_SENTENCE_HEIGHT=180;
 			}
-			else if(context.length<=50){
-				currentSentence=2;
-				SECOND_SENTENCE_HEIGHT=160;
-			}else if(context.length <=75){
-				currentSentence=2;
-				SECOND_SENTENCE_HEIGHT=145, THIRD_SENTENCE_HEIGHT=190, FOURTH_SENTENCE_HEIGHT=235;
+			else if(context.length <= 50){
+				currentSentence = 2;
+				SECOND_SENTENCE_HEIGHT = 160;
+			}else if(context.length <= 75){
+				currentSentence = 2;
+				SECOND_SENTENCE_HEIGHT=145;
+				THIRD_SENTENCE_HEIGHT=190;
+				FOURTH_SENTENCE_HEIGHT=235;
 			}else {
-				SECOND_SENTENCE_HEIGHT=160, THIRD_SENTENCE_HEIGHT=205, FOURTH_SENTENCE_HEIGHT=250;
+				SECOND_SENTENCE_HEIGHT=160;
+				THIRD_SENTENCE_HEIGHT=205;
+				FOURTH_SENTENCE_HEIGHT=250;
 			}
 
 			for(var i=0; i<wordsInContext.length; i++) {
 					
 				if(currentSentence === 1 && ctx.measureText(firstSentence + " " + wordsInContext[i]).width < 330) {
-					/*if(wordsInContext[i]===currentWord)
-						firstSentence+= " " + currentWord.toUpperCase()*/
 					firstSentence += " " + wordsInContext[i];
 					continue;
 				} else if(currentSentence <= 2 && ctx.measureText(secondSentence + " " + wordsInContext[i]).width < 350) {

@@ -43,9 +43,9 @@ define(['userData', 'qrcode'], function(userData, qrcode) {
 
 	var NUMBER_OF_CODE_NUMBERS_ON_PAGE = 8;
 
-/*	The function showPage operates what is show on the canvas. The page which should be shown is handed as a parameter. The
- *	page can be textual (the code in digits), as well as a qr code.
- */
+	/*	The function showPage operates what is show on the canvas. The page which should be shown is handed as a parameter. The
+	 *	page can be textual (the code in digits), as well as a qr code.
+ 	*/
 	function showPage(page) {
 		if (page === TEXTUAL_PAGE) {
 			document.getElementById("qrcode").style.display = "none";
@@ -60,9 +60,9 @@ define(['userData', 'qrcode'], function(userData, qrcode) {
 		}
 	}
 	
-/*	The function printCodeNumber prints the 8 digit session number to the canvas. The 8 digit number is printed in two
- *	sequenes of 4 digits, one beneath another.
- */
+	/*	The function printCodeNumber prints the 8 digit session number to the canvas. The 8 digit number is printed in two
+	 *	sequenes of 4 digits, one beneath another.
+	 */
 	function printCodeNumber(position, number){
 		ctx = document.getElementById("codeShowDigitsCanvas").getContext("2d");
 
@@ -82,7 +82,7 @@ define(['userData', 'qrcode'], function(userData, qrcode) {
 		}
 	}
 	
-/*	The function printTitle prints "Your 8 digit code:" at the top of the screen. */
+	/*	The function printTitle prints "Your 8 digit code:" at the top of the screen. */
 	function printTitle(){
 		ctx = document.getElementById("codeShowHeaderCanvas").getContext("2d");
 		ctx.clearRect(0, 0, SCREEN_WIDTH, TITLE_HEIGHT);
@@ -93,9 +93,9 @@ define(['userData', 'qrcode'], function(userData, qrcode) {
 		ctx.fillText("Your 8 digit code:", SCREEN_WIDTH/2, TITLE_TEXT_HEIGHT);
 	}
 	
-/*	The function printMessage prints a given message on the screen just above the backButton. This message
- *	is to inform the user about the switching between the two pages.
- */
+	/*	The function printMessage prints a given message on the screen just above the backButton. This message
+	 *	is to inform the user about the switching between the two pages.
+	 */
 	function printMessage(message) {
 		ctx = document.getElementById("codeShowMessageCanvas").getContext("2d");
 		ctx.clearRect(0, 0, SCREEN_WIDTH, TITLE_HEIGHT);
@@ -107,7 +107,7 @@ define(['userData', 'qrcode'], function(userData, qrcode) {
 		ctx.fillText(message, SCREEN_WIDTH/2, MESSAGE_TEXT_HEIGHT);
 	}
 	
-/*	The function initDigits will print the 8 digits on the digitCanvas. */
+	/*	The function initDigits will print the 8 digits on the digitCanvas. */
 	function initDigits() {
 		var accountCode = userData.getCode();
 		//		print code in numbers here
@@ -120,7 +120,9 @@ define(['userData', 'qrcode'], function(userData, qrcode) {
 		numbersPrinted = true;
 	}
 	
-/*	The function initQRCode will create a QR Code and will store this QR Code in "imageQR". The QRCode is only rendered once. */
+	/* The function initQRCode will create a QR Code and will store this QR Code in "imageQR".
+	 * The QRCode is only rendered once.
+	 */
 	function initQRCode() {
 		var accountCode = userData.getCode();
 		//		create QR Code here
@@ -134,7 +136,7 @@ define(['userData', 'qrcode'], function(userData, qrcode) {
 		qrCodePrinted = true;
 	}
 
-/*	The function InitPage will initialize all the sections of the page. */
+	/*	The function InitPage will initialize all the sections of the page. */
 	function initPage() {
 		document.getElementById("mainPage").style.display = "none";
 		document.getElementById("codeShowPage").style.display = "block";

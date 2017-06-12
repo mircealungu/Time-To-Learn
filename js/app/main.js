@@ -9,14 +9,12 @@
 
 require(['login', 'session', 'gui', 'deviceListeners'], function (login, session, gui, deviceListeners) {  
 	
-	
 	function updateScreenEverySecond() {
 		gui.render();
 		setTimeout(updateScreenEverySecond, 1000);
 	}
 
 	function checkLogin(code) {
-		console.log("checkLogin");
 		session.create(ctxWords, code);
 		var status = session.getStatus();
 		if (status !== "SUCCESS") {

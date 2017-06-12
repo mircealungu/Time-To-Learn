@@ -360,6 +360,7 @@ html,body {
 	width: 360px;
 	height: 60px;
 }
+
 #clickTracker {
 	z-index: 6;
 	position:absolute;
@@ -485,12 +486,6 @@ svg {
 }
 
 #wordCanvas {
-/*	z-index: 1;
-	position:absolute;
-	left:0px;
-	top:180px;
-	width:360px;
-	height:120px;*/
 	background-image: url('../assets/background.png');
 }
 
