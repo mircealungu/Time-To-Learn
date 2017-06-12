@@ -107,7 +107,6 @@ define(['userData', 'qrcode'], function(userData, qrcode) {
 /*	The function initDigits will print the 8 digits on the digitCanvas. */
 	function initDigits() {
 		var accountCode = userData.getCode();
-		numbersPrinted = true;
 		//		print code in numbers here
 		var digitToShow;
 		for (var i = 0; i < NUMBER_OF_CODE_NUMBERS_ON_PAGE ; i++) {
@@ -115,13 +114,13 @@ define(['userData', 'qrcode'], function(userData, qrcode) {
 			digitToShow = digitToShow - (Math.floor(digitToShow / 10) * 10);
 			printCodeNumber(i,digitToShow);
 		}
+		numbersPrinted = true;
 	}
 	
 /*	The function initQRCode will create a QR Code and will store this QR Code in "imageQR". The QRCode is only rendered once. */
 	function initQRCode() {
 		var accountCode = userData.getCode();
 		//		create QR Code here
-		qrCodePrinted = true;
 		QRcode = new QRCode("imageQR", {
 		    text: accountCode.toString(),
 		    width: 200,
@@ -129,6 +128,7 @@ define(['userData', 'qrcode'], function(userData, qrcode) {
 		    colorDark : "#000000",
 		    colorLight : "#ffffff",
 		});
+		qrCodePrinted = true;
 	}
 
 /*	The function InitPage will initialize all the sections of the page. */
