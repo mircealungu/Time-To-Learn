@@ -5,17 +5,11 @@
  * in session.js, which returns the status to login with the callback function 'checkLogin'
  * implemented in main.js module.
  *
- * If there is already a account code saved in the storage, then there will be no login interface
- * drawn. An account code will only be saved if it was correct code. So the user only has to login in
- * once.
- *
- * made by Rick Nienhuis & Niels Haan
- * 
- * NEW FEATURES:
- * 
- * Anonymous account checking and session fetching for anonymous account using Zeeguu API.
- * A nice gui is added where the user can press a flag to select the desired language.
- * 
+ * If the user uses the app for the first time, an anonymous account is created and a session is
+ * fetched. Also there is gui, which shows the languages available to learn. If there is already
+ * an account code saved in the storage, then there will be no login interface drawn. An account
+ * code will only be saved if it was a correct code. So the user only has to login once.    
+
  * made by Yaroslav Tykhonchuk, Nick Borchers and Robin Sommer
  */
 
