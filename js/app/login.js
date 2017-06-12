@@ -37,8 +37,8 @@ define(['userData', 'popup'], function(userData, popup) {
 
     var NUMBER_OF_CODE_NUMBERS_ON_PAGE = 4;
      
-    var available_languages=["fr","de","es","nl","es","nl"];
-    
+    var available_languages = getAvailableLanguages();
+//    var available_languages = ["fr","de","es","nl","es","nl"];
    /*
      * goToMainPage() sets the right html "<div>" to display. 
      * The drawing of other elements is done by other functions.
@@ -54,7 +54,7 @@ define(['userData', 'popup'], function(userData, popup) {
      * The corresponding country is passed on to the requestAnonAccount() function. 
      */
     function selectLanguages(checkLogin) {
-    	// getAvailableLanguages();   // init the available_languages array
+    	//getAvailableLanguages();    init the available_languages array
     	initLanguages();
     	console.log(available_languages.toString());
     	selectNextLanguageScreens();
@@ -201,7 +201,9 @@ define(['userData', 'popup'], function(userData, popup) {
     	        xhr.open('GET', GET_LANGUAGES_ENDPOINT, false);
     	        xhr.onload = function () {
     	            try {
-    	                setAvailableLanguages(JSON.parse(this.responseText));
+//    	                setAvailableLanguages(JSON.parse(this.responseText));
+    	                localStorage.setItem("availableLanguages", JSON.parse(this.responseText));
+    	                console.log(JSON.parse(this.responseText));
     	            } catch(err) {
     	                // Invalid request
     	                console.log("INVALID_REQUEST");
@@ -211,7 +213,8 @@ define(['userData', 'popup'], function(userData, popup) {
     	    } catch(err) {
     	        // there is no internet connection
     	        console.log("NO_CONNECTION");
-    	    }   
+    	    }
+    	   return localStorage.getItem("availableLanguages");
     	}
 
     /*
