@@ -141,9 +141,10 @@ define(['userData', 'qrcode'], function(userData, qrcode) {
 		});
 		
 		if (!numbersPrinted) { initDigits(); }
-		if (!qrCodePrinted) { initQRCode(); }
 		printTitle();
 		showPage(TEXTUAL_PAGE);
+		// QR code is loaded when the TEXTUAL_PAGE is shown. This should minimize the waiting time for the user when switching to the QRCODE_PAGE
+		if (!qrCodePrinted) { initQRCode(); }
 	}
 
 	return {
