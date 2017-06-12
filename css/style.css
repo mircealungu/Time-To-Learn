@@ -142,7 +142,6 @@ html,body {
 	left:0px;
 }
 
-
 #imageQR{
 	position: absolute;
 	top: 5px;
@@ -169,6 +168,19 @@ html,body {
 	background-color: #000000;
 	opacity: 0.95;
   }
+
+#loadingPage {
+	position:absolute;
+	left:0px;
+	top:0px;
+	text-align:center;
+	margin: 0px;
+	width: 360px;
+	height: 360px;
+	visibility: hidden;
+	background-color: #000000;
+  }
+
 
 #revealedPage {
 	width: 360px;
@@ -415,7 +427,7 @@ html,body {
 	z-index: 0;
 	position:absolute;
 	left:0px;
-	top:0px;"
+	top:0px;
 	width: 360px;
 	height: 360px;
 	background-image: url('../assets/day_cycle.png');
