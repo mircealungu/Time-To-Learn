@@ -21,6 +21,11 @@ require(['login', 'session', 'gui', 'deviceListeners'], function (login, session
         document.getElementById("loadingPage").style.display="none";
         document.getElementById("mainPage").style.display = "block";
     }
+	
+	function setLoadScreen(){
+		 document.getElementById("languageFlags").style.display="none";
+	     document.getElementById("loadingPage").style.display="block";
+	}
 
 	function checkLogin(code) {
 		session.create(ctxWords, code);

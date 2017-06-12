@@ -41,8 +41,6 @@ define(['userData', 'popup', 'gui'], function(userData, popup, gui) {
     var SCREEN_WIDTH = 360;
     var SCREEN_HEIGHT = 360;
 
-    var NUMBER_OF_CODE_NUMBERS_ON_PAGE = 4;
-     
     var available_languages=["fr","de","es","nl","es","nl"];
     
 	//definitions of screen variables
@@ -52,16 +50,18 @@ define(['userData', 'popup', 'gui'], function(userData, popup, gui) {
 	var canvas;
 	var TEXT_FONT = "60px Arial";
 	var TEXT_COLOR = "white";
+	var loadingPage;
              
 	function goToMainPage() {
         document.getElementById("languageFlags").style.display="none";
-//        document.getElementById("loadingPage").style.display="none";
+        document.getElementById("loadingPage").style.display="none";
         document.getElementById("mainPage").style.display = "block";
     }
 
 	function setLoadingScreen() {
+		console.log("im in setLoading Screen");
 		document.getElementById("languageFlags").style.display="none";
-		var loadingPage = document.getElementById("loadingPage");
+		loadingPage = document.getElementById("loadingPage");
 		loadingPage.style.display="block";
 		canvas = document.getElementById("loadingTextCanvas");
 		ctx = canvas.getContext("2d");
@@ -77,7 +77,7 @@ define(['userData', 'popup', 'gui'], function(userData, popup, gui) {
 		ctx.fillText("Loading..", SCREEN_WIDTH/2, (SCREEN_HEIGHT/2 + 25));
 
 		// gui is not yet rendered automatically. This will be done at the very end of the loginprocedure.
-		gui.render();
+		//gui.render();
 	}
 
     
