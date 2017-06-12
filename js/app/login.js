@@ -5,17 +5,11 @@
  * in session.js, which returns the status to login with the callback function 'checkLogin'
  * implemented in main.js module.
  *
- * If there is already a account code saved in the storage, then there will be no login interface
- * drawn. An account code will only be saved if it was correct code. So the user only has to login in
- * once.
- *
- * made by Rick Nienhuis & Niels Haan
- * 
- * NEW FEATURES:
- * 
- * Anonymous account checking and session fetching for anonymous account using Zeeguu API.
- * A nice gui is added where the user can press a flag to select the desired language.
- * 
+ * If the user uses the app for the first time, an anonymous account is created and a session is
+ * fetched. Also there is gui, which shows the languages available to learn. If there is already
+ * an account code saved in the storage, then there will be no login interface drawn. An account
+ * code will only be saved if it was a correct code. So the user only has to login once.    
+
  * made by Yaroslav Tykhonchuk, Nick Borchers and Robin Sommer
  */
 
@@ -41,16 +35,17 @@ define(['userData', 'popup'], function(userData, popup) {
     var SCREEN_WIDTH = 360;
     var SCREEN_HEIGHT = 360;
 
-    var available_languages=["fr","de","es","nl","es","nl"];
+var available_languages = getAvailableLanguages();
+  //var available_languages=["fr","de","es","nl","es","nl"];
     
 	//definitions of screen variables
 	var canvas;
 	var TEXT_FONT = "60px Arial";
 	var TEXT_COLOR = "white";
 	var loadingPage;
-             
-
-	/* goToMainPage() sets the right html "<div>" to display. 
+ 
+     /*
+     * goToMainPage() sets the right html "<div>" to display. 
      * The drawing of other elements is done by other functions.
      */
 	function goToMainPage() {
@@ -83,7 +78,7 @@ define(['userData', 'popup'], function(userData, popup) {
      * The corresponding country is passed on to the requestAnonAccount() function. 
      */
     function selectLanguages(checkLogin) {
-    	// getAvailableLanguages();   // init the available_languages array
+    	//getAvailableLanguages();    init the available_languages array
     	initLanguages();
     	console.log(available_languages.toString());
     	selectNextLanguageScreens();
@@ -232,7 +227,9 @@ define(['userData', 'popup'], function(userData, popup) {
     	        xhr.open('GET', GET_LANGUAGES_ENDPOINT, false);
     	        xhr.onload = function () {
     	            try {
-    	                setAvailableLanguages(JSON.parse(this.responseText));
+//    	                setAvailableLanguages(JSON.parse(this.responseText));
+    	                localStorage.setItem("availableLanguages", JSON.parse(this.responseText));
+    	                console.log(JSON.parse(this.responseText));
     	            } catch(err) {
     	                // Invalid request
     	                console.log("INVALID_REQUEST");
@@ -242,7 +239,8 @@ define(['userData', 'popup'], function(userData, popup) {
     	    } catch(err) {
     	        // there is no internet connection
     	        console.log("NO_CONNECTION");
-    	    }   
+    	    }
+    	   return localStorage.getItem("availableLanguages");
     	}
 
     /*

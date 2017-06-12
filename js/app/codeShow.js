@@ -1,8 +1,11 @@
 /**
  * codeShow.js
  *
- * This module implements showing the code for connection with the account on the server.
- * if you double tap the screen, the manner of showing the code switches between numbers and a QR Code
+ * This module implements the code show page, which can be accessed by the settings menu. It
+ * implements showing the code for connection with the account on the server.
+ * If you double tap the screen, the manner of showing the code switches between numbers and a QR Code
+ * This is implemented in a way that the qrcode is created only once. This is more efficient. After
+ * the page is loaded once, we can easily access the page, since everything is already initialized.
  * 
  * made by Robin Sommer
  */
