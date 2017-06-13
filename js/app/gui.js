@@ -110,6 +110,15 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 			// EventListeners for revealing the translation (the user can click the word space or the button)
 			// By double tapping on the time, the settings appears
 			document.getElementById("wordCanvas").addEventListener("click", function(e){
+				userData.saveEvent("reveal");
+				revealTranslation();
+				if (context.isShown()) {
+					context.hide();
+				}
+				userData.saveClick(e.clientX, e.clientY, "reveal");
+			});
+			
+			document.getElementById("revealButton").addEventListener("click", function(e){
 				userData.saveEvent("showContext");
 				if (context.isShown()) {
 					context.hide();
@@ -117,15 +126,6 @@ define(['battery', 'userData', 'time', 'weather', 'fireworks',
 					context.show();
 				}
 				userData.saveClick(e.clientX, e.clientY, "showContext");
-			});
-			
-			document.getElementById("revealButton").addEventListener("click", function(e){
-				userData.saveEvent("reveal");
-				revealTranslation();
-				if (context.isShown()) {
-					context.hide();
-				}
-				userData.saveClick(e.clientX, e.clientY, "reveal");
 			});
 
 			// EventListeners for the revealedPage: wrong, menu, right

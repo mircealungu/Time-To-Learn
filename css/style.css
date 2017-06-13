@@ -326,10 +326,10 @@ html,body {
 
 #profilePageIconCanvas {
 	position:absolute;
-	top:280px;
+	top:240px;
 	left:140px;
-	width:80;
-	height:20;
+	width:140px;
+	height:60px;
 }
 
 #leftInProfile {

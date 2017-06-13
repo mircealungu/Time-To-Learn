@@ -42,13 +42,14 @@ define(['time', 'effects', 'popup', 'userData'], function(time, effects, popup, 
 	var PROFILE_TEXT_HEIGHT_1 = 220;
 	var PROFILE_TEXT_HEIGHT_2 = 260;
 	
-	var PAGE_ICON_POS_1 = 10;
-	var PAGE_ICON_POS_2 = 30;
-	var PAGE_ICON_POS_3 = 50;
-	var PAGE_ICON_POS_4 = 70;
+	var PAGE_ICON_POS_1 = 15;
+	var PAGE_ICON_POS_2 = 50;
+	var PAGE_ICON_POS_3 = 85;
+	var PAGE_ICON_POS_4 = 120;
+	var PAGE_ICON_DISTANCE_BETWEEN=35;
 	
-	var PAGE_ICON_POS_Y_RADIUS = 9;
-	var PAGE_ICON_RADIUS = 7;
+	var PAGE_ICON_POS_Y = 125;
+	var PAGE_ICON_RADIUS = 15;
 
 	// definitions page icon colors
 	var NON_DISPLAYED_PAGE_ICON_COLOR = "#C3C3C3";
@@ -83,26 +84,28 @@ define(['time', 'effects', 'popup', 'userData'], function(time, effects, popup, 
 		return hours + ":" + minutes + ":" + seconds;
 	}
 
-	function drawNonDisplayedPageIcons(start) {
+	function drawNonDisplayedPageIcons() {
+		var start = PAGE_ICON_POS_1;
 		for (var i=0; i<medal.length; i++) {
 			ctxPageIcon.beginPath();
-			ctxPageIcon.arc(start + i*20, PAGE_ICON_POS_Y_RADIUS, PAGE_ICON_RADIUS, 0, 2 * Math.PI);
+			ctxPageIcon.arc(start, PAGE_ICON_POS_Y, PAGE_ICON_RADIUS, 0, 2 * Math.PI);
 			ctxPageIcon.fillStyle = NON_DISPLAYED_PAGE_ICON_COLOR;
 			ctxPageIcon.fill();
+			start+=PAGE_ICON_DISTANCE_BETWEEN;
 		}
 	}
 	
 	function drawDisplayedPageIcon(pos_x) {
 		ctxPageIcon.beginPath();
-		ctxPageIcon.arc(pos_x, PAGE_ICON_POS_Y_RADIUS, PAGE_ICON_RADIUS, 0, 2 * Math.PI);
+		ctxPageIcon.arc(pos_x, PAGE_ICON_POS_Y, PAGE_ICON_RADIUS, 0, 2 * Math.PI);
 		ctxPageIcon.fillStyle = DISPLAYED_PAGE_ICON_COLOR;
 		ctxPageIcon.fill();
 	}
 	
 	function drawPageIcon(pos_x) {
 		ctxPageIcon = document.getElementById("profilePageIconCanvas").getContext("2d");
-		ctxPageIcon.clearRect(0, 0, 80, 20);
-		drawNonDisplayedPageIcons(PAGE_ICON_POS_1);
+		ctxPageIcon.clearRect(0, 0, 100, 20);
+		drawNonDisplayedPageIcons();
 		drawDisplayedPageIcon(pos_x);
 	}
 	

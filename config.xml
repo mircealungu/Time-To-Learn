@@ -10,5 +10,5 @@
     <name>TimeToLearn</name>
     <tizen:privilege name="http://tizen.org/privilege/internet"/>
     <tizen:privilege name="http://tizen.org/privilege/location"/>
-    <tizen:profile name="wearable"/>
+    <tizen:profile name="mobile"/>
 </widget>
