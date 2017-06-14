@@ -311,11 +311,12 @@ define(['userData', 'popup'], function(userData, popup) {
      * and when this is not the case.
      */
     return function login(checkLogin) {
-    	localStorage.clear();    	
     	// Uncomment the following two lines to test all code below: (Account learning german)
+//    	localStorage.clear();    	
 //    	userData.saveUuid("d615d7ff-9895-aab8-cb45-a14da23f7ca3");
 //    	userData.savePassword("17196");
-//		userData.saveCode("59961147"); // account of Niek (or the other guy)
+//	NOTE: The uuid-password combination above is from another account then the accountCode below
+//	userData.saveCode("59961147");
        	
     	if ( (userData.getUuid() !== null) && (userData.getPassword() !== null) ) {
 			relogin(userData.getUuid(), userData.getPassword());    			
