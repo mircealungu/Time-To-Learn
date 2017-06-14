@@ -381,12 +381,9 @@ html,body {
 }
 
 #popupCanvas {
-	width: 360px;
-	height: 360px;
 	z-index: 6;
 	position: absolute;
 	top: 0;
-	left: -30px;
 }
 
 #popupFireworksCanvas {

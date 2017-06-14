@@ -70,8 +70,8 @@ define(['effects', 'userData', 'profile', 'context'], function(effects, userData
 			document.getElementById("menuSpace").addEventListener("click", function(){
 				fade();
 			});
-			document.getElementById("wrongTranslationButton").addEventListener("click", function(){
-				userData.saveEvent("wrongTranslation");
+			document.getElementById("dontShowItAgainButton").addEventListener("click", function(){
+				userData.saveEvent("dontShowItAgainButton");
 				menuButton(TRASH_IMG_SOURCE, printWord);
 			});
 			document.getElementById("learnedButton").addEventListener("click", function(){
