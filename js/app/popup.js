@@ -83,46 +83,6 @@ define(['fireworks', 'effects'], function(fireworks, effects) {
 			});
 		},
 
-		forLogin: function(version, resetCode) {
-			document.getElementById("loginPopup").style.visibility = "visible";
-			ctxLogin = document.getElementById("loginPopupCanvas").getContext("2d");
-			ctxLogin.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-
-			ctxLogin.font = LOGIN_POPUP_FONT;
-			ctxLogin.fillStyle = LOGIN_POPUP_FONT_COLOR;
-			ctxLogin.textAlign = "center";
-
-			if (version === "NO_CONNECTION") {
-				ctxLogin.fillText("NO CONNECTION", SCREEN_WIDTH/2, POPUP_TEXT_HEIGHT_1);
-				ctxLogin.fillText("There isn't a connection", SCREEN_WIDTH/2, POPUP_TEXT_HEIGHT_2);
-				ctxLogin.fillText("with the internet.", SCREEN_WIDTH/2, POPUP_TEXT_HEIGHT_3);
-				ctxLogin.fillText("Please check your", SCREEN_WIDTH/2, POPUP_TEXT_HEIGHT_4);
-				ctxLogin.fillText("internet connection.", SCREEN_WIDTH/2, POPUP_TEXT_HEIGHT_5);
-			} else if (version === "WRONG_SESSION_NUMBER") {
-				ctxLogin.fillText("WRONG PASSWORD", SCREEN_WIDTH/2, POPUP_TEXT_HEIGHT_1);
-				ctxLogin.fillText("This password is not", SCREEN_WIDTH/2, POPUP_TEXT_HEIGHT_2);
-				ctxLogin.fillText("recognized in our database.", SCREEN_WIDTH/2, POPUP_TEXT_HEIGHT_3);
-				ctxLogin.fillText("Please check your account", SCREEN_WIDTH/2, POPUP_TEXT_HEIGHT_4);
-				ctxLogin.fillText("at Zeeguu.", SCREEN_WIDTH/2, POPUP_TEXT_HEIGHT_5);
-			} else {
-				ctxLogin.fillText("TOO FEW WORDS", SCREEN_WIDTH/2, POPUP_TEXT_HEIGHT_1);
-				ctxLogin.fillText("More words needed,", SCREEN_WIDTH/2, POPUP_TEXT_HEIGHT_2);
-				ctxLogin.fillText("please make sure you have", SCREEN_WIDTH/2, POPUP_TEXT_HEIGHT_3);
-				ctxLogin.fillText("at least 5 words.", SCREEN_WIDTH/2, POPUP_TEXT_HEIGHT_4);
-			}
-
-			ctxLogin.font = LOGIN_POPUP_FONT_FOOTER;
-			ctxLogin.fillStyle = LOGIN_POPUP_FONT_COLOR;
-			ctxLogin.textAlign = "center";
-			ctxLogin.fillText("please press the screen to try again", SCREEN_WIDTH/2, POPUP_TEXT_HEIGHT_6);
-
-			resetCode(1);
-
-			document.getElementById("loginPopupCanvas").addEventListener("click", function(){
-				document.getElementById("loginPopup").style.visibility = "hidden";
-			});
-		},
-
 		forWordsLearned: function(wordsLearned) {
 			popupShow();
 			drawMedal("words_learned");

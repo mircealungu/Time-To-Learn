@@ -13,7 +13,7 @@ define(function() {
 
 	//definitions image
 	var IMG_WIDTH = 360;
-	var IMG_HEIGHT = 120;
+	var IMG_HEIGHT = 150;
 
 	//definitions for fading time in milliseconds
 	var FADING_TIME = 20;
@@ -28,7 +28,7 @@ define(function() {
 
 			var img = new Image();
 			img.onload = function() {
-				ctx.drawImage(img, 0, 0, IMG_WIDTH, IMG_HEIGHT);
+				ctx.drawImage(img, -35, 0, IMG_WIDTH, IMG_HEIGHT);
 			};
 			img.src = imgSource;
 			

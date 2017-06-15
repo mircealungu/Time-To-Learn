@@ -8,6 +8,7 @@
  */
 
 require(['login', 'session', 'gui', 'deviceListeners'], function (login, session, gui, deviceListeners) {  
+	
 	function updateScreenEverySecond() {
 		gui.render();
 		setTimeout(updateScreenEverySecond, 1000);

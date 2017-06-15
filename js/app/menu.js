@@ -7,11 +7,19 @@
  * The menu will fade away in 5s if the user does not do anything.
  *
  * made by Rick Nienhuis & Niels Haan
+ * 
+ * NEW FEATURES:
+ * 
+ * When pressing the 'show context' button, the new window appears 
+ * with proposed sentence. After you click anywhere on the screen it 
+ * returns to the main page.
+ * 
+ * made by Yaroslav Tykhonchuk
  */
 
 define(['effects', 'userData', 'profile', 'context'], function(effects, userData, profile, context) {
 
-	var menu;
+	var menu,contextPage;
 	var canvas, ctx;
 
 	//definitions
@@ -26,12 +34,12 @@ define(['effects', 'userData', 'profile', 'context'], function(effects, userData
 	var SCREEN_WIDTH = 360;
 	var SCREEN_HEIGHT = 360;
 
-	var WORDSPACE_HEIGHT = 120;
+	var WORDSPACE_HEIGHT = 300;
 
 	var LEARNED_IMG_SOURCE = "assets/right_icon_icon.png";
 	var TRASH_IMG_SOURCE = "assets/trash_icon.png";
 
-	var TEXT_FONT = "20px Arial";
+	var TEXT_FONT = "25px Arial";
 	var TEXT_COLOR = "white";
 
 	function fade() {
@@ -62,8 +70,8 @@ define(['effects', 'userData', 'profile', 'context'], function(effects, userData
 			document.getElementById("menuSpace").addEventListener("click", function(){
 				fade();
 			});
-			document.getElementById("wrongTranslationButton").addEventListener("click", function(){
-				userData.saveEvent("wrongTranslation");
+			document.getElementById("dontShowItAgainButton").addEventListener("click", function(){
+				userData.saveEvent("dontShowItAgainButton");
 				menuButton(TRASH_IMG_SOURCE, printWord);
 			});
 			document.getElementById("learnedButton").addEventListener("click", function(){
@@ -73,12 +81,14 @@ define(['effects', 'userData', 'profile', 'context'], function(effects, userData
 				userData.saveEvent("learnedIt");
 				menuButton(LEARNED_IMG_SOURCE, printWord);
 			});
-			document.getElementById("contextInMenuButton").addEventListener("click", function(){
-				userData.saveEvent("showContext");
-				context.show();
-			});
 			document.getElementById("backButtonInMenu").addEventListener("click", function(){
 				fade();
+			});
+			document.getElementById("popupWordCanvas").addEventListener("click", function(){
+				effects.fade(canvas, FADING_TIME);
+			});
+			document.getElementById("showContextPage").addEventListener("click", function(){
+				context.hide();
 			});
 	}
 
@@ -86,7 +96,8 @@ define(['effects', 'userData', 'profile', 'context'], function(effects, userData
 
 		create: function(printWord) {
 			menu = document.getElementById("menuPage");
-			canvas = document.getElementById("popupWordCanvas");
+			contextPage = document.getElementById("showContextPage");
+			canvas = document.getElementById("contextCanvas");
 			ctx = canvas.getContext("2d");
 
 			ctx.font = TEXT_FONT;
