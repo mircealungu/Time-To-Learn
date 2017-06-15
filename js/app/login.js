@@ -32,7 +32,7 @@ define(['userData', 'popup'], function(userData, popup) {
 	//definitions of screen variables
 	var canvas;
     var ctx;
-	var TEXT_FONT = "60px Arial";
+	var TEXT_FONT = "45px Arial";
 	var TEXT_COLOR = "white";
 	var loadingPage;
  
@@ -63,7 +63,7 @@ define(['userData', 'popup'], function(userData, popup) {
 		canvas.style.visibility = "visible";
     		
 		ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-		ctx.fillText("Loading..", SCREEN_WIDTH/2, (SCREEN_HEIGHT/2 + 25));
+		ctx.fillText("Loading...", SCREEN_WIDTH/2, (SCREEN_HEIGHT/2 + 10));
 	}
 
     /* selectLanguages() handles flag presses from the selectLanguage menu. 
@@ -313,16 +313,22 @@ define(['userData', 'popup'], function(userData, popup) {
     return function login(checkLogin) {
     	// Uncomment the following two lines to test all code below: (Account learning german)
 //    	localStorage.clear();    	
-//    	userData.saveUuid("d615d7ff-9895-aab8-cb45-a14da23f7ca3");
-//    	userData.savePassword("17196");
-//	NOTE: The uuid-password combination above is from another account then the accountCode below
-//	userData.saveCode("59961147");
+    	userData.saveUuid("d615d7ff-9895-aab8-cb45-a14da23f7ca3");
+    	userData.savePassword("17196");
+//		NOTE: The uuid-password combination above is from another account then the accountCode below
+//		userData.saveCode("59961147");
        	
     	if ( (userData.getUuid() !== null) && (userData.getPassword() !== null) ) {
+        	console.log("uuid == " + userData.getUuid());
+        	console.log("password == " + userData.getPassword());
 			relogin(userData.getUuid(), userData.getPassword());    			
+        	console.log("accountCode == " + userData.getCode());
 			if( userData.getCode() !== 0 ) {
 				setLoadingScreen();
+				goToMainPage();
 				checkLogin(userData.getCode());
+//    			setTimeout(function(){goToMainPage()}, 10);   // a quick timeout to let the request finish execution
+//    			setTimeout(function(){checkLogin(userData.getCode())}, 10);
 			} else {
 				selectLanguages(checkLogin);
     		}
